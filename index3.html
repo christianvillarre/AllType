@@ -684,77 +684,95 @@
   
 
   <script>
-    const btn = document.querySelector(".menu-btn");
-    const swap = btn.querySelector(".swap");
-    const panel = document.getElementById("menuPanel");
-    let isOpen = false;
+  const btn = document.querySelector(".menu-btn");
+  const swap = btn.querySelector(".swap");
+  const panel = document.getElementById("menuPanel");
+  const navbar = document.querySelector(".navbar");
+  let isOpen = false;
 
-    function showHoverIn() {
-      if (isOpen) return;
-      swap.classList.remove("is-off");
-      swap.classList.add("is-on");
+  function syncNavUI() {
+    const atTop = window.scrollY <= 10;
+    if (atTop || isOpen) {
+      navbar.classList.add("show-nav-ui");
+    } else {
+      navbar.classList.remove("show-nav-ui");
     }
+  }
 
-    function showHoverOut() {
-      if (isOpen) return;
-      swap.classList.add("is-off");
-      swap.classList.remove("is-on");
-      clearTimeout(showHoverOut._t);
-      showHoverOut._t = setTimeout(() => swap.classList.remove("is-off"), 420);
-    }
+  function showHoverIn() {
+    if (isOpen) return;
+    swap.classList.remove("is-off");
+    swap.classList.add("is-on");
+  }
 
-    function openMenu() {
-      isOpen = true;
+  function showHoverOut() {
+    if (isOpen) return;
+    swap.classList.add("is-off");
+    swap.classList.remove("is-on");
+    clearTimeout(showHoverOut._t);
+    showHoverOut._t = setTimeout(() => swap.classList.remove("is-off"), 420);
+  }
+
+  function openMenu() {
+    isOpen = true;
+    btn.classList.remove("is-closing");
+    btn.classList.add("is-open");
+    btn.setAttribute("aria-expanded", "true");
+
+    swap.classList.remove("is-off");
+    swap.classList.add("is-on");
+
+    panel.classList.add("is-open");
+    panel.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    syncNavUI();
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    btn.classList.remove("is-open");
+    btn.classList.add("is-closing");
+    btn.setAttribute("aria-expanded", "false");
+
+    swap.classList.add("is-off");
+    swap.classList.remove("is-on");
+
+    panel.classList.remove("is-open");
+    panel.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    clearTimeout(closeMenu._t1);
+    clearTimeout(closeMenu._t2);
+
+    closeMenu._t1 = setTimeout(() => {
       btn.classList.remove("is-closing");
-      btn.classList.add("is-open");
-      btn.setAttribute("aria-expanded", "true");
+    }, 320);
 
+    closeMenu._t2 = setTimeout(() => {
       swap.classList.remove("is-off");
-      swap.classList.add("is-on");
+    }, 420);
 
-      panel.classList.add("is-open");
-      panel.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    }
+    syncNavUI();
+  }
 
-    function closeMenu() {
-      isOpen = false;
-      btn.classList.remove("is-open");
-      btn.classList.add("is-closing");
-      btn.setAttribute("aria-expanded", "false");
+  btn.addEventListener("mouseenter", showHoverIn, { passive: true });
+  btn.addEventListener("mouseleave", showHoverOut, { passive: true });
 
-      swap.classList.add("is-off");
-      swap.classList.remove("is-on");
+  btn.addEventListener("click", () => {
+    if (isOpen) closeMenu();
+    else openMenu();
+  });
 
-      panel.classList.remove("is-open");
-      panel.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-
-      clearTimeout(closeMenu._t1);
-      clearTimeout(closeMenu._t2);
-
-      closeMenu._t1 = setTimeout(() => {
-        btn.classList.remove("is-closing");
-      }, 320);
-
-      closeMenu._t2 = setTimeout(() => {
-        swap.classList.remove("is-off");
-      }, 420);
-    }
-
-    btn.addEventListener("mouseenter", showHoverIn, { passive: true });
-    btn.addEventListener("mouseleave", showHoverOut, { passive: true });
-
-    btn.addEventListener("click", () => {
-      if (isOpen) closeMenu();
-      else openMenu();
+  document.querySelectorAll(".menu-link, .menu-subitem").forEach(link => {
+    link.addEventListener("click", () => {
+      closeMenu();
     });
+  });
 
-    document.querySelectorAll(".menu-link, .menu-subitem").forEach(link => {
-      link.addEventListener("click", () => {
-        closeMenu();
-      });
-    });
-  </script>
+  window.addEventListener("scroll", syncNavUI, { passive: true });
+  window.addEventListener("load", syncNavUI);
+  syncNavUI();
+</script>
 </body>
 </html>
