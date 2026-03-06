@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Loader – Black + BG Fade + Square Jolt + Center-Out Alltype Reveal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#000000;
+      --ink:#111111;
+      --square: 96;
+      --rectW: 254;
+      --rectH: 96;
+      --ovalW: 800;
+      --gutter: 8rem;
+      --red: #f00303;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+
+    body{
+      margin:0;
+      font-family: 'Zalando Sans', sans-serif;
+      background: var(--bg);
+      color: #fff;
+      overflow:auto;
+    }
+
+    .container{
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+    }
+    @media (max-width: 1100px){
+      :root{ --gutter: 3rem; }
+    }
+    @media (max-width: 720px){
+      :root{ --gutter: 1.25rem; }
+    }
+
+    .navbar{
+      position: fixed;
+      top: 18px;
+      left: 0;
+      width: 100%;
+      z-index: 200;
+      background: transparent;
+      border: none;
+      pointer-events: auto;
+    }
+
+    .navbar-inner{
+      height: 84px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
+
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      justify-content: flex-start;
+      gap: 10px;
+      min-width: 140px;
+    }
+   .nav-logo img{
+    height: 78px;
+    width: auto;
+    display:block;
+    object-fit: contain;
+    transform: translateY(-2px);
+    opacity: 0;
+    transition: opacity 220ms ease;
+    }
+
+    .nav-center{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .menu-btn{
+      background: transparent;
+      border: none;
+      padding: 0;
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .18s ease;
+      position: relative;
+      z-index: 210;
+    }
+    .menu-btn:hover{ transform: translateY(-1px); }
+
+    .swap{
+      position: relative;
+      width: 62px;
+      height: 62px;
+      display: block;
+      --svg1OpacityDelay: 0ms;
+      --svg2InDelay: 0ms;
+    }
+
+    .swap svg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      transform-origin:50% 50%;
+      transform-box: fill-box;
+      will-change: transform, opacity;
+    }
+
+    .swap .svg1{
+      opacity: 1;
+      transform: rotate(0deg);
+      transition:
+        transform 260ms ease,
+        opacity 220ms ease var(--svg1OpacityDelay);
+    }
+    .swap .svg2{
+      opacity: 0;
+      transform: scale(4.8) rotate(16deg);
+      transition:
+        transform 360ms ease var(--svg2InDelay),
+        opacity 220ms ease var(--svg2InDelay);
+    }
+
+    .swap.is-on{
+      --svg1OpacityDelay: 140ms;
+      --svg2InDelay: 90ms;
+    }
+    .swap.is-on .svg1{
+      transform: rotate(-45deg);
+      opacity: 0;
+    }
+    .swap.is-on .svg2{
+      opacity: 1;
+      transform: scale(6) rotate(0deg);
+    }
+
+    .swap.is-off{
+      --svg1OpacityDelay: 0ms;
+      --svg2InDelay: 0ms;
+    }
+
+    .menu-btn.is-open .swap{
+      transform: rotate(-45deg);
+      transition: transform 320ms ease;
+    }
+
+    .menu-btn.is-closing .swap{
+      animation: menuIconClose 320ms ease;
+    }
+
+    @keyframes menuIconClose {
+      0%   { transform: rotate(-45deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      justify-content: flex-end;
+    }
+    .phone-link{
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 14px 0 16px;
+  border-radius: 14px;
+  text-decoration:none;
+  color: rgba(255,255,255,0.92);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+
+  border: 1px solid rgba(255,255,255,0.20);
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    transform .18s ease,
+    background .18s ease,
+    border-color .18s ease,
+    opacity 220ms ease;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.navbar.show-nav-ui .nav-logo img,
+.navbar.show-nav-ui .phone-link{
+  opacity: 1;
+}
+    .phone-link:hover{
+      transform: translateY(-1px);
+      background: rgba(0,0,0,0.35);
+      border-color: rgba(255,255,255,0.30);
+    }
+    .phone-link svg{
+      width: 18px;
+      height: 18px;
+      display:block;
+    }
+    .phone-link svg path{
+      stroke: currentColor;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    /* ===================== MENU PANEL ===================== */
+    .menu-panel{
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 150;
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 420ms ease, opacity 320ms ease;
+      padding-top: 130px;
+      overflow: auto;
+    }
+
+    .menu-panel.is-open{
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .menu-panel-inner{
+      min-height: calc(100vh - 130px);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
+      padding-bottom: 4rem;
+      align-items: stretch;
+    }
+
+    .menu-left,
+    .menu-right{
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .menu-list{
+      display: grid;
+      gap: 18px;
+      margin-top: 0;
+    }
+
+    .menu-link{
+      display: block;
+      text-decoration: none;
+      color: #fff;
+      font-size: clamp(34px, 6vw, 78px);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      padding: 10px 0;
+      opacity: 0.92;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .menu-link:hover{
+      opacity: 1;
+      transform: translateX(6px);
+    }
+
+    .menu-left-bottom{
+      margin-top: auto;
+      display: grid;
+      gap: 2.5rem;
+      padding-top: 3rem;
+    }
+
+    .social-row{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 520px;
+    }
+
+    .social-card{
+      text-decoration: none;
+      color: #fff;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .social-top{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .social-top svg{
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .social-top svg path{
+      stroke: var(--red);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .social-sub{
+      font-size: 14px;
+      color: rgba(255,255,255,.58);
+      letter-spacing: .02em;
+    }
+
+    .office-block{
+      max-width: 420px;
+    }
+
+    .office-title{
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .office-block p{
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.85);
+    }
+
+    .menu-right-top{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .menu-section-title{
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .menu-sublist{
+      display: grid;
+      gap: 12px;
+    }
+
+    .menu-subitem{
+      color: #fff;
+      text-decoration: none;
+      font-size: 28px;
+      line-height: 1.05;
+      font-weight: 600;
+      opacity: .92;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .menu-subitem:hover{
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    /* ---------- Site ---------- */
+    #site{
+      min-height: 200vh;
+      padding: 0;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 0 8rem 6rem;
+      background: black;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .hero-bg .bg-back {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-bg .bg-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: white;
+      max-width: 600px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(36px, 6vw, 76px);
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 28px;
+      font-size: 16px;
+      background-color: #f00303;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .spacer{
+      height:120vh;
+      max-width: 1200px;
+      margin:24px auto;
+      border-radius:18px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.05), rgba(255,255,255,0));
+      border:1px dashed rgba(255,255,255,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(255,255,255,.65);
+      font-weight:700;
+      letter-spacing:.02em;
+    }
+
+    #loaderSvg{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:9999;
+      display:block;
+      pointer-events:none;
+    }
+
+    @media (max-width: 980px){
+      .menu-panel-inner{
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .menu-right-top{
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .social-row{
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .hero{
+        padding: 0 1.25rem 4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar" aria-label="Primary">
+    <div class="container navbar-inner">
+      <div class="nav-logo">
+        <img src="images/Alltype Logo.png" alt="Alltype" />
+      </div>
+
+      <div class="nav-center">
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false">
+          <span class="swap" aria-hidden="true">
+            <svg class="svg1" version="1.0" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 510 507" preserveAspectRatio="xMidYMid meet">
+              <g transform="translate(0,507) scale(0.1,-0.1)" fill="#ffffff" stroke="none">
+                <path d="M2270 3055 c-360 -90 -1015 -253 -1454 -362 -440 -109 -793 -199 -785 -200 8 -2 192 -26 409 -53 1271 -163 1864 -240 1868 -244 2 -3 -41 -78 -97 -167 -55 -90 -99 -164 -98 -165 1 -2 624 152 1384 341 759 189 1415 352 1457 361 41 10 74 19 72 21 -4 4 -2237 293 -2263 293 -7 0 -13 5 -13 10 0 6 45 83 99 170 55 88 94 160 88 159 -7 0 -307 -74 -667 -164z m380 -89 c0 -2 -20 -39 -45 -82 -25 -44 -45 -84 -45 -89 0 -6 321 -50 793 -109 435 -54 810 -102 832 -106 l40 -7 -40 -11 c-122 -34 -1769 -441 -1773 -437 -2 2 17 39 42 81 26 43 42 80 37 83 -5 3 -379 53 -830 111 -452 58 -821 107 -821 110 0 3 208 58 463 122 254 65 653 167 887 227 399 103 460 117 460 107z"/>
+              </g>
+            </svg>
+
+            <svg class="svg2" version="1.0" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 510 507" preserveAspectRatio="xMidYMid meet">
+              <g transform="translate(210,300) scale(0.009,-0.009)" fill="#ffffff" stroke="none">
+                <path d="M8330 8563 c-342 -265 -1590 -1230 -1878 -1451 -56 -43 -259 -200 -452 -349 -192 -149 -420 -324 -506 -390 l-155 -119 -205 126 c-112 69 -231 141 -264 160 -33 20 -235 141 -450 271 -214 129 -417 250 -450 269 -33 19 -141 85 -240 147 -99 62 -198 122 -220 133 -22 10 -89 50 -150 88 -60 39 -173 107 -250 152 -77 45 -176 104 -220 131 -44 27 -111 67 -150 90 -38 22 -97 57 -130 77 -360 224 -1099 659 -1107 651 -6 -5 12 -34 40 -64 27 -30 75 -91 107 -135 32 -44 63 -84 70 -90 6 -5 55 -68 109 -140 140 -187 358 -468 371 -480 7 -5 38 -46 71 -90 76 -105 455 -597 469 -610 5 -5 37 -46 69 -90 32 -44 64 -84 71 -90 6 -5 83 -104 170 -220 87 -115 315 -412 507 -660 191 -247 352 -460 356 -472 5 -12 -362 -638 -815 -1390 -914 -1519 -988 -1642 -1038 -1728 -19 -33 -113 -190 -210 -350 -96 -159 -194 -321 -217 -360 -39 -64 -30 -60 128 62 217 169 1499 1159 2349 1815 362 280 668 510 680 511 25 3 741 -420 935 -552 30 -20 75 -46 100 -57 25 -11 221 -127 435 -257 500 -306 1799 -1087 1839 -1107 17 -9 72 -42 121 -74 50 -32 155 -96 235 -141 79 -45 149 -91 156 -101 6 -11 20 -19 30 -19 10 0 -88 137 -218 305 -129 168 -287 373 -350 455 -64 83 -126 164 -139 180 -14 17 -52 66 -84 110 -33 44 -99 129 -147 190 -106 135 -118 151 -192 250 -32 44 -64 85 -70 90 -6 6 -51 64 -100 130 -49 66 -97 129 -106 140 -9 11 -75 97 -148 190 -72 94 -152 197 -178 230 -26 33 -133 173 -239 310 -106 138 -208 268 -226 290 -19 23 -61 77 -93 120 -32 44 -64 85 -71 90 -89 72 -85 87 108 406 102 167 458 759 792 1314 1057 1758 1305 2169 1335 2215 41 63 38 61 -185 -112z m-910 -1017 c0 -7 -35 -68 -77 -135 -74 -116 -434 -721 -1073 -1801 -162 -275 -322 -543 -355 -595 l-60 -96 53 -76 c29 -42 69 -94 88 -115 19 -21 62 -74 95 -118 32 -43 74 -97 93 -120 18 -22 120 -152 226 -290 105 -137 203 -263 216 -280 77 -95 655 -840 713 -917 38 -51 89 -115 115 -143 47 -51 58 -80 30 -80 -14 0 -870 508 -996 591 -32 22 -76 49 -98 62 -22 13 -209 125 -415 250 -206 125 -405 245 -443 267 -37 22 -141 85 -230 140 -90 55 -178 109 -197 120 -19 11 -77 46 -129 76 l-94 56 -344 -266 c-189 -146 -385 -298 -436 -337 -51 -39 -231 -179 -402 -311 -170 -132 -431 -333 -580 -447 -148 -114 -295 -230 -325 -258 -101 -93 -81 -27 66 211 80 130 161 263 180 296 18 33 135 227 259 430 124 204 391 645 595 980 203 336 377 620 387 632 14 18 -131 249 -182 288 -7 6 -169 213 -360 460 -192 248 -354 455 -360 460 -7 6 -50 60 -95 120 -128 171 -309 407 -379 492 -34 43 -90 114 -124 158 -33 44 -79 100 -101 124 -97 106 -39 104 138 -5 99 -60 209 -126 245 -146 99 -57 476 -283 556 -333 39 -25 250 -150 470 -280 220 -129 423 -250 450 -269 28 -19 111 -69 186 -113 196 -112 191 -109 360 -215 86 -53 167 -92 182 -87 30 12 1292 980 1912 1467 202 159 240 183 240 153z"/>
+              </g>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <div class="nav-right">
+        <a class="phone-link" href="tel:+12813976614" aria-label="Call us">
+          <span>(281) 397-6614</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17L17 7M10 7h7v7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu-panel" id="menuPanel" aria-hidden="true">
+    <div class="container menu-panel-inner">
+      <div class="menu-left">
+        <nav class="menu-list" aria-label="Site menu">
+          <a class="menu-link" href="#services">Services</a>
+          <a class="menu-link" href="#news">News</a>
+          <a class="menu-link" href="#about">About</a>
+          <a class="menu-link" href="#contact">Contact</a>
+        </nav>
+
+        <div class="menu-left-bottom">
+  <div class="social-row">
+    <a class="social-card" href="#" aria-label="Facebook">
+      <div class="social-top">
+        <span>Facebook</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 17L17 7M10 7h7v7"></path>
+        </svg>
+      </div>
+      <div class="social-sub">Follow us</div>
+    </a>
+
+    <a class="social-card" href="#" aria-label="Instagram">
+      <div class="social-top">
+        <span>Instagram</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 17L17 7M10 7h7v7"></path>
+        </svg>
+      </div>
+      <div class="social-sub">On-site updates</div>
+    </a>
+  </div>
+</div>
+      </div>
+
+     <div class="menu-right">
+  <div class="menu-right-top">
+    <div class="menu-section">
+      <div class="menu-section-title">Services</div>
+      <div class="menu-sublist">
+        <a class="menu-subitem" href="#">Construction</a>
+        <a class="menu-subitem" href="#">Emergency</a>
+        <a class="menu-subitem" href="#">Restoration</a>
+        <a class="menu-subitem" href="#">Consulting</a>
+        <a class="menu-subitem" href="#">Commercial Roofing</a>
+      </div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-title">Company</div>
+      <div class="menu-sublist">
+        <a class="menu-subitem" href="#">Projects</a>
+        <a class="menu-subitem" href="#">News</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="office-block" style="margin-top: 3rem;">
+    <div class="menu-section-title">Corporate Office</div>
+    <a class="menu-subitem">
+      (281) 397-6614<br>
+      info@alltype-construction.com<br>
+      13625 Chrisman Rd, Houston, TX 77039
+    </a>
+  </div>
+</div>
+    </div>
+  </div>
+
+  <main id="site">
+    <section class="hero">
+      <div class="hero-bg">
+        <img src="images/houston1.jpg" alt="Houston BG" class="bg-back" />
+        <img src="images/Alltype Lighting bg1.png" alt="Alltype Lighting Frame" class="bg-frame" />
+      </div>
+
+      <div class="hero-content">
+        <h1>Stand up to scrutiny.</h1>
+        <p>We provide technical solutions that cut through complexity and deliver results.</p>
+        <a href="#contact" class="cta-button">Get in Touch</a>
+      </div>
+    </section>
+
+    <div class="spacer" id="services">SCROLL TEST ZONE</div>
+    <div class="spacer" id="news">MORE SCROLL TEST</div>
+    <div class="spacer" id="about">ABOUT SECTION PLACEHOLDER</div>
+    <div class="spacer" id="contact">CONTACT SECTION PLACEHOLDER</div>
+  </main>
+
+  <svg id="loaderSvg" aria-hidden="true">
+    <defs>
+      <mask id="revealMask" maskUnits="userSpaceOnUse">
+        <rect id="maskBase" x="0" y="0" width="1" height="1" fill="white"></rect>
+        <rect id="maskWindow" x="0" y="0" width="0" height="0" fill="black"></rect>
+      </mask>
+
+      <clipPath id="squareClip">
+        <rect id="squareClipRect" x="0" y="0" width="0" height="0"></rect>
+      </clipPath>
+
+      <clipPath id="rectRevealClip">
+        <rect id="rectRevealRect" x="0" y="0" width="0" height="0"></rect>
+      </clipPath>
+    </defs>
+
+    <g id="sheet" mask="url(#revealMask)">
+      <rect id="cover" x="0" y="0" width="1" height="1" fill="#000000"></rect>
+
+      <image id="bgImg" href="images/Alltype Web BG.jpg"
+             x="0" y="0" width="1" height="1"
+             preserveAspectRatio="xMidYMid slice"
+             opacity="0"></image>
+
+      <image id="ovalLImg" href="images/img3.png" x="0" y="0" width="180" height="1" preserveAspectRatio="none"></image>
+      <image id="ovalRImg" href="images/img4.png" x="0" y="0" width="180" height="1" preserveAspectRatio="none"></image>
+
+      <g id="stage">
+        <g clip-path="url(#rectRevealClip)">
+          <image id="rectImg" href="images/Alltype Logo.png"
+                 x="0" y="0" width="400" height="96"
+                 preserveAspectRatio="xMidYMid meet"
+                 opacity="0"></image>
+        </g>
+
+        <image id="squareImg" href="images/lightning_bolt.png"
+               x="0" y="0" width="96" height="96"
+               preserveAspectRatio="xMidYMid meet"
+               clip-path="url(#squareClip)"
+               opacity="1"></image>
+      </g>
+    </g>
+  </svg>
+
+
+  
+
+  <script>
+    const btn = document.querySelector(".menu-btn");
+    const swap = btn.querySelector(".swap");
+    const panel = document.getElementById("menuPanel");
+    let isOpen = false;
+
+    function showHoverIn() {
+      if (isOpen) return;
+      swap.classList.remove("is-off");
+      swap.classList.add("is-on");
+    }
+
+    function showHoverOut() {
+      if (isOpen) return;
+      swap.classList.add("is-off");
+      swap.classList.remove("is-on");
+      clearTimeout(showHoverOut._t);
+      showHoverOut._t = setTimeout(() => swap.classList.remove("is-off"), 420);
+    }
+
+    function openMenu() {
+      isOpen = true;
+      btn.classList.remove("is-closing");
+      btn.classList.add("is-open");
+      btn.setAttribute("aria-expanded", "true");
+
+      swap.classList.remove("is-off");
+      swap.classList.add("is-on");
+
+      panel.classList.add("is-open");
+      panel.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      btn.classList.remove("is-open");
+      btn.classList.add("is-closing");
+      btn.setAttribute("aria-expanded", "false");
+
+      swap.classList.add("is-off");
+      swap.classList.remove("is-on");
+
+      panel.classList.remove("is-open");
+      panel.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+
+      clearTimeout(closeMenu._t1);
+      clearTimeout(closeMenu._t2);
+
+      closeMenu._t1 = setTimeout(() => {
+        btn.classList.remove("is-closing");
+      }, 320);
+
+      closeMenu._t2 = setTimeout(() => {
+        swap.classList.remove("is-off");
+      }, 420);
+    }
+
+    btn.addEventListener("mouseenter", showHoverIn, { passive: true });
+    btn.addEventListener("mouseleave", showHoverOut, { passive: true });
+
+    btn.addEventListener("click", () => {
+      if (isOpen) closeMenu();
+      else openMenu();
+    });
+
+    document.querySelectorAll(".menu-link, .menu-subitem").forEach(link => {
+      link.addEventListener("click", () => {
+        closeMenu();
+      });
+    });
+  </script>
+</body>
+</html>
