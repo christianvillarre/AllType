@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="https://use.typekit.net/vml5vif.css">
   <style>
     :root{
       --bg:#000000;
@@ -24,14 +25,13 @@
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
 
-    body{
-      margin:0;
-      font-family: 'Zalando Sans', sans-serif;
-      background: var(--bg);
-      color: #fff;
-      overflow:auto;
-    }
-
+body{
+  margin:0;
+ font-family: "neue-haas-grotesk-display", sans-serif;
+  background: var(--bg);
+  color: #fff;
+  overflow:auto;
+}
     .container{
       width: 100%;
       margin-left: auto;
@@ -87,43 +87,46 @@
       justify-content:center;
     }
 
-    .menu-btn{
-      background: transparent;
-      border: none;
-      padding: 0;
-      width: auto;
-      height: auto;
-      border-radius: 0;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: transform .18s ease;
-      position: relative;
-      z-index: 210;
-    }
+.menu-btn{
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 62px;
+  height: 62px;
+  overflow: hidden;
+  background: transparent;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .18s ease;
+  position: relative;
+  z-index: 210;
+}
     .menu-btn:hover{ transform: translateY(-1px); }
 
-    .swap{
-      position: relative;
-      width: 62px;
-      height: 62px;
-      display: block;
-      --svg1OpacityDelay: 0ms;
-      --svg2InDelay: 0ms;
-    }
+   .swap{
+  position: relative;
+  width: 62px;
+  height: 62px;
+  display: block;
+  overflow: hidden; /* contain the scaled svg */
+  --svg1OpacityDelay: 0ms;
+  --svg2InDelay: 0ms;
+}
 
-    .swap svg{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      display:block;
-      transform-origin:50% 50%;
-      transform-box: fill-box;
-      will-change: transform, opacity;
-    }
-
+.swap svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  transform-origin:50% 50%;
+  transform-box: fill-box;
+  will-change: transform, opacity;
+  pointer-events: none; /* don't let scaled svg create weird hit area */
+}
     .swap .svg1{
       opacity: 1;
       transform: rotate(0deg);
@@ -133,23 +136,23 @@
     }
     .swap .svg2{
       opacity: 0;
-      transform: scale(4.8) rotate(16deg);
+      transform: scale(4.8) rotate(6deg);
       transition:
         transform 360ms ease var(--svg2InDelay),
         opacity 220ms ease var(--svg2InDelay);
     }
 
     .swap.is-on{
-      --svg1OpacityDelay: 140ms;
-      --svg2InDelay: 90ms;
+      --svg1OpacityDelay: 40ms;
+      --svg2InDelay: 20ms;
     }
     .swap.is-on .svg1{
-      transform: rotate(-45deg);
+      transform: rotate(-90deg);
       opacity: 0;
     }
     .swap.is-on .svg2{
       opacity: 1;
-      transform: scale(6) rotate(0deg);
+      transform: scale(6) rotate(-45deg);
     }
 
     .swap.is-off{
@@ -157,19 +160,17 @@
       --svg2InDelay: 0ms;
     }
 
-    .menu-btn.is-open .swap{
-      transform: rotate(-45deg);
-      transition: transform 320ms ease;
-    }
+.menu-btn.is-open .swap{
+  transform: rotate(45deg);
+  transition: transform 320ms ease;
+}
 
-    .menu-btn.is-closing .swap{
-      animation: menuIconClose 320ms ease;
-    }
+.menu-btn.is-closing .swap{
+  transform: rotate(0deg);
+  transition: transform 320ms ease;
+}
 
-    @keyframes menuIconClose {
-      0%   { transform: rotate(-45deg); }
-      100% { transform: rotate(0deg); }
-    }
+
 
     .nav-right{
       display:flex;
@@ -186,11 +187,11 @@
   text-decoration:none;
   color: rgba(255,255,255,0.92);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 24px;
   letter-spacing: 0.02em;
 
-  border: 1px solid rgba(255,255,255,0.20);
-  background: rgba(0,0,0,0.25);
+  border: none;
+  background: transparent;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition:
@@ -207,36 +208,37 @@
   opacity: 1;
 }
     .phone-link:hover{
-      transform: translateY(-1px);
-      background: rgba(0,0,0,0.35);
-      border-color: rgba(255,255,255,0.30);
+    color:red;
     }
-    .phone-link svg{
-      width: 18px;
-      height: 18px;
-      display:block;
-    }
-    .phone-link svg path{
-      stroke: currentColor;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-    }
-
+.phone-arrow{
+  width: 30px;
+  height: auto;
+  display: block;
+   color: var(--red);
+}
+.social-top svg{
+  width: 22px;
+  height: auto;
+  color: var(--red);
+}
     /* ===================== MENU PANEL ===================== */
-    .menu-panel{
-      position: fixed;
-      inset: 0;
-      background: #000;
-      z-index: 150;
-      transform: translateY(-100%);
-      opacity: 0;
-      pointer-events: none;
-      transition: transform 420ms ease, opacity 320ms ease;
-      padding-top: 130px;
-      overflow: auto;
-    }
+ .menu-panel{
+  position: fixed;
+  inset: 0;
+
+  background-image: url("images/Alltype Web BG.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: 150;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 420ms ease, opacity 320ms ease;
+  padding-top: 130px;
+  overflow: auto;
+}
 
     .menu-panel.is-open{
       transform: translateY(0);
@@ -252,7 +254,18 @@
       padding-bottom: 4rem;
       align-items: stretch;
     }
+.menu-panel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.75);
+  z-index:0;
+}
 
+.menu-panel-inner{
+  position: relative;
+  z-index: 1;
+}
     .menu-left,
     .menu-right{
       display: flex;
@@ -262,28 +275,38 @@
 
     .menu-list{
       display: grid;
-      gap: 18px;
+      gap: 2px;
       margin-top: 0;
     }
 
-    .menu-link{
-      display: block;
-      text-decoration: none;
-      color: #fff;
-      font-size: clamp(34px, 6vw, 78px);
-      line-height: 0.95;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      padding: 10px 0;
-      opacity: 0.92;
-      transition: opacity .18s ease, transform .18s ease;
-    }
+.menu-link{
+  display: inline-block;
+  text-decoration: none;
+  font-size: clamp(34px, 6vw, 78px);
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  padding: 5px 0;
 
-    .menu-link:hover{
-      opacity: 1;
-      transform: translateX(6px);
-    }
+  color: #fff;
+  background-image: linear-gradient(to right, var(--red), var(--red));
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  background-position: left center;
+  -webkit-background-clip: text;
+  background-clip: text;
 
+  transition:
+    background-size 420ms cubic-bezier(.22,.61,.36,1),
+    color 420ms cubic-bezier(.22,.61,.36,1),
+    transform .18s ease;
+}
+
+.menu-link:hover{
+  color: transparent;
+  background-size: 100% 100%;
+  transform: translateX(6px);
+}
     .menu-left-bottom{
       margin-top: auto;
       display: grid;
@@ -315,28 +338,17 @@
       line-height: 1;
     }
 
-    .social-top svg{
-      width: 18px;
-      height: 18px;
-      flex: 0 0 auto;
-    }
-
-    .social-top svg path{
-      stroke: var(--red);
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-    }
+ 
 
     .social-sub{
-      font-size: 14px;
-      color: rgba(255,255,255,.58);
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.899);
       letter-spacing: .02em;
+     
     }
 
     .office-block{
-      max-width: 420px;
+      max-width: 520px;
     }
 
     .office-title{
@@ -347,8 +359,8 @@
 
     .office-block p{
       margin: 0;
-      font-size: 17px;
-      line-height: 1.7;
+      font-size: 27px;
+      line-height: 1.2;
       color: rgba(255,255,255,.85);
     }
 
@@ -380,12 +392,23 @@
       line-height: 1.05;
       font-weight: 600;
       opacity: .92;
-      transition: opacity .18s ease, transform .18s ease;
+        background-image: linear-gradient(to right, var(--red), var(--red));
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  background-position: left center;
+  -webkit-background-clip: text;
+  background-clip: text;
+
+      transition:
+    background-size 420ms cubic-bezier(.22,.61,.36,1),
+    color 420ms cubic-bezier(.22,.61,.36,1),
+    transform .18s ease;
     }
 
     .menu-subitem:hover{
-      opacity: 1;
-      transform: translateX(4px);
+      color: transparent;
+  background-size: 100% 100%;
+  transform: translateX(6px);
     }
 
     /* ---------- Site ---------- */
@@ -434,28 +457,32 @@
       position: relative;
       z-index: 2;
       color: white;
-      max-width: 600px;
+      max-width: 800px;
     }
 
     .hero-content h1 {
       font-size: clamp(36px, 6vw, 76px);
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+      line-height: 0.9;
+      font-weight: 800;
     }
 
     .hero-content p {
-      font-size: 18px;
-      line-height: 1.6;
+      font-size: 34px;
+      line-height: 1.1;
       margin-bottom: 24px;
+      font-weight: 400;
     }
 
     .cta-button {
       display: inline-block;
       padding: 14px 28px;
-      font-size: 16px;
-      background-color: #f00303;
+      font-size: 26px;
+      background-color: transparent;
+      border: 5px solid white;
       color: white;
-      border: none;
-      border-radius: 8px;
+
+      border-radius: 99px;
       text-decoration: none;
       font-weight: bold;
     }
@@ -539,9 +566,11 @@
       <div class="nav-right">
         <a class="phone-link" href="tel:+12813976614" aria-label="Call us">
           <span>(281) 397-6614</span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7 17L17 7M10 7h7v7"></path>
-          </svg>
+          <svg class="phone-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+                <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+            </svg>
         </a>
       </div>
     </div>
@@ -551,8 +580,8 @@
     <div class="container menu-panel-inner">
       <div class="menu-left">
         <nav class="menu-list" aria-label="Site menu">
-          <a class="menu-link" href="#services">Services</a>
-          <a class="menu-link" href="#news">News</a>
+          <a class="menu-link" href="#services">Work</a>
+          <a class="menu-link" href="#news">Locations</a>
           <a class="menu-link" href="#about">About</a>
           <a class="menu-link" href="#contact">Contact</a>
         </nav>
@@ -562,9 +591,11 @@
     <a class="social-card" href="#" aria-label="Facebook">
       <div class="social-top">
         <span>Facebook</span>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7 17L17 7M10 7h7v7"></path>
-        </svg>
+          <svg class="social-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+                <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+            </svg>
       </div>
       <div class="social-sub">Follow us</div>
     </a>
@@ -572,9 +603,11 @@
     <a class="social-card" href="#" aria-label="Instagram">
       <div class="social-top">
         <span>Instagram</span>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7 17L17 7M10 7h7v7"></path>
-        </svg>
+        <svg class="social-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+                <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+            </svg>
       </div>
       <div class="social-sub">On-site updates</div>
     </a>
@@ -606,11 +639,11 @@
 
   <div class="office-block" style="margin-top: 3rem;">
     <div class="menu-section-title">Corporate Office</div>
-    <a class="menu-subitem">
+    <p class="office-block">
       (281) 397-6614<br>
       info@alltype-construction.com<br>
       13625 Chrisman Rd, Houston, TX 77039
-    </a>
+    </p>
   </div>
 </div>
     </div>
@@ -620,13 +653,14 @@
     <section class="hero">
       <div class="hero-bg">
         <img src="images/houston1.jpg" alt="Houston BG" class="bg-back" />
-        <img src="images/Alltype Lighting bg1.png" alt="Alltype Lighting Frame" class="bg-frame" />
+        <img src="images/Alltype Lighting bg3.png" alt="Alltype Lighting Frame" class="bg-frame" />
       </div>
 
       <div class="hero-content">
-        <h1>Stand up to scrutiny.</h1>
-        <p>We provide technical solutions that cut through complexity and deliver results.</p>
-        <a href="#contact" class="cta-button">Get in Touch</a>
+        <h1>Construction & Restoration Services</h1>
+        <p>24/7 Emergency Restoration for Commercial &
+Residential Property Damage</p>
+        <a href="#contact" class="cta-button">Request a Quote</a>
       </div>
     </section>
 
