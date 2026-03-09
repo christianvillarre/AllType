@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Hero With Transparent Circle</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:#000;
+  font-family:Arial, Helvetica, sans-serif;
+  overflow-x:hidden;
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  height:100vh;
+  width:100%;
+  overflow:hidden;
+}
+
+/* background layers */
+
+.hero-bg{
+  position:absolute;
+  inset:0;
+}
+
+.bg-image,
+.bg-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* base image */
+
+.bg-image{
+  z-index:0;
+}
+
+/* video layer with transparent circle */
+
+.bg-video{
+  z-index:1;
+
+  -webkit-mask-image: radial-gradient(circle 200px at center, transparent 195px, black 205px);
+  mask-image: radial-gradient(circle 200px at center, transparent 195px, black 205px);
+
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+
+  -webkit-mask-size:100% 100%;
+  mask-size:100% 100%;
+}
+
+/* hero text */
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  color:white;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:6rem;
+  max-width:900px;
+}
+
+.hero-content h1{
+  font-size:clamp(40px,6vw,80px);
+  line-height:0.95;
+  margin-bottom:14px;
+}
+
+.hero-content p{
+  font-size:clamp(18px,2vw,30px);
+  margin-bottom:24px;
+}
+
+.cta{
+  display:inline-block;
+  border:3px solid white;
+  border-radius:999px;
+  padding:14px 28px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* mobile */
+
+@media (max-width:900px){
+
+.hero-content{
+  padding:2rem;
+}
+
+.bg-video{
+  -webkit-mask-image: radial-gradient(circle 120px at center, transparent 115px, black 125px);
+  mask-image: radial-gradient(circle 120px at center, transparent 115px, black 125px);
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="hero-bg">
+
+<img src="images/houston1.jpg" class="bg-image" alt="">
+
+<video class="bg-video" autoplay muted loop playsinline>
+<source src="images/ot_web.mov" type="video/mp4">
+</video>
+
+</div>
+
+<div class="hero-content">
+<h1>Construction & Restoration Services</h1>
+<p>24/7 Emergency Restoration for Commercial & Residential Property Damage</p>
+<a href="#" class="cta">Request a Quote</a>
+</div>
+
+</section>
+
+</body>
+</html>

@@ -18,7 +18,7 @@
       --rectW: 254;
       --rectH: 96;
       --ovalW: 800;
-      --gutter: 8rem;
+      --gutter: 4rem;
       --red: #f00303;
     }
 
@@ -91,8 +91,8 @@ body{
   background: transparent;
   border: none;
   padding: 0;
-  width: 62px;
-  height: 62px;
+  width: 75px;
+  height: 75px;
   overflow: hidden;
   background: transparent;
   border-radius: 0;
@@ -108,8 +108,8 @@ body{
 
    .swap{
   position: relative;
-  width: 62px;
-  height: 62px;
+  width: 75px;
+  height: 75px;
   display: block;
   overflow: hidden; /* contain the scaled svg */
   --svg1OpacityDelay: 0ms;
@@ -265,6 +265,7 @@ body{
 .menu-panel-inner{
   position: relative;
   z-index: 1;
+  padding-top: 5rem;
 }
     .menu-left,
     .menu-right{
@@ -423,7 +424,7 @@ body{
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
-      padding: 0 8rem 6rem;
+      padding: 0 4rem 6rem;
       background: black;
       overflow: hidden;
     }
@@ -461,7 +462,7 @@ body{
     }
 
     .hero-content h1 {
-      font-size: clamp(36px, 6vw, 76px);
+      font-size: clamp(36px, 6vw, 66px);
       margin-bottom: 10px;
       line-height: 0.9;
       font-weight: 800;
@@ -532,6 +533,26 @@ body{
         padding: 0 1.25rem 4rem;
       }
     }
+
+
+    html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.hero-bg .bg-back {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
   </style>
 </head>
 
@@ -653,16 +674,339 @@ body{
     <section class="hero">
       <div class="hero-bg">
         <img src="images/houston1.jpg" alt="Houston BG" class="bg-back" />
-        <img src="images/Alltype Lighting bg3.png" alt="Alltype Lighting Frame" class="bg-frame" />
+        <img src="images/Alltype Lighting bg1.png" alt="Houston BG" class="bg-frame" />
       </div>
 
       <div class="hero-content">
-        <h1>Construction & Restoration Services</h1>
-        <p>24/7 Emergency Restoration for Commercial &
-Residential Property Damage</p>
+        <h1>Construction & Commercial Roofing Services in Houston, TX</h1>
+        <p>24/7 Emergency Restoration for Commercial Property Damage, Accident Repair, and Specialized Commercial and IndustrialRoofing.</p>
         <a href="#contact" class="cta-button">Request a Quote</a>
       </div>
     </section>
+
+
+
+
+
+
+<section class="intro-band">
+  <div class="container intro-grid">
+    <div class="intro-eyebrow-wrap">
+      <div class="intro-eyebrow">Who We Are</div>
+    </div>
+
+    <div class="intro-copy">
+      <p>
+        Alltype Construction delivers dependable roofing, restoration, and emergency
+        response services for commercial and residential properties. We focus on
+        practical solutions, fast response times, and workmanship that protects your
+        property long-term.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="roofing-feature">
+  <div class="container roofing-grid">
+
+    <!-- LEFT LARGE CARD -->
+    <div class="roofing-card roofing-card-large">
+      <div class="roofing-image">
+        <img src="images/stock1.jpeg" alt="Shingle Roofing" />
+      </div>
+
+      <div class="roofing-copy">
+        <div class="roofing-title-row">
+          <span>Shingle Roofing</span>
+
+          <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor">
+              <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+          </svg>
+        </div>
+
+        <p class="roofing-subtitle">Affordable Protection.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT SMALL CARD -->
+    <div class="roofing-card roofing-card-small">
+      <div class="roofing-image">
+        <img src="images/stock2.jpeg" alt="Metal Roofing" />
+      </div>
+
+      <div class="roofing-copy">
+        <div class="roofing-title-row">
+          <span>Metal Roofing</span>
+
+          <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor">
+              <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+          </svg>
+        </div>
+
+        <p class="roofing-subtitle">Long-Lasting Durability.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="work-stack-section">
+  <div class="work-stack-inner">
+    <div class="work-heading">WORK</div>
+
+    <div class="work-cards">
+      <article class="work-card card-1">
+        <img src="images/stock3.jpeg" alt="Project one" />
+      </article>
+
+      <article class="work-card card-2">
+        <img src="images/stock4.jpeg" alt="Project two" />
+      </article>
+
+      <article class="work-card card-3">
+        <img src="images/stock5.jpeg" alt="Project three" />
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="next-section">
+  <div class="container">
+    <div class="spacer">NEXT SECTION CONTENT</div>
+  </div>
+</section>
+
+<style>
+  /* ===================== INTRO BAND ===================== */
+.intro-band{
+  background: #d9d2c7;
+  color: #111;
+  padding: 8rem 0;
+}
+
+.intro-grid{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 3rem;
+  align-items: start;
+
+}
+
+.intro-eyebrow-wrap{
+  display: flex;
+  justify-content: center;
+}
+
+.intro-eyebrow{
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--red);
+}
+
+.intro-copy p{
+  margin: 0;
+  max-width: 900px;
+  font-size: clamp(26px, 2.7vw, 42px);
+  line-height: 1.08;
+  font-weight: 500;
+}
+
+/* ===================== ROOFING FEATURE ===================== */
+.roofing-feature{
+  background:#d9d2c7;
+  padding:0 0 8rem;
+  color:#111;
+}
+
+.roofing-grid{
+  display:grid;
+  grid-template-columns:1fr 550px;
+  gap:10rem;
+  align-items:start;
+}
+
+.roofing-card{
+  display:flex;
+  flex-direction:column;
+}
+
+.roofing-card-large .roofing-image img{
+  height:640px;
+}
+
+.roofing-card-small .roofing-image img{
+  height:420px;
+}
+
+.roofing-image img{
+  width:100%;
+  object-fit:cover;
+  border-radius:18px;
+  display:block;
+}
+
+.roofing-copy{
+  padding-top:1rem;
+}
+
+.roofing-title-row{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  font-size:clamp(20px,3vw,26px);
+  font-weight:800;
+  margin-top:.3rem;
+}
+
+.roofing-arrow{
+  width:32px;
+  color:var(--red);
+}
+
+.roofing-subtitle{
+  margin-top:.3rem;
+  font-size:22px;
+  color:rgba(17,17,17,.7);
+}
+
+@media (max-width:980px){
+
+  .roofing-grid{
+    grid-template-columns:1fr;
+  }
+
+  .roofing-card-large .roofing-image img{
+    height:420px;
+  }
+
+  .roofing-card-small .roofing-image img{
+    height:300px;
+  }
+
+}
+
+/* ===================== WORK STACK ===================== */
+.work-stack-section{
+  background: #111;
+  color: #fff;
+  position: relative;
+}
+
+.work-stack-inner{
+  position: relative;
+  min-height: 100vh;
+  padding: 3rem 0 6rem;
+}
+
+.work-heading{
+  position: absolute;
+  top: 7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  font-size: clamp(64px, 20vw, 920px);
+  line-height: .85;
+  letter-spacing: -.06em;
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.work-cards{
+  position: relative;
+  width: min(1100px, calc(100vw - 6rem));
+  height: 100vh;
+  margin: 0 auto;
+  z-index: 6;
+}
+
+.work-card{
+  position: absolute;
+  left: 50%;
+  top: 3rem;
+
+  transform: translateX(-50%) translateY(100vh) scale(1);
+
+  width: calc(100vw - (var(--gutter) * 2));
+  max-width: calc(100vw - (var(--gutter) * 2));
+
+  height: calc(100vh - 8rem);
+
+  border-radius: 26px;
+  overflow: hidden;
+
+  will-change: transform;
+  transform-origin: center top;
+
+  box-shadow: 0 24px 80px rgba(0,0,0,.35);
+}
+
+.work-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-1{ z-index: 1; }
+.card-2{ z-index: 2; }
+.card-3{ z-index: 3; }
+
+.next-section{
+  background: #f4f1eb;
+  color: #111;
+  padding: 6rem 0;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 980px){
+  .intro-grid{
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .intro-eyebrow-wrap{
+    justify-content: flex-start;
+  }
+
+  .intro-eyebrow{
+    writing-mode: initial;
+    transform: none;
+  }
+
+  .roofing-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .roofing-image-large img{
+    height: 420px;
+  }
+
+  .work-cards{
+    width: calc(100vw - 2.5rem);
+  }
+
+  .work-card{
+    height: calc(100vh - 7rem);
+    border-radius: 18px;
+  }
+}
+</style>
+
+
+
+
+
+
+
 
     <div class="spacer" id="services">SCROLL TEST ZONE</div>
     <div class="spacer" id="news">MORE SCROLL TEST</div>
@@ -715,9 +1059,83 @@ Residential Property Damage</p>
   </svg>
 
 
-  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
-  <script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // If you're using Lenis, connect Lenis + ScrollTrigger
+  if (window.lenis) {
+    window.lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      window.lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  const mm = gsap.matchMedia();
+
+  mm.add("(min-width: 768px)", () => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".work-stack-section",
+        start: "top top",
+        end: "+=3200",
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1
+      }
+    });
+
+    // Initial states
+    gsap.set(".card-1", { y: "100vh", scale: 1 });
+    gsap.set(".card-2", { y: "115vh", scale: 1 });
+    gsap.set(".card-3", { y: "130vh", scale: 1 });
+
+    // Card 1 enters and locks at 3rem from top
+    tl.to(".card-1", {
+      y: 0,
+      ease: "none",
+      duration: 1
+    });
+
+    // Card 2 rises while card 1 scales down and shifts down slightly
+    tl.to(".card-1", {
+      scale: 0.94,
+      y: 36,
+      ease: "none",
+      duration: 0.9
+    }, ">");
+
+    tl.to(".card-2", {
+      y: 0,
+      ease: "none",
+      duration: 0.9
+    }, "<");
+
+    // Card 3 rises while card 2 becomes previous layer
+    tl.to(".card-2", {
+      scale: 0.94,
+      y: 36,
+      ease: "none",
+      duration: 0.9
+    }, ">");
+
+    tl.to(".card-3", {
+      y: 0,
+      ease: "none",
+      duration: 0.9
+    }, "<");
+
+    // Hold last card briefly, then release page scroll naturally
+    tl.to({}, { duration: 0.35 });
+  });
+</script>
+
+ <script>
   const btn = document.querySelector(".menu-btn");
   const swap = btn.querySelector(".swap");
   const panel = document.getElementById("menuPanel");
@@ -747,7 +1165,7 @@ Residential Property Damage</p>
     showHoverOut._t = setTimeout(() => swap.classList.remove("is-off"), 420);
   }
 
-  function openMenu() {
+ function openMenu() {
     isOpen = true;
     btn.classList.remove("is-closing");
     btn.classList.add("is-open");
@@ -758,12 +1176,14 @@ Residential Property Damage</p>
 
     panel.classList.add("is-open");
     panel.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+
+    document.documentElement.classList.add("lenis-stopped");
+    if (window.lenis) window.lenis.stop();
 
     syncNavUI();
   }
 
-  function closeMenu() {
+ function closeMenu() {
     isOpen = false;
     btn.classList.remove("is-open");
     btn.classList.add("is-closing");
@@ -774,7 +1194,9 @@ Residential Property Damage</p>
 
     panel.classList.remove("is-open");
     panel.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+
+    document.documentElement.classList.remove("lenis-stopped");
+    if (window.lenis) window.lenis.start();
 
     clearTimeout(closeMenu._t1);
     clearTimeout(closeMenu._t2);
@@ -808,5 +1230,69 @@ Residential Property Damage</p>
   window.addEventListener("load", syncNavUI);
   syncNavUI();
 </script>
+<script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
+<script>
+  window.lenis = new Lenis({
+    duration: 1.1,
+    smoothWheel: true,
+    smoothTouch: false,
+    wheelMultiplier: 1,
+    touchMultiplier: 1,
+    autoRaf: true
+  });
+
+  const hero = document.querySelector(".hero");
+  const heroBgBack = document.querySelector(".hero-bg .bg-back");
+
+  function updateParallax(scrollY = window.scrollY) {
+    if (!hero || !heroBgBack) return;
+
+    const rect = hero.getBoundingClientRect();
+    const viewportH = window.innerHeight;
+
+    if (rect.bottom > 0 && rect.top < viewportH) {
+      const offset = rect.top * -0.28;
+      heroBgBack.style.transform = `translate3d(0, ${offset}px, 0) scale(1.08)`;
+    }
+  }
+
+  window.lenis.on("scroll", ({ scroll }) => {
+    syncNavUI();
+    updateParallax(scroll);
+  });
+
+  window.addEventListener("load", () => {
+    syncNavUI();
+    updateParallax(window.scrollY);
+  });
+
+  window.addEventListener("resize", () => {
+    updateParallax(window.scrollY);
+  }, { passive: true });
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      e.preventDefault();
+
+      const wasOpen = isOpen;
+      if (wasOpen) closeMenu();
+
+      setTimeout(() => {
+        window.lenis.scrollTo(target, {
+          offset: 0,
+          duration: 1.1
+        });
+      }, wasOpen ? 250 : 0);
+    });
+  });
+</script>
+
 </body>
+
 </html>
