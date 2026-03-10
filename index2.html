@@ -256,7 +256,7 @@ body{
 .menu-panel-inner{
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1fr 1fr;
   gap: 5rem;
   padding-top: 8.5rem; /* leaves room for fixed-positioned header row */
   padding-bottom: 4rem;
@@ -332,7 +332,12 @@ body{
       flex-direction: column;
       min-height: 100%;
     }
-
+    @media (min-width: 1100px){
+      .menu-right {
+      margin-left: -4rem;
+    }
+    }
+    
     .menu-list{
       display: grid;
       gap: 2px;
@@ -342,7 +347,7 @@ body{
 .menu-link{
   display: inline-block;
   text-decoration: none;
-  font-size: clamp(34px, 6vw, 78px);
+  font-size: clamp(64px, 6vw, 108px);
   line-height: 0.95;
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -432,12 +437,12 @@ body{
     }
 
     .menu-section-title{
-      font-size: 15px;
+      font-size: clamp(16px, 3vw, 22px);
       font-weight: 700;
       color: var(--red);
       letter-spacing: .06em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
+      text-transform: none;
+      margin-bottom: 3rem;
     }
 
     .menu-sublist{
@@ -448,8 +453,8 @@ body{
     .menu-subitem{
       color: #fff;
       text-decoration: none;
-      font-size: 28px;
-      line-height: 1.05;
+      font-size: clamp(24px, 3vw, 32px);
+      line-height: 0.8;
       font-weight: 600;
       opacity: .92;
         background-image: linear-gradient(to right, var(--red), var(--red));
@@ -521,14 +526,14 @@ body{
     }
 
     .hero-content h1 {
-      font-size: clamp(36px, 6vw, 66px);
+      font-size: clamp(36px, 4vw, 66px);
       margin-bottom: 10px;
       line-height: 0.9;
       font-weight: 800;
     }
 
     .hero-content p {
-      font-size: 34px;
+      font-size: clamp(16px, 2.5vw, 26px);
       line-height: 1.1;
       margin-bottom: 24px;
       font-weight: 400;
