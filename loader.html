@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Loader – Black + BG Fade + Square Jolt + Center-Out Alltype Reveal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#000000;
+      --ink:#111111;
+
+      --square: 96;   /* px */
+      --rectW: 254;   /* px */
+      --rectH: 96;    /* px */
+      --ovalW: 800;   /* px */
+
+      /* ✅ site gutters */
+      --gutter: 8rem;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+
+    body{
+      margin:0;
+      font-family: 'Zalando Sans', sans-serif;
+      background: var(--bg);
+      color: #fff;
+      overflow:auto;
+    }
+
+    /* ✅ universal left/right margins */
+    .container{
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+    }
+    @media (max-width: 1100px){
+      :root{ --gutter: 3rem; }
+    }
+    @media (max-width: 720px){
+      :root{ --gutter: 1.25rem; }
+    }
+
+    /* ===================== NAVBAR ===================== */
+    .navbar{
+      position: fixed;
+      top: 18px;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+
+      /* ✅ transparent */
+      background: transparent;
+      border: none;
+
+      pointer-events: auto;
+    }
+
+    .navbar-inner{
+      height: 84px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
+
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      justify-content: flex-start; /* ✅ left aligned */
+      gap: 10px;
+      min-width: 140px;
+    }
+    .nav-logo img{
+      height: 48px;
+      width: auto;
+      display:block;
+      object-fit: contain;
+      transform: translateY(-2px);
+    }
+
+    /* ✅ center menu button */
+    .nav-center{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .menu-btn{
+      height: 46px;
+      width: 46px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.20);
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .menu-btn:hover{
+      transform: translateY(-1px);
+      background: rgba(0,0,0,0.35);
+      border-color: rgba(255,255,255,0.30);
+    }
+    .menu-icon{
+      width: 20px;
+      height: 20px;
+      display:block;
+    }
+    .menu-icon path{
+      stroke: rgba(255,255,255,0.92);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+    }
+
+    /* ✅ right phone */
+    .nav-right{
+      display:flex;
+      align-items:center;
+      justify-content: flex-end; /* ✅ right aligned */
+    }
+    .phone-link{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      height: 46px;
+      padding: 0 14px 0 16px;
+      border-radius: 14px;
+      text-decoration:none;
+      color: rgba(255,255,255,0.92);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+
+      border: 1px solid rgba(255,255,255,0.20);
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      white-space: nowrap;
+    }
+    .phone-link:hover{
+      transform: translateY(-1px);
+      background: rgba(0,0,0,0.35);
+      border-color: rgba(255,255,255,0.30);
+    }
+    .phone-link svg{
+      width: 18px;
+      height: 18px;
+      display:block;
+    }
+    .phone-link svg path{
+      stroke: currentColor;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    /* ---------- Site ---------- */
+    #site{
+      min-height: 200vh;
+      padding: 0;
+    }
+
+    /* ✅ hero uses background image */
+    .hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0 8rem 6rem;
+  background: black;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-bg .bg-back {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-bg .bg-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 600px;
+}
+
+.hero-content h1 {
+  font-size: clamp(36px, 6vw, 76px);
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 14px 28px;
+  font-size: 16px;
+  background-color: #f00303;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+    .spacer{
+      height:120vh;
+      max-width: 1200px;
+      margin:24px auto;
+      border-radius:18px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.05), rgba(255,255,255,0));
+      border:1px dashed rgba(255,255,255,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(255,255,255,.65);
+      font-weight:700;
+      letter-spacing:.02em;
+    }
+
+    /* ---------- SVG Loader Overlay ---------- */
+    #loaderSvg{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:9999;
+      display:block;
+      pointer-events:none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ Fixed Navbar -->
+  <header class="navbar" aria-label="Primary">
+    <div class="container navbar-inner">
+      <!-- left -->
+      <div class="nav-logo">
+        <img src="images/Alltype Logo.png" alt="Alltype" />
+      </div>
+
+      <!-- center -->
+      <div class="nav-center">
+        <button class="menu-btn" type="button" aria-label="Open menu">
+          <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16"></path>
+            <path d="M4 12h16"></path>
+            <path d="M4 17h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- right -->
+      <div class="nav-right">
+        <a class="phone-link" href="tel:+18005551234" aria-label="Call us">
+          <span>(800) 555-1234</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17L17 7M10 7h7v7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="site">
+    <!-- ✅ Hero background + bottom-left content -->
+    <section class="hero">
+  <div class="hero-bg">
+    <img src="images/houston1.jpg" alt="Houston BG" class="bg-back" />
+    <img src="images/Alltype Lighting bg1.png" alt="Alltype Lighting Frame" class="bg-frame" />
+  </div>
+
+  <div class="hero-content">
+    <h1>Stand up to scrutiny.</h1>
+    <p>We provide technical solutions that cut through complexity and deliver results.</p>
+    <a href="#contact" class="cta-button">Get in Touch</a>
+  </div>
+</section>
+
+    <div class="spacer" id="services">SCROLL TEST ZONE</div>
+    <div class="spacer" id="news">MORE SCROLL TEST</div>
+    <div class="spacer" id="about">ABOUT SECTION PLACEHOLDER</div>
+    <div class="spacer" id="contact">CONTACT SECTION PLACEHOLDER</div>
+  </main>
+
+  <!-- ✅ Loader SVG -->
+  <svg id="loaderSvg" aria-hidden="true">
+    <defs>
+      <mask id="revealMask" maskUnits="userSpaceOnUse">
+        <rect id="maskBase" x="0" y="0" width="1" height="1" fill="white"></rect>
+        <rect id="maskWindow" x="0" y="0" width="0" height="0" fill="black"></rect>
+      </mask>
+
+      <clipPath id="squareClip">
+        <rect id="squareClipRect" x="0" y="0" width="0" height="0"></rect>
+      </clipPath>
+
+      <clipPath id="rectRevealClip">
+        <rect id="rectRevealRect" x="0" y="0" width="0" height="0"></rect>
+      </clipPath>
+    </defs>
+
+    <g id="sheet" mask="url(#revealMask)">
+      <!-- black sheet -->
+      <rect id="cover" x="0" y="0" width="1" height="1" fill="#000000"></rect>
+
+      <!-- background fades in during loader -->
+      <image id="bgImg" href="images/Alltype Web BG.jpg"
+             x="0" y="0" width="1" height="1"
+             preserveAspectRatio="xMidYMid slice"
+             opacity="0"></image>
+
+      <!-- Side ovals -->
+      <image id="ovalLImg" href="images/img3.png" x="0" y="0" width="180" height="1" preserveAspectRatio="none"></image>
+      <image id="ovalRImg" href="images/img4.png" x="0" y="0" width="180" height="1" preserveAspectRatio="none"></image>
+
+      <g id="stage">
+        <!-- Alltype (hidden until square jolts + fades) -->
+        <g clip-path="url(#rectRevealClip)">
+          <image id="rectImg" href="images/Alltype Logo.png"
+                 x="0" y="0" width="400" height="96"
+                 preserveAspectRatio="xMidYMid meet"
+                 opacity="0"></image>
+        </g>
+
+        <!-- Square (not warped) -->
+        <image id="squareImg" href="images/lightning_bolt.png"
+               x="0" y="0" width="96" height="96"
+               preserveAspectRatio="xMidYMid meet"
+               clip-path="url(#squareClip)"
+               opacity="1"></image>
+      </g>
+    </g>
+  </svg>
+
+  <script>
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+    // Easing
+    const easeOut = (t) => 1 - Math.pow(1 - t, 4.5);
+    const easeInOutCubic = (t) => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+    const easeLinear   = (t) => t;
+    const easeSoftOut  = (t) => 1 - Math.pow(1 - t, 4.5);
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+    const easeOutQuint = (t) => 1 - Math.pow(1 - t, 6);
+
+    const SQUARE_WIDTH_SCALE = 1;
+
+    function lockScroll(){
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      document.body.dataset.scrollY = String(y);
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${y}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+    }
+    function unlockScroll(){
+      const y = parseInt(document.body.dataset.scrollY || "0", 10);
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.removeAttribute("data-scroll-y");
+      window.scrollTo(0, y);
+    }
+
+    // animate helper (+ ty support)
+    function animateAttrs(el, from, to, duration, easeFn = (x)=>x){
+      return new Promise(resolve=>{
+        const t0 = performance.now();
+        function frame(now){
+          const t = Math.min(1, (now - t0)/duration);
+          const e = easeFn(t);
+
+          if ("x" in from) el.setAttribute("x", from.x + (to.x - from.x)*e);
+          if ("y" in from) el.setAttribute("y", from.y + (to.y - from.y)*e);
+          if ("w" in from) el.setAttribute("width",  from.w + (to.w - from.w)*e);
+          if ("h" in from) el.setAttribute("height", from.h + (to.h - from.h)*e);
+
+          if (
+            "tx" in from || "ty" in from || "sx" in from || "sy" in from ||
+            "tx" in to   || "ty" in to   || "sx" in to   || "sy" in to
+          ){
+            const tx = (from.tx ?? 0) + ((to.tx ?? 0) - (from.tx ?? 0))*e;
+            const ty = (from.ty ?? 0) + ((to.ty ?? 0) - (from.ty ?? 0))*e;
+
+            const hasScale =
+              ("sx" in from) || ("sy" in from) || ("sx" in to) || ("sy" in to);
+
+            if (hasScale){
+              const sx = (from.sx ?? 1) + ((to.sx ?? 1) - (from.sx ?? 1))*e;
+              const sy = (from.sy ?? 1) + ((to.sy ?? 1) - (from.sy ?? 1))*e;
+              el.setAttribute("transform", `translate(${tx},${ty}) scale(${sx},${sy})`);
+            } else {
+              el.setAttribute("transform", `translate(${tx},${ty})`);
+            }
+          }
+
+          if ("op" in from){
+            const op = from.op + (to.op - from.op)*e;
+            el.setAttribute("opacity", op);
+          }
+
+          if(t < 1) requestAnimationFrame(frame);
+          else resolve();
+        }
+        requestAnimationFrame(frame);
+      });
+    }
+
+    // quick diminishing jolt
+    async function jolt(elements){
+      const keyframes = [0, -18, 12, -8, 5, -3, 0];
+      const durations = [60, 55, 50, 45, 40, 35];
+
+      for (const el of elements) el.setAttribute("transform", "translate(0,0)");
+
+      for (let i = 0; i < durations.length; i++){
+        const fromY = keyframes[i];
+        const toY   = keyframes[i+1];
+        await Promise.all(elements.map(el =>
+          animateAttrs(el, { ty: fromY }, { ty: toY }, durations[i], easeOutCubic)
+        ));
+      }
+
+      for (const el of elements) el.setAttribute("transform", "translate(0,0)");
+    }
+
+    function sizeScene(){
+      const svg = document.getElementById("loaderSvg");
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+
+      const root = getComputedStyle(document.documentElement);
+      const sq    = parseFloat(root.getPropertyValue("--square")) || 96;
+      const rectW = parseFloat(root.getPropertyValue("--rectW")) || 254;
+      const rectH = parseFloat(root.getPropertyValue("--rectH")) || 96;
+      const ovalW = parseFloat(root.getPropertyValue("--ovalW")) || 800;
+
+      const sqW = sq * SQUARE_WIDTH_SCALE;
+      const sqOffsetX = (sq - sqW) / 2;
+
+      const maskBase = document.getElementById("maskBase");
+      const cover = document.getElementById("cover");
+      maskBase.setAttribute("width", w);
+      maskBase.setAttribute("height", h);
+      cover.setAttribute("width", w);
+      cover.setAttribute("height", h);
+
+      // fullscreen bg
+      const bgImg = document.getElementById("bgImg");
+      bgImg.setAttribute("x", 0);
+      bgImg.setAttribute("y", 0);
+      bgImg.setAttribute("width", w);
+      bgImg.setAttribute("height", h);
+
+      // square centered
+      const sqX = (w - sq)/2;
+      const sqY = (h - sq)/2;
+
+      // alltype centered in viewport
+      const rectX = (w - rectW) / 2;
+      const rectY = (h - rectH) / 2;
+
+      // square image
+      const squareImg = document.getElementById("squareImg");
+      squareImg.setAttribute("x", sqX + sqOffsetX);
+      squareImg.setAttribute("y", sqY);
+      squareImg.setAttribute("width", sqW);
+      squareImg.setAttribute("height", sq);
+      squareImg.setAttribute("opacity", 1);
+
+      // square clip starts at center (center -> out)
+      const sqMidY = sqY + (sq / 2);
+      const squareClipRect = document.getElementById("squareClipRect");
+      squareClipRect.setAttribute("x", sqX + sqOffsetX);
+      squareClipRect.setAttribute("y", sqMidY);
+      squareClipRect.setAttribute("width", sqW);
+      squareClipRect.setAttribute("height", 0);
+
+      // alltype image centered but hidden initially
+      const rectImg = document.getElementById("rectImg");
+      rectImg.setAttribute("width", rectW);
+      rectImg.setAttribute("height", rectH);
+      rectImg.setAttribute("x", rectX);
+      rectImg.setAttribute("y", rectY);
+      rectImg.setAttribute("opacity", 0);
+
+      // alltype clip starts at center horizontally, full height
+      const rectRevealRect = document.getElementById("rectRevealRect");
+      rectRevealRect.setAttribute("x", rectX + rectW/2);
+      rectRevealRect.setAttribute("y", rectY);
+      rectRevealRect.setAttribute("width", 0);
+      rectRevealRect.setAttribute("height", rectH);
+
+      // ovals
+      const ovalLImg = document.getElementById("ovalLImg");
+      const ovalRImg = document.getElementById("ovalRImg");
+      ovalLImg.setAttribute("width", ovalW);
+      ovalLImg.setAttribute("height", h);
+      ovalLImg.setAttribute("x", 0);
+      ovalLImg.setAttribute("y", 0);
+
+      ovalRImg.setAttribute("width", ovalW);
+      ovalRImg.setAttribute("height", h);
+      ovalRImg.setAttribute("x", w - ovalW);
+      ovalRImg.setAttribute("y", 0);
+
+      return {
+        w, h,
+        sq, sqW, sqOffsetX,
+        rectW, rectH, ovalW,
+        sqX, sqY,
+        rectX, rectY
+      };
+    }
+
+    (async function run(){
+      lockScroll();
+
+      let S = sizeScene();
+      const onResize = () => { S = sizeScene(); };
+      window.addEventListener("resize", onResize, { passive:true });
+
+      const maskWindow = document.getElementById("maskWindow");
+      maskWindow.setAttribute("x", 0);
+      maskWindow.setAttribute("y", 0);
+      maskWindow.setAttribute("width", 0);
+      maskWindow.setAttribute("height", 0);
+
+      const squareImg      = document.getElementById("squareImg");
+      const squareClipRect = document.getElementById("squareClipRect");
+      const rectImg        = document.getElementById("rectImg");
+      const rectRevealRect = document.getElementById("rectRevealRect");
+      const ovalLImg       = document.getElementById("ovalLImg");
+      const ovalRImg       = document.getElementById("ovalRImg");
+      const bgImg          = document.getElementById("bgImg");
+
+      // ovals start offscreen
+      ovalLImg.setAttribute("transform", `translate(${-S.ovalW},0)`);
+      ovalRImg.setAttribute("transform", `translate(${ S.ovalW},0)`);
+
+      // bg starts hidden
+      bgImg.setAttribute("opacity", "0");
+
+      // fade bg in during loader
+      const bgFade = animateAttrs(bgImg, { op: 0 }, { op: 1 }, 900, easeSoftOut);
+
+      // 1) Square reveal (center -> out vertically) ✅ longer initial reveal
+      const sqMidY = S.sqY + (S.sq / 2);
+      await Promise.all([
+        bgFade,
+        animateAttrs(
+          squareClipRect,
+          { x: S.sqX + S.sqOffsetX, y: sqMidY, w: S.sqW, h: 0 },
+          { x: S.sqX + S.sqOffsetX, y: S.sqY,  w: S.sqW, h: S.sq },
+          2200,
+          easeOutCubic
+        )
+      ]);
+
+      // 2) quick jolt
+      await jolt([squareImg, squareClipRect]);
+
+      // 3) square fades out quickly
+      await animateAttrs(squareImg, { op: 1 }, { op: 0 }, 180, easeOutCubic);
+
+      // 4) alltype appears + reveal from center -> left/right
+      rectImg.setAttribute("opacity", "0");
+      const rectMidX = S.rectX + (S.rectW / 2);
+
+      await animateAttrs(rectImg, { op: 0 }, { op: 1 }, 120, easeOutCubic);
+
+      await animateAttrs(
+        rectRevealRect,
+        { x: rectMidX, y: S.rectY, w: 0,       h: S.rectH },
+        { x: S.rectX,  y: S.rectY, w: S.rectW, h: S.rectH },
+        520,
+        easeOutCubic
+      );
+
+      await sleep(120);
+
+      // 5) ovals in (optional)
+      await Promise.all([
+        animateAttrs(ovalLImg, { tx:-S.ovalW }, { tx:0 }, 1100, easeOut),
+        animateAttrs(ovalRImg, { tx: S.ovalW }, { tx:0 }, 1100, easeOut),
+      ]);
+
+      // 6) fade out alltype before mask reveal (optional)
+      await animateAttrs(rectImg, { op: 1 }, { op: 0 }, 220, easeOutCubic);
+
+      // ---- MASK: 2 phases ----
+      const startSize = 16;
+
+      const maskPhase1 = {
+        vw: 0.99,
+        vh: 0.005,
+        duration: 750,
+        ease: easeSoftOut,
+        hold: 120
+      };
+
+      const maskPhase2 = {
+        duration: 950,
+        ease: easeOutQuint
+      };
+
+      const midW = S.w * maskPhase1.vw;
+      const midH = S.h * maskPhase1.vh;
+      const midX = (S.w - midW) / 2;
+      const midY = (S.h - midH) / 2;
+
+      await animateAttrs(
+        maskWindow,
+        { x:(S.w-startSize)/2, y:(S.h-startSize)/2, w:startSize, h:startSize },
+        { x:midX, y:midY, w:midW, h:midH },
+        maskPhase1.duration,
+        maskPhase1.ease
+      );
+
+      if ((maskPhase1.hold ?? 0) > 0) await sleep(maskPhase1.hold);
+
+      await animateAttrs(
+        maskWindow,
+        { x:midX, y:midY, w:midW, h:midH },
+        { x:0, y:0, w:S.w, h:S.h },
+        maskPhase2.duration,
+        maskPhase2.ease
+      );
+
+      window.removeEventListener("resize", onResize);
+      document.getElementById("loaderSvg").remove();
+      unlockScroll();
+    })();
+  </script>
+
+</body>
+</html>
