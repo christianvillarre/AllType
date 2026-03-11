@@ -509,15 +509,30 @@ body{
       object-fit: cover;
     }
 
-    .hero-bg .bg-frame {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-      pointer-events: none;
-    }
+.hero-bg .bg-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+
+  -webkit-mask-image: url("images/mask.svg");
+  mask-image: url("images/mask.svg");
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-position: center;
+  mask-position: center;
+
+  -webkit-mask-size: cover;
+  mask-size: cover; 
+
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+}
 
     .hero-content {
       position: relative;
@@ -612,12 +627,7 @@ html.lenis body {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
-.hero-bg .bg-back {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  will-change: transform;
-}
+
   </style>
 </head>
 
@@ -751,17 +761,40 @@ html.lenis body {
 
   <main id="site">
     <section class="hero">
-      <div class="hero-bg">
-        <img src="images/stock6.jpeg" alt="Houston BG" class="bg-back" />
-        <img src="images/Alltype Lighting bg1.png" alt="Houston BG" class="bg-frame" />
-      </div>
+  <div class="hero-bg">
+    <img src="images/Houston.png" alt="Houston BG" class="bg-back" />
 
-      <div class="hero-content">
-        <h1>Commercial Roofing & Emergency Construction Projects in Houston, TX</h1>
-        <p>24/7 emergency restoration for commercial property damage, accident repair, and specialized commercial and industrial roofing. When other contractors walk away, we get the job done.</p>
-        <a href="#contact" class="cta-button">Request a Quote</a>
-      </div>
-    </section>
+    <svg width="0" height="0" aria-hidden="true">
+      <defs>
+        <mask id="video-hole-mask" maskUnits="objectBoundingBox">
+          <rect x="0" y="0" width="1" height="1" fill="white" />
+          <circle cx="0.5" cy="0.5" r="0.14" fill="black" />
+        </mask>
+      </defs>
+    </svg>
+
+    <video
+      src="images/loop1.mov"
+      class="bg-frame"
+      autoplay
+      loop
+      muted
+      playsinline
+    ></video>
+
+    <div class="circle-ring"></div>
+  </div>
+
+  <div class="hero-content">
+    <h1>Commercial Roofing & Emergency Construction Projects in Houston, TX</h1>
+    <p>
+      24/7 emergency restoration for commercial property damage, accident repair,
+      and specialized commercial and industrial roofing. When other contractors
+      walk away, we get the job done.
+    </p>
+    <a href="#contact" class="cta-button">Request a Quote</a>
+  </div>
+</section>
 
 
 
