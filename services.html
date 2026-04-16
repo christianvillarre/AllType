@@ -1,0 +1,1895 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Services | All-Type Roofing and Construction</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/vml5vif.css">
+
+  <style>
+    :root{
+      --bg:#000000;
+      --ink:#111111;
+      --gutter:4rem;
+      --red:#f00303;
+      --cream:#d9d2c7;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+
+    body{
+      margin:0;
+      font-family:"Roboto Slab", sans-serif;
+      background:var(--bg);
+      color:#fff;
+      overflow:auto;
+      overflow-x:hidden;
+    }
+
+    .container{
+      width:100%;
+      margin-left:auto;
+      margin-right:auto;
+      padding-left:var(--gutter);
+      padding-right:var(--gutter);
+    }
+
+    @media (max-width:1100px){
+      :root{ --gutter:3rem; }
+    }
+
+    @media (max-width:720px){
+      :root{ --gutter:1.25rem; }
+    }
+
+    /* ===================== NAVBAR ===================== */
+    .navbar{
+      position:absolute;
+      top:18px;
+      left:0;
+      width:100%;
+      z-index:120;
+      background:transparent;
+      border:none;
+      pointer-events:none;
+    }
+
+    .navbar-inner{
+      height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1.5rem;
+    }
+
+    .nav-logo,
+    .nav-right{
+      pointer-events:auto;
+    }
+
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:10px;
+      min-width:140px;
+    }
+
+    .nav-logo img{
+      height:78px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+      transform:translateY(-2px);
+      opacity:1;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    .phone-link{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      height:46px;
+      padding:0 14px 0 16px;
+      border-radius:14px;
+      text-decoration:none;
+      color:rgba(255,255,255,0.92);
+      font-weight:700;
+      font-size:24px;
+      letter-spacing:0.02em;
+      border:none;
+      background:transparent;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      transition:transform .18s ease, color .18s ease;
+      white-space:nowrap;
+      opacity:1;
+    }
+
+    .phone-link:hover{
+      color:var(--red);
+    }
+
+    .phone-arrow{
+      width:30px;
+      height:auto;
+      display:block;
+      color:var(--red);
+    }
+
+    /* ===================== MENU BUTTON ===================== */
+    .menu-btn{
+      background:transparent;
+      border:none;
+      padding:0;
+      width:75px;
+      height:75px;
+      overflow:hidden;
+      border-radius:0;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:transform .18s ease;
+      position:relative;
+      z-index:210;
+    }
+
+    .menu-btn-fixed{
+      position:fixed;
+      top:22px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:260;
+    }
+
+    .menu-btn-fixed:hover{
+      transform:translateX(-50%) translateY(-1px);
+    }
+
+    .swap{
+      position:relative;
+      width:75px;
+      height:75px;
+      display:block;
+      overflow:hidden;
+      --svg1OpacityDelay:0ms;
+      --svg2InDelay:0ms;
+    }
+
+    .swap svg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      transform-origin:50% 50%;
+      transform-box:fill-box;
+      will-change:transform, opacity;
+      pointer-events:none;
+    }
+
+    .swap .svg1{
+      opacity:1;
+      transform:rotate(0deg);
+      transition:
+        transform 260ms ease,
+        opacity 220ms ease var(--svg1OpacityDelay);
+    }
+
+    .swap .svg2{
+      opacity:0;
+      transform:scale(4.8) rotate(6deg);
+      transition:
+        transform 360ms ease var(--svg2InDelay),
+        opacity 220ms ease var(--svg2InDelay);
+    }
+
+    .swap.is-on{
+      --svg1OpacityDelay:40ms;
+      --svg2InDelay:20ms;
+    }
+
+    .swap.is-on .svg1{
+      transform:rotate(-90deg);
+      opacity:0;
+    }
+
+    .swap.is-on .svg2{
+      opacity:1;
+      transform:scale(6) rotate(-45deg);
+    }
+
+    .swap.is-off{
+      --svg1OpacityDelay:0ms;
+      --svg2InDelay:0ms;
+    }
+
+    .menu-btn.is-open .swap{
+      transform:rotate(45deg);
+      transition:transform 320ms ease;
+    }
+
+    .menu-btn.is-closing .swap{
+      transform:rotate(0deg);
+      transition:transform 320ms ease;
+    }
+
+    /* ===================== MENU PANEL ===================== */
+    .menu-panel{
+      position:fixed;
+      inset:0;
+      background-image:url("images/Alltype Web BG.jpg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      z-index:150;
+      transform:translateY(-100%);
+      opacity:0;
+      pointer-events:none;
+      transition:transform 420ms ease, opacity 320ms ease;
+      padding-top:0;
+      overflow:auto;
+    }
+
+    .menu-panel::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.75);
+      z-index:0;
+    }
+
+    .menu-panel.is-open{
+      transform:translateY(0);
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .menu-panel-inner{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:5rem;
+      padding-top:10rem;
+      padding-bottom:4rem;
+      align-items:stretch;
+      position:relative;
+      z-index:1;
+    }
+
+    .menu-panel-top{
+      position:absolute;
+      top:18px;
+      left:0;
+      width:100%;
+      z-index:2;
+      margin:0;
+      padding:0 var(--gutter);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      pointer-events:none;
+    }
+
+    .menu-panel-brand,
+    .menu-phone-link{
+      pointer-events:auto;
+    }
+
+    .menu-panel-brand{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      min-width:140px;
+    }
+
+    .menu-panel-brand img{
+      height:78px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+      transform:translateY(-2px);
+    }
+
+    .menu-left,
+    .menu-right{
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+
+    .menu-list{
+      display:grid;
+      gap:2px;
+      margin-top:0;
+    }
+
+    .menu-link{
+      display:inline-block;
+      text-decoration:none;
+      font-size:clamp(64px, 6vw, 108px);
+      line-height:0.95;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      padding:5px 0;
+      color:#fff;
+      background-image:linear-gradient(to right, var(--red), var(--red));
+      background-repeat:no-repeat;
+      background-size:0% 100%;
+      background-position:left center;
+      -webkit-background-clip:text;
+      background-clip:text;
+      transition:
+        background-size 420ms cubic-bezier(.22,.61,.36,1),
+        color 420ms cubic-bezier(.22,.61,.36,1),
+        transform .18s ease;
+    }
+
+    .menu-link:hover{
+      color:transparent;
+      background-size:100% 100%;
+      transform:translateX(6px);
+    }
+
+    .menu-left-bottom{
+      margin-top:auto;
+      display:grid;
+      gap:2.5rem;
+      padding-top:3rem;
+    }
+
+    .social-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2rem;
+      max-width:520px;
+    }
+
+    .social-card{
+      text-decoration:none;
+      color:#fff;
+      display:grid;
+      gap:8px;
+      align-content:start;
+    }
+
+    .social-top{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:24px;
+      font-weight:700;
+      line-height:1;
+    }
+
+    .social-top svg{
+      width:22px;
+      height:auto;
+      color:var(--red);
+    }
+
+    .social-sub{
+      font-size:24px;
+      color:rgba(255,255,255,0.9);
+      letter-spacing:.02em;
+    }
+
+    .menu-right-top{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:3rem;
+      align-items:start;
+    }
+
+    .menu-section-title{
+      font-size:clamp(16px, 3vw, 26px);
+      font-weight:700;
+      color:var(--red);
+      letter-spacing:.06em;
+      margin-bottom:3rem;
+    }
+
+    .menu-sublist{
+      display:grid;
+      gap:12px;
+    }
+
+    .menu-subitem{
+      color:#fff;
+      text-decoration:none;
+      font-size:clamp(24px, 3.5vw, 32px);
+      line-height:0.72;
+      padding-bottom:0.22em;
+      font-weight:600;
+      opacity:.92;
+      background-image:linear-gradient(to right, var(--red), var(--red));
+      background-repeat:no-repeat;
+      background-size:0% 100%;
+      background-position:left center;
+      -webkit-background-clip:text;
+      background-clip:text;
+      transition:
+        background-size 420ms cubic-bezier(.22,.61,.36,1),
+        color 420ms cubic-bezier(.22,.61,.36,1),
+        transform .18s ease;
+    }
+
+    .menu-subitem:hover{
+      color:transparent;
+      background-size:100% 100%;
+      transform:translateX(6px);
+    }
+
+    .office-block{
+      max-width:520px;
+      margin-top:3rem;
+    }
+
+    .office-block p{
+      margin:0;
+      font-size:27px;
+      line-height:1.2;
+      color:rgba(255,255,255,.85);
+    }
+
+    /* ===================== HERO ===================== */
+    #site{
+      min-height:100vh;
+      padding:0;
+    }
+
+    .hero-services{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow:hidden;
+      background:#111;
+      padding:10rem 0 5rem;
+    }
+
+    .hero-services-bg{
+      position:absolute;
+      inset:0;
+      z-index:0;
+    }
+
+    .hero-services-bg img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:saturate(.95);
+      transform:scale(1.02);
+    }
+
+    .hero-services-overlay{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.42), rgba(0,0,0,.26) 32%, rgba(0,0,0,.52)),
+        radial-gradient(circle at 50% 55%, rgba(0,0,0,0.04), rgba(0,0,0,0.36) 78%);
+    }
+
+    .hero-services-content{
+      position:relative;
+      z-index:2;
+      max-width:1300px;
+      width:100%;
+    }
+
+    .hero-top-services{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:14px 26px;
+      margin-bottom:1.4rem;
+    }
+
+    .hero-top-services span{
+      display:inline-flex;
+      align-items:center;
+      gap:14px;
+      font-size:clamp(14px, 1.1vw, 19px);
+      line-height:1;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-weight:800;
+      color:rgba(255,255,255,.9);
+      white-space:nowrap;
+    }
+
+    .hero-top-services span:not(:last-child)::after{
+      content:"";
+      width:30px;
+      height:1px;
+      background:rgba(255,255,255,.35);
+      display:block;
+    }
+
+    .hero-services h1{
+      margin:0;
+      font-size:clamp(88px, 17vw, 300px);
+      line-height:.82;
+      letter-spacing:-.07em;
+      font-weight:900;
+      color:#fff;
+      text-transform:none;
+    }
+
+    .hero-services-sub{
+      margin:1.6rem auto 0;
+      max-width:760px;
+      font-size:clamp(18px, 1.7vw, 28px);
+      line-height:1.12;
+      color:rgba(255,255,255,.82);
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (min-width:1100px){
+      .menu-right{
+        margin-left:-4rem;
+      }
+    }
+
+    @media (max-width:980px){
+      .menu-panel-inner{
+        grid-template-columns:1fr;
+        gap:3rem;
+      }
+
+      .menu-right-top{
+        grid-template-columns:1fr;
+        gap:2rem;
+      }
+
+      .social-row{
+        grid-template-columns:1fr;
+        gap:1.5rem;
+      }
+
+      .hero-services{
+        padding:9rem 0 4rem;
+      }
+
+      .hero-top-services{
+        gap:10px 18px;
+        margin-bottom:1.15rem;
+      }
+
+      .hero-top-services span{
+        font-size:13px;
+        letter-spacing:.12em;
+      }
+
+      .hero-top-services span:not(:last-child)::after{
+        width:18px;
+      }
+
+      .phone-link{
+        font-size:20px;
+      }
+    }
+
+    @media (max-width:640px){
+      .navbar-inner{
+        gap:.8rem;
+      }
+
+      .nav-logo img,
+      .menu-panel-brand img{
+        height:62px;
+      }
+
+      .phone-link{
+        font-size:16px;
+        padding:0;
+        background:transparent;
+        backdrop-filter:none;
+        -webkit-backdrop-filter:none;
+      }
+
+      .phone-arrow{
+        width:22px;
+      }
+
+      .hero-top-services{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:.65rem 1rem;
+        max-width:420px;
+        margin:0 auto 1.1rem;
+      }
+
+      .hero-top-services span{
+        justify-content:center;
+        font-size:12px;
+      }
+
+      .hero-top-services span::after{
+        display:none !important;
+      }
+
+      .hero-services h1{
+        font-size:clamp(66px, 23vw, 120px);
+      }
+
+      .hero-services-sub{
+        font-size:16px;
+        line-height:1.25;
+      }
+    }
+
+    html.lenis,
+    html.lenis body{
+      height:auto;
+    }
+
+    .lenis.lenis-smooth{
+      scroll-behavior:auto !important;
+    }
+
+    .lenis.lenis-stopped{
+      overflow:hidden;
+    }
+  </style>
+</head>
+
+<body>
+
+   <!-- ALWAYS-VISIBLE MENU BUTTON -->
+  <button class="menu-btn menu-btn-fixed" type="button" aria-label="Open menu" aria-expanded="false">
+    <span class="swap" aria-hidden="true">
+      <svg class="svg1" version="1.0" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 510 507" preserveAspectRatio="xMidYMid meet">
+        <g transform="translate(0,507) scale(0.1,-0.1)" fill="#ffffff" stroke="none">
+          <path d="M2270 3055 c-360 -90 -1015 -253 -1454 -362 -440 -109 -793 -199 -785 -200 8 -2 192 -26 409 -53 1271 -163 1864 -240 1868 -244 2 -3 -41 -78 -97 -167 -55 -90 -99 -164 -98 -165 1 -2 624 152 1384 341 759 189 1415 352 1457 361 41 10 74 19 72 21 -4 4 -2237 293 -2263 293 -7 0 -13 5 -13 10 0 6 45 83 99 170 55 88 94 160 88 159 -7 0 -307 -74 -667 -164z m380 -89 c0 -2 -20 -39 -45 -82 -25 -44 -45 -84 -45 -89 0 -6 321 -50 793 -109 435 -54 810 -102 832 -106 l40 -7 -40 -11 c-122 -34 -1769 -441 -1773 -437 -2 2 17 39 42 81 26 43 42 80 37 83 -5 3 -379 53 -830 111 -452 58 -821 107 -821 110 0 3 208 58 463 122 254 65 653 167 887 227 399 103 460 117 460 107z"/>
+        </g>
+      </svg>
+
+      <svg class="svg2" version="1.0" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 510 507" preserveAspectRatio="xMidYMid meet">
+        <g transform="translate(210,300) scale(0.009,-0.009)" fill="#ffffff" stroke="none">
+          <path d="M8330 8563 c-342 -265 -1590 -1230 -1878 -1451 -56 -43 -259 -200 -452 -349 -192 -149 -420 -324 -506 -390 l-155 -119 -205 126 c-112 69 -231 141 -264 160 -33 20 -235 141 -450 271 -214 129 -417 250 -450 269 -33 19 -141 85 -240 147 -99 62 -198 122 -220 133 -22 10 -89 50 -150 88 -60 39 -173 107 -250 152 -77 45 -176 104 -220 131 -44 27 -111 67 -150 90 -38 22 -97 57 -130 77 -360 224 -1099 659 -1107 651 -6 -5 12 -34 40 -64 27 -30 75 -91 107 -135 32 -44 63 -84 70 -90 6 -5 55 -68 109 -140 140 -187 358 -468 371 -480 7 -5 38 -46 71 -90 76 -105 455 -597 469 -610 5 -5 37 -46 69 -90 32 -44 64 -84 71 -90 6 -5 83 -104 170 -220 87 -115 315 -412 507 -660 191 -247 352 -460 356 -472 5 -12 -362 -638 -815 -1390 -914 -1519 -988 -1642 -1038 -1728 -19 -33 -113 -190 -210 -350 -96 -159 -194 -321 -217 -360 -39 -64 -30 -60 128 62 217 169 1499 1159 2349 1815 362 280 668 510 680 511 25 3 741 -420 935 -552 30 -20 75 -46 100 -57 25 -11 221 -127 435 -257 500 -306 1799 -1087 1839 -1107 17 -9 72 -42 121 -74 50 -32 155 -96 235 -141 79 -45 149 -91 156 -101 6 -11 20 -19 30 -19 10 0 -88 137 -218 305 -129 168 -287 373 -350 455 -64 83 -126 164 -139 180 -14 17 -52 66 -84 110 -33 44 -99 129 -147 190 -106 135 -118 151 -192 250 -32 44 -64 85 -70 90 -6 6 -51 64 -100 130 -49 66 -97 129 -106 140 -9 11 -75 97 -148 190 -72 94 -152 197 -178 230 -26 33 -133 173 -239 310 -106 138 -208 268 -226 290 -19 23 -61 77 -93 120 -32 44 -64 85 -71 90 -89 72 -85 87 108 406 102 167 458 759 792 1314 1057 1758 1305 2169 1335 2215 41 63 38 61 -185 -112z m-910 -1017 c0 -7 -35 -68 -77 -135 -74 -116 -434 -721 -1073 -1801 -162 -275 -322 -543 -355 -595 l-60 -96 53 -76 c29 -42 69 -94 88 -115 19 -21 62 -74 95 -118 32 -43 74 -97 93 -120 18 -22 120 -152 226 -290 105 -137 203 -263 216 -280 77 -95 655 -840 713 -917 38 -51 89 -115 115 -143 47 -51 58 -80 30 -80 -14 0 -870 508 -996 591 -32 22 -76 49 -98 62 -22 13 -209 125 -415 250 -206 125 -405 245 -443 267 -37 22 -141 85 -230 140 -90 55 -178 109 -197 120 -19 11 -77 46 -129 76 l-94 56 -344 -266 c-189 -146 -385 -298 -436 -337 -51 -39 -231 -179 -402 -311 -170 -132 -431 -333 -580 -447 -148 -114 -295 -230 -325 -258 -101 -93 -81 -27 66 211 80 130 161 263 180 296 18 33 135 227 259 430 124 204 391 645 595 980 203 336 377 620 387 632 14 18 -131 249 -182 288 -7 6 -169 213 -360 460 -192 248 -354 455 -360 460 -7 6 -50 60 -95 120 -128 171 -309 407 -379 492 -34 43 -90 114 -124 158 -33 44 -79 100 -101 124 -97 106 -39 104 138 -5 99 -60 209 -126 245 -146 99 -57 476 -283 556 -333 39 -25 250 -150 470 -280 220 -129 423 -250 450 -269 28 -19 111 -69 186 -113 196 -112 191 -109 360 -215 86 -53 167 -92 182 -87 30 12 1292 980 1912 1467 202 159 240 183 240 153z"/>
+        </g>
+      </svg>
+    </span>
+  </button>
+
+  <!-- NORMAL PAGE HEADER: LOGO + PHONE ONLY -->
+  <header class="navbar" aria-label="Primary">
+    <div class="container navbar-inner">
+      <div class="nav-logo">
+        <img src="images/Alltype Logo.png" alt="Alltype" />
+      </div>
+
+      <div class="nav-right">
+        <a class="phone-link" href="tel:+12813976614" aria-label="Call us">
+          <span>(281) 397-6614</span>
+          <svg class="phone-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+              <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu-panel" id="menuPanel" aria-hidden="true">
+    <div class="container menu-panel-inner">
+      <div class="menu-panel-top">
+        <div class="menu-panel-brand">
+          <img src="images/Alltype Logo.png" alt="Alltype" />
+        </div>
+
+        <a class="phone-link menu-phone-link" href="tel:+12813976614" aria-label="Call us">
+          <span>(281) 397-6614</span>
+          <svg class="phone-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+              <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+          </svg>
+        </a>
+      </div>
+      <div class="menu-left">
+        <nav class="menu-list" aria-label="Site menu">
+          <a class="menu-link" href="#services">Services</a>
+          <a class="menu-link" href="#news">Locations</a>
+          <a class="menu-link" href="#about">About</a>
+          <a class="menu-link" href="#contact">Contact</a>
+        </nav>
+
+        <div class="menu-left-bottom">
+  <div class="social-row">
+    <a class="social-card" href="#" aria-label="Facebook">
+      <div class="social-top">
+        <span>Facebook</span>
+          <svg class="social-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+                <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+            </svg>
+      </div>
+      <div class="social-sub">Follow us</div>
+    </a>
+
+    <a class="social-card" href="#" aria-label="Instagram">
+      <div class="social-top">
+        <span>Instagram</span>
+        <svg class="social-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+                <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+            </svg>
+      </div>
+      <div class="social-sub">On-site updates</div>
+    </a>
+  </div>
+</div>
+      </div>
+
+     <div class="menu-right">
+  <div class="menu-right-top">
+    <div class="menu-section">
+      <div class="menu-section-title">Services</div>
+      <div class="menu-sublist">
+        <a class="menu-subitem" href="#">Commercial Roofing</a>
+        <a class="menu-subitem" href="#">Commercial Construction</a>
+        <a class="menu-subitem" href="#">Emergency Response</a>
+        <a class="menu-subitem" href="#">Restoration</a>
+        <a class="menu-subitem" href="#">Consulting</a>
+        <a class="menu-subitem" href="#">Preventive Maintenance</a>
+      </div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-title">Company</div>
+      <div class="menu-sublist">
+        <a class="menu-subitem" href="#">Projects</a>
+        <a class="menu-subitem" href="#">News</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="office-block" style="margin-top: 3rem;">
+    <div class="menu-section-title">Corporate Office</div>
+    <p class="office-block">
+      (281) 397-6614<br>
+      info@alltype-construction.com<br>
+      13625 Chrisman Rd, Houston, TX 77039
+    </p>
+  </div>
+</div>
+    </div>
+  </div>
+
+
+  <main id="site">
+    <section class="hero-services">
+      <div class="hero-services-bg">
+        <img src="/images/Alltype Web beige BG.jpg" alt="Services background">
+      </div>
+
+      <div class="hero-services-overlay"></div>
+
+      <div class="container hero-services-content">
+        <div class="hero-top-services">
+          <span>Commercial Roofing</span>
+          <span>Construction</span>
+          <span>Emergency Response</span>
+          <span>Restoration</span>
+        </div>
+
+        <h1>Services</h1>
+
+        <p class="hero-services-sub">
+          Roofing, construction, and fast-response project support built for complex work and demanding timelines.
+        </p>
+      </div>
+    </section>
+
+
+
+<section class="services-grid-section">
+  <div class="container">
+    <div class="services-grid-head">
+      <div class="services-grid-eyebrow">What We Do</div>
+      <h2 class="services-grid-title">Built for Complex Roofing, Construction, and Emergency Projects Most Contractors Won’t Take On</h2>
+    </div>
+
+    <div class="services-box-grid">
+      <a href="#" class="service-box">
+        <div class="service-box-image-shell">
+          <div class="service-box-media">
+            <img src="images/stock1.jpeg" alt="Commercial Roofing">
+          </div>
+          <div class="service-box-overlay"></div>
+        </div>
+        <div class="service-box-copy">
+          <h3 class="service-box-label">Commercial Roofing</h3>
+          <p class="service-box-desc">Installation, repair, replacement, and long-term roofing systems for commercial properties.</p>
+        </div>
+      </a>
+
+      <a href="#" class="service-box">
+        <div class="service-box-image-shell">
+          <div class="service-box-media">
+            <img src="images/stock2.jpeg" alt="Commercial Construction">
+          </div>
+          <div class="service-box-overlay"></div>
+        </div>
+        <div class="service-box-copy">
+          <h3 class="service-box-label">Commercial Construction</h3>
+          <p class="service-box-desc">Structural work, build-outs, and jobsite support for demanding construction scopes.</p>
+        </div>
+      </a>
+
+      <a href="#" class="service-box">
+        <div class="service-box-image-shell">
+          <div class="service-box-media">
+            <img src="images/stock3.jpeg" alt="Emergency Response">
+          </div>
+          <div class="service-box-overlay"></div>
+        </div>
+        <div class="service-box-copy">
+          <h3 class="service-box-label">Emergency Response</h3>
+          <p class="service-box-desc">Fast-response service for urgent damage, stabilization, and immediate property protection.</p>
+        </div>
+      </a>
+
+      <a href="#" class="service-box">
+        <div class="service-box-image-shell">
+          <div class="service-box-media">
+            <img src="images/stock4.jpeg" alt="Restoration">
+          </div>
+          <div class="service-box-overlay"></div>
+        </div>
+        <div class="service-box-copy">
+          <h3 class="service-box-label">Restoration</h3>
+          <p class="service-box-desc">Recovery and repair solutions for damaged properties with practical execution and speed.</p>
+        </div>
+      </a>
+
+      <a href="#" class="service-box">
+        <div class="service-box-image-shell">
+          <div class="service-box-media">
+            <img src="images/stock5.jpeg" alt="Consulting">
+          </div>
+          <div class="service-box-overlay"></div>
+        </div>
+        <div class="service-box-copy">
+          <h3 class="service-box-label">Consulting</h3>
+          <p class="service-box-desc">Expert guidance on project direction, roofing systems, and construction planning.</p>
+        </div>
+      </a>
+
+      <a href="#" class="service-box">
+        <div class="service-box-image-shell">
+          <div class="service-box-media">
+            <img src="images/stock6.jpeg" alt="Preventive Maintenance">
+          </div>
+          <div class="service-box-overlay"></div>
+        </div>
+        <div class="service-box-copy">
+          <h3 class="service-box-label">Preventive Maintenance</h3>
+          <p class="service-box-desc">Routine inspections and maintenance built to reduce failures and extend service life.</p>
+        </div>
+      </a>
+
+      <a href="#" class="service-box">
+        <div class="service-box-image-shell">
+          <div class="service-box-media">
+            <img src="images/roofing1.jpeg" alt="Storm Recovery">
+          </div>
+          <div class="service-box-overlay"></div>
+        </div>
+        <div class="service-box-copy">
+          <h3 class="service-box-label">Storm Recovery</h3>
+          <p class="service-box-desc">Rapid post-storm repair and recovery services to restore safety and function.</p>
+        </div>
+      </a>
+
+      <a href="#" class="service-box">
+        <div class="service-box-image-shell">
+          <div class="service-box-media">
+            <img src="images/roofing2.jpeg" alt="Roof Assessments">
+          </div>
+          <div class="service-box-overlay"></div>
+        </div>
+        <div class="service-box-copy">
+          <h3 class="service-box-label">Roof Assessments</h3>
+          <p class="service-box-desc">Clear evaluations, condition reporting, and actionable recommendations for next steps.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+.services-grid-section{
+  background:#d9d2c7;
+  color:#111;
+  padding:7rem 0 8rem;
+}
+
+.services-grid-head{
+  margin-bottom:3rem;
+  text-align:center;
+}
+
+.services-grid-eyebrow{
+  font-size:14px;
+  line-height:1;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:var(--red);
+  margin-bottom:.9rem;
+}
+
+.services-grid-title{
+  margin:0 auto;
+  font-size: clamp(26px, 2.7vw, 42px);
+  line-height: 1.08;
+  font-weight: 500;
+  color:#111;
+  max-width: 1150px;
+}
+
+.services-box-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:4rem 3.5rem;
+}
+
+.service-box{
+  display:flex;
+  flex-direction:column;
+  text-decoration:none;
+  color:inherit;
+}
+
+.service-box-image-shell{
+  position:relative;
+  height:400px;
+  overflow:hidden;
+  background:#111;
+  margin-bottom:1rem;
+}
+
+.service-box-media{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+}
+
+.service-box-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scale(1);
+  transition:transform .55s cubic-bezier(.22,.61,.36,1);
+}
+
+.service-box-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.42), rgba(0,0,0,.08));
+  z-index:1;
+  transition:background .3s ease;
+}
+
+.service-box-copy{
+  padding:0;
+}
+
+.service-box-label{
+  margin:0 0 .45rem;
+  text-align:left;
+  font-size:clamp(22px, 1.55vw, 28px);
+  line-height:.98;
+  letter-spacing:-.03em;
+  font-weight:800;
+  color:#111;
+}
+
+.service-box-desc{
+  margin:0;
+  text-align:left;
+  font-size:17px;
+  line-height:1.35;
+  color:rgba(17,17,17,.7);
+}
+
+.service-box:hover .service-box-media img{
+  transform:scale(1.08);
+}
+
+.service-box:hover .service-box-overlay{
+  background:linear-gradient(to top, rgba(0,0,0,.54), rgba(0,0,0,.06));
+}
+
+@media (max-width:980px){
+  .services-box-grid{
+    grid-template-columns:repeat(2, 1fr);
+    gap:2rem 1.25rem;
+  }
+
+  .service-box-image-shell{
+    height:280px;
+  }
+}
+
+@media (max-width:640px){
+  .services-grid-section{
+    padding:5rem 0 6rem;
+  }
+
+  .services-box-grid{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+
+  .service-box-image-shell{
+    height:240px;
+  }
+
+  .service-box-desc{
+    font-size:16px;
+  }
+}
+</style>
+
+
+<section class="service-tabs-section">
+    <div class="service-tabs-head">
+
+  <h2>All-Type is Trusted Across Houston for Complex Roofing and Construction Work</h2>
+</div>
+  <div class="service-tabs-wrap">
+
+    <div class="service-tab is-active">
+      <div class="service-tab-click">
+        <div class="service-tab-number">01</div>
+
+        <div class="service-tab-content">
+          <div class="service-tab-inner">
+            <div class="service-tab-eyebrow">Complex Roofing</div>
+            <h2>Built for the jobs most contractors walk away from.</h2>
+            <p>
+             We take on difficult roofing problems that require real diagnosis, not guesswork —
+             from persistent leaks to full system failures that others can’t resolve.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-tab">
+      <div class="service-tab-click">
+        <div class="service-tab-number">02</div>
+
+        <div class="service-tab-content">
+          <div class="service-tab-inner">
+            <div class="service-tab-eyebrow">Field Execution</div>
+            <h2>Construction that holds up under real jobsite pressure.</h2>
+            <p>
+             Our work is built around real jobsite conditions, delivering concrete, structural,
+            and installation work that holds up under pressure and tight coordination.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-tab">
+      <div class="service-tab-click">
+        <div class="service-tab-number">03</div>
+
+        <div class="service-tab-content">
+          <div class="service-tab-inner">
+            <div class="service-tab-eyebrow">Rapid Response</div>
+            <h2>When time matters, we move first.</h2>
+            <p>
+             When damage happens, we act fast to secure the structure, stop active issues,
+            and prevent further loss so operations can continue with minimal disruption.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-tab">
+      <div class="service-tab-click">
+        <div class="service-tab-number">04</div>
+
+        <div class="service-tab-content">
+          <div class="service-tab-inner">
+            <div class="service-tab-eyebrow">Long-Term Solutions</div>
+            <h2>Fix it right so it doesn’t come back.</h2>
+            <p>
+           We focus on fixing problems the right way — prioritizing durability, safety,
+            and long-term performance instead of short-term patchwork.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+    .service-tabs-head{
+  width: 100%;
+  margin: 0 auto 3rem;
+ justify-content: center;
+ display:flex;
+ 
+}
+
+
+.service-tabs-head h2{
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #111;
+  max-width: 38ch;
+  font-weight: 500;
+  text-align: center;
+}
+  .service-tabs-section{
+    padding: 6rem 2rem;
+    background: #f5f1ea;
+  }
+.service-tab.is-active .service-tab-number{
+  color: #F00303; /* your red */
+}
+.service-tabs-wrap{
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  height: 400px;
+  display: flex;
+}
+  .service-tab{
+    position: relative;
+    width: 200px;
+    height: 100%;
+    overflow: hidden;
+    border-left: 1px solid rgba(17,17,17,0.18);
+    transition: width 0.65s cubic-bezier(.22,1,.36,1);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .service-tab:first-child{
+    border-left: none;
+  }
+
+  .service-tab.is-active{
+    width: calc(100% - 600px);
+  }
+
+  .service-tab-click{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 22px 28px;
+    box-sizing: border-box;
+  }
+
+  .service-tab-number{
+    font-family: "Roboto Slab", serif;
+    font-size: clamp(2.5rem, 4vw, 4.25rem);
+    line-height: 0.95;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    color: #111;
+    flex-shrink: 0;
+  }
+
+  .service-tab-content{
+    flex: 1;
+    opacity: 0;
+    transform: translateY(18px);
+    pointer-events: none;
+    transition:
+      opacity 0.28s ease,
+      transform 0.5s cubic-bezier(.22,1,.36,1);
+  }
+
+  .service-tab.is-active .service-tab-content{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition-delay: 0.14s;
+  }
+
+  .service-tab-inner{
+    padding-top: 22px;
+    width: 100%;
+  }
+
+  .service-tab-eyebrow{
+    font-size:14px;
+  line-height:1;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:var(--red);
+  margin-bottom:.9rem;
+  }
+
+  .service-tab-inner h2{
+    margin: 0 0 16px;
+    font-size: clamp(1.9rem, 2.4vw, 3.2rem);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    color: #111;
+    max-width: 31ch;
+  }
+
+  .service-tab-inner p{
+    margin: 0;
+    max-width: 44ch;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #444;
+  }
+
+  @media (max-width: 1100px){
+    .service-tab{
+      width: 140px;
+    }
+
+    .service-tab.is-active{
+      width: calc(100% - 420px);
+    }
+  }
+
+  @media (max-width: 900px){
+    .service-tabs-wrap{
+      height: auto;
+      display: block;
+      border-bottom: none;
+    }
+
+    .service-tab,
+    .service-tab.is-active{
+      width: 100%;
+      border-left: none;
+      border-bottom: 1px solid rgba(17,17,17,0.18);
+    }
+
+    .service-tab-click{
+      padding: 22px 0 24px;
+    }
+
+    .service-tab-content{
+      max-height: 0;
+      overflow: hidden;
+      opacity: 1;
+      transform: none;
+      transition: max-height 0.45s ease;
+    }
+
+    .service-tab.is-active .service-tab-content{
+      max-height: 500px;
+    }
+
+    .service-tab-inner{
+      padding-top: 18px;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const tabs = document.querySelectorAll(".service-tab");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((item) => item.classList.remove("is-active"));
+        tab.classList.add("is-active");
+      });
+    });
+  })();
+</script>
+
+
+
+
+<section class="work-together-section">
+  <div class="work-diamonds" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="work-together-inner">
+    <div class="work-together-eyebrow">LET'S WORK TOGETHER!</div>
+
+    <a href="tel:+12813976614" class="work-together-phone">
+      281-397-6614
+    </a>
+
+    <a href="#contact" class="cta-button">
+      Request a Quote
+    </a>
+  </div>
+</section>
+
+<section class="contact-section" id="contact-section">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <h2>Contact</h2>
+
+      <div class="contact-info-block">
+        <div class="contact-label">Call Us</div>
+        <a href="tel:+12813976614">(281) 397-6614</a>
+      </div>
+
+      <div class="contact-info-block">
+        <div class="contact-label">Email Us</div>
+        <a href="mailto:info@all-type-construction.com">info@all-type-construction.com</a>
+      </div>
+    </div>
+
+    <div class="contact-right">
+    <form class="contact-form" method="post" action="#">
+        <div class="form-row">
+          <input type="text" name="fullName" placeholder="Full Name*" required>
+        </div>
+
+        <div class="form-row">
+          <input type="email" name="emailAddress" placeholder="Email Address*" required>
+        </div>
+
+        <div class="form-row">
+          <input type="tel" name="phoneNumber" placeholder="Phone Number*" required>
+        </div>
+
+        <div class="form-row form-row-textarea">
+          <textarea name="message" placeholder="Message*" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="contact-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-mark" aria-hidden="true"></div>
+
+  <div class="footer-top">
+    <h3>All Type Roofing and Construction</h3>
+    <p>
+      Our team of qualified and insured staff members have over 100 years of combined
+      experience in roofing and construction industry. Our services start with a responsive
+      and attentive representative who caters to each individual client’s specific needs.
+      We work with owners, chief engineers, property managers, operations managers, portfolio
+      managers and maintenance coordinators to find solutions to issues that arise day of or
+      a service needed that local and national clients follow day to day. At All Type Roofing
+      and Construction these safety very serious and follow each and every safety guideline
+      set forth by OSHA. We strive to have all our projects run smoothly while in turn make
+      tenants and all parties involved happy.
+    </p>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="images/Alltype Logo 2.png" alt="All Type Roofing and Construction">
+      </div>
+
+      <div class="footer-contact-lines">
+        <p>13625 Chrisman Rd</p>
+        <p>Houston, TX 77039</p>
+        <p><a href="tel:+12813976614">(281) 397-6614</a></p>
+        <p><a href="mailto:info@all-type-construction.com">info@all-type-construction.com</a></p>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Facebook →<br><span>Follow us</span></a>
+      <a href="#">Instagram →<br><span>On-site updates</span></a>
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <span>© 2025 Alltype Construction Inc.</span>
+    <span>Web Design by mcvdesign.</span>
+  </div>
+</footer>
+
+<style>
+.footer-logo{
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  width:100%;
+}
+
+.footer-logo img{
+  display:block;
+  width:auto;
+  height:80px; /* make it real big */
+  max-width:none;
+  object-fit:contain;
+}
+  .work-together-section{
+  background:#343434;
+  color:#fff;
+  padding:5.5rem 2rem 6rem;
+  text-align:center;
+  position:relative;
+}
+
+.work-together-inner{
+  width:min(1000px, 100%);
+  margin:0 auto;
+}
+
+.work-diamonds{
+  display:flex;
+  justify-content:center;
+  gap:4.25rem;
+  margin-bottom:4.5rem;
+}
+
+.work-diamonds span{
+  width:40px;
+  height:40px;
+  background:#f3f3f3;
+  transform:rotate(45deg);
+  display:block;
+}
+
+.work-together-eyebrow{
+  font-size:2rem;
+  font-weight:800;
+  letter-spacing:0.04em;
+  color:#ffffff;
+  text-transform:uppercase;
+  margin-bottom:1.8rem;
+}
+
+.work-together-phone{
+  display:inline-block;
+  font-family:"Roboto Slab", serif;
+  font-size:clamp(3rem, 7vw, 9.25rem);
+  line-height:0.95;
+  font-weight:700;
+  color:#fff;
+  text-decoration:none;
+  margin-bottom:1.5rem;
+  transition: all 0.3s ease;
+}
+.work-together-phone:hover{
+
+  color: #ff0000;
+}
+.work-together-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:0 1.3rem;
+  border:4px solid #fff;
+  border-radius:999px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:0.95rem;
+  background:transparent;
+  transition:all .25s ease;
+}
+
+.work-together-btn:hover{
+  background:#fff;
+  color:#111;
+}
+
+.contact-section{
+  background:#f00303;
+  color:#fff;
+  padding:4.5rem 2rem 5.5rem;
+  position:relative;
+}
+
+.contact-inner{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+
+  display:grid;
+  grid-template-columns:1fr 1fr; /* 👈 equal columns */
+  gap:4rem;
+ 
+  align-items:start;
+}
+.contact-left h2{
+  margin:0 0 2rem;
+  font-family:"Roboto Slab", serif;
+  font-size:clamp(3rem, 7vw, 5.75rem);
+  line-height:0.9;
+  letter-spacing:-0.04em;
+  color:#fff;
+}
+
+.contact-info-block{
+  margin-bottom:1.8rem;
+}
+
+.contact-label{
+  font-size:0.82rem;
+  font-weight:700;
+  margin-bottom:0.45rem;
+  color:#fff;
+}
+
+.contact-info-block a{
+  color:#fff;
+  text-decoration:none;
+  font-size:1.2rem;
+  line-height:1.4;
+}
+
+.contact-form{
+  width:100%; /* 👈 fill full right column */
+  max-width:none; /* 👈 remove any limits */
+}
+.form-row{
+  margin-bottom:1.4rem;
+}
+
+
+.form-row input,
+.form-row textarea{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid rgba(255,255,255,0.9);
+  color:#fff;
+  font-family:inherit;
+  font-size:1rem;
+  padding:0.5rem 0;
+  outline:none;
+}
+
+.form-row textarea{
+  border:1px solid rgb(255, 255, 255);
+  padding:0.85rem 1rem;
+  resize:vertical;
+  min-height:140px;
+}
+
+.form-row input::placeholder,
+.form-row textarea::placeholder{
+  color:rgba(255, 255, 255, 0.918);
+}
+
+.contact-submit{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:0 1.3rem;
+  border:4px solid #fff;
+  border-radius:999px;
+  color:#fff;
+  background:transparent;
+  font-weight:700;
+  font-size:0.95rem;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+.contact-submit:hover{
+  background:#fff;
+  color:#111;
+}
+
+.site-footer{
+  background:#f00303;
+  color:#fff;
+  padding:0 2rem 2rem;
+}
+
+.footer-top{
+  width:min(1100px, 100%);
+  margin:0 auto;
+  text-align:center;
+  padding:2.5rem 0 3rem;
+}
+
+.footer-top h3{
+  margin:0 0 1rem;
+  font-family:"Roboto Slab", serif;
+  font-size:1.35rem;
+  color:#fff;
+}
+
+.footer-top p{
+  margin:0 auto;
+  max-width:950px;
+  font-size:0.92rem;
+  line-height:1.7;
+  color:#fff;
+}
+
+.footer-bottom{
+  width:min(1200px, 100%);
+  margin:0 auto;
+  padding-top:2rem;
+  border-top:1px solid rgba(255,255,255,0.85);
+  display:flex;
+  justify-content:space-between;
+  gap:2rem;
+  align-items:flex-start;
+}
+
+.footer-brand{
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+}
+
+
+.footer-contact-lines p{
+  margin:0 0 0.2rem;
+  font-size:0.92rem;
+}
+
+.footer-contact-lines a{
+  color:#fff;
+  text-decoration:none;
+}
+
+.footer-links{
+  display:flex;
+  gap:3rem;
+  flex-wrap:wrap;
+}
+
+.footer-links a{
+  color:#fff;
+  text-decoration:none;
+  font-size:0.95rem;
+  font-weight:700;
+  line-height:1.45;
+  text-align:left;
+}
+
+.footer-links span{
+  font-weight:400;
+}
+
+.footer-legal{
+  width:min(1200px, 100%);
+  margin:1.75rem auto 0;
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  flex-wrap:wrap;
+  font-size:0.82rem;
+  color:#fff;
+}
+
+.contact-mark,
+.footer-mark{
+  width:22px;
+  height:22px;
+  margin:0 auto 2rem;
+  position:relative;
+}
+
+.contact-mark::before,
+.footer-mark::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#fff;
+  transform:rotate(45deg) scale(0.55);
+}
+
+@media (max-width: 900px){
+  .contact-inner{
+    grid-template-columns:1fr;
+    gap:2.5rem;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+  }
+
+  .footer-links{
+    gap:1.5rem;
+  }
+
+  .work-diamonds{
+    gap:2rem;
+  }
+
+  .work-diamonds span{
+    width:28px;
+    height:28px;
+  }
+}
+
+@media (max-width: 640px){
+  .work-together-section{
+    padding:4.5rem 1.25rem 5rem;
+  }
+
+  .contact-section,
+  .site-footer{
+    padding-left:1.25rem;
+    padding-right:1.25rem;
+  }
+
+  .work-together-phone{
+    font-size:clamp(2.5rem, 12vw, 4rem);
+  }
+
+  .contact-left h2{
+    font-size:clamp(2.5rem, 14vw, 4rem);
+  }
+
+  .footer-legal{
+    flex-direction:column;
+  }
+}
+.form-row{
+  width:100%;
+  display:block;
+}
+.work-together-phone{
+  display:block;
+  margin-bottom:3.25rem;
+}
+
+.work-together-btn{
+  display:inline-block;
+  padding:12px 22px;
+  border:2px solid #fff;
+  border-radius:999px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:0.9rem;
+  line-height:1;
+  background:transparent;
+  transition:background .25s ease, color .25s ease, border-color .25s ease;
+}
+
+.work-together-btn:hover{
+  background:#fff;
+  color:#111;
+}
+.cta-button{
+  display: inline-block;
+  padding: 14px 28px;
+  border: 8px solid #ffffff;
+  border-radius: 90px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+
+</style>
+
+
+
+
+
+
+
+
+  </main>
+
+  <script>
+    const btn = document.querySelector(".menu-btn");
+    const swap = btn.querySelector(".swap");
+    const panel = document.getElementById("menuPanel");
+    let isOpen = false;
+
+    function showHoverIn() {
+      if (isOpen) return;
+      swap.classList.remove("is-off");
+      swap.classList.add("is-on");
+    }
+
+    function showHoverOut() {
+      if (isOpen) return;
+      swap.classList.add("is-off");
+      swap.classList.remove("is-on");
+      clearTimeout(showHoverOut._t);
+      showHoverOut._t = setTimeout(() => swap.classList.remove("is-off"), 420);
+    }
+
+    function openMenu() {
+      isOpen = true;
+      btn.classList.remove("is-closing");
+      btn.classList.add("is-open");
+      btn.setAttribute("aria-expanded", "true");
+
+      swap.classList.remove("is-off");
+      swap.classList.add("is-on");
+
+      panel.classList.add("is-open");
+      panel.setAttribute("aria-hidden", "false");
+
+      document.documentElement.classList.add("lenis-stopped");
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      btn.classList.remove("is-open");
+      btn.classList.add("is-closing");
+      btn.setAttribute("aria-expanded", "false");
+
+      swap.classList.add("is-off");
+      swap.classList.remove("is-on");
+
+      panel.classList.remove("is-open");
+      panel.setAttribute("aria-hidden", "true");
+
+      document.documentElement.classList.remove("lenis-stopped");
+
+      clearTimeout(closeMenu._t1);
+      clearTimeout(closeMenu._t2);
+
+      closeMenu._t1 = setTimeout(() => {
+        btn.classList.remove("is-closing");
+      }, 320);
+
+      closeMenu._t2 = setTimeout(() => {
+        swap.classList.remove("is-off");
+      }, 420);
+    }
+
+    btn.addEventListener("mouseenter", showHoverIn, { passive: true });
+    btn.addEventListener("mouseleave", showHoverOut, { passive: true });
+
+    btn.addEventListener("click", () => {
+      if (isOpen) closeMenu();
+      else openMenu();
+    });
+
+    document.querySelectorAll(".menu-link, .menu-subitem").forEach(link => {
+      link.addEventListener("click", () => {
+        closeMenu();
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dragonfly Dev Co. — Hospitality That Builds Community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green-950: #061A0E; --green-900: #0A2B18; --green-800: #0F3D25;
+      --green-700: #155232; --green-600: #1D6B40; --green-500: #1D9E75;
+      --green-400: #3BC28C; --green-300: #5DCAA5; --green-200: #9FE1CB;
+      --green-100: #C8F0E3; --green-50: #E1F5EE; --cream: #FAF7F2;
+      --text: #0F1A14; --text-muted: #4A5E52; --border: rgba(15,61,37,0.12);
+      --serif: 'Playfair Display', Georgia, serif; --sans: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; height: 72px; background: rgba(250,247,242,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-mark { width: 40px; height: 40px; border-radius: 50%; background: var(--green-800); display: flex; align-items: center; justify-content: center; }
+    .nav-logo-text { font-family: var(--serif); font-size: 15px; font-weight: 500; color: var(--green-800); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 13.5px; letter-spacing: 0.04em; color: var(--text-muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green-600); }
+    .nav-cta { font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 24px; background: var(--green-800); color: var(--green-50); border: none; border-radius: 2px; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--green-700); }
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 72px; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem; position: relative; }
+    .hero-left::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 1px; background: var(--border); }
+    .hero-eyebrow { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green-500); margin-bottom: 2rem; animation: fadeUp 0.8s ease both; }
+    .hero-eyebrow-line { width: 32px; height: 1px; background: var(--green-400); }
+    .hero-title { font-family: var(--serif); font-size: clamp(44px,5.5vw,68px); font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; color: var(--green-900); margin-bottom: 2rem; animation: fadeUp 0.8s ease 0.1s both; }
+    .hero-title em { font-style: italic; color: var(--green-500); }
+    .hero-body { font-size: 17px; font-weight: 300; line-height: 1.75; color: var(--text-muted); max-width: 440px; margin-bottom: 3rem; animation: fadeUp 0.8s ease 0.2s both; }
+    .hero-actions { display: flex; gap: 1rem; animation: fadeUp 0.8s ease 0.3s both; }
+    .btn-primary { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 32px; background: var(--green-800); color: var(--green-50); border: none; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: var(--green-700); transform: translateY(-1px); }
+    .btn-outline { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 13px 32px; background: transparent; color: var(--green-800); border: 1px solid var(--green-800); border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, color 0.2s; }
+    .btn-outline:hover { background: var(--green-800); color: var(--green-50); }
+    .hero-right { background: var(--green-800); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; animation: fadeIn 1.2s ease 0.2s both; }
+    .hero-bg-pattern { position: absolute; inset: 0; opacity: 0.07; background-image: repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(255,255,255,.5) 59px,rgba(255,255,255,.5) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(255,255,255,.5) 59px,rgba(255,255,255,.5) 60px); }
+    .hero-city { position: absolute; bottom: 0; left: 0; right: 0; }
+    .hero-dragonfly { position: absolute; top: 18%; left: 50%; transform: translateX(-50%); }
+    .hero-tagline { position: absolute; bottom: 2.5rem; left: 2.5rem; right: 2.5rem; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--green-100); border-left: 2px solid var(--green-400); padding-left: 1.25rem; line-height: 1.4; }
+    .hero-tagline span { display: block; font-size: 11px; font-style: normal; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-300); margin-top: 8px; font-family: var(--sans); }
+    .stats { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
+    .stat { padding: 2.5rem 2rem; border-right: 1px solid var(--border); }
+    .stat:last-child { border-right: none; }
+    .stat-number { font-family: var(--serif); font-size: 44px; font-weight: 400; line-height: 1; color: var(--green-700); margin-bottom: 6px; }
+    .stat-label { font-size: 13px; color: var(--text-muted); }
+    .section { padding: 7rem 4rem; }
+    .section-label { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green-500); margin-bottom: 1.25rem; }
+    .section-label-line { width: 28px; height: 1px; background: var(--green-400); }
+    .section-title { font-family: var(--serif); font-size: clamp(28px,3.5vw,42px); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--green-900); }
+    .section-title em { font-style: italic; color: var(--green-500); }
+    .mission { background: var(--cream); }
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3.5rem; }
+    .mission-text p { font-size: 17px; font-weight: 300; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.25rem; }
+    .mission-visual { background: var(--green-800); border-radius: 4px; overflow: hidden; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; position: relative; }
+    .mission-visual-bg { position: absolute; inset: 0; opacity: 0.06; background-image: radial-gradient(circle at 2px 2px,rgba(255,255,255,.8) 1px,transparent 0); background-size: 28px 28px; }
+    .pillars { background: #fff; }
+    .pillars-grid { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 3.5rem; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .pillar { padding: 2.5rem; border-right: 1px solid var(--border); transition: background 0.2s; }
+    .pillar:last-child { border-right: none; }
+    .pillar:hover { background: var(--green-50); }
+    .pillar-icon-wrap { width: 48px; height: 48px; background: var(--green-800); border-radius: 3px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+    .pillar-title { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--green-900); margin-bottom: 12px; }
+    .pillar-text { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+    .brands { background: #fff; padding: 4rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .brands-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-bottom: 2.5rem; }
+    .brands-row { display: flex; align-items: center; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+    .brand-item { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--text-muted); opacity: 0.6; }
+    .brand-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+    .projects { background: var(--green-900); padding: 7rem 4rem; }
+    .projects .section-label { color: var(--green-300); }
+    .projects .section-label-line { background: var(--green-400); }
+    .projects .section-title { color: var(--green-50); }
+    .projects-intro { font-size: 17px; font-weight: 300; color: var(--green-200); max-width: 500px; margin-top: 1rem; line-height: 1.7; }
+    .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+    .project-card { padding: 2.5rem; background: var(--green-900); transition: background 0.2s; }
+    .project-card:hover { background: var(--green-800); }
+    .project-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-300); margin-bottom: 1rem; }
+    .project-name { font-family: var(--serif); font-size: 20px; color: #fff; margin-bottom: 12px; line-height: 1.3; }
+    .project-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 1.5rem; }
+    .project-meta { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.25rem; display: flex; flex-direction: column; gap: 4px; }
+    .project-meta-row { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.35); }
+    .project-meta-row span:last-child { color: rgba(255,255,255,0.6); }
+    .approach { background: var(--cream); }
+    .approach-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .step { padding: 2rem; background: #fff; border: 1px solid var(--border); border-radius: 4px; }
+    .step-num { font-family: var(--serif); font-style: italic; font-size: 48px; color: var(--green-100); line-height: 1; margin-bottom: 1rem; }
+    .step-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--green-900); margin-bottom: 10px; }
+    .step-text { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .quote-section { background: var(--green-800); padding: 7rem 4rem; text-align: center; }
+    .quote-text { font-family: var(--serif); font-style: italic; font-size: clamp(22px,2.8vw,36px); color: var(--green-50); line-height: 1.4; max-width: 760px; margin: 0 auto 2rem; }
+    .quote-attr { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-300); }
+    .cta-section { padding: 8rem 4rem; text-align: center; background: var(--cream); position: relative; overflow: hidden; }
+    .cta-bg-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 600px; border-radius: 50%; border: 1px solid var(--border); pointer-events: none; }
+    .cta-bg-circle-2 { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 900px; height: 900px; border-radius: 50%; border: 1px solid var(--border); pointer-events: none; }
+    .cta-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green-500); margin-bottom: 1.25rem; }
+    .cta-title { font-family: var(--serif); font-size: clamp(32px,4vw,52px); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--green-900); margin-bottom: 1.5rem; }
+    .cta-body { font-size: 17px; font-weight: 300; color: var(--text-muted); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.7; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; }
+    footer { background: var(--green-950); padding: 4rem; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 2rem; }
+    .footer-brand-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+    .footer-brand-name { font-family: var(--serif); font-size: 16px; font-weight: 500; color: var(--green-100); }
+    .footer-brand-desc { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 260px; }
+    .footer-col-title { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-300); margin-bottom: 1.25rem; }
+    .footer-links-list { list-style: none; }
+    .footer-links-list li { margin-bottom: 10px; }
+    .footer-links-list a { font-size: 14px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-links-list a:hover { color: rgba(255,255,255,0.8); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    @media (max-width: 1024px) {
+      nav { padding: 0 2rem; } .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; } .hero-right { min-height: 360px; } .hero-left { padding: 4rem 2rem; }
+      .stats { grid-template-columns: repeat(2,1fr); }
+      .stat:nth-child(2) { border-right: none; } .stat:nth-child(3),.stat:nth-child(4) { border-top: 1px solid var(--border); } .stat:nth-child(4) { border-right: none; }
+      .mission-grid,.pillars-grid { grid-template-columns: 1fr; }
+      .pillar { border-right: none; border-bottom: 1px solid var(--border); } .pillar:last-child { border-bottom: none; }
+      .projects-grid,.approach-grid { grid-template-columns: 1fr; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .section,.projects,.quote-section,.cta-section,.brands,footer { padding-left: 2rem; padding-right: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <ellipse cx="12" cy="11" rx="2" ry="5" fill="#5DCAA5"/>
+        <ellipse cx="6.5" cy="9" rx="5.5" ry="1.8" fill="#9FE1CB" transform="rotate(-20 6.5 9)"/>
+        <ellipse cx="17.5" cy="9" rx="5.5" ry="1.8" fill="#9FE1CB" transform="rotate(20 17.5 9)"/>
+        <ellipse cx="5.5" cy="12.5" rx="4.5" ry="1.4" fill="#5DCAA5" opacity="0.7" transform="rotate(-15 5.5 12.5)"/>
+        <ellipse cx="18.5" cy="12.5" rx="4.5" ry="1.4" fill="#5DCAA5" opacity="0.7" transform="rotate(15 18.5 12.5)"/>
+        <circle cx="12" cy="8.5" r="2" fill="#C8F0E3"/>
+      </svg>
+    </div>
+    <span class="nav-logo-text">Dragonfly Dev Co.</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#pillars">Approach</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span class="hero-eyebrow-line"></span>Hotel development for underserved communities</div>
+    <h1 class="hero-title">Hospitality that<br><em>transforms</em><br>communities</h1>
+    <p class="hero-body">We develop high-quality, sustainable hotel projects that deliver exceptional guest experiences while driving real economic growth in the communities that need it most.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View our projects</a>
+      <a href="#mission" class="btn-outline">Our mission</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-pattern"></div>
+    <svg class="hero-city" viewBox="0 0 700 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="320" width="700" height="20" fill="#085041"/>
+      <rect x="30" y="180" width="90" height="140" fill="#1D5E3A"/>
+      <rect x="40" y="192" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.4"/><rect x="64" y="192" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.6"/><rect x="88" y="192" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.3"/>
+      <rect x="40" y="216" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.7"/><rect x="64" y="216" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.4"/><rect x="88" y="216" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.5"/>
+      <rect x="40" y="240" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.3"/><rect x="64" y="240" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.6"/><rect x="88" y="240" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.4"/>
+      <rect x="58" y="158" width="34" height="22" rx="1" fill="#1D9E75" opacity="0.5"/>
+      <rect x="62" y="285" width="26" height="35" rx="1" fill="#0F3D25" stroke="#3BC28C" stroke-width="0.5"/>
+      <rect x="150" y="80" width="120" height="240" fill="#27500A" opacity="0.95"/>
+      <rect x="158" y="94" width="22" height="18" rx="1" fill="#97C459" opacity="0.5"/><rect x="186" y="94" width="22" height="18" rx="1" fill="#97C459" opacity="0.5"/><rect x="214" y="94" width="22" height="18" rx="1" fill="#97C459" opacity="0.5"/><rect x="242" y="94" width="22" height="18" rx="1" fill="#97C459" opacity="0.3"/>
+      <rect x="158" y="120" width="22" height="18" rx="1" fill="#97C459" opacity="0.7"/><rect x="186" y="120" width="22" height="18" rx="1" fill="#97C459" opacity="0.4"/><rect x="214" y="120" width="22" height="18" rx="1" fill="#97C459" opacity="0.6"/><rect x="242" y="120" width="22" height="18" rx="1" fill="#97C459" opacity="0.5"/>
+      <rect x="158" y="146" width="22" height="18" rx="1" fill="#97C459" opacity="0.4"/><rect x="186" y="146" width="22" height="18" rx="1" fill="#97C459" opacity="0.7"/><rect x="214" y="146" width="22" height="18" rx="1" fill="#97C459" opacity="0.3"/><rect x="242" y="146" width="22" height="18" rx="1" fill="#97C459" opacity="0.6"/>
+      <rect x="158" y="172" width="22" height="18" rx="1" fill="#97C459" opacity="0.6"/><rect x="186" y="172" width="22" height="18" rx="1" fill="#97C459" opacity="0.3"/><rect x="214" y="172" width="22" height="18" rx="1" fill="#97C459" opacity="0.5"/><rect x="242" y="172" width="22" height="18" rx="1" fill="#97C459" opacity="0.7"/>
+      <rect x="176" y="62" width="68" height="18" rx="1" fill="#3B6D11" opacity="0.7"/>
+      <rect x="185" y="280" width="50" height="40" rx="1" fill="#0F3D25" stroke="#97C459" stroke-width="0.5"/>
+      <rect x="295" y="140" width="80" height="180" fill="#155232"/>
+      <rect x="303" y="152" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.5"/><rect x="327" y="152" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.5"/><rect x="351" y="152" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.5"/>
+      <rect x="303" y="174" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.6"/><rect x="327" y="174" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.3"/><rect x="351" y="174" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.7"/>
+      <rect x="303" y="196" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.3"/><rect x="327" y="196" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.6"/><rect x="351" y="196" width="18" height="14" rx="1" fill="#5DCAA5" opacity="0.4"/>
+      <rect x="313" y="122" width="54" height="18" rx="1" fill="#1D6B40" opacity="0.6"/>
+      <rect x="317" y="285" width="36" height="35" rx="1" fill="#0F3D25" stroke="#5DCAA5" stroke-width="0.5"/>
+      <rect x="400" y="110" width="100" height="210" fill="#0F6E56" opacity="0.85"/>
+      <rect x="408" y="122" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.4"/><rect x="434" y="122" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.6"/><rect x="460" y="122" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.4"/>
+      <rect x="408" y="146" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.7"/><rect x="434" y="146" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.3"/><rect x="460" y="146" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.5"/>
+      <rect x="408" y="170" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.4"/><rect x="434" y="170" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.6"/><rect x="460" y="170" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.3"/>
+      <rect x="408" y="194" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.5"/><rect x="434" y="194" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.4"/><rect x="460" y="194" width="20" height="16" rx="1" fill="#5DCAA5" opacity="0.7"/>
+      <rect x="418" y="94" width="62" height="16" rx="1" fill="#0F6E56" opacity="0.8"/>
+      <rect x="430" y="285" width="40" height="35" rx="1" fill="#0F3D25" stroke="#5DCAA5" stroke-width="0.5"/>
+      <rect x="525" y="170" width="70" height="150" fill="#085041"/>
+      <rect x="532" y="182" width="16" height="12" rx="1" fill="#5DCAA5" opacity="0.5"/><rect x="554" y="182" width="16" height="12" rx="1" fill="#5DCAA5" opacity="0.3"/><rect x="576" y="182" width="12" height="12" rx="1" fill="#5DCAA5" opacity="0.6"/>
+      <rect x="532" y="202" width="16" height="12" rx="1" fill="#5DCAA5" opacity="0.6"/><rect x="554" y="202" width="16" height="12" rx="1" fill="#5DCAA5" opacity="0.5"/><rect x="576" y="202" width="12" height="12" rx="1" fill="#5DCAA5" opacity="0.3"/>
+      <rect x="541" y="156" width="38" height="14" rx="1" fill="#085041" stroke="#3BC28C" stroke-width="0.5"/>
+      <rect x="544" y="285" width="28" height="35" rx="1" fill="#0F3D25" stroke="#5DCAA5" stroke-width="0.5"/>
+      <rect x="615" y="200" width="75" height="120" fill="#1D5E3A"/>
+      <rect x="622" y="210" width="16" height="12" rx="1" fill="#5DCAA5" opacity="0.5"/><rect x="644" y="210" width="16" height="12" rx="1" fill="#5DCAA5" opacity="0.3"/><rect x="666" y="210" width="16" height="12" rx="1" fill="#5DCAA5" opacity="0.6"/>
+      <rect x="622" y="230" width="16" height="12" rx="1" fill="#5DCAA5" opacity="0.7"/><rect x="644" y="230" width="16" height="12" rx="1" fill="#5DCAA5" opacity="0.4"/><rect x="666" y="230" width="16" height="12" rx="1" fill="#5DCAA5" opacity="0.5"/>
+      <rect x="631" y="186" width="43" height="14" rx="1" fill="#1D6B40" opacity="0.6"/>
+      <rect x="638" y="285" width="29" height="35" rx="1" fill="#0F3D25" stroke="#5DCAA5" stroke-width="0.5"/>
+      <circle cx="70" cy="40" r="1.2" fill="#9FE1CB" opacity="0.6"/>
+      <circle cx="380" cy="25" r="1" fill="#9FE1CB" opacity="0.4"/>
+      <circle cx="580" cy="55" r="1.5" fill="#9FE1CB" opacity="0.5"/>
+      <circle cx="620" cy="40" r="18" fill="#C8F0E3" opacity="0.12"/>
+      <circle cx="630" cy="38" r="18" fill="#0F3D25" opacity="0.9"/>
+    </svg>
+    <svg class="hero-dragonfly" viewBox="0 0 120 100" fill="none" style="width:120px;">
+      <ellipse cx="60" cy="55" rx="5" ry="18" fill="#9FE1CB" opacity="0.9"/>
+      <ellipse cx="35" cy="44" rx="22" ry="8" fill="#5DCAA5" opacity="0.75" transform="rotate(-18 35 44)"/>
+      <ellipse cx="85" cy="44" rx="22" ry="8" fill="#5DCAA5" opacity="0.75" transform="rotate(18 85 44)"/>
+      <ellipse cx="32" cy="54" rx="17" ry="6" fill="#3BC28C" opacity="0.5" transform="rotate(-12 32 54)"/>
+      <ellipse cx="88" cy="54" rx="17" ry="6" fill="#3BC28C" opacity="0.5" transform="rotate(12 88 54)"/>
+      <circle cx="60" cy="40" r="7" fill="#C8F0E3" opacity="0.95"/>
+      <circle cx="57" cy="38" r="2.2" fill="#085041"/>
+      <circle cx="63" cy="38" r="2.2" fill="#085041"/>
+    </svg>
+    <div class="hero-tagline">
+      The power of hospitality to transform underserved communities.
+      <span>Dragonfly Development Company</span>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat reveal"><div class="stat-number">12+</div><div class="stat-label">Hotel projects developed</div></div>
+  <div class="stat reveal reveal-delay-1"><div class="stat-number">8</div><div class="stat-label">States &amp; markets entered</div></div>
+  <div class="stat reveal reveal-delay-2"><div class="stat-number">$400M+</div><div class="stat-label">Total development value</div></div>
+  <div class="stat reveal reveal-delay-3"><div class="stat-number">2,000+</div><div class="stat-label">Local jobs created</div></div>
+</div>
+
+<section class="section mission" id="mission">
+  <div class="section-label reveal"><span class="section-label-line"></span>Our mission</div>
+  <div class="mission-grid">
+    <div class="mission-text reveal">
+      <h2 class="section-title" style="margin-bottom:2rem;">Transforming underserved communities through <em>hospitality</em></h2>
+      <p>At Dragonfly Development, we believe in the power of hospitality to transform underserved communities. Our mission is to develop high-quality, sustainable hotel projects that provide exceptional hospitality experiences while driving local economic growth.</p>
+      <p>We seek out markets where quality lodging is scarce and community investment is long overdue — and we build there intentionally, structuring every project to maximize local economic benefit.</p>
+      <p>Our developments serve as anchors for broader neighborhood revitalization, catalyzing investment in surrounding retail, housing, and civic infrastructure.</p>
+    </div>
+    <div class="mission-visual reveal reveal-delay-2">
+      <div class="mission-visual-bg"></div>
+      <svg viewBox="0 0 340 340" fill="none" style="width:100%;max-width:300px;position:relative;z-index:1;">
+        <circle cx="170" cy="170" r="120" stroke="rgba(93,202,165,0.2)" stroke-width="1"/>
+        <circle cx="170" cy="170" r="85" stroke="rgba(93,202,165,0.15)" stroke-width="1"/>
+        <circle cx="170" cy="170" r="50" stroke="rgba(93,202,165,0.2)" stroke-width="1"/>
+        <circle cx="170" cy="170" r="22" fill="#1D9E75" opacity="0.9"/>
+        <text x="170" y="166" text-anchor="middle" font-size="9" fill="#E1F5EE" font-family="sans-serif" font-weight="500">HOTEL</text>
+        <text x="170" y="178" text-anchor="middle" font-size="9" fill="#E1F5EE" font-family="sans-serif">PROJECT</text>
+        <circle cx="170" cy="68" r="24" fill="#3B6D11" opacity="0.85"/>
+        <text x="170" y="65" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">LOCAL</text>
+        <text x="170" y="77" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">JOBS</text>
+        <circle cx="255" cy="118" r="24" fill="#3B6D11" opacity="0.85"/>
+        <text x="255" y="115" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">TOURISM</text>
+        <text x="255" y="127" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">GROWTH</text>
+        <circle cx="240" cy="224" r="24" fill="#3B6D11" opacity="0.85"/>
+        <text x="240" y="221" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">TAX</text>
+        <text x="240" y="233" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">REVENUE</text>
+        <circle cx="170" cy="264" r="24" fill="#3B6D11" opacity="0.85"/>
+        <text x="170" y="261" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">RETAIL</text>
+        <text x="170" y="273" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">GROWTH</text>
+        <circle cx="100" cy="224" r="24" fill="#3B6D11" opacity="0.85"/>
+        <text x="100" y="221" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">HOUSING</text>
+        <text x="100" y="233" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">UPLIFT</text>
+        <circle cx="85" cy="118" r="24" fill="#3B6D11" opacity="0.85"/>
+        <text x="85" y="115" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">COMMUNITY</text>
+        <text x="85" y="127" text-anchor="middle" font-size="9" fill="#C8F0E3" font-family="sans-serif">INVEST.</text>
+        <line x1="170" y1="148" x2="170" y2="92" stroke="#5DCAA5" stroke-width="0.8" opacity="0.5"/>
+        <line x1="188" y1="156" x2="233" y2="130" stroke="#5DCAA5" stroke-width="0.8" opacity="0.5"/>
+        <line x1="185" y1="184" x2="218" y2="202" stroke="#5DCAA5" stroke-width="0.8" opacity="0.5"/>
+        <line x1="170" y1="192" x2="170" y2="240" stroke="#5DCAA5" stroke-width="0.8" opacity="0.5"/>
+        <line x1="155" y1="184" x2="122" y2="202" stroke="#5DCAA5" stroke-width="0.8" opacity="0.5"/>
+        <line x1="152" y1="156" x2="107" y2="130" stroke="#5DCAA5" stroke-width="0.8" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section pillars" id="pillars">
+  <div class="section-label reveal"><span class="section-label-line"></span>What we stand for</div>
+  <h2 class="section-title reveal">Three pillars of our work</h2>
+  <div class="pillars-grid">
+    <div class="pillar reveal">
+      <div class="pillar-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="9" width="16" height="11" rx="1.5" stroke="#5DCAA5" stroke-width="1.2"/><path d="M1 10l10-7 10 7" stroke="#5DCAA5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="7.5" y="14" width="7" height="6" rx="1" fill="#5DCAA5" opacity="0.4"/></svg></div>
+      <div class="pillar-title">Exceptional hospitality</div>
+      <div class="pillar-text">We never compromise on guest experience. Our hotels meet the highest brand standards while reflecting authentic local character. Quality and community are not competing values — they reinforce each other.</div>
+    </div>
+    <div class="pillar reveal reveal-delay-1">
+      <div class="pillar-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 18l4-5 4 3 4-6 4 4" stroke="#5DCAA5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="8" r="4" stroke="#5DCAA5" stroke-width="1.2"/><path d="M11 6v2l1.5 1" stroke="#5DCAA5" stroke-width="1" stroke-linecap="round"/></svg></div>
+      <div class="pillar-title">Economic impact</div>
+      <div class="pillar-text">From construction hiring to long-term operations, we measure our success by the livelihoods supported and the downstream businesses energized by each new property we open.</div>
+    </div>
+    <div class="pillar reveal reveal-delay-2">
+      <div class="pillar-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3C7.5 3 4 5.8 4 10c0 4.5 7 10 7 10s7-5.5 7-10c0-4.2-3.5-7-7-7z" stroke="#5DCAA5" stroke-width="1.2"/><circle cx="11" cy="10" r="1.5" fill="#5DCAA5" opacity="0.6"/></svg></div>
+      <div class="pillar-title">Sustainable development</div>
+      <div class="pillar-text">We build for the long term — environmentally efficient structures, responsible financing, and community partnerships that outlast the ribbon cutting and serve residents for decades.</div>
+    </div>
+  </div>
+</section>
+
+<div class="brands">
+  <div class="brands-label">Brand partnerships include</div>
+  <div class="brands-row">
+    <div class="brand-item">Marriott</div><div class="brand-sep"></div>
+    <div class="brand-item">Hilton</div><div class="brand-sep"></div>
+    <div class="brand-item">IHG</div><div class="brand-sep"></div>
+    <div class="brand-item">Choice Hotels</div><div class="brand-sep"></div>
+    <div class="brand-item">Best Western</div><div class="brand-sep"></div>
+    <div class="brand-item">Wyndham</div>
+  </div>
+</div>
+
+<section class="projects" id="projects">
+  <div class="projects-header">
+    <div>
+      <div class="section-label reveal"><span class="section-label-line"></span>Portfolio</div>
+      <h2 class="section-title reveal">Recent projects</h2>
+      <p class="projects-intro reveal">From select-service to full-service, our developments meet communities where they are.</p>
+    </div>
+    <a href="#contact" class="btn-outline" style="color:#5DCAA5;border-color:#5DCAA5;white-space:nowrap;align-self:flex-end;">View all projects</a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-tag">Select service · Hilton</div>
+      <div class="project-name">Hampton Inn — Meridian, MS</div>
+      <div class="project-desc">A 98-room property anchoring downtown Meridian's revitalization corridor, developed in partnership with the city's economic development authority.</div>
+      <div class="project-meta">
+        <div class="project-meta-row"><span>Rooms</span><span>98</span></div>
+        <div class="project-meta-row"><span>Opened</span><span>2023</span></div>
+        <div class="project-meta-row"><span>Investment</span><span>$14.2M</span></div>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-tag">Extended stay · Choice Hotels</div>
+      <div class="project-name">WoodSpring Suites — Hattiesburg, MS</div>
+      <div class="project-desc">A 122-unit extended-stay development targeting healthcare workers and long-term business travelers in an underserved medical corridor.</div>
+      <div class="project-meta">
+        <div class="project-meta-row"><span>Rooms</span><span>122</span></div>
+        <div class="project-meta-row"><span>Opened</span><span>2022</span></div>
+        <div class="project-meta-row"><span>Investment</span><span>$17.8M</span></div>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-2">
+      <div class="project-tag">Full service · Marriott</div>
+      <div class="project-name">Courtyard — Tuscaloosa, AL</div>
+      <div class="project-desc">A full-service Marriott property near the University of Alabama campus, with meeting facilities designed to attract regional corporate events.</div>
+      <div class="project-meta">
+        <div class="project-meta-row"><span>Rooms</span><span>134</span></div>
+        <div class="project-meta-row"><span>Opened</span><span>2024</span></div>
+        <div class="project-meta-row"><span>Investment</span><span>$22.5M</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section approach" id="approach">
+  <div class="section-label reveal"><span class="section-label-line"></span>How we work</div>
+  <h2 class="section-title reveal">Our development approach</h2>
+  <div class="approach-grid">
+    <div class="step reveal"><div class="step-num">01</div><div class="step-title">Market identification</div><div class="step-text">We use proprietary data analysis to identify markets with genuine supply gaps and strong demand drivers — particularly in communities overlooked by conventional developers.</div></div>
+    <div class="step reveal reveal-delay-1"><div class="step-num">02</div><div class="step-title">Community alignment</div><div class="step-text">Before breaking ground, we engage local governments, business leaders, and community organizations to ensure our projects align with and advance broader development goals.</div></div>
+    <div class="step reveal reveal-delay-2"><div class="step-num">03</div><div class="step-title">Disciplined delivery</div><div class="step-text">Our experienced construction management team delivers projects on time and on budget, with a preference for local subcontractors and regional suppliers wherever possible.</div></div>
+    <div class="step reveal reveal-delay-3"><div class="step-num">04</div><div class="step-title">Long-term stewardship</div><div class="step-text">We don't build and exit. We structure our ownership for long-term impact, maintaining standards that serve guests and community stakeholders alike for years to come.</div></div>
+  </div>
+</section>
+
+<section class="quote-section">
+  <p class="quote-text reveal">"We believe that underserved communities deserve the same quality of hospitality as any other — and that developing it there creates something no luxury resort can: genuine, lasting transformation."</p>
+  <div class="quote-attr reveal reveal-delay-1">Dragonfly Development Company — Mission Statement</div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="cta-bg-circle"></div><div class="cta-bg-circle-2"></div>
+  <div style="position:relative;z-index:1;">
+    <div class="cta-label reveal">Work with us</div>
+    <h2 class="cta-title reveal">Have a site or<br>market in mind?</h2>
+    <p class="cta-body reveal">We partner with landowners, municipalities, and investors who share our vision for community-transforming hospitality development.</p>
+    <div class="cta-actions reveal">
+      <a href="mailto:info@dragonflydevco.com" class="btn-primary">Contact our team</a>
+      <a href="#" class="btn-outline">Download our deck</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-logo">
+        <div style="width:36px;height:36px;border-radius:50%;background:#1D5E3A;display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="11" rx="2" ry="5" fill="#5DCAA5"/><ellipse cx="6.5" cy="9" rx="5.5" ry="1.8" fill="#9FE1CB" transform="rotate(-20 6.5 9)"/><ellipse cx="17.5" cy="9" rx="5.5" ry="1.8" fill="#9FE1CB" transform="rotate(20 17.5 9)"/><circle cx="12" cy="8.5" r="2" fill="#C8F0E3"/></svg>
+        </div>
+        <span class="footer-brand-name">Dragonfly Dev Co.</span>
+      </div>
+      <p class="footer-brand-desc">Developing high-quality, sustainable hotel projects that drive local economic growth and enhance community development.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links-list">
+        <li><a href="#mission">Mission</a></li><li><a href="#pillars">Approach</a></li>
+        <li><a href="#projects">Projects</a></li><li><a href="#contact">About us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links-list">
+        <li><a href="#">Site selection</a></li><li><a href="#">Development</a></li>
+        <li><a href="#">Brand partnerships</a></li><li><a href="#">Investment</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links-list">
+        <li><a href="https://dragonflydevco.com">dragonflydevco.com</a></li>
+        <li><a href="mailto:info@dragonflydevco.com">info@dragonflydevco.com</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Dragonfly Development Company. All rights reserved.</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.25);">dragonflydevco.com</div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>

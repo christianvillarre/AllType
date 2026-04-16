@@ -1,0 +1,43 @@
+<footer class="site-footer">
+  <div class="footer-mark" aria-hidden="true"></div>
+
+  <div class="footer-top">
+    <h3>All Type Roofing and Construction</h3>
+    <p>
+      Our team of qualified and insured staff members have over 100 years of combined
+      experience in roofing and construction industry. Our services start with a responsive
+      and attentive representative who caters to each individual client’s specific needs.
+      We work with owners, chief engineers, property managers, operations managers, portfolio
+      managers and maintenance coordinators to find solutions to issues that arise day of or
+      a service needed that local and national clients follow day to day. At All Type Roofing
+      and Construction these safety very serious and follow each and every safety guideline
+      set forth by OSHA. We strive to have all our projects run smoothly while in turn make
+      tenants and all parties involved happy.
+    </p>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="images/Alltype Logo 2.png" alt="All Type Roofing and Construction">
+      </div>
+
+      <div class="footer-contact-lines">
+        <p>13625 Chrisman Rd</p>
+        <p>Houston, TX 77039</p>
+        <p><a href="tel:+12813976614">(281) 397-6614</a></p>
+        <p><a href="mailto:info@all-type-construction.com">info@all-type-construction.com</a></p>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Facebook →<br><span>Follow us</span></a>
+      <a href="#">Instagram →<br><span>On-site updates</span></a>
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <span>© 2025 Alltype Construction Inc.</span>
+    <span>Web Design by mcvdesign.</span>
+  </div>
+</footer>

@@ -1,0 +1,1745 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="All-Type Construction handles commercial roofing and emergency construction in Houston, TX. 24/7 response for repairs, restoration, and large-scale projects." />
+  <title>Construction and Commercial Roofing | All-Type Roofing and Construction</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/vml5vif.css">
+
+  <link rel="preload" as="image" href="images/Houston.jpg" fetchpriority="high" />
+
+  <style>
+    :root{
+      --bg:#000000;
+      --ink:#111111;
+      --square: 96;
+      --rectW: 254;
+      --rectH: 96;
+      --ovalW: 800;
+      --gutter: 4rem;
+      --red: #f00303;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+
+    body{
+      margin:0;
+      font-family: "Roboto Slab", sans-serif;
+      background: var(--bg);
+      color: #fff;
+      overflow:auto;
+      overflow-x: hidden;
+    }
+
+    .container{
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+    }
+
+    @media (max-width: 1100px){ :root{ --gutter: 3rem; } }
+    @media (max-width: 720px){ :root{ --gutter: 1.25rem; } }
+
+    /* ===================== NAVBAR ===================== */
+    .navbar{
+      position: absolute;
+      top: 18px;
+      left: 0;
+      width: 100%;
+      z-index: 120;
+      background: transparent;
+      border: none;
+      pointer-events: none;
+    }
+
+    .navbar-inner{
+      height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .nav-logo, .nav-right{ pointer-events: auto; }
+
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:10px;
+      min-width:140px;
+    }
+
+    .nav-logo img{
+      height: 78px;
+      width: auto;
+      display:block;
+      object-fit: contain;
+      transform: translateY(-2px);
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    /* ===================== MENU BUTTON ===================== */
+    .menu-btn{
+      background: transparent;
+      border: none;
+      padding: 0;
+      width: 75px;
+      height: 75px;
+      overflow: hidden;
+      border-radius: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .18s ease;
+      position: relative;
+      z-index: 210;
+    }
+
+    .menu-btn-fixed{
+      position: fixed;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 260;
+    }
+
+    .menu-btn-fixed:hover{ transform: translateX(-50%) translateY(-1px); }
+
+    .swap{
+      position: relative;
+      width: 75px;
+      height: 75px;
+      display: block;
+      overflow: hidden;
+      --svg1OpacityDelay: 0ms;
+      --svg2InDelay: 0ms;
+    }
+
+    .swap svg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      transform-origin:50% 50%;
+      transform-box: fill-box;
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+
+    .swap .svg1{
+      opacity: 1;
+      transform: rotate(0deg);
+      transition: transform 260ms ease, opacity 220ms ease var(--svg1OpacityDelay);
+    }
+
+    .swap .svg2{
+      opacity: 0;
+      transform: scale(4.8) rotate(6deg);
+      transition: transform 360ms ease var(--svg2InDelay), opacity 220ms ease var(--svg2InDelay);
+    }
+
+    .swap.is-on{ --svg1OpacityDelay: 40ms; --svg2InDelay: 20ms; }
+    .swap.is-on .svg1{ transform: rotate(-90deg); opacity: 0; }
+    .swap.is-on .svg2{ opacity: 1; transform: scale(6) rotate(-45deg); }
+    .swap.is-off{ --svg1OpacityDelay: 0ms; --svg2InDelay: 0ms; }
+
+    /* ===================== PHONE LINK ===================== */
+    .phone-link{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      height: 46px;
+      padding: 0 14px 0 16px;
+      border-radius: 14px;
+      text-decoration:none;
+      color: rgba(255,255,255,0.92);
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: 0.02em;
+      border: none;
+      background: transparent;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform .18s ease, background .18s ease;
+      white-space: nowrap;
+    }
+
+    .phone-link:hover{ color:red; }
+
+    .phone-arrow{
+      width: 30px;
+      height: auto;
+      display: block;
+      color: var(--red);
+    }
+
+    .social-top svg{ width: 22px; height: auto; color: var(--red); }
+
+    /* ===================== MENU PANEL ===================== */
+    .menu-panel{
+      position: fixed;
+      inset: 0;
+      background-image: url("images/Alltype Web BG.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 150;
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 420ms ease, opacity 320ms ease;
+      overflow: auto;
+    }
+
+    .menu-panel::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,0.75);
+      z-index:0;
+    }
+
+    .menu-panel.is-open{
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .menu-panel-inner{
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      padding-top: 8.5rem;
+      padding-bottom: 4rem;
+      align-items: stretch;
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu-panel-top{
+      position: absolute;
+      top: 18px;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      margin: 0;
+      padding: 0 var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      pointer-events: none;
+    }
+
+    .menu-panel-brand, .menu-phone-link{ pointer-events: auto; }
+
+    .menu-panel-brand{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      min-width: 140px;
+    }
+
+    .menu-panel-brand img{
+      height: 78px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      transform: translateY(-2px);
+    }
+
+    .menu-phone-link{
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .menu-left, .menu-right{
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    @media (min-width: 1100px){ .menu-right{ margin-left: -4rem; } }
+
+    .menu-list{ display: grid; gap: 2px; margin-top: 0; }
+
+    .menu-link{
+      display: inline-block;
+      text-decoration: none;
+      font-size: clamp(64px, 6vw, 108px);
+      line-height: 0.95;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      padding: 5px 0;
+      color: #fff;
+      background-image: linear-gradient(to right, var(--red), var(--red));
+      background-repeat: no-repeat;
+      background-size: 0% 100%;
+      background-position: left center;
+      -webkit-background-clip: text;
+      background-clip: text;
+      transition: background-size 420ms cubic-bezier(.22,.61,.36,1), color 420ms cubic-bezier(.22,.61,.36,1), transform .18s ease;
+    }
+
+    .menu-link:hover{
+      color: transparent;
+      background-size: 100% 100%;
+      transform: translateX(6px);
+    }
+
+    .menu-left-bottom{
+      margin-top: auto;
+      display: grid;
+      gap: 2.5rem;
+      padding-top: 3rem;
+    }
+
+    .social-row{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 520px;
+    }
+
+    .social-card{
+      text-decoration: none;
+      color: #fff;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .social-top{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .social-sub{ font-size: 24px; color: rgba(255,255,255,0.9); letter-spacing: .02em; }
+
+    .office-block{ max-width: 520px; }
+    .office-title{ font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+    .office-block p{ margin: 0; font-size: 27px; line-height: 1.2; color: rgba(255,255,255,.85); }
+
+    .menu-right-top{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .menu-section-title{
+      font-size: clamp(16px, 3vw, 26px);
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: .06em;
+      margin-bottom: 3rem;
+    }
+
+    .menu-sublist{ display: grid; gap: 12px; }
+
+    .menu-subitem{
+      color: #fff;
+      text-decoration: none;
+      font-size: clamp(24px, 3.5vw, 32px);
+      line-height: 0.72;
+      padding-bottom: 0.22em;
+      font-weight: 600;
+      opacity: .92;
+      background-image: linear-gradient(to right, var(--red), var(--red));
+      background-repeat: no-repeat;
+      background-size: 0% 100%;
+      background-position: left center;
+      -webkit-background-clip: text;
+      background-clip: text;
+      transition: background-size 420ms cubic-bezier(.22,.61,.36,1), color 420ms cubic-bezier(.22,.61,.36,1), transform .18s ease;
+    }
+
+    .menu-subitem:hover{
+      color: transparent;
+      background-size: 100% 100%;
+      transform: translateX(6px);
+    }
+
+    /* ===================== HERO ===================== */
+    .hero{
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 0 4rem 6rem;
+      background: black;
+      overflow: hidden;
+    }
+
+    .hero-bg{
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .hero-bg .bg-back{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-bg .bg-frame{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      pointer-events: none;
+      -webkit-mask-image: url("images/mask.svg");
+      mask-image: url("images/mask.svg");
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+      -webkit-mask-size: cover;
+      mask-size: cover;
+      -webkit-mask-mode: alpha;
+      mask-mode: alpha;
+    }
+
+    .redline-overlay{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-content{
+      position: relative;
+      z-index: 4;
+      color: white;
+      max-width: 800px;
+    }
+
+    .hero-content h1{
+      font-size: clamp(36px, 4vw, 66px);
+      margin-bottom: 10px;
+      line-height: 0.9;
+      font-weight: 800;
+    }
+
+    .hero-content p{
+      font-size: clamp(16px, 2.5vw, 26px);
+      line-height: 1.1;
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+
+    .cta-button{
+      display: inline-block;
+      padding: 14px 28px;
+      font-size: 26px;
+      background-color: transparent;
+      border: 5px solid white;
+      color: white;
+      border-radius: 99px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .cta-button:hover{
+      background: white;
+      color: #111;
+    }
+
+    /* ===================== INTRO BAND ===================== */
+    .intro-band{
+      background: #d9d2c7;
+      color: #111;
+      padding: 8rem 0;
+    }
+
+    .intro-grid{
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .intro-eyebrow-wrap{ display: flex; justify-content: center; }
+
+    .intro-eyebrow{
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 15px;
+      line-height: 1;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    .intro-copy p{
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(26px, 2.7vw, 42px);
+      line-height: 1.08;
+      font-weight: 500;
+    }
+
+    /* ===================== ROOFING FEATURE ===================== */
+    .roofing-feature{
+      background:#d9d2c7;
+      padding:0 0 8rem;
+      color:#111;
+    }
+
+    .roofing-grid{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap: clamp(1rem, 5vw, 10rem);
+      align-items:start;
+    }
+
+    .roofing-card{ display:flex; flex-direction:column; }
+
+    .roofing-card-large .roofing-image img{ height:640px; }
+    .roofing-card-small .roofing-image img{ height:420px; }
+
+    .roofing-image img{
+      width:100%;
+      object-fit:cover;
+      border-radius:18px;
+      display:block;
+    }
+
+    .roofing-copy{ padding-top:1rem; }
+
+    .roofing-title-row{
+      display:inline-flex;
+      align-items:center;
+      gap:14px;
+      font-size:clamp(20px,3vw,26px);
+      font-weight:800;
+      margin-top:.3rem;
+    }
+
+    .roofing-arrow{ width:32px; color:var(--red); }
+    .roofing-subtitle{ margin-top:.3rem; font-size:22px; color:rgba(17,17,17,.7); }
+
+    /* ===================== WORK STACK ===================== */
+    .work-stack-section{
+      background:#f00303;
+      color: #fff;
+      position: relative;
+    }
+
+    .work-stack-inner{
+      position: relative;
+      min-height: 100vh;
+      padding: 3rem 0 6rem;
+    }
+
+    .work-heading{
+      position: absolute;
+      top: 7rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      font-size: clamp(64px, 20vw, 920px);
+      line-height: .85;
+      letter-spacing: -.06em;
+      font-weight: 900;
+      pointer-events: none;
+    }
+
+    .work-cards{
+      position: relative;
+      width: min(1100px, calc(100vw - 6rem));
+      height: 100vh;
+      margin: 0 auto;
+      z-index: 6;
+    }
+
+    .work-card{
+      position: absolute;
+      left: 50%;
+      top: 3rem;
+      transform: translateX(-50%) translateY(100vh) scale(1);
+      width: calc(100vw - (var(--gutter) * 2));
+      max-width: calc(100vw - (var(--gutter) * 2));
+      height: calc(100vh - 8rem);
+      border-radius: 0px;
+      overflow: hidden;
+      will-change: transform;
+      transform-origin: center top;
+      box-shadow: 0 24px 80px rgba(0,0,0,.35);
+    }
+
+    .work-card img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .card-1{ z-index: 1; }
+    .card-2{ z-index: 2; }
+    .card-3{ z-index: 3; }
+
+    .work-cta{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    /* ===================== PROJECTS INTRO ===================== */
+    .projects-intro{
+      background:#d9d2c7;
+      padding: 6rem 0 2rem;
+      text-align: center;
+    }
+
+    .projects-intro-eyebrow{
+      font-size: 14px;
+      line-height: 1;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--red);
+      margin-bottom: 1.25rem;
+    }
+
+    .projects-intro-text{
+      margin: 0 auto;
+      max-width: 760px;
+      font-size: clamp(26px, 2.7vw, 42px);
+      line-height: 1.08;
+      font-weight: 500;
+      color:#111;
+    }
+
+    /* ===================== IMAGE SCROLLER ===================== */
+    .image-scroller-section{
+      background:#d9d2c7;
+      color: #111;
+      padding: 6rem 0 7rem;
+      overflow: hidden;
+    }
+
+    .image-scroller-head{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .image-scroller-eyebrow{
+      font-size: 14px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    .image-scroller-controls{ display: flex; align-items: center; gap: .75rem; }
+
+    .scroller-arrow{
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      border: none;
+      background: none;
+      color: #111;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .18s ease, color .18s ease;
+    }
+
+    .scroller-arrow:hover{ transform: translateY(-1px); color: var(--red); }
+
+    .image-scroller-viewport{
+      overflow: hidden;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .image-scroller-viewport.is-dragging{ cursor: grabbing; }
+
+    .image-scroller-track{
+      display: flex;
+      gap: 10.25rem;
+      will-change: transform;
+    }
+
+    .scroller-card{
+      flex: 0 0 min(34vw, 460px);
+      min-width: 30vw;
+      scroll-snap-align: start;
+    }
+
+    .scroller-image-wrap{
+      aspect-ratio: 8 / 5;
+      border-radius: 0px;
+      overflow: hidden;
+      background: #ddd;
+      margin-bottom: 1rem;
+    }
+
+    .scroller-image-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .scroller-copy h3{ margin: 0 0 .35rem; font-size: clamp(22px, 2vw, 30px); line-height:.98; font-weight:800; }
+    .scroller-copy p{ margin:0; font-size:24px; line-height:1.25; color:rgba(17,17,17,.72); max-width:48ch; }
+
+    .image-scroller-dots{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      margin-top: 1.75rem;
+    }
+
+    .scroller-dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(17,17,17,.18);
+      padding: 0;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, width .18s ease;
+    }
+
+    .scroller-dot.is-active{ width: 34px; background: var(--red); }
+    .scroller-prev .roofing-arrow{ transform: rotate(180deg); }
+
+    /* ===================== SERVICES ===================== */
+    .services-section{
+      background: #111;
+      color: #fff;
+      padding: 8rem 0;
+    }
+
+    .services-eyebrow{
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.25rem;
+    }
+
+    .services-heading{
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 800;
+      line-height: .92;
+      letter-spacing: -.03em;
+      margin-bottom: 5rem;
+    }
+
+    .services-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+
+    .service-card{
+      padding: 3rem 2.5rem 3rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+
+    .service-card:nth-child(3n){ border-right: none; }
+
+    .service-number{
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: 1.25rem;
+      letter-spacing: .06em;
+    }
+
+    .service-card h3{
+      font-size: clamp(20px, 2vw, 28px);
+      font-weight: 800;
+      margin: 0 0 .75rem;
+      line-height: 1;
+    }
+
+    .service-card p{
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.65);
+      margin: 0;
+    }
+
+    /* ===================== ABOUT ===================== */
+    .about-section{
+      background: #d9d2c7;
+      color: #111;
+      padding: 8rem 0;
+    }
+
+    .about-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: center;
+    }
+
+    .about-eyebrow{
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.25rem;
+    }
+
+    .about-heading{
+      font-size: clamp(36px, 4vw, 60px);
+      font-weight: 800;
+      line-height: .92;
+      letter-spacing: -.03em;
+      margin-bottom: 2rem;
+    }
+
+    .about-body{
+      font-size: clamp(16px, 1.5vw, 20px);
+      line-height: 1.55;
+      color: rgba(17,17,17,.75);
+      margin: 0 0 1.25rem;
+    }
+
+    .about-stats{
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(17,17,17,.15);
+    }
+
+    .about-stat{ display: flex; flex-direction: column; gap: 4px; }
+
+    .about-stat-num{
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--red);
+    }
+
+    .about-stat-label{
+      font-size: 14px;
+      color: rgba(17,17,17,.6);
+      font-weight: 500;
+    }
+
+    .about-img{
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+    }
+
+    /* ===================== CONTACT ===================== */
+    .contact-section{
+      background: #111;
+      color: #fff;
+      padding: 8rem 0;
+    }
+
+    .contact-grid{
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: start;
+    }
+
+    .contact-eyebrow{
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-heading{
+      font-size: clamp(36px, 4vw, 60px);
+      font-weight: 800;
+      line-height: .92;
+      letter-spacing: -.03em;
+      margin-bottom: 2rem;
+    }
+
+    .contact-body{
+      font-size: clamp(16px, 1.5vw, 20px);
+      line-height: 1.55;
+      color: rgba(255,255,255,.65);
+      margin: 0 0 2.5rem;
+    }
+
+    .contact-details{
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .contact-detail-link{
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      transition: color .18s ease;
+    }
+
+    .contact-detail-link:hover{ color: var(--red); }
+
+    .contact-detail-text{
+      font-size: 18px;
+      color: rgba(255,255,255,.6);
+    }
+
+    /* ---- FORM ---- */
+    .contact-form{ display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .form-row{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .form-group{ display: flex; flex-direction: column; gap: .5rem; }
+
+    .form-group label{
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 10px;
+      color: #fff;
+      font-family: "Roboto Slab", sans-serif;
+      font-size: 16px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color .18s ease, background .18s ease;
+      width: 100%;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder{ color: rgba(255,255,255,.25); }
+
+    .form-group select option{ background: #222; color: #fff; }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus{
+      border-color: var(--red);
+      background: rgba(255,255,255,.1);
+    }
+
+    .form-group textarea{ resize: vertical; min-height: 120px; }
+
+    .contact-submit{
+      display: inline-block;
+      padding: 16px 32px;
+      font-size: 18px;
+      font-family: "Roboto Slab", sans-serif;
+      font-weight: 700;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: opacity .18s ease, transform .18s ease;
+      align-self: flex-start;
+    }
+
+    .contact-submit:hover{ opacity: .85; transform: translateY(-1px); }
+
+    .form-success{
+      display: none;
+      font-size: 16px;
+      color: #4ade80;
+      font-weight: 600;
+      padding: .75rem 0;
+    }
+
+    .form-success.is-visible{ display: block; }
+
+    /* ===================== FOOTER ===================== */
+    .site-footer{
+      background: #000;
+      color: rgba(255,255,255,.4);
+      padding: 3rem 0;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    .footer-inner{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo img{ height: 48px; width: auto; display: block; opacity: .7; }
+
+    .footer-copy{ font-size: 14px; }
+
+    .footer-links{
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a{
+      color: rgba(255,255,255,.4);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color .18s ease;
+    }
+
+    .footer-links a:hover{ color: #fff; }
+
+    /* ===================== LENIS ===================== */
+    html.lenis, html.lenis body{ height: auto; }
+    .lenis.lenis-smooth{ scroll-behavior: auto !important; }
+    .lenis.lenis-stopped{ overflow: hidden; }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 980px){
+      .menu-panel-inner{ grid-template-columns: 1fr; gap: 3rem; }
+      .menu-right-top{ grid-template-columns: 1fr; gap: 2rem; }
+      .social-row{ grid-template-columns: 1fr; gap: 1.5rem; }
+      .hero{ padding: 0 1.25rem 4rem; }
+      .intro-grid{ grid-template-columns: 1fr; gap: 1.5rem; }
+      .intro-eyebrow-wrap{ justify-content: flex-start; }
+      .intro-eyebrow{ writing-mode: initial; transform: none; }
+      .roofing-grid{ grid-template-columns: 1fr; }
+      .roofing-card-large .roofing-image img{ height: 420px; }
+      .roofing-card-small .roofing-image img{ height: 300px; }
+      .work-cards{ width: calc(100vw - 2.5rem); }
+      .work-card{ height: calc(100vh - 7rem); border-radius: 18px; }
+      .scroller-card{ flex: 0 0 78vw; }
+      .image-scroller-head{ align-items: flex-start; flex-direction: column; }
+      .services-grid{ grid-template-columns: 1fr 1fr; }
+      .service-card:nth-child(3n){ border-right: 1px solid rgba(255,255,255,.1); }
+      .service-card:nth-child(2n){ border-right: none; }
+      .about-grid{ grid-template-columns: 1fr; }
+      .about-img{ height: 400px; }
+      .about-stats{ gap: 2rem; }
+      .contact-grid{ grid-template-columns: 1fr; }
+      .form-row{ grid-template-columns: 1fr; }
+      .footer-inner{ flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    }
+
+    @media (max-width: 600px){
+      .services-grid{ grid-template-columns: 1fr; }
+      .service-card{ border-right: none !important; padding-right: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- FIXED MENU BUTTON -->
+  <button class="menu-btn menu-btn-fixed" type="button" aria-label="Open menu" aria-expanded="false">
+    <span class="swap" aria-hidden="true">
+      <svg class="svg1" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 507" preserveAspectRatio="xMidYMid meet">
+        <g transform="translate(0,507) scale(0.1,-0.1)" fill="#ffffff" stroke="none">
+          <path d="M2270 3055 c-360 -90 -1015 -253 -1454 -362 -440 -109 -793 -199 -785 -200 8 -2 192 -26 409 -53 1271 -163 1864 -240 1868 -244 2 -3 -41 -78 -97 -167 -55 -90 -99 -164 -98 -165 1 -2 624 152 1384 341 759 189 1415 352 1457 361 41 10 74 19 72 21 -4 4 -2237 293 -2263 293 -7 0 -13 5 -13 10 0 6 45 83 99 170 55 88 94 160 88 159 -7 0 -307 -74 -667 -164z m380 -89 c0 -2 -20 -39 -45 -82 -25 -44 -45 -84 -45 -89 0 -6 321 -50 793 -109 435 -54 810 -102 832 -106 l40 -7 -40 -11 c-122 -34 -1769 -441 -1773 -437 -2 2 17 39 42 81 26 43 42 80 37 83 -5 3 -379 53 -830 111 -452 58 -821 107 -821 110 0 3 208 58 463 122 254 65 653 167 887 227 399 103 460 117 460 107z"/>
+        </g>
+      </svg>
+      <svg class="svg2" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 507" preserveAspectRatio="xMidYMid meet">
+        <g transform="translate(210,300) scale(0.009,-0.009)" fill="#ffffff" stroke="none">
+          <path d="M8330 8563 c-342 -265 -1590 -1230 -1878 -1451 -56 -43 -259 -200 -452 -349 -192 -149 -420 -324 -506 -390 l-155 -119 -205 126 c-112 69 -231 141 -264 160 -33 20 -235 141 -450 271 -214 129 -417 250 -450 269 -33 19 -141 85 -240 147 -99 62 -198 122 -220 133 -22 10 -89 50 -150 88 -60 39 -173 107 -250 152 -77 45 -176 104 -220 131 -44 27 -111 67 -150 90 -38 22 -97 57 -130 77 -360 224 -1099 659 -1107 651 -6 -5 12 -34 40 -64 27 -30 75 -91 107 -135 32 -44 63 -84 70 -90 6 -5 55 -68 109 -140 140 -187 358 -468 371 -480 7 -5 38 -46 71 -90 76 -105 455 -597 469 -610 5 -5 37 -46 69 -90 32 -44 64 -84 71 -90 6 -5 83 -104 170 -220 87 -115 315 -412 507 -660 191 -247 352 -460 356 -472 5 -12 -362 -638 -815 -1390 -914 -1519 -988 -1642 -1038 -1728 -19 -33 -113 -190 -210 -350 -96 -159 -194 -321 -217 -360 -39 -64 -30 -60 128 62 217 169 1499 1159 2349 1815 362 280 668 510 680 511 25 3 741 -420 935 -552 30 -20 75 -46 100 -57 25 -11 221 -127 435 -257 500 -306 1799 -1087 1839 -1107 17 -9 72 -42 121 -74 50 -32 155 -96 235 -141 79 -45 149 -91 156 -101 6 -11 20 -19 30 -19 10 0 -88 137 -218 305 -129 168 -287 373 -350 455 -64 83 -126 164 -139 180 -14 17 -52 66 -84 110 -33 44 -99 129 -147 190 -106 135 -118 151 -192 250 -32 44 -64 85 -70 90 -6 6 -51 64 -100 130 -49 66 -97 129 -106 140 -9 11 -75 97 -148 190 -72 94 -152 197 -178 230 -26 33 -133 173 -239 310 -106 138 -208 268 -226 290 -19 23 -61 77 -93 120 -32 44 -64 85 -71 90 -89 72 -85 87 108 406 102 167 458 759 792 1314 1057 1758 1305 2169 1335 2215 41 63 38 61 -185 -112z"/>
+        </g>
+      </svg>
+    </span>
+  </button>
+
+  <!-- NAVBAR -->
+  <header class="navbar" aria-label="Primary">
+    <div class="container navbar-inner">
+      <div class="nav-logo">
+        <img src="images/Alltype Logo.png" alt="All-Type Roofing and Construction" />
+      </div>
+      <div class="nav-right">
+        <a class="phone-link" href="tel:+12813976614" aria-label="Call us at (281) 397-6614">
+          <span>(281) 397-6614</span>
+          <svg class="phone-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+              <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU PANEL -->
+  <div class="menu-panel" id="menuPanel" aria-hidden="true">
+    <div class="container menu-panel-inner">
+      <div class="menu-panel-top">
+        <div class="menu-panel-brand">
+          <img src="images/Alltype Logo.png" alt="All-Type" />
+        </div>
+        <a class="phone-link menu-phone-link" href="tel:+12813976614" aria-label="Call us">
+          <span>(281) 397-6614</span>
+          <svg class="phone-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+              <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+          </svg>
+        </a>
+      </div>
+
+      <div class="menu-left">
+        <nav class="menu-list" aria-label="Site menu">
+          <a class="menu-link" href="#services">Work</a>
+          <a class="menu-link" href="#news">Locations</a>
+          <a class="menu-link" href="#about">About</a>
+          <a class="menu-link" href="#contact">Contact</a>
+        </nav>
+        <div class="menu-left-bottom">
+          <div class="social-row">
+            <a class="social-card" href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <div class="social-top">
+                <span>Facebook</span>
+                <svg class="social-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+                    <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="social-sub">Follow us</div>
+            </a>
+            <a class="social-card" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <div class="social-top">
+                <span>Instagram</span>
+                <svg class="social-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+                    <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="social-sub">On-site updates</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-right">
+        <div class="menu-right-top">
+          <div class="menu-section">
+            <div class="menu-section-title">Services</div>
+            <div class="menu-sublist">
+              <a class="menu-subitem" href="#services">Construction</a>
+              <a class="menu-subitem" href="#services">Emergency</a>
+              <a class="menu-subitem" href="#services">Restoration</a>
+              <a class="menu-subitem" href="#services">Consulting</a>
+              <a class="menu-subitem" href="#services">Commercial Roofing</a>
+            </div>
+          </div>
+          <div class="menu-section">
+            <div class="menu-section-title">Company</div>
+            <div class="menu-sublist">
+              <a class="menu-subitem" href="#about">About</a>
+              <a class="menu-subitem" href="#services">Projects</a>
+              <a class="menu-subitem" href="#contact">Contact</a>
+            </div>
+          </div>
+        </div>
+        <div class="office-block" style="margin-top: 3rem;">
+          <div class="menu-section-title">Corporate Office</div>
+          <p class="office-block">
+            (281) 397-6614<br>
+            info@alltype-construction.com<br>
+            13625 Chrisman Rd, Houston, TX 77039
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main id="site">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg">
+        <img src="images/Houston.jpg" alt="" class="bg-back" fetchpriority="high" />
+        <video src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/alltype-hero.mp4" class="bg-frame" autoplay loop muted playsinline type="video/mp4"></video>
+        <img src="images/redlinebg.png" alt="" class="redline-overlay" />
+      </div>
+      <div class="hero-content">
+        <h1>Commercial Roofing &amp; Emergency Construction Projects in Houston, TX</h1>
+        <p>24/7 emergency restoration for commercial property damage, accident repair, and specialized commercial and industrial roofing. When other contractors walk away, we get the job done.</p>
+        <a href="#contact" class="cta-button">Request a Quote</a>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro-band">
+      <div class="container intro-grid">
+        <div class="intro-eyebrow-wrap">
+          <div class="intro-eyebrow">Who We Are</div>
+        </div>
+        <div class="intro-copy">
+          <p>All-Type Construction handles the commercial roofing and construction jobs other contractors won't touch. From complex repairs to large-scale restoration, we deliver fast response times, practical solutions, and workmanship built to protect your property long-term.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROOFING FEATURE -->
+    <section class="roofing-feature">
+      <div class="container roofing-grid">
+        <div class="roofing-card roofing-card-large">
+          <div class="roofing-image">
+            <img src="images/stock1.jpeg" alt="Shingle Roofing" loading="lazy" />
+          </div>
+          <div class="roofing-copy">
+            <div class="roofing-title-row">
+              <span>Shingle Roofing</span>
+              <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor">
+                  <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+                </g>
+              </svg>
+            </div>
+            <p class="roofing-subtitle">Affordable Protection.</p>
+          </div>
+        </div>
+        <div class="roofing-card roofing-card-small">
+          <div class="roofing-image">
+            <img src="images/stock2.jpeg" alt="Metal Roofing" loading="lazy" />
+          </div>
+          <div class="roofing-copy">
+            <div class="roofing-title-row">
+              <span>Metal Roofing</span>
+              <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor">
+                  <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+                </g>
+              </svg>
+            </div>
+            <p class="roofing-subtitle">Long-Lasting Durability.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK STACK -->
+    <section class="work-stack-section">
+      <div class="work-stack-inner">
+        <div class="work-heading">WORK</div>
+        <div class="work-cards">
+          <article class="work-card card-1"><img src="images/stock3.jpeg" alt="Project one" loading="lazy" /></article>
+          <article class="work-card card-2"><img src="images/stock4.jpeg" alt="Project two" loading="lazy" /></article>
+          <article class="work-card card-3"><img src="images/stock5.jpeg" alt="Project three" loading="lazy" /></article>
+        </div>
+        <div class="work-cta"><a href="#services" class="cta-button">Our Work</a></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS INTRO -->
+    <section class="projects-intro">
+      <div class="container">
+        <div class="projects-intro-eyebrow">Projects</div>
+        <p class="projects-intro-text">A selection of recent commercial roofing and construction work completed by our team across complex repair, restoration, and new installation projects.</p>
+      </div>
+    </section>
+
+    <!-- IMAGE SCROLLER -->
+    <section class="image-scroller-section">
+      <div class="container">
+        <div class="image-scroller-head">
+          <div class="image-scroller-eyebrow">Featured Projects</div>
+          <div class="image-scroller-controls">
+            <button class="scroller-arrow scroller-prev" type="button" aria-label="Previous slide">
+              <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor">
+                  <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+                </g>
+              </svg>
+            </button>
+            <button class="scroller-arrow scroller-next" type="button" aria-label="Next slide">
+              <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor">
+                  <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+                </g>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="image-scroller-viewport" id="projectScroller">
+          <div class="image-scroller-track">
+            <article class="scroller-card">
+              <div class="scroller-image-wrap"><img src="images/stock1.jpeg" alt="Commercial roofing project 1" draggable="false" loading="lazy" /></div>
+              <div class="scroller-copy"><h3>Commercial Roofing</h3><p>Durable roofing systems installed for long-term performance and weather protection.</p></div>
+            </article>
+            <article class="scroller-card">
+              <div class="scroller-image-wrap"><img src="images/stock2.jpeg" alt="Metal roofing project" draggable="false" loading="lazy" /></div>
+              <div class="scroller-copy"><h3>Metal Systems</h3><p>High-performance metal roofing designed for durability, efficiency, and clean architectural lines.</p></div>
+            </article>
+            <article class="scroller-card">
+              <div class="scroller-image-wrap"><img src="images/stock3.jpeg" alt="Restoration project" draggable="false" loading="lazy" /></div>
+              <div class="scroller-copy"><h3>Restoration Work</h3><p>Fast-response repair and restoration solutions for damaged commercial and residential properties.</p></div>
+            </article>
+            <article class="scroller-card">
+              <div class="scroller-image-wrap"><img src="images/stock4.jpeg" alt="Storm recovery project" draggable="false" loading="lazy" /></div>
+              <div class="scroller-copy"><h3>Storm Recovery</h3><p>Practical storm damage recovery with experienced crews and clear project execution.</p></div>
+            </article>
+            <article class="scroller-card">
+              <div class="scroller-image-wrap"><img src="images/stock5.jpeg" alt="Large-scale repair project" draggable="false" loading="lazy" /></div>
+              <div class="scroller-copy"><h3>Large-Scale Repairs</h3><p>Complex repairs managed with speed, safety, and a focus on long-term building protection.</p></div>
+            </article>
+            <article class="scroller-card">
+              <div class="scroller-image-wrap"><img src="images/stock6.jpeg" alt="Construction support project" draggable="false" loading="lazy" /></div>
+              <div class="scroller-copy"><h3>Construction Support</h3><p>Construction and roofing teams built to handle demanding projects without cutting corners.</p></div>
+            </article>
+          </div>
+        </div>
+        <div class="image-scroller-dots" id="projectScrollerDots" aria-label="Slider indicators"></div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services-section">
+      <div class="container">
+        <div class="services-eyebrow">What We Do</div>
+        <h2 class="services-heading">Built for the jobs<br>others walk away from.</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-number">01</div>
+            <h3>Commercial Roofing</h3>
+            <p>Full-system installs, replacements, and repairs for flat, low-slope, metal, and shingle roofs across commercial and industrial properties.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-number">02</div>
+            <h3>Emergency Response</h3>
+            <p>24/7 rapid deployment for storm damage, structural failures, and urgent repairs. We protect your property before secondary damage sets in.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-number">03</div>
+            <h3>Restoration</h3>
+            <p>Insurance-compliant restoration for wind, hail, fire, and water damage. We document thoroughly and execute fast so you're back in business.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-number">04</div>
+            <h3>Construction</h3>
+            <p>General commercial construction including tenant improvements, structural repairs, and ground-up builds across the Houston metro.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-number">05</div>
+            <h3>Consulting</h3>
+            <p>Roof assessments, condition reports, and third-party consulting for property managers, developers, and insurance adjusters.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-number">06</div>
+            <h3>Preventive Maintenance</h3>
+            <p>Scheduled inspection programs that catch problems early, extend roof life, and keep your warranty intact.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about-section">
+      <div class="container about-grid">
+        <div class="about-left">
+          <div class="about-eyebrow">About Us</div>
+          <h2 class="about-heading">Houston-based.<br>Built to handle<br>the hard stuff.</h2>
+          <p class="about-body">All-Type Construction has been serving the Houston area for over a decade. We specialize in commercial roofing and construction jobs that demand fast response, real expertise, and a crew that sees the work through — no matter the complexity.</p>
+          <p class="about-body">We work directly with property owners, facility managers, and insurance carriers to deliver practical solutions on time and on budget.</p>
+          <div class="about-stats">
+            <div class="about-stat">
+              <span class="about-stat-num">10+</span>
+              <span class="about-stat-label">Years in business</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-num">500+</span>
+              <span class="about-stat-label">Projects completed</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-num">24/7</span>
+              <span class="about-stat-label">Emergency response</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-right">
+          <img src="images/stock1.jpeg" alt="All-Type crew on a commercial roofing project" loading="lazy" class="about-img" />
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <div class="container contact-grid">
+        <div class="contact-left">
+          <div class="contact-eyebrow">Get in Touch</div>
+          <h2 class="contact-heading">Ready to get<br>started?</h2>
+          <p class="contact-body">Call us any time or fill out the form and we'll get back to you within one business day. For emergencies, call directly — we answer 24/7.</p>
+          <div class="contact-details">
+            <a href="tel:+12813976614" class="contact-detail-link">(281) 397-6614</a>
+            <a href="mailto:info@alltype-construction.com" class="contact-detail-link">info@alltype-construction.com</a>
+            <span class="contact-detail-text">13625 Chrisman Rd, Houston, TX 77039</span>
+          </div>
+        </div>
+        <div class="contact-right">
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cf-name">Name</label>
+                <input id="cf-name" type="text" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="cf-phone">Phone</label>
+                <input id="cf-phone" type="tel" placeholder="(000) 000-0000" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" type="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="cf-service">Service needed</label>
+              <select id="cf-service">
+                <option value="">Select a service</option>
+                <option>Commercial Roofing</option>
+                <option>Emergency Response</option>
+                <option>Restoration</option>
+                <option>Construction</option>
+                <option>Consulting</option>
+                <option>Preventive Maintenance</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" rows="4" placeholder="Tell us about your project..."></textarea>
+            </div>
+            <button type="submit" class="contact-submit">Send Message</button>
+            <div class="form-success" id="formSuccess">Thanks! We'll be in touch shortly.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-logo">
+          <img src="images/Alltype Logo.png" alt="All-Type Roofing and Construction" />
+        </div>
+        <p class="footer-copy">&copy; 2026 All-Type Roofing and Construction. All rights reserved.</p>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a href="tel:+12813976614">(281) 397-6614</a>
+        </nav>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- SCRIPTS — loaded at end of body, no render blocking -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+
+  <script>
+    window.addEventListener("load", function() {
+
+      // ===================== LENIS =====================
+      window.lenis = new Lenis({
+        duration: 1.1,
+        smoothWheel: true,
+        smoothTouch: false,
+        wheelMultiplier: 1,
+        touchMultiplier: 1,
+        autoRaf: true
+      });
+
+      // ===================== GSAP + SCROLLTRIGGER =====================
+      gsap.registerPlugin(ScrollTrigger);
+
+      window.lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => { window.lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+
+      // Work stack cards
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 768px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".work-stack-section",
+            start: "top top",
+            end: () => "+=" + (window.innerHeight * 3),
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1
+          }
+        });
+
+        gsap.set(".card-1", { y: "100vh", scale: 1, opacity: 1 });
+        gsap.set(".card-2", { y: "115vh", scale: 1, opacity: 1 });
+        gsap.set(".card-3", { y: "130vh", scale: 1, opacity: 1 });
+        gsap.set(".work-heading", { opacity: 1 });
+
+        tl.to(".card-1", { y: 0, ease: "none", duration: 1 });
+        tl.to(".work-heading", { opacity: 0, ease: "none", duration: 0.18 }, "<0.82");
+        tl.to(".card-1", { scale: 0.94, y: 36, opacity: 0.7, ease: "none", duration: 0.9 }, ">");
+        tl.to(".card-2", { y: 0, ease: "none", duration: 0.9 }, "<");
+        tl.to(".card-2", { scale: 0.94, y: 36, opacity: 0.7, ease: "none", duration: 0.9 }, ">");
+        tl.to(".card-3", { y: 0, ease: "none", duration: 0.9 }, "<");
+        tl.to({}, { duration: 0.35 });
+      });
+
+      // ===================== PARALLAX =====================
+      const hero = document.querySelector(".hero");
+      const heroBgBack = document.querySelector(".hero-bg .bg-back");
+
+      function updateParallax() {
+        if (!hero || !heroBgBack) return;
+        const rect = hero.getBoundingClientRect();
+        const viewportH = window.innerHeight;
+        if (rect.bottom > 0 && rect.top < viewportH) {
+          const offset = rect.top * -0.28;
+          heroBgBack.style.transform = "translate3d(0," + offset + "px,0) scale(1.08)";
+        }
+      }
+
+      window.lenis.on("scroll", updateParallax);
+      window.addEventListener("resize", updateParallax, { passive: true });
+      updateParallax();
+
+      // ===================== MENU =====================
+      const btn = document.querySelector(".menu-btn");
+      const swap = btn.querySelector(".swap");
+      const panel = document.getElementById("menuPanel");
+      const navbar = document.querySelector(".navbar");
+      let isOpen = false;
+
+      function syncNavUI() {
+        if (window.scrollY <= 10 || isOpen) {
+          navbar.classList.add("show-nav-ui");
+        } else {
+          navbar.classList.remove("show-nav-ui");
+        }
+      }
+
+      function openMenu() {
+        isOpen = true;
+        btn.classList.remove("is-closing");
+        btn.classList.add("is-open");
+        btn.setAttribute("aria-expanded", "true");
+        swap.classList.remove("is-off");
+        swap.classList.add("is-on");
+        panel.classList.add("is-open");
+        panel.setAttribute("aria-hidden", "false");
+        document.documentElement.classList.add("lenis-stopped");
+        if (window.lenis) window.lenis.stop();
+        syncNavUI();
+      }
+
+      function closeMenu() {
+        isOpen = false;
+        btn.classList.remove("is-open");
+        btn.classList.add("is-closing");
+        btn.setAttribute("aria-expanded", "false");
+        swap.classList.add("is-off");
+        swap.classList.remove("is-on");
+        panel.classList.remove("is-open");
+        panel.setAttribute("aria-hidden", "true");
+        document.documentElement.classList.remove("lenis-stopped");
+        if (window.lenis) window.lenis.start();
+        setTimeout(() => btn.classList.remove("is-closing"), 320);
+        setTimeout(() => swap.classList.remove("is-off"), 420);
+        syncNavUI();
+      }
+
+      btn.addEventListener("mouseenter", () => { if (!isOpen) { swap.classList.remove("is-off"); swap.classList.add("is-on"); } }, { passive: true });
+      btn.addEventListener("mouseleave", () => {
+        if (!isOpen) {
+          swap.classList.add("is-off");
+          swap.classList.remove("is-on");
+          setTimeout(() => swap.classList.remove("is-off"), 420);
+        }
+      }, { passive: true });
+
+      btn.addEventListener("click", () => { isOpen ? closeMenu() : openMenu(); });
+
+      document.querySelectorAll(".menu-link, .menu-subitem").forEach(link => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      window.addEventListener("scroll", syncNavUI, { passive: true });
+      syncNavUI();
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener("click", (e) => {
+          const href = link.getAttribute("href");
+          if (!href || href === "#") return;
+          const target = document.querySelector(href);
+          if (!target) return;
+          e.preventDefault();
+          const wasOpen = isOpen;
+          if (wasOpen) closeMenu();
+          setTimeout(() => {
+            window.lenis.scrollTo(target, { offset: 0, duration: 1.1 });
+          }, wasOpen ? 250 : 0);
+        });
+      });
+
+      // ===================== PROJECT SCROLLER =====================
+      (function() {
+        const viewport = document.getElementById("projectScroller");
+        if (!viewport) return;
+        const track = viewport.querySelector(".image-scroller-track");
+        const cards = Array.from(track.querySelectorAll(".scroller-card"));
+        const prevBtn = document.querySelector(".scroller-prev");
+        const nextBtn = document.querySelector(".scroller-next");
+        const dotsWrap = document.getElementById("projectScrollerDots");
+        if (!track || !cards.length) return;
+
+        let currentX = 0, maxX = 0, cardStep = 0, dragStartX = 0, startTrackX = 0, isDragging = false;
+
+        function clamp(v, mn, mx) { return Math.max(mn, Math.min(mx, v)); }
+        function getCardStep() { return cards.length < 2 ? cards[0].offsetWidth : cards[1].offsetLeft - cards[0].offsetLeft; }
+        function getMaxX() { return Math.max(0, track.scrollWidth - viewport.clientWidth); }
+        function getPages() { return !cardStep ? 1 : Math.max(1, Math.round(maxX / cardStep) + 1); }
+        function getNearestPage() { return !cardStep ? 0 : clamp(Math.round(Math.abs(currentX) / cardStep), 0, getPages() - 1); }
+
+        function updateDots() {
+          const dots = Array.from(dotsWrap.querySelectorAll(".scroller-dot"));
+          const current = getNearestPage();
+          dots.forEach((d, i) => d.classList.toggle("is-active", i === current));
+        }
+
+        function animateToPage(index, duration) {
+          const page = clamp(index, 0, getPages() - 1);
+          const targetX = -(page * cardStep);
+          gsap.killTweensOf(track);
+          gsap.to(track, { x: targetX, duration: duration || 0.75, ease: "back.out(1.15)",
+            onUpdate: () => { currentX = gsap.getProperty(track, "x"); updateDots(); },
+            onComplete: () => { currentX = gsap.getProperty(track, "x"); updateDots(); }
+          });
+        }
+
+        function buildDots() {
+          dotsWrap.innerHTML = "";
+          for (let i = 0; i < getPages(); i++) {
+            const dot = document.createElement("button");
+            dot.className = "scroller-dot";
+            dot.type = "button";
+            dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+            dot.addEventListener("click", () => animateToPage(i));
+            dotsWrap.appendChild(dot);
+          }
+          updateDots();
+        }
+
+        function refresh() {
+          cardStep = getCardStep();
+          maxX = getMaxX();
+          currentX = -clamp(Math.abs(currentX), 0, maxX);
+          gsap.set(track, { x: currentX });
+          buildDots();
+        }
+
+        prevBtn?.addEventListener("click", () => animateToPage(getNearestPage() - 1));
+        nextBtn?.addEventListener("click", () => animateToPage(getNearestPage() + 1));
+        viewport.addEventListener("dragstart", (e) => e.preventDefault());
+
+        viewport.addEventListener("mousedown", (e) => {
+          isDragging = true; dragStartX = e.clientX; startTrackX = currentX;
+          viewport.classList.add("is-dragging"); gsap.killTweensOf(track);
+        });
+
+        window.addEventListener("mousemove", (e) => {
+          if (!isDragging) return;
+          let nextX = startTrackX + (e.clientX - dragStartX) * 1.15;
+          if (nextX > 0) nextX *= 0.22;
+          if (nextX < -maxX) nextX = -maxX + (nextX + maxX) * 0.22;
+          currentX = nextX; gsap.set(track, { x: currentX }); updateDots(); e.preventDefault();
+        });
+
+        window.addEventListener("mouseup", () => {
+          if (!isDragging) return;
+          isDragging = false; viewport.classList.remove("is-dragging");
+          if (currentX > 0) { gsap.to(track, { x: 0, duration: 0.55, ease: "power3.out", onUpdate: () => { currentX = gsap.getProperty(track, "x"); updateDots(); } }); return; }
+          if (currentX < -maxX) { gsap.to(track, { x: -maxX, duration: 0.55, ease: "power3.out", onUpdate: () => { currentX = gsap.getProperty(track, "x"); updateDots(); } }); return; }
+          animateToPage(getNearestPage(), 0.72);
+        });
+
+        viewport.addEventListener("touchstart", (e) => { isDragging = true; dragStartX = e.touches[0].clientX; startTrackX = currentX; viewport.classList.add("is-dragging"); gsap.killTweensOf(track); }, { passive: true });
+        viewport.addEventListener("touchmove", (e) => {
+          if (!isDragging) return;
+          let nextX = startTrackX + (e.touches[0].clientX - dragStartX);
+          if (nextX > 0) nextX *= 0.22;
+          if (nextX < -maxX) nextX = -maxX + (nextX + maxX) * 0.22;
+          currentX = nextX; gsap.set(track, { x: currentX }); updateDots();
+        }, { passive: true });
+        viewport.addEventListener("touchend", () => {
+          if (!isDragging) return;
+          isDragging = false; viewport.classList.remove("is-dragging");
+          if (currentX > 0) { gsap.to(track, { x: 0, duration: 0.55, ease: "power3.out", onUpdate: () => { currentX = gsap.getProperty(track, "x"); updateDots(); } }); return; }
+          if (currentX < -maxX) { gsap.to(track, { x: -maxX, duration: 0.55, ease: "power3.out", onUpdate: () => { currentX = gsap.getProperty(track, "x"); updateDots(); } }); return; }
+          animateToPage(getNearestPage(), 0.72);
+        }, { passive: true });
+
+        window.addEventListener("resize", refresh, { passive: true });
+        refresh();
+      })();
+
+      // ===================== CONTACT FORM =====================
+      document.getElementById("contactForm")?.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const success = document.getElementById("formSuccess");
+        if (success) success.classList.add("is-visible");
+        this.querySelectorAll("input, select, textarea").forEach(el => el.disabled = true);
+        this.querySelector(".contact-submit").textContent = "Sent!";
+      });
+
+    }); // end window load
+  </script>
+
+</body>
+</html>

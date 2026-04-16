@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Locations We Serve | All-Type Construction</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/vml5vif.css">
+
+  <style>
+    :root{
+      --bg:#000000;
+      --ink:#111111;
+      --gutter: 4rem;
+      --red:#f00303;
+      --tan:#d9d2c7;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+
+    body{
+      margin:0;
+      font-family:"Roboto Slab", sans-serif;
+      background:var(--bg);
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    .container{
+      width:100%;
+      margin-left:auto;
+      margin-right:auto;
+      padding-left:var(--gutter);
+      padding-right:var(--gutter);
+    }
+
+    @media (max-width: 1100px){
+      :root{ --gutter: 3rem; }
+    }
+    @media (max-width: 720px){
+      :root{ --gutter: 1.25rem; }
+    }
+
+    /* NAV */
+    .navbar{
+      position:absolute;
+      top:18px;
+      left:0;
+      width:100%;
+      z-index:20;
+      background:transparent;
+      border:none;
+    }
+
+    .navbar-inner{
+      height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1.5rem;
+    }
+
+    .nav-logo img{
+      height:78px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+    }
+
+    .phone-link{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:rgba(255,255,255,0.92);
+      font-weight:700;
+      font-size:24px;
+      transition:color .18s ease;
+      white-space:nowrap;
+    }
+
+    .phone-link:hover{ color:var(--red); }
+
+    .phone-arrow{
+      width:30px;
+      height:auto;
+      display:block;
+      color:var(--red);
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:flex-start;
+      padding:0 4rem 6rem;
+      background:#000;
+      overflow:hidden;
+    }
+
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+    }
+
+    .hero-bg img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:brightness(.56);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.76) 0%, rgba(0,0,0,.18) 48%, rgba(0,0,0,.08) 100%);
+      z-index:1;
+    }
+
+    .redline-overlay{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:2;
+      pointer-events:none;
+      opacity:.82;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:3;
+      max-width:960px;
+      color:#fff;
+    }
+
+    .hero-kicker{
+      display:inline-block;
+      margin-bottom:1rem;
+      font-size:14px;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:#fff;
+      opacity:.88;
+    }
+
+    .hero-content h1{
+      margin:0 0 1rem;
+      font-size:clamp(42px, 6vw, 88px);
+      line-height:.9;
+      font-weight:800;
+      letter-spacing:-.04em;
+      max-width:10ch;
+    }
+
+    .hero-content p{
+      margin:0;
+      max-width:760px;
+      font-size:clamp(18px, 2vw, 28px);
+      line-height:1.15;
+      color:rgba(255,255,255,.92);
+    }
+
+    /* INTRO BAND */
+    .intro-band{
+      background:var(--tan);
+      color:#111;
+      padding:8rem 0;
+    }
+
+    .intro-grid{
+      display:grid;
+      grid-template-columns:120px 1fr;
+      gap:3rem;
+      align-items:start;
+    }
+
+    .intro-eyebrow-wrap{
+      display:flex;
+      justify-content:center;
+    }
+
+    .intro-eyebrow{
+      writing-mode:vertical-rl;
+      transform:rotate(180deg);
+      font-size:15px;
+      line-height:1;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:800;
+      color:var(--red);
+    }
+
+    .intro-copy p{
+      margin:0;
+      max-width:980px;
+      font-size:clamp(26px, 2.7vw, 42px);
+      line-height:1.08;
+      font-weight:500;
+    }
+
+    /* AREAS */
+    .areas-section{
+      background:var(--tan);
+      color:#111;
+      padding:0 0 8rem;
+    }
+
+    .areas-head{
+      margin-bottom:2.5rem;
+      border-top:1px solid rgba(17,17,17,.14);
+      padding-top:2rem;
+      max-width:980px;
+    }
+
+    .section-eyebrow{
+      font-size:14px;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--red);
+      margin-bottom:1.25rem;
+    }
+
+    .section-heading{
+      margin:0;
+      font-size:clamp(34px, 4.5vw, 68px);
+      line-height:.93;
+      letter-spacing:-.03em;
+      font-weight:800;
+      max-width:10ch;
+    }
+
+    .areas-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:1.75rem;
+    }
+
+    .area-card{
+      background:#e3ddd4;
+      border-radius:18px;
+      padding:2rem 1.5rem 1.6rem;
+      min-height:260px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .area-card-top{
+      display:grid;
+      gap:.9rem;
+    }
+
+    .area-label{
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.08em;
+      color:var(--red);
+      text-transform:uppercase;
+    }
+
+    .area-card h3{
+      margin:0;
+      font-size:clamp(22px, 2vw, 32px);
+      line-height:.95;
+      font-weight:800;
+      max-width:12ch;
+    }
+
+    .area-card p{
+      margin:0;
+      font-size:16px;
+      line-height:1.6;
+      color:rgba(17,17,17,.72);
+    }
+
+    .area-list{
+      margin-top:1.25rem;
+      padding-top:1.1rem;
+      border-top:1px solid rgba(17,17,17,.12);
+      display:flex;
+      flex-wrap:wrap;
+      gap:.55rem .65rem;
+    }
+
+    .area-pill{
+      display:inline-flex;
+      align-items:center;
+      padding:.48rem .8rem;
+      border-radius:999px;
+      background:#111;
+      color:#fff;
+      font-size:13px;
+      line-height:1;
+      font-weight:700;
+    }
+
+    /* MAP STYLE SECTION */
+    .coverage-section{
+      background:#111;
+      color:#fff;
+      padding:8rem 0;
+    }
+
+    .coverage-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:clamp(2rem, 5vw, 6rem);
+      align-items:center;
+    }
+
+    .coverage-copy h2{
+      margin:0 0 1.4rem;
+      font-size:clamp(34px, 4.5vw, 66px);
+      line-height:.93;
+      letter-spacing:-.03em;
+      font-weight:800;
+      max-width:11ch;
+    }
+
+    .coverage-copy p{
+      margin:0 0 1rem;
+      max-width:58ch;
+      font-size:clamp(17px, 1.4vw, 20px);
+      line-height:1.65;
+      color:rgba(255,255,255,.72);
+    }
+
+    .coverage-points{
+      margin-top:2rem;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1rem 2rem;
+      max-width:720px;
+    }
+
+    .coverage-point{
+      border-top:1px solid rgba(255,255,255,.12);
+      padding-top:1rem;
+    }
+
+    .coverage-point strong{
+      display:block;
+      font-size:26px;
+      line-height:1;
+      color:var(--red);
+      margin-bottom:.45rem;
+    }
+
+    .coverage-point span{
+      display:block;
+      color:rgba(255,255,255,.74);
+      line-height:1.45;
+      font-size:15px;
+    }
+
+    .coverage-visual{
+      background:#1a1a1a;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      padding:2rem;
+      position:relative;
+      overflow:hidden;
+      min-height:520px;
+    }
+
+    .coverage-visual::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size:42px 42px;
+      opacity:.42;
+      pointer-events:none;
+    }
+
+    .coverage-ring{
+      position:absolute;
+      border:1px solid rgba(240,3,3,.38);
+      border-radius:999px;
+    }
+
+    .ring-1{
+      width:180px;
+      height:180px;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+    }
+
+    .ring-2{
+      width:300px;
+      height:300px;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+    }
+
+    .ring-3{
+      width:430px;
+      height:430px;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+    }
+
+    .hub{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width:16px;
+      height:16px;
+      border-radius:999px;
+      background:var(--red);
+      box-shadow:0 0 0 10px rgba(240,3,3,.12);
+      z-index:2;
+    }
+
+    .hub-label{
+      position:absolute;
+      left:50%;
+      top:calc(50% + 24px);
+      transform:translateX(-50%);
+      color:#fff;
+      font-size:15px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      z-index:2;
+    }
+
+    .map-tag{
+      position:absolute;
+      background:#fff;
+      color:#111;
+      padding:.7rem .9rem;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:800;
+      line-height:1;
+      z-index:2;
+      white-space:nowrap;
+    }
+
+    .tag-northwest{ top:16%; left:16%; }
+    .tag-north{ top:10%; left:50%; transform:translateX(-50%); }
+    .tag-west{ top:42%; left:10%; }
+    .tag-east{ top:42%; right:10%; }
+    .tag-southwest{ bottom:16%; left:16%; }
+    .tag-southeast{ bottom:16%; right:16%; }
+
+    /* SERVICE AREA LIST */
+    .cities-section{
+      background:var(--tan);
+      color:#111;
+      padding:8rem 0;
+    }
+
+    .cities-head{
+      margin-bottom:2.5rem;
+      max-width:900px;
+    }
+
+    .cities-head p{
+      margin:1rem 0 0;
+      font-size:18px;
+      line-height:1.7;
+      color:rgba(17,17,17,.74);
+      max-width:58ch;
+    }
+
+    .cities-grid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:0;
+      border-top:1px solid rgba(17,17,17,.14);
+    }
+
+    .city-col{
+      padding:1.5rem 1.2rem 0 0;
+      border-right:1px solid rgba(17,17,17,.14);
+    }
+
+    .city-col:last-child{
+      border-right:none;
+    }
+
+    .city-col h3{
+      margin:0 0 1rem;
+      font-size:20px;
+      line-height:1;
+      font-weight:800;
+    }
+
+    .city-col ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:.7rem;
+    }
+
+    .city-col li{
+      font-size:16px;
+      line-height:1.35;
+      color:rgba(17,17,17,.72);
+    }
+
+    /* CTA */
+    .cta-section{
+      background:#f00303;
+      color:#fff;
+      padding:7rem 0;
+    }
+
+    .cta-inner{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:2rem;
+      align-items:end;
+    }
+
+    .cta-copy h2{
+      margin:0 0 1rem;
+      font-size:clamp(34px, 4.5vw, 68px);
+      line-height:.92;
+      font-weight:800;
+      letter-spacing:-.03em;
+      max-width:11ch;
+    }
+
+    .cta-copy p{
+      margin:0;
+      max-width:42ch;
+      font-size:clamp(17px, 1.5vw, 22px);
+      line-height:1.45;
+      color:rgba(255,255,255,.92);
+    }
+
+    .cta-button{
+      display:inline-block;
+      padding:16px 30px;
+      font-size:22px;
+      background:transparent;
+      border:4px solid #fff;
+      color:#fff;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:800;
+      transition:transform .18s ease, background .18s ease, color .18s ease;
+      white-space:nowrap;
+    }
+
+    .cta-button:hover{
+      transform:translateY(-1px);
+      background:#fff;
+      color:#111;
+    }
+
+    /* FOOTER */
+    .site-footer{
+      background:#000;
+      color:rgba(255,255,255,.45);
+      padding:3rem 0;
+      border-top:1px solid rgba(255,255,255,.07);
+    }
+
+    .footer-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:2rem;
+      flex-wrap:wrap;
+    }
+
+    .footer-logo img{
+      height:48px;
+      width:auto;
+      display:block;
+      opacity:.72;
+    }
+
+    .footer-copy{
+      font-size:14px;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:1.5rem;
+    }
+
+    .footer-links a{
+      color:rgba(255,255,255,.45);
+      text-decoration:none;
+      font-size:14px;
+    }
+
+    .footer-links a:hover{ color:#fff; }
+
+    @media (max-width: 1100px){
+      .areas-grid{ grid-template-columns:1fr 1fr; }
+      .cities-grid{ grid-template-columns:1fr 1fr; gap:2rem 0; }
+      .city-col:nth-child(2n){ border-right:none; }
+      .coverage-grid{ grid-template-columns:1fr; }
+    }
+
+    @media (max-width: 980px){
+      .hero{ padding:0 1.25rem 4rem; }
+      .intro-grid{ grid-template-columns:1fr; gap:1.5rem; }
+      .intro-eyebrow-wrap{ justify-content:flex-start; }
+      .intro-eyebrow{ writing-mode:initial; transform:none; }
+      .coverage-points{ grid-template-columns:1fr; }
+      .cta-inner{ grid-template-columns:1fr; align-items:start; }
+      .footer-inner{ flex-direction:column; align-items:flex-start; }
+    }
+
+    @media (max-width: 720px){
+      .areas-grid{ grid-template-columns:1fr; }
+      .cities-grid{ grid-template-columns:1fr; }
+      .city-col{ border-right:none; }
+      .coverage-visual{
+        min-height:420px;
+        padding:1.25rem;
+      }
+      .ring-1{ width:120px; height:120px; }
+      .ring-2{ width:210px; height:210px; }
+      .ring-3{ width:300px; height:300px; }
+      .tag-northwest{ top:14%; left:8%; }
+      .tag-north{ top:8%; }
+      .tag-west{ top:42%; left:4%; }
+      .tag-east{ top:42%; right:4%; }
+      .tag-southwest{ bottom:12%; left:8%; }
+      .tag-southeast{ bottom:12%; right:8%; }
+      .phone-link{ font-size:18px; }
+      .nav-logo img{ height:60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar" aria-label="Primary">
+    <div class="container navbar-inner">
+      <div class="nav-logo">
+        <img src="images/Alltype Logo.png" alt="All-Type Construction logo" />
+      </div>
+
+      <a class="phone-link" href="tel:+12813976614" aria-label="Call All-Type Construction">
+        <span>(281) 397-6614</span>
+        <svg class="phone-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+            <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+          </g>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-bg">
+        <img src="images/Houston.jpg" alt="Greater Houston skyline and service area" />
+        <img src="images/redlinebg.png" alt="" class="redline-overlay" />
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-kicker">Locations We Serve</div>
+        <h1>Serving the Greater Houston area.</h1>
+        <p>
+          All-Type Construction provides commercial roofing, restoration, emergency response,
+          and construction services across Houston and the surrounding communities.
+        </p>
+      </div>
+    </section>
+
+    <section class="intro-band">
+      <div class="container intro-grid">
+        <div class="intro-eyebrow-wrap">
+          <div class="intro-eyebrow">Coverage</div>
+        </div>
+
+        <div class="intro-copy">
+          <p>
+            From central Houston to surrounding business corridors and fast-growing suburbs,
+            we support clients across the Greater Houston region with responsive service,
+            dependable crews, and real project experience.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="areas-section">
+      <div class="container">
+        <div class="areas-head">
+          <div class="section-eyebrow">Primary Service Areas</div>
+          <h2 class="section-heading">Built to serve Houston and beyond.</h2>
+        </div>
+
+        <div class="areas-grid">
+          <article class="area-card">
+            <div class="area-card-top">
+              <div class="area-label">Northwest Houston</div>
+              <h3>Cypress, Spring, Tomball & nearby</h3>
+              <p>
+                Fast access to northwest commercial corridors, industrial properties,
+                and expanding business developments.
+              </p>
+            </div>
+            <div class="area-list">
+              <span class="area-pill">Cypress</span>
+              <span class="area-pill">Tomball</span>
+              <span class="area-pill">Spring</span>
+              <span class="area-pill">Jersey Village</span>
+            </div>
+          </article>
+
+          <article class="area-card">
+            <div class="area-card-top">
+              <div class="area-label">Central Houston</div>
+              <h3>Houston core and surrounding districts</h3>
+              <p>
+                Serving commercial properties throughout Houston with roofing,
+                restoration, and construction support where timing matters.
+              </p>
+            </div>
+            <div class="area-list">
+              <span class="area-pill">Houston</span>
+              <span class="area-pill">The Heights</span>
+              <span class="area-pill">Downtown</span>
+              <span class="area-pill">Midtown</span>
+            </div>
+          </article>
+
+          <article class="area-card">
+            <div class="area-card-top">
+              <div class="area-label">West & Southwest</div>
+              <h3>Katy, Sugar Land, Richmond & nearby</h3>
+              <p>
+                Supporting commercial growth areas across west and southwest Houston
+                with reliable response and practical project execution.
+              </p>
+            </div>
+            <div class="area-list">
+              <span class="area-pill">Katy</span>
+              <span class="area-pill">Sugar Land</span>
+              <span class="area-pill">Richmond</span>
+              <span class="area-pill">Missouri City</span>
+            </div>
+          </article>
+
+          <article class="area-card">
+            <div class="area-card-top">
+              <div class="area-label">North & Northeast</div>
+              <h3>The Woodlands, Conroe, Humble & nearby</h3>
+              <p>
+                Covering northbound service areas where commercial sites,
+                business parks, and mixed-use properties continue to expand.
+              </p>
+            </div>
+            <div class="area-list">
+              <span class="area-pill">The Woodlands</span>
+              <span class="area-pill">Conroe</span>
+              <span class="area-pill">Humble</span>
+              <span class="area-pill">Kingwood</span>
+            </div>
+          </article>
+
+          <article class="area-card">
+            <div class="area-card-top">
+              <div class="area-label">East Houston</div>
+              <h3>Pasadena, Deer Park, Baytown & nearby</h3>
+              <p>
+                Supporting industrial and commercial properties across eastern
+                Houston-area markets with dependable field response.
+              </p>
+            </div>
+            <div class="area-list">
+              <span class="area-pill">Pasadena</span>
+              <span class="area-pill">Deer Park</span>
+              <span class="area-pill">Baytown</span>
+              <span class="area-pill">Channelview</span>
+            </div>
+          </article>
+
+          <article class="area-card">
+            <div class="area-card-top">
+              <div class="area-label">South & Southeast</div>
+              <h3>Pearland, Friendswood, League City & nearby</h3>
+              <p>
+                Reaching commercial clients south of Houston with roofing,
+                repair, restoration, and construction support when needed.
+              </p>
+            </div>
+            <div class="area-list">
+              <span class="area-pill">Pearland</span>
+              <span class="area-pill">Friendswood</span>
+              <span class="area-pill">League City</span>
+              <span class="area-pill">Webster</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="coverage-section">
+      <div class="container coverage-grid">
+        <div class="coverage-copy">
+          <div class="section-eyebrow">Greater Houston Coverage</div>
+          <h2>Positioned to respond across the metro area.</h2>
+
+          <p>
+            Our service reach extends across the broader Houston region, allowing us to support
+            clients in central business districts, suburban commercial corridors, industrial zones,
+            and surrounding high-growth communities.
+          </p>
+
+          <p>
+            Whether the project is planned work or a time-sensitive repair, we’re equipped to move
+            where the job is and deliver the kind of execution clients expect.
+          </p>
+
+          <div class="coverage-points">
+            <div class="coverage-point">
+              <strong>Fast access</strong>
+              <span>Coverage across major Houston-area corridors and surrounding communities.</span>
+            </div>
+            <div class="coverage-point">
+              <strong>Commercial focus</strong>
+              <span>Built around commercial roofing, restoration, and construction support.</span>
+            </div>
+            <div class="coverage-point">
+              <strong>Regional reach</strong>
+              <span>Supporting properties across the greater metro, not just one neighborhood.</span>
+            </div>
+            <div class="coverage-point">
+              <strong>Responsive teams</strong>
+              <span>Ready for ongoing project work and urgent service situations alike.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="coverage-visual" aria-hidden="true">
+          <div class="coverage-ring ring-3"></div>
+          <div class="coverage-ring ring-2"></div>
+          <div class="coverage-ring ring-1"></div>
+          <div class="hub"></div>
+          <div class="hub-label">Houston</div>
+
+          <div class="map-tag tag-northwest">Cypress / Tomball</div>
+          <div class="map-tag tag-north">The Woodlands</div>
+          <div class="map-tag tag-west">Katy</div>
+          <div class="map-tag tag-east">Pasadena / Baytown</div>
+          <div class="map-tag tag-southwest">Sugar Land</div>
+          <div class="map-tag tag-southeast">Pearland</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cities-section">
+      <div class="container">
+        <div class="cities-head">
+          <div class="section-eyebrow">Areas We Serve</div>
+          <h2 class="section-heading">Serving clients across Greater Houston.</h2>
+          <p>
+            We regularly support projects in Houston and surrounding communities. If your property is nearby,
+            there’s a strong chance we can help.
+          </p>
+        </div>
+
+        <div class="cities-grid">
+          <div class="city-col">
+            <h3>Houston Core</h3>
+            <ul>
+              <li>Houston</li>
+              <li>Downtown Houston</li>
+              <li>Midtown</li>
+              <li>The Heights</li>
+              <li>Memorial</li>
+              <li>Galleria / Uptown</li>
+            </ul>
+          </div>
+
+          <div class="city-col">
+            <h3>West / Southwest</h3>
+            <ul>
+              <li>Katy</li>
+              <li>Sugar Land</li>
+              <li>Richmond</li>
+              <li>Missouri City</li>
+              <li>Rosenberg</li>
+              <li>Fulshear</li>
+            </ul>
+          </div>
+
+          <div class="city-col">
+            <h3>North / Northwest</h3>
+            <ul>
+              <li>Cypress</li>
+              <li>Tomball</li>
+              <li>Spring</li>
+              <li>The Woodlands</li>
+              <li>Conroe</li>
+              <li>Jersey Village</li>
+            </ul>
+          </div>
+
+          <div class="city-col">
+            <h3>East / South</h3>
+            <ul>
+              <li>Pasadena</li>
+              <li>Deer Park</li>
+              <li>Baytown</li>
+              <li>Pearland</li>
+              <li>Friendswood</li>
+              <li>League City</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container cta-inner">
+        <div class="cta-copy">
+          <div class="section-eyebrow" style="color:#fff;">Let’s Talk</div>
+          <h2>Need roofing or construction services in the Houston area?</h2>
+          <p>
+            Reach out to All-Type Construction to discuss your project, property location,
+            and the type of support you need.
+          </p>
+        </div>
+
+        <a href="/contact.html" class="cta-button">Request a Quote</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <img src="images/Alltype Logo.png" alt="All-Type Construction logo" />
+      </div>
+
+      <div class="footer-copy">
+        © 2026 All-Type Construction. All rights reserved.
+      </div>
+
+      <div class="footer-links">
+        <a href="/services.html">Services</a>
+        <a href="/locations.html">Locations</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
