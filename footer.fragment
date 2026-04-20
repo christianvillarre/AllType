@@ -37,40 +37,39 @@
 
     <div class="contact-right">
       <form
-        class="contact-form"
-        name="contact"
-        method="POST"
-        
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-      >
-        <input type="hidden" name="form-name" value="contact">
+  class="contact-form"
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value="contact">
 
-        <p class="hidden-honeypot">
-          <label>
-            Don’t fill this out if you’re human:
-            <input name="bot-field" type="text">
-          </label>
-        </p>
+  <p class="hidden-honeypot">
+    <label>
+      Don’t fill this out if you’re human:
+      <input name="bot-field" type="text">
+    </label>
+  </p>
 
-        <div class="form-row">
-          <input type="text" name="fullName" placeholder="Full Name*" required>
-        </div>
+  <div class="form-row">
+    <input type="text" name="fullName" placeholder="Full Name*" required>
+  </div>
 
-        <div class="form-row">
-          <input type="email" name="emailAddress" placeholder="Email Address*" required>
-        </div>
+  <div class="form-row">
+    <input type="email" name="emailAddress" placeholder="Email Address*" required>
+  </div>
 
-        <div class="form-row">
-          <input type="tel" name="phoneNumber" placeholder="Phone Number*" required>
-        </div>
+  <div class="form-row">
+    <input type="tel" name="phoneNumber" placeholder="Phone Number*" required>
+  </div>
 
-        <div class="form-row form-row-textarea">
-          <textarea name="message" placeholder="Message*" rows="6" required></textarea>
-        </div>
+  <div class="form-row form-row-textarea">
+    <textarea name="message" placeholder="Message*" rows="6" required></textarea>
+  </div>
 
-        <button type="submit" class="contact-submit">Send Message</button>
-      </form>
+  <button type="submit" class="contact-submit">Send Message</button>
+</form>
     </div>
   </div>
 </section>
