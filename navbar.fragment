@@ -21,7 +21,9 @@
   <header class="navbar" aria-label="Primary">
     <div class="container navbar-inner">
       <div class="nav-logo">
-        <img src="images/Alltype Logo.png" alt="Alltype" />
+        <a href="/index2.html">
+          <img src="images/Alltype Logo.png" alt="Alltype" />
+        </a>
       </div>
 
       <div class="nav-right">
@@ -41,7 +43,9 @@
     <div class="container menu-panel-inner">
       <div class="menu-panel-top">
         <div class="menu-panel-brand">
-          <img src="images/Alltype Logo.png" alt="Alltype" />
+          <a href="/index2.html">
+            <img src="images/Alltype Logo.png" alt="Alltype" />
+          </a>
         </div>
 
         <a class="phone-link menu-phone-link" href="tel:+12813976614" aria-label="Call us">
@@ -55,10 +59,10 @@
       </div>
       <div class="menu-left">
         <nav class="menu-list" aria-label="Site menu">
-          <a class="menu-link" href="#services">Services</a>
-          <a class="menu-link" href="#news">Locations</a>
-          <a class="menu-link" href="#about">About</a>
-          <a class="menu-link" href="#contact">Contact</a>
+          <a class="menu-link" href="/services.html">Services</a>
+          <a class="menu-link" href="/locations.html">Locations</a>
+          <a class="menu-link" href="/about.html">About</a>
+          <a class="menu-link" href="/contact.html">Contact</a>
         </nav>
 
         <div class="menu-left-bottom">
@@ -95,9 +99,9 @@
     <div class="menu-section">
       <div class="menu-section-title">Services</div>
       <div class="menu-sublist">
-        <a class="menu-subitem" href="#">Commercial Roofing</a>
-        <a class="menu-subitem" href="#">Commercial Construction</a>
-        <a class="menu-subitem" href="#">Emergency Response</a>
+        <a class="menu-subitem" href="/commercial-roofing.html">Commercial Roofing</a>
+        <a class="menu-subitem" href="/commercial-construction.html">Commercial Construction</a>
+        <a class="menu-subitem" href="/emergency-roofing.html">Emergency Response</a>
         <a class="menu-subitem" href="#">Restoration</a>
         <a class="menu-subitem" href="#">Consulting</a>
         <a class="menu-subitem" href="#">Preventive Maintenance</a>

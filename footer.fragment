@@ -1,3 +1,80 @@
+<section class="work-together-section">
+  <div class="work-diamonds" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="work-together-inner">
+    <div class="work-together-eyebrow">LET'S WORK TOGETHER!</div>
+
+    <a href="tel:+12813976614" class="work-together-phone">
+      281-397-6614
+    </a>
+
+    <a href="#contact-section" class="cta-button">
+      Request a Quote
+    </a>
+  </div>
+</section>
+
+<section class="contact-section" id="contact-section">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <h2>Contact</h2>
+
+      <div class="contact-info-block">
+        <div class="contact-label">Call Us</div>
+        <a href="tel:+12813976614">(281) 397-6614</a>
+      </div>
+
+      <div class="contact-info-block">
+        <div class="contact-label">Email Us</div>
+        <a href="mailto:info@all-type-construction.com">info@all-type-construction.com</a>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <form
+        class="contact-form"
+        name="contact"
+        method="POST"
+        
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="contact">
+
+        <p class="hidden-honeypot">
+          <label>
+            Don’t fill this out if you’re human:
+            <input name="bot-field" type="text">
+          </label>
+        </p>
+
+        <div class="form-row">
+          <input type="text" name="fullName" placeholder="Full Name*" required>
+        </div>
+
+        <div class="form-row">
+          <input type="email" name="emailAddress" placeholder="Email Address*" required>
+        </div>
+
+        <div class="form-row">
+          <input type="tel" name="phoneNumber" placeholder="Phone Number*" required>
+        </div>
+
+        <div class="form-row form-row-textarea">
+          <textarea name="message" placeholder="Message*" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="contact-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
 <footer class="site-footer">
   <div class="footer-mark" aria-hidden="true"></div>
 
@@ -19,7 +96,9 @@
   <div class="footer-bottom">
     <div class="footer-brand">
       <div class="footer-logo">
-        <img src="images/Alltype Logo 2.png" alt="All Type Roofing and Construction">
+        <a href="/">
+          <img src="images/Alltype Logo 2.png" alt="All Type Roofing and Construction">
+        </a>
       </div>
 
       <div class="footer-contact-lines">
@@ -31,8 +110,12 @@
     </div>
 
     <div class="footer-links">
-      <a href="#">Facebook →<br><span>Follow us</span></a>
-      <a href="#">Instagram →<br><span>On-site updates</span></a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+        Facebook →<br><span>Follow us</span>
+      </a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        Instagram →<br><span>On-site updates</span>
+      </a>
     </div>
   </div>
 

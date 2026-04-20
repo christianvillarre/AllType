@@ -3,16 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Construction and Commerical Roofing | All-Type Roofing and Construction</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <!-- ===================== PRIMARY SEO ===================== -->
+  <title>Commercial Roofing & Construction Houston TX | All-Type Roofing</title>
+  <meta name="description" content="All-Type Roofing & Construction delivers commercial roofing, emergency restoration, and large-scale repairs across Houston, TX and surrounding areas. 24/7 response. Call (281) 397-6614." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.alltyperoofing.com/" />
 
+  <!-- ===================== OPEN GRAPH (Facebook / LinkedIn) ===================== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.alltyperoofing.com/" />
+  <meta property="og:title" content="Commercial Roofing & Construction Houston TX | All-Type Roofing" />
+  <meta property="og:description" content="24/7 emergency restoration, commercial roofing, and construction for Houston and surrounding areas. When other contractors walk away, we get the job done." />
+  <meta property="og:image" content="https://www.alltyperoofing.com/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="All-Type Roofing & Construction" />
+  <meta property="og:locale" content="en_US" />
 
-<link rel="stylesheet" href="https://use.typekit.net/vml5vif.css">
+  <!-- ===================== TWITTER CARD ===================== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Commercial Roofing & Construction Houston TX | All-Type Roofing" />
+  <meta name="twitter:description" content="24/7 emergency restoration, commercial roofing, and construction for Houston and surrounding areas." />
+  <meta name="twitter:image" content="https://www.alltyperoofing.com/images/og-image.jpg" />
+
+  <!-- ===================== LOCAL BUSINESS SCHEMA ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RoofingContractor",
+    "name": "All-Type Roofing & Construction",
+    "url": "https://www.alltyperoofing.com",
+    "logo": "https://www.alltyperoofing.com/images/Alltype Logo.png",
+    "image": "https://www.alltyperoofing.com/images/og-image.jpg",
+    "description": "Commercial roofing, emergency restoration, and large-scale construction for Houston TX and surrounding areas. 24/7 emergency response.",
+    "telephone": "+1-281-397-6614",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "13625 Chrisman Rd",
+      "addressLocality": "Houston",
+      "addressRegion": "TX",
+      "postalCode": "77039",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 29.8961,
+      "longitude": -95.3346
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Houston" },
+      { "@type": "City", "name": "Pasadena" },
+      { "@type": "City", "name": "Baytown" },
+      { "@type": "City", "name": "Sugar Land" },
+      { "@type": "City", "name": "Pearland" },
+      { "@type": "City", "name": "The Woodlands" },
+      { "@type": "City", "name": "Katy" },
+      { "@type": "City", "name": "Humble" },
+      { "@type": "City", "name": "Conroe" }
+    ],
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "sameAs": []
+  }
+  </script>
+
+  <!-- ===================== FONTS ===================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet" />
+
+  <!-- ===================== STYLES ===================== -->
+  <link rel="stylesheet" href="/navbar.css" />
+  <link rel="stylesheet" href="/footer.css" />
+  <link rel="stylesheet" href="https://use.typekit.net/vml5vif.css" />
+</head>
   <style>
     :root{
       --bg:#000000;
@@ -484,17 +555,23 @@ body{
       padding: 0;
     }
 
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-      padding: 0 4rem 6rem;
-      background: black;
-      overflow: hidden;
-    }
+.hero{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 4rem;
+  background: black;
+  overflow: hidden;
+}
 
+.hero-content{
+  position: relative;
+  z-index: 4;
+  color: white;
+  max-width: 800px;
+}
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -503,12 +580,18 @@ body{
       height: 100%;
       overflow: hidden;
     }
+.hero-bg .bg-back{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 
-    .hero-bg .bg-back {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.hero-bg .bg-back.is-visible{
+  opacity: 1;
+}
 
 .hero-bg .bg-frame {
   position: absolute;
@@ -535,12 +618,6 @@ body{
   mask-mode: alpha;
 }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      color: white;
-      max-width: 800px;
-    }
 
     .hero-content h1 {
       font-size: clamp(36px, 4vw, 66px);
@@ -552,7 +629,7 @@ body{
     .hero-content p {
       font-size: clamp(16px, 2.5vw, 26px);
       line-height: 1.1;
-      margin-bottom: 24px;
+      margin-bottom: 44px;
       font-weight: 400;
     }
 
@@ -630,8 +707,6 @@ html.lenis body {
 }
 
   </style>
-</head>
-
 <body>
 <div id="site-navbar"></div>
 
@@ -658,14 +733,14 @@ html.lenis body {
       playsinline
     ></video>
 
-      <img src="images/redlinebg.png" alt="" class="redline-overlay" />
+      <!--<img src="images/redlinebg.png" alt="" class="redline-overlay" />-->
 
 
     <div class="circle-ring"></div>
   </div>
 
   <div class="hero-content">
-    <h1>Commercial Roofing & Construction Services in Houston, TX</h1>
+    <h1>Roofing & Restoration</h1>
     <p>
       24/7 emergency restoration for commercial property damage, accident repair,
       and specialized commercial and industrial roofing. When other contractors
@@ -675,76 +750,10 @@ html.lenis body {
   </div>
 </section>
 
-<style>
-  .hero{
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: 0 4rem 6rem;
-  background: black;
-  overflow: hidden;
-}
-
-.hero-bg{
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.hero-bg .bg-back{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-bg .bg-frame{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  pointer-events: none;
-
-
-  -webkit-mask-image: url("images/mask.svg");
-  mask-image: url("images/mask.svg");
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-size: cover;
-  mask-size: cover;
-  -webkit-mask-mode: alpha;
-  mask-mode: alpha;
-}
-
-.redline-overlay{
-  position: absolute;
-  inset: 0;              /* 🔥 fills entire hero (top/right/bottom/left = 0) */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* ensures it stretches cleanly */
-  z-index: 3;
-  pointer-events: none;
-}
-.hero-content{
-  position: relative;
-  z-index: 2;
-  color: white;
-  max-width: 800px;
-}
-.redline-overlay{ z-index: 2; }
-.hero-content{ z-index: 4; }
-</style>
 
 
 
+          
 
 <section class="intro-band">
   <div class="container intro-grid">
@@ -766,46 +775,48 @@ html.lenis body {
   <div class="container roofing-grid">
 
     <!-- LEFT LARGE CARD -->
-    <div class="roofing-card roofing-card-large">
-      <div class="roofing-image">
-        <img src="images/stock8.jpeg" alt="Commercial Roofing" />
-      </div>
+   <a href="/commercial-roofing.html" class="roofing-card roofing-card-large">
+  <div class="roofing-image">
+    <img src="images/stock8.jpeg" alt="Commercial Roofing" />
+  </div>
 
-      <div class="roofing-copy">
-        <div class="roofing-title-row">
-          <span>Commercial Roofing</span>
+  <div class="roofing-copy">
+    <div class="roofing-title-row">
+      <span>Commercial Roofing</span>
 
-          <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
+      <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor">
               <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
             </g>
           </svg>
-        </div>
-
-        <p class="roofing-subtitle">Services include demolition, replacement, and repair.</p>
-      </div>
     </div>
+
+    <p class="roofing-subtitle">Services include demolition, replacement, and repair.</p>
+  </div>
+</a>
 
     <!-- RIGHT SMALL CARD -->
-    <div class="roofing-card roofing-card-small">
-      <div class="roofing-image">
-        <img src="images/stock9.jpeg" alt="Metal Roofing" />
-      </div>
+<a href="/commercial-construction.html" class="roofing-card roofing-card-small">
+  <div class="roofing-image">
+    <img src="images/stock9.jpeg" alt="Metal Roofing" />
+  </div>
 
-      <div class="roofing-copy">
-        <div class="roofing-title-row">
-          <span>Commercial Construction</span>
+  <div class="roofing-copy">
+    <div class="roofing-title-row">
+      <span>Commercial Construction</span>
 
-          <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
+      <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor">
               <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
             </g>
           </svg>
-        </div>
-
-        <p class="roofing-subtitle">Wide range of construction, renovation and emergency services.</p>
-      </div>
     </div>
+
+    <p class="roofing-subtitle">
+      Wide range of construction, renovation and emergency services.
+    </p>
+  </div>
+</a>
 
   </div>
 </section>
@@ -900,9 +911,18 @@ html.lenis body {
   align-items:start;
 }
 
-.roofing-card{
-  display:flex;
-  flex-direction:column;
+.roofing-card {
+  display: block;       /* makes <a> behave like a div */
+  text-decoration: none;
+  color: inherit;
+}
+.roofing-card:hover .roofing-arrow {
+  transform: translateX(6px);
+  transition: 0.2s ease;
+}
+
+.roofing-card {
+  cursor: pointer;
 }
 
 .roofing-card-large .roofing-image img{
@@ -1130,7 +1150,7 @@ html.lenis body {
       <div class="image-scroller-track">
         <article class="scroller-card">
           <div class="scroller-image-wrap">
-            <img src="images/stock1.jpeg" alt="Commercial roofing project 1" draggable="false" />
+            <img src="images/commercial_roof.png" alt="Commercial roofing project 1" draggable="false" />
           </div>
           <div class="scroller-copy">
             <h3>Commercial Roofing</h3>
@@ -1140,7 +1160,7 @@ html.lenis body {
 
         <article class="scroller-card">
           <div class="scroller-image-wrap">
-            <img src="images/stock5.jpeg" alt="Commercial roofing project 1" draggable="false" />
+            <img src="images/commercial_construction.jpeg" alt="Commercial roofing project 1" draggable="false" />
           </div>
           <div class="scroller-copy">
             <h3>Commercial Construction</h3>
@@ -1150,7 +1170,7 @@ html.lenis body {
 
         <article class="scroller-card">
           <div class="scroller-image-wrap">
-            <img src="images/stock2.jpeg" alt="Commercial roofing project 2" draggable="false" />
+            <img src="images/emergency_response.jpeg" alt="Commercial roofing project 2" draggable="false" />
           </div>
           <div class="scroller-copy">
             <h3>Emergency Response</h3>
@@ -1160,7 +1180,7 @@ html.lenis body {
 
         <article class="scroller-card">
           <div class="scroller-image-wrap">
-            <img src="images/stock3.jpeg" alt="Commercial roofing project 3" draggable="false" />
+            <img src="images/renovation.png" alt="Commercial roofing project 3" draggable="false" />
           </div>
           <div class="scroller-copy">
             <h3>Restoration Work</h3>
@@ -1170,7 +1190,7 @@ html.lenis body {
 
         <article class="scroller-card">
           <div class="scroller-image-wrap">
-            <img src="images/stock4.jpeg" alt="Commercial roofing project 4" draggable="false" />
+            <img src="images/storm_recovery.jpeg" alt="Commercial roofing project 4" draggable="false" />
           </div>
           <div class="scroller-copy">
             <h3>Storm Recovery</h3>
@@ -1490,173 +1510,7 @@ html.lenis body {
       display: block;
     }
 
-    /* ===================== CONTACT ===================== */
-    .contact-section{
-      background: #111;
-      color: #fff;
-      padding: 8rem 0;
-    }
-
-    .contact-grid{
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: clamp(3rem, 6vw, 8rem);
-      align-items: start;
-    }
-
-    .contact-eyebrow{
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 1.25rem;
-    }
-
-    .contact-heading{
-      font-size: clamp(36px, 4vw, 60px);
-      font-weight: 800;
-      line-height: .92;
-      letter-spacing: -.03em;
-      margin-bottom: 2rem;
-    }
-
-    .contact-body{
-      font-size: clamp(16px, 1.5vw, 20px);
-      line-height: 1.55;
-      color: rgba(255,255,255,.65);
-      margin: 0 0 2.5rem;
-    }
-
-    .contact-details{
-      display: flex;
-      flex-direction: column;
-      gap: .75rem;
-    }
-
-    .contact-detail-link{
-      color: #fff;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: 600;
-      transition: color .18s ease;
-    }
-
-    .contact-detail-link:hover{ color: var(--red); }
-
-    .contact-detail-text{
-      font-size: 18px;
-      color: rgba(255,255,255,.6);
-    }
-
-    /* ---- FORM ---- */
-    .contact-form{ display: flex; flex-direction: column; gap: 1.25rem; }
-
-    .form-row{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-
-    .form-group{ display: flex; flex-direction: column; gap: .5rem; }
-
-    .form-group label{
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.5);
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 10px;
-      color: #fff;
-      font-family: "Roboto Slab", sans-serif;
-      font-size: 16px;
-      padding: 14px 16px;
-      outline: none;
-      transition: border-color .18s ease, background .18s ease;
-      width: 100%;
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder{ color: rgba(255,255,255,.25); }
-
-    .form-group select option{ background: #222; color: #fff; }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus{
-      border-color: var(--red);
-      background: rgba(255,255,255,.1);
-    }
-
-    .form-group textarea{ resize: vertical; min-height: 120px; }
-
-    .contact-submit{
-      display: inline-block;
-      padding: 16px 32px;
-      font-size: 18px;
-      font-family: "Roboto Slab", sans-serif;
-      font-weight: 700;
-      background: var(--red);
-      color: #fff;
-      border: none;
-      border-radius: 99px;
-      cursor: pointer;
-      transition: opacity .18s ease, transform .18s ease;
-      align-self: flex-start;
-    }
-
-    .contact-submit:hover{ opacity: .85; transform: translateY(-1px); }
-
-    .form-success{
-      display: none;
-      font-size: 16px;
-      color: #4ade80;
-      font-weight: 600;
-      padding: .75rem 0;
-    }
-
-    .form-success.is-visible{ display: block; }
-
-    /* ===================== FOOTER ===================== */
-    .site-footer{
-      background: #000;
-      color: rgba(255,255,255,.4);
-      padding: 3rem 0;
-      border-top: 1px solid rgba(255,255,255,.07);
-    }
-
-    .footer-inner{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-
-    .footer-copy{ font-size: 14px; }
-
-    .footer-links{
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-links a{
-      color: rgba(255,255,255,.4);
-      text-decoration: none;
-      font-size: 14px;
-      transition: color .18s ease;
-    }
-
-    .footer-links a:hover{ color: #fff; }
-
+  
     /* ===================== LENIS ===================== */
     html.lenis, html.lenis body{ height: auto; }
     .lenis.lenis-smooth{ scroll-behavior: auto !important; }
@@ -1684,9 +1538,7 @@ html.lenis body {
       .about-grid{ grid-template-columns: 1fr; }
       .about-img{ height: 400px; }
       .about-stats{ gap: 2rem; }
-      .contact-grid{ grid-template-columns: 1fr; }
-      .form-row{ grid-template-columns: 1fr; }
-      .footer-inner{ flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+
     }
 
     @media (max-width: 600px){
@@ -1696,498 +1548,22 @@ html.lenis body {
 
 </style>
 
-
-<section class="work-together-section">
-  <div class="work-diamonds" aria-hidden="true">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <div class="work-together-inner">
-    <div class="work-together-eyebrow">LET'S WORK TOGETHER!</div>
-
-    <a href="tel:+12813976614" class="work-together-phone">
-      281-397-6614
-    </a>
-
-    <a href="#contact" class="cta-button">
-      Request a Quote
-    </a>
-  </div>
-</section>
-
-<section class="contact-section" id="contact-section">
-  <div class="contact-inner">
-    <div class="contact-left">
-      <h2>Contact</h2>
-
-      <div class="contact-info-block">
-        <div class="contact-label">Call Us</div>
-        <a href="tel:+12813976614">(281) 397-6614</a>
-      </div>
-
-      <div class="contact-info-block">
-        <div class="contact-label">Email Us</div>
-        <a href="mailto:info@all-type-construction.com">info@all-type-construction.com</a>
-      </div>
-    </div>
-
-    <div class="contact-right">
-    <form class="contact-form" method="post" action="#">
-        <div class="form-row">
-          <input type="text" name="fullName" placeholder="Full Name*" required>
-        </div>
-
-        <div class="form-row">
-          <input type="email" name="emailAddress" placeholder="Email Address*" required>
-        </div>
-
-        <div class="form-row">
-          <input type="tel" name="phoneNumber" placeholder="Phone Number*" required>
-        </div>
-
-        <div class="form-row form-row-textarea">
-          <textarea name="message" placeholder="Message*" rows="6" required></textarea>
-        </div>
-
-        <button type="submit" class="contact-submit">Send Message</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="footer-mark" aria-hidden="true"></div>
-
-  <div class="footer-top">
-    <h3>All Type Roofing and Construction</h3>
-    <p>
-      Our team of qualified and insured staff members have over 100 years of combined
-      experience in roofing and construction industry. Our services start with a responsive
-      and attentive representative who caters to each individual client’s specific needs.
-      We work with owners, chief engineers, property managers, operations managers, portfolio
-      managers and maintenance coordinators to find solutions to issues that arise day of or
-      a service needed that local and national clients follow day to day. At All Type Roofing
-      and Construction these safety very serious and follow each and every safety guideline
-      set forth by OSHA. We strive to have all our projects run smoothly while in turn make
-      tenants and all parties involved happy.
-    </p>
-  </div>
-
-  <div class="footer-bottom">
-    <div class="footer-brand">
-      <div class="footer-logo">
-        <img src="images/Alltype Logo 2.png" alt="All Type Roofing and Construction">
-      </div>
-
-      <div class="footer-contact-lines">
-        <p>13625 Chrisman Rd</p>
-        <p>Houston, TX 77039</p>
-        <p><a href="tel:+12813976614">(281) 397-6614</a></p>
-        <p><a href="mailto:info@all-type-construction.com">info@all-type-construction.com</a></p>
-      </div>
-    </div>
-
-    <div class="footer-links">
-      <a href="#">Facebook →<br><span>Follow us</span></a>
-      <a href="#">Instagram →<br><span>On-site updates</span></a>
-    </div>
-  </div>
-
-  <div class="footer-legal">
-    <span>© 2025 Alltype Construction Inc.</span>
-    <span>Web Design by mcvdesign.</span>
-  </div>
-</footer>
-
 <style>
-.footer-logo{
-  display:flex;
-  align-items:flex-start;
-  justify-content:flex-start;
-  width:100%;
-}
 
-.footer-logo img{
-  display:block;
-  width:auto;
-  height:80px; /* make it real big */
-  max-width:none;
-  object-fit:contain;
-}
-  .work-together-section{
-  background:#343434;
-  color:#fff;
-  padding:5.5rem 2rem 6rem;
-  text-align:center;
-  position:relative;
-}
-
-.work-together-inner{
-  width:min(1000px, 100%);
-  margin:0 auto;
-}
-
-.work-diamonds{
-  display:flex;
-  justify-content:center;
-  gap:4.25rem;
-  margin-bottom:4.5rem;
-}
-
-.work-diamonds span{
-  width:40px;
-  height:40px;
-  background:#f3f3f3;
-  transform:rotate(45deg);
-  display:block;
-}
-
-.work-together-eyebrow{
-  font-size:2rem;
-  font-weight:800;
-  letter-spacing:0.04em;
-  color:#ffffff;
-  text-transform:uppercase;
-  margin-bottom:1.8rem;
-}
-
-.work-together-phone{
-  display:inline-block;
-  font-family:"Roboto Slab", serif;
-  font-size:clamp(3rem, 7vw, 9.25rem);
-  line-height:0.95;
-  font-weight:700;
-  color:#fff;
-  text-decoration:none;
-  margin-bottom:1.5rem;
-  transition: all 0.3s ease;
-}
-.work-together-phone:hover{
-
-  color: #ff0000;
-}
-.work-together-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:48px;
-  padding:0 1.3rem;
-  border:4px solid #fff;
-  border-radius:999px;
-  color:#fff;
-  text-decoration:none;
-  font-weight:700;
-  font-size:0.95rem;
-  background:transparent;
-  transition:all .25s ease;
-}
-
-.work-together-btn:hover{
-  background:#fff;
-  color:#111;
-}
-
-.contact-section{
-  background:#f00303;
-  color:#fff;
-  padding:4.5rem 2rem 5.5rem;
-  position:relative;
-}
-
-.contact-inner{
-  width:100%;
-  max-width:1200px;
-  margin:0 auto;
-
-  display:grid;
-  grid-template-columns:1fr 1fr; /* 👈 equal columns */
-  gap:4rem;
- 
-  align-items:start;
-}
-.contact-left h2{
-  margin:0 0 2rem;
-  font-family:"Roboto Slab", serif;
-  font-size:clamp(3rem, 7vw, 5.75rem);
-  line-height:0.9;
-  letter-spacing:-0.04em;
-  color:#fff;
-}
-
-.contact-info-block{
-  margin-bottom:1.8rem;
-}
-
-.contact-label{
-  font-size:0.82rem;
-  font-weight:700;
-  margin-bottom:0.45rem;
-  color:#fff;
-}
-
-.contact-info-block a{
-  color:#fff;
-  text-decoration:none;
-  font-size:1.2rem;
-  line-height:1.4;
-}
-
-.contact-form{
-  width:100%; /* 👈 fill full right column */
-  max-width:none; /* 👈 remove any limits */
-}
-.form-row{
-  margin-bottom:1.4rem;
-}
-
-
-.form-row input,
-.form-row textarea{
-  width:100%;
-  background:transparent;
-  border:none;
-  border-bottom:1px solid rgba(255,255,255,0.9);
-  color:#fff;
-  font-family:inherit;
-  font-size:1rem;
-  padding:0.5rem 0;
-  outline:none;
-}
-
-.form-row textarea{
-  border:1px solid rgb(255, 255, 255);
-  padding:0.85rem 1rem;
-  resize:vertical;
-  min-height:140px;
-}
-
-.form-row input::placeholder,
-.form-row textarea::placeholder{
-  color:rgba(255, 255, 255, 0.918);
-}
-
-.contact-submit{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:48px;
-  padding:0 1.3rem;
-  border:4px solid #fff;
-  border-radius:999px;
-  color:#fff;
-  background:transparent;
-  font-weight:700;
-  font-size:0.95rem;
-  cursor:pointer;
-  transition:all .25s ease;
-}
-
-.contact-submit:hover{
-  background:#fff;
-  color:#111;
-}
-
-.site-footer{
-  background:#f00303;
-  color:#fff;
-  padding:0 2rem 2rem;
-}
-
-.footer-top{
-  width:min(1100px, 100%);
-  margin:0 auto;
-  text-align:center;
-  padding:2.5rem 0 3rem;
-}
-
-.footer-top h3{
-  margin:0 0 1rem;
-  font-family:"Roboto Slab", serif;
-  font-size:1.35rem;
-  color:#fff;
-}
-
-.footer-top p{
-  margin:0 auto;
-  max-width:950px;
-  font-size:0.92rem;
-  line-height:1.7;
-  color:#fff;
-}
-
-.footer-bottom{
-  width:100%;
-  margin:0 auto;
-  padding-top:2rem;
-  border-top:1px solid rgba(255,255,255,0.85);
-  display:flex;
-  justify-content:space-between;
-  gap:2rem;
-  align-items:flex-start;
-}
-
-.footer-brand{
-  display:flex;
-  flex-direction:column;
-  gap:1.5rem;
-}
-
-
-.footer-contact-lines p{
-  margin:0 0 0.2rem;
-  font-size:0.92rem;
-}
-
-.footer-contact-lines a{
-  color:#fff;
-  text-decoration:none;
-}
-
-.footer-links{
-  display:flex;
-  gap:3rem;
-  flex-wrap:wrap;
-}
-
-.footer-links a{
-  color:#fff;
-  text-decoration:none;
-  font-size:0.95rem;
-  font-weight:700;
-  line-height:1.45;
-  text-align:left;
-}
-
-.footer-links span{
-  font-weight:400;
-}
-
-.footer-legal{
-  width:100%;
-  margin:1.75rem auto 0;
-  display:flex;
-  justify-content:space-between;
-  gap:1rem;
-  flex-wrap:wrap;
-  font-size:0.82rem;
-  color:#fff;
-}
-
-.contact-mark,
-.footer-mark{
-  width:22px;
-  height:22px;
-  margin:0 auto 2rem;
-  position:relative;
-}
-
-.contact-mark::before,
-.footer-mark::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:#fff;
-  transform:rotate(45deg) scale(0.55);
-}
-
-@media (max-width: 900px){
-  .contact-inner{
-    grid-template-columns:1fr;
-    gap:2.5rem;
-  }
-
-  .footer-bottom{
-    flex-direction:column;
-  }
-
-  .footer-links{
-    gap:1.5rem;
-  }
-
-  .work-diamonds{
-    gap:2rem;
-  }
-
-  .work-diamonds span{
-    width:28px;
-    height:28px;
-  }
-}
-
-@media (max-width: 640px){
-  .work-together-section{
-    padding:4.5rem 1.25rem 5rem;
-  }
-
-  .contact-section,
-  .site-footer{
-    padding-left:1.25rem;
-    padding-right:1.25rem;
-  }
-
-  .work-together-phone{
-    font-size:clamp(2.5rem, 12vw, 4rem);
-  }
-
-  .contact-left h2{
-    font-size:clamp(2.5rem, 14vw, 4rem);
-  }
-
-  .footer-legal{
-    flex-direction:column;
-  }
-}
-.form-row{
-  width:100%;
-  display:block;
-}
-.work-together-phone{
-  display:block;
-  margin-bottom:3.25rem;
-}
-
-.work-together-btn{
-  display:inline-block;
-  padding:12px 22px;
-  border:2px solid #fff;
-  border-radius:999px;
-  color:#fff;
-  text-decoration:none;
-  font-weight:700;
-  font-size:0.9rem;
-  line-height:1;
-  background:transparent;
-  transition:background .25s ease, color .25s ease, border-color .25s ease;
-}
-
-.work-together-btn:hover{
-  background:#fff;
-  color:#111;
-}
-.cta-button{
-  display: inline-block;
-  padding: 14px 28px;
-  border: 8px solid #ffffff;
-  border-radius: 90px;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #ffffff;
-  transition: all 0.3s ease;
-}
 
 
 </style>
 
 
+<div id="site-footer"></div>
 
-
-
+<script>
+  fetch('/footer.fragment')
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('site-footer').innerHTML = html;
+  });
+</script>
 
 
 
@@ -3054,6 +2430,39 @@ html.lenis body {
     });
   });
 </script>
+
+
+<style>
+  .bg-back {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.bg-back.is-visible {
+  opacity: 1;
+}
+</style>
+<script>
+  const video = document.querySelector('.bg-frame');
+  const bgImg = document.querySelector('.bg-back');
+
+  if (video && bgImg) {
+    const showImage = () => {
+      bgImg.classList.add('is-visible');
+    };
+
+    video.addEventListener('loadeddata', showImage);
+    video.addEventListener('canplay', showImage);
+
+    // fallback (in case autoplay loads instantly)
+    setTimeout(showImage, 1000);
+  }
+</script>
+
+
+
+
+
 <script src="/navbar.js" defer></script>
 </body>
 
