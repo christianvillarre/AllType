@@ -36,7 +36,7 @@
     </div>
 
     <div class="contact-right">
-      <form
+     <form
   class="contact-form"
   name="contact"
   method="POST"
