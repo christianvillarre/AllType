@@ -1106,6 +1106,96 @@ html.lenis body {
       .service-card{ border-right: none !important; padding-right: 0; }
     }
 
+    @media (max-width: 767px){
+
+  .work-stack-inner{
+    min-height: auto;
+    padding: 3rem 1.25rem;
+  }
+
+  .work-heading{
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    font-size: 64px;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .work-cards{
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+     margin-bottom: 1.5rem;
+  }
+
+  .work-card{
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none !important;
+
+    width: 100%;
+    height: 260px;
+    border-radius: 18px;
+   
+  }
+
+}
+@media (max-width: 767px){
+
+  .image-scroller-head{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .image-scroller-controls{
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .scroller-arrow{
+    width: 58px;
+    height: 58px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #111;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .scroller-arrow .roofing-arrow{
+    display: block;
+    width: 32px;
+    min-width: 32px;
+    height: auto;
+    color: var(--red);
+    fill: currentColor;
+    flex: 0 0 auto;
+  }
+
+  .scroller-prev .roofing-arrow{
+    transform: rotate(180deg);
+  }
+
+  .scroller-arrow:hover,
+  .scroller-arrow:active,
+  .scroller-arrow:focus{
+    color: #111;
+    background: none;
+    outline: none;
+  }
+}
 </style>
 
 <style>
