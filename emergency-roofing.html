@@ -1301,14 +1301,22 @@
 </main>
 
 <div id="site-footer"></div>
-
 <script>
   fetch('/footer.fragment')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
-    });
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('site-footer').innerHTML = html;
+  });
 </script>
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="contact">
+  <input type="text" name="fullName">
+  <input type="email" name="emailAddress">
+  <input type="tel" name="phoneNumber">
+  <textarea name="message"></textarea>
+  <input type="text" name="bot-field">
+</form>
 
 <script>
   async function initMap() {

@@ -77,11 +77,11 @@
     --red: #f00303;
     --black: #0a0a0a;
     --steel: #111418;
-    --steel-mid: #1c2128;
-    --steel-light: #252b33;
+    --steel-light: #1a1f27;
     --iron: #2e3540;
     --white: #f0ede8;
-    --muted: rgba(240,237,232,0.55);
+    --muted: rgba(240,237,232,0.5);
+    --faint: rgba(240,237,232,0.08);
     --gutter: 4rem;
   }
 
@@ -102,155 +102,176 @@
   }
 
   @media (max-width: 1100px) { :root { --gutter: 3rem; } }
-  @media (max-width: 720px)  { :root { --gutter: 1.25rem; } }
+  @media (max-width: 720px)  { :root { --gutter: 1.5rem; } }
 
-  /* ══ HERO ══ */
+  /* ══════════════════════════════
+     HERO — open, breathable
+  ══════════════════════════════ */
   .contact-hero {
     background: var(--steel);
-    min-height: 52vh;
+    min-height: 58vh;
     display: flex;
-    align-items: stretch;
-    padding-top: 10.5rem;
-    padding-bottom: 4rem;
+    align-items: flex-end;
+    padding-top: 11rem;
+    padding-bottom: 5rem;
     position: relative;
     overflow: hidden;
   }
 
+  /* very subtle texture — not a grid */
   .contact-hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image:
-      linear-gradient(rgba(240,3,3,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(240,3,3,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(240,3,3,0.04) 0%, transparent 70%);
     pointer-events: none;
   }
 
-  .contact-hero-inner {
+  .hero-inner {
     position: relative;
     z-index: 2;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(3rem, 6vw, 8rem);
+    gap: clamp(3rem, 7vw, 9rem);
     align-items: end;
   }
 
   .hero-eyebrow {
     display: block;
-    margin-bottom: 1rem;
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: .16em;
+    margin-bottom: 1.1rem;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .2em;
     text-transform: uppercase;
     color: var(--red);
   }
 
   .hero-title {
-    margin: 0;
-    font-size: clamp(56px, 7.5vw, 7.5rem);
-    line-height: .88;
+    font-size: clamp(52px, 7vw, 7rem);
+    line-height: .87;
     letter-spacing: -.05em;
     font-weight: 800;
+    color: var(--white);
   }
 
   .hero-title span { color: var(--red); }
 
-  .hero-right { padding-bottom: .5rem; }
+  .hero-right {
+    padding-bottom: .25rem;
+  }
 
   .hero-desc {
-    font-size: clamp(17px, 1.6vw, 22px);
-    line-height: 1.55;
+    font-size: clamp(16px, 1.5vw, 20px);
+    line-height: 1.6;
     color: var(--muted);
-    margin-bottom: 2.5rem;
-    max-width: 48ch;
+    margin-bottom: 3rem;
+    max-width: 44ch;
   }
 
-  .hero-contacts {
-    display: grid;
-    gap: 1px;
-    background: var(--iron);
+  /* inline contact links — text-only, no boxes */
+  .hero-contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
-  .hero-contact-item {
-    background: var(--steel);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1.5rem;
+  .hero-contact-link {
+    display: flex;
     align-items: center;
-    padding: 1.5rem 1.75rem;
+    gap: 1rem;
     text-decoration: none;
-    transition: background .18s ease;
+    color: var(--white);
+    transition: color .18s;
   }
 
-  .hero-contact-item:hover { background: var(--steel-light); }
+  .hero-contact-link:hover { color: var(--red); }
 
-  .hero-contact-icon {
-    width: 44px;
-    height: 44px;
-    background: var(--red);
+  .hcl-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--iron);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: border-color .18s, background .18s;
   }
 
-  .hero-contact-icon svg { width: 20px; height: 20px; fill: #fff; }
+  .hero-contact-link:hover .hcl-icon {
+    border-color: var(--red);
+    background: rgba(240,3,3,.1);
+  }
 
-  .hero-contact-label {
+  .hcl-icon svg { width: 16px; height: 16px; fill: currentColor; }
+
+  .hcl-label {
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: .2em;
+    letter-spacing: .18em;
     text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: .2rem;
+    color: var(--muted);
+    display: block;
+    margin-bottom: .1rem;
+    transition: color .18s;
   }
 
-  .hero-contact-value {
-    font-size: clamp(18px, 1.8vw, 22px);
+  .hero-contact-link:hover .hcl-label { color: rgba(240,3,3,.7); }
+
+  .hcl-value {
+    font-size: clamp(16px, 1.5vw, 20px);
     font-weight: 800;
-    color: var(--white);
     line-height: 1.1;
   }
 
-  /* ══ FORM + SIDEBAR ══ */
+  .hero-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--iron);
+    margin-bottom: 1.75rem;
+  }
+
+  /* ══════════════════════════════
+     FORM SECTION
+  ══════════════════════════════ */
   .contact-body {
     background: var(--black);
-    padding: 7rem 0 8rem;
+    padding: 8rem 0 10rem;
   }
 
   .contact-body-inner {
     display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: clamp(3rem, 5vw, 6rem);
+    grid-template-columns: 1fr 340px;
+    gap: clamp(4rem, 7vw, 9rem);
     align-items: start;
   }
 
+  /* form header */
   .form-eyebrow {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: .22em;
     text-transform: uppercase;
     color: var(--red);
-    margin-bottom: 1rem;
+    margin-bottom: .9rem;
   }
 
   .form-title {
-    font-size: clamp(34px, 4vw, 58px);
+    font-size: clamp(32px, 3.5vw, 52px);
     font-weight: 900;
     line-height: .9;
-    letter-spacing: -.03em;
+    letter-spacing: -.035em;
     color: var(--white);
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
   }
 
-  /* ── form fields ── */
+  /* fields */
   .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.25rem 1.5rem;
-    margin-bottom: 1.25rem;
+    gap: 1rem 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .form-row.full { grid-template-columns: 1fr; }
@@ -258,13 +279,13 @@
   .form-group {
     display: flex;
     flex-direction: column;
-    gap: .45rem;
+    gap: .4rem;
   }
 
   .form-label {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: .14em;
+    letter-spacing: .16em;
     text-transform: uppercase;
     color: var(--muted);
   }
@@ -272,89 +293,73 @@
   .form-input,
   .form-textarea {
     font-family: 'Roboto Slab', sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--white);
-    background: var(--steel);
-    border: 1px solid var(--iron);
-    padding: 14px 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--iron);
+    padding: 11px 0;
     outline: none;
-    transition: border-color .18s ease, background .18s ease;
+    transition: border-color .18s ease;
     width: 100%;
-    appearance: none;
-    -webkit-appearance: none;
     border-radius: 0;
+    appearance: none;
   }
 
   .form-input::placeholder,
-  .form-textarea::placeholder { color: rgba(240,237,232,.25); }
+  .form-textarea::placeholder { color: rgba(240,237,232,.2); }
 
   .form-input:focus,
-  .form-textarea:focus {
-    border-color: var(--red);
-    background: var(--steel-light);
-  }
+  .form-textarea:focus { border-bottom-color: var(--red); }
 
   .form-textarea {
-    resize: vertical;
-    min-height: 120px;
-    line-height: 1.55;
+    resize: none;
+    min-height: 100px;
+    line-height: 1.6;
   }
 
-  /* ── service chips ── */
-  .service-section { margin-bottom: 1.25rem; }
-
-  .service-divider {
-    border: none;
-    border-top: 1px solid var(--iron);
-    margin-bottom: 1.25rem;
-  }
-
-  .service-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: .75rem;
-    display: block;
+  /* service chips — lighter style */
+  .service-section {
+    margin: 2rem 0 1rem;
   }
 
   .chip-group {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    margin-top: .65rem;
   }
 
   .chip {
     font-family: 'Roboto Slab', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 9px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    padding: 7px 15px;
     border: 1px solid var(--iron);
-    background: var(--steel);
+    background: transparent;
     color: var(--muted);
     cursor: pointer;
     transition: all .15s ease;
     user-select: none;
-    line-height: 1.2;
+    border-radius: 2px;
   }
 
   .chip:hover {
-    background: var(--steel-light);
+    border-color: rgba(240,3,3,.4);
     color: var(--white);
   }
 
   .chip.active {
-    background: var(--steel-light);
     border-color: var(--red);
-    
     color: var(--white);
+    background: rgba(240,3,3,.08);
   }
 
-  /* ── submit ── */
+  /* submit */
   .form-submit {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -363,16 +368,16 @@
 
   .submit-btn {
     font-family: 'Roboto Slab', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
-    letter-spacing: .1em;
+    letter-spacing: .12em;
     text-transform: uppercase;
     color: #fff;
     background: var(--red);
-    border: 3px solid var(--red);
-    padding: 16px 42px;
+    border: 2px solid var(--red);
+    padding: 15px 40px;
     cursor: pointer;
-    transition: background .18s ease, color .18s ease, transform .18s ease;
+    transition: background .18s, color .18s, transform .18s;
     border-radius: 0;
   }
 
@@ -382,261 +387,242 @@
     transform: translateY(-2px);
   }
 
-  .submit-btn:disabled {
-    opacity: .6;
-    cursor: default;
-    transform: none;
-  }
+  .submit-btn:disabled { opacity: .55; cursor: default; transform: none; }
 
   .submit-note {
     font-size: 13px;
     color: var(--muted);
     line-height: 1.5;
-    max-width: 32ch;
+    max-width: 28ch;
   }
 
   .form-success {
     display: none;
-    padding: 2.5rem;
-    background: var(--steel);
-    border: 1px solid var(--iron);
-    border-left: 4px solid var(--red);
+    padding-top: 2rem;
+    border-top: 1px solid var(--iron);
     margin-top: 2rem;
   }
 
   .form-success h3 {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--white);
-    margin-bottom: .5rem;
-  }
-
-  .form-success p {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* ── SIDEBAR ── */
-  .contact-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: var(--iron);
-    position: sticky;
-    top: 2rem;
-  }
-
-  .sidebar-block {
-    background: var(--steel);
-    padding: 2rem 1.75rem;
-    position: relative;
-  }
-
-  .sidebar-block-bar {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--iron);
-  }
-
-  .sidebar-block:first-child .sidebar-block-bar { background: var(--red); }
-
-  .sidebar-eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: .75rem;
-  }
-
-  .sidebar-block h3 {
     font-size: 20px;
     font-weight: 800;
     color: var(--white);
-    margin-bottom: .5rem;
-    line-height: 1.1;
+    margin-bottom: .4rem;
   }
 
-  .sidebar-block p {
+  .form-success p {
     font-size: 14px;
     color: var(--muted);
     line-height: 1.65;
-    margin-bottom: 1.25rem;
   }
 
-  .sidebar-phone {
-    display: block;
-    font-size: clamp(22px, 2.2vw, 28px);
-    font-weight: 900;
-    color: var(--white);
-    text-decoration: none;
-    letter-spacing: -.01em;
-    transition: color .18s ease;
-    margin-bottom: .25rem;
-  }
-
-  .sidebar-phone:hover { color: var(--red); }
-
-  .sidebar-hours { display: grid; gap: 0; }
-
-  .sidebar-hours-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: .65rem 0;
-    border-bottom: 1px solid var(--iron);
-    font-size: 14px;
-  }
-
-  .sidebar-hours-row:first-child { border-top: 1px solid var(--iron); }
-  .sidebar-hours-day { font-weight: 700; color: var(--white); }
-  .sidebar-hours-time { color: var(--muted); font-weight: 500; }
-
-  .sidebar-emergency {
-    background: var(--red);
-    padding: 1.5rem 1.75rem;
+  /* ══════════════════════════════
+     SIDEBAR — minimal, no boxes
+  ══════════════════════════════ */
+  .contact-sidebar {
+    position: sticky;
+    top: 3rem;
     display: flex;
     flex-direction: column;
-    gap: .35rem;
+    gap: 3rem;
+    padding-top: 7rem; /* align roughly with form fields */
   }
 
-  .sidebar-emergency-label {
-    font-size: 11px;
+  .sidebar-block {}
+
+  .sidebar-eyebrow {
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: .2em;
+    letter-spacing: .22em;
     text-transform: uppercase;
-    color: rgba(255,255,255,.75);
+    color: var(--red);
+    margin-bottom: .6rem;
   }
 
-  .sidebar-emergency-text {
-    font-size: 15px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.4;
+  .sidebar-block h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: .35rem;
+    line-height: 1.2;
   }
 
-  .sidebar-emergency-phone {
-    display: block;
-    font-size: 26px;
-    font-weight: 900;
-    color: #fff;
-    text-decoration: none;
-    letter-spacing: -.01em;
-    margin-top: .25rem;
-    transition: opacity .18s ease;
-  }
-
-  .sidebar-emergency-phone:hover { opacity: .85; }
-
+  .sidebar-block p,
   .sidebar-address {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--muted);
     line-height: 1.7;
   }
 
   .sidebar-address a {
     display: inline-block;
-    margin-top: .75rem;
-    font-size: 13px;
+    margin-top: .5rem;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--red);
     text-decoration: none;
-    border-bottom: 1px solid rgba(240,3,3,.35);
-    padding-bottom: .15rem;
-    transition: border-color .18s ease;
+    opacity: .85;
+    transition: opacity .18s;
   }
 
-  .sidebar-address a:hover { border-color: var(--red); }
+  .sidebar-address a:hover { opacity: 1; }
 
-  /* ══ MAP ══ */
-  .map-section { background: var(--black); padding: 0; }
+  .sidebar-phone {
+    display: block;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: -.02em;
+    margin-top: .15rem;
+    transition: color .18s;
+  }
+
+  .sidebar-phone:hover { color: var(--red); }
+
+  .sidebar-hours {
+    margin-top: .4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sidebar-hours-row {
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 0;
+    border-bottom: 1px solid var(--faint);
+    font-size: 13px;
+  }
+
+  .sidebar-hours-row:first-child { border-top: 1px solid var(--faint); }
+  .sidebar-hours-day { color: var(--white); font-weight: 600; }
+  .sidebar-hours-time { color: var(--muted); }
+
+  /* emergency — just a text callout, no red box */
+  .sidebar-emergency {
+    padding-top: 2rem;
+    border-top: 1px solid var(--iron);
+  }
+
+  .sidebar-emergency-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: .5rem;
+    display: block;
+  }
+
+  .sidebar-emergency-text {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: .6rem;
+  }
+
+  .sidebar-emergency-phone {
+    display: block;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--red);
+    text-decoration: none;
+    letter-spacing: -.02em;
+    transition: opacity .18s;
+  }
+
+  .sidebar-emergency-phone:hover { opacity: .8; }
+
+  /* ══════════════════════════════
+     MAP — full bleed, no section padding
+  ══════════════════════════════ */
+  .map-section {
+    background: var(--black);
+    border-top: 1px solid var(--iron);
+  }
 
   .map-shell {
     position: relative;
     width: 100%;
     overflow: hidden;
-    min-height: 520px;
-    border-top: 1px solid var(--iron);
   }
 
   #googleMap {
     width: 100%;
-    height: 520px;
-    filter: saturate(0.7) contrast(1.15) brightness(0.85);
+    height: 480px;
+    filter: saturate(0.6) contrast(1.1) brightness(0.8);
+    display: block;
   }
 
   .map-card {
     position: absolute;
     left: 28px;
     bottom: 28px;
-    width: min(380px, calc(100% - 56px));
-    background: rgba(10,10,10,.88);
-    backdrop-filter: blur(12px);
+    width: min(340px, calc(100% - 56px));
+    background: rgba(10,10,10,.85);
+    backdrop-filter: blur(16px);
     color: var(--white);
-    padding: 1.5rem;
-    border: 1px solid var(--iron);
-    border-left: 3px solid var(--red);
+    padding: 1.25rem 1.5rem;
+    border-left: 2px solid var(--red);
   }
 
   .map-eyebrow {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: .2em;
     text-transform: uppercase;
     color: var(--red);
-    margin-bottom: .5rem;
+    margin-bottom: .4rem;
   }
 
   .map-card h3 {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 800;
-    letter-spacing: .02em;
-    margin-bottom: .4rem;
-    line-height: 1;
+    letter-spacing: -.01em;
+    margin-bottom: .3rem;
+    line-height: 1.1;
   }
 
   .map-card p {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--muted);
-    margin-bottom: 1rem;
-    line-height: 1.4;
+    margin-bottom: .8rem;
+    line-height: 1.5;
   }
 
   .map-card a {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--red);
     text-decoration: none;
-    border-bottom: 1px solid rgba(240,3,3,.35);
-    padding-bottom: .15rem;
-    transition: border-color .18s ease;
+    opacity: .85;
+    transition: opacity .18s;
   }
 
-  .map-card a:hover { border-color: var(--red); }
+  .map-card a:hover { opacity: 1; }
 
-  /* ══ RESPONSIVE ══ */
+  /* ══════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════ */
   @media (max-width: 1100px) {
-    .contact-hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .contact-body-inner { grid-template-columns: 1fr; }
-    .contact-sidebar    { position: static; }
+    .hero-inner          { grid-template-columns: 1fr; gap: 3.5rem; }
+    .contact-body-inner  { grid-template-columns: 1fr; }
+    .contact-sidebar     { position: static; padding-top: 0; flex-direction: row; flex-wrap: wrap; gap: 2.5rem; }
+    .sidebar-emergency   { width: 100%; }
   }
 
   @media (max-width: 720px) {
-    .contact-hero    { padding-top: 6.5rem; padding-bottom: 2.5rem; min-height: auto; }
-    .hero-title      { font-size: clamp(44px, 12vw, 72px); }
+    .contact-hero    { padding-top: 7rem; padding-bottom: 3.5rem; min-height: auto; }
+    .hero-title      { font-size: clamp(42px, 11vw, 68px); }
+    .contact-body    { padding: 5rem 0 7rem; }
     .form-row        { grid-template-columns: 1fr; }
     .form-submit     { flex-direction: column; align-items: flex-start; gap: 1rem; }
-    .chip            { font-size: 12px; padding: 8px 12px; }
   }
-
-  .contact-section { display: none; }
-  .site-footer { padding-top: 2rem; }
 </style>
 
 <body>
@@ -646,7 +632,7 @@
 
   <!-- ══ HERO ══ -->
   <section class="contact-hero">
-    <div class="container contact-hero-inner">
+    <div class="container hero-inner">
 
       <div class="hero-left">
         <span class="hero-eyebrow">Get in Touch</span>
@@ -655,41 +641,37 @@
 
       <div class="hero-right">
         <p class="hero-desc">
-          Whether you need an estimate, have an active leak, or want to schedule an inspection — our team is ready to respond. Reach out directly or fill out the form below and we'll get back to you promptly.
+          Whether you need an estimate, have an active leak, or want to schedule an inspection — our team is ready to respond promptly.
         </p>
 
-        <div class="hero-contacts">
-          <a href="tel:+12813976614" class="hero-contact-item">
-            <div class="hero-contact-icon">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.01l-2.2 2.19z"/>
-              </svg>
+        <div class="hero-divider"></div>
+
+        <div class="hero-contact-links">
+          <a href="tel:+12813976614" class="hero-contact-link">
+            <div class="hcl-icon">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.01l-2.2 2.19z"/></svg>
             </div>
             <div>
-              <div class="hero-contact-label">Call Us Directly</div>
-              <div class="hero-contact-value">(281) 397-6614</div>
+              <span class="hcl-label">Call Us</span>
+              <span class="hcl-value">(281) 397-6614</span>
             </div>
           </a>
-          <a href="mailto:info@alltyperoofing.com" class="hero-contact-item">
-            <div class="hero-contact-icon">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-              </svg>
+          <a href="mailto:info@alltyperoofing.com" class="hero-contact-link">
+            <div class="hcl-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </div>
             <div>
-              <div class="hero-contact-label">Email Us</div>
-              <div class="hero-contact-value">info@alltyperoofing.com</div>
+              <span class="hcl-label">Email</span>
+              <span class="hcl-value">info@alltyperoofing.com</span>
             </div>
           </a>
-          <a href="https://maps.google.com/?q=13625+Chrisman+Rd+Houston+TX+77039" target="_blank" class="hero-contact-item">
-            <div class="hero-contact-icon">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/>
-              </svg>
+          <a href="https://maps.google.com/?q=13625+Chrisman+Rd+Houston+TX+77039" target="_blank" class="hero-contact-link">
+            <div class="hcl-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg>
             </div>
             <div>
-              <div class="hero-contact-label">Our Office</div>
-              <div class="hero-contact-value">13625 Chrisman Rd, Houston TX</div>
+              <span class="hcl-label">Office</span>
+              <span class="hcl-value">13625 Chrisman Rd, Houston</span>
             </div>
           </a>
         </div>
@@ -705,36 +687,32 @@
       <!-- FORM -->
       <div class="form-wrap">
         <div class="form-eyebrow">Free Estimate</div>
-        <h2 class="form-title">Get a Fast Response</h2>
+        <h2 class="form-title">Send Us<br />a Message</h2>
 
         <form id="contactForm" novalidate>
 
-          <!-- Name + Phone -->
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="name">Your Name *</label>
+              <label class="form-label" for="name">Name *</label>
               <input class="form-input" type="text" id="name" name="name" placeholder="John Smith" required />
             </div>
             <div class="form-group">
-              <label class="form-label" for="phone">Phone Number *</label>
+              <label class="form-label" for="phone">Phone *</label>
               <input class="form-input" type="tel" id="phone" name="phone" placeholder="(281) 000-0000" required />
             </div>
           </div>
 
-          <!-- Email -->
           <div class="form-row full">
             <div class="form-group">
-              <label class="form-label" for="email">Email Address *</label>
+              <label class="form-label" for="email">Email *</label>
               <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required />
             </div>
           </div>
 
-          <!-- Service chips -->
           <div class="service-section">
-            <hr class="service-divider" />
-            <span class="service-label">What do you need?</span>
+            <span class="form-label">What do you need?</span>
             <div class="chip-group" id="chipGroup">
-              <div class="chip" data-val="Repair / Leak Detection">Repair &amp; Leak</div>
+              <div class="chip active" data-val="Repair / Leak Detection">Repair &amp; Leak</div>
               <div class="chip" data-val="Roof Replacement">Replacement</div>
               <div class="chip" data-val="Restoration / Coatings">Restoration</div>
               <div class="chip" data-val="Preventative Maintenance">Maintenance</div>
@@ -744,29 +722,70 @@
             <input type="hidden" id="serviceType" name="serviceType" value="Repair / Leak Detection" />
           </div>
 
-          <!-- Details -->
-          <div class="form-row full">
+          <div class="form-row full" style="margin-top: 1rem;">
             <div class="form-group">
-              <label class="form-label" for="message">Details <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
-              <textarea class="form-textarea" id="message" name="message" placeholder="Property address, roof size, urgency, or anything else that helps us respond accurately…"></textarea>
+              <label class="form-label" for="message">Details <span style="font-weight:400;text-transform:none;letter-spacing:0;opacity:.6;">(optional)</span></label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Property address, roof size, urgency…"></textarea>
             </div>
           </div>
 
           <div class="form-submit">
             <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
-            <p class="submit-note">We typically respond same day. For emergencies, call us directly.</p>
+            <p class="submit-note">Same-day response. For emergencies, call directly.</p>
           </div>
 
         </form>
 
         <div class="form-success" id="formSuccess">
           <h3>Message Received</h3>
-          <p>Thank you for reaching out. A member of our team will be in touch shortly. For urgent issues or active leaks, please call us directly at <a href="tel:+12813976614" style="color:var(--red);text-decoration:none;">(281) 397-6614</a>.</p>
+          <p>We'll be in touch shortly. For active leaks, call <a href="tel:+12813976614" style="color:var(--red);text-decoration:none;">(281) 397-6614</a> now.</p>
         </div>
-
       </div>
 
-      
+      <!-- SIDEBAR -->
+      <aside class="contact-sidebar">
+
+        <div class="sidebar-block">
+          <div class="sidebar-eyebrow">Main Office</div>
+          <h3>All-Type Roofing &amp; Construction</h3>
+          <p class="sidebar-address">
+            13625 Chrisman Rd<br />Houston, TX 77039
+            <br />
+            <a href="https://maps.google.com/?q=13625+Chrisman+Rd+Houston+TX+77039" target="_blank">Get Directions →</a>
+          </p>
+        </div>
+
+        <div class="sidebar-block">
+          <div class="sidebar-eyebrow">Phone</div>
+          <p style="margin-bottom:.2rem;">Estimates, questions, scheduling.</p>
+          <a href="tel:+12813976614" class="sidebar-phone">(281) 397-6614</a>
+        </div>
+
+        <div class="sidebar-block">
+          <div class="sidebar-eyebrow">Hours</div>
+          <div class="sidebar-hours">
+            <div class="sidebar-hours-row">
+              <span class="sidebar-hours-day">Mon – Fri</span>
+              <span class="sidebar-hours-time">7 AM – 6 PM</span>
+            </div>
+            <div class="sidebar-hours-row">
+              <span class="sidebar-hours-day">Saturday</span>
+              <span class="sidebar-hours-time">8 AM – 2 PM</span>
+            </div>
+            <div class="sidebar-hours-row">
+              <span class="sidebar-hours-day">Sunday</span>
+              <span class="sidebar-hours-time">Emergency only</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-emergency">
+          <span class="sidebar-emergency-label">Emergency Line</span>
+          <span class="sidebar-emergency-text">Active leak? We respond 24/7 — nights, weekends, holidays.</span>
+          <a href="tel:+12813976614" class="sidebar-emergency-phone">(281) 397-6614</a>
+        </div>
+
+      </aside>
 
     </div>
   </section>
@@ -794,7 +813,6 @@
     .then(html => { document.getElementById('site-footer').innerHTML = html; });
 </script>
 
-<!-- CHIP SELECTOR -->
 <script>
   document.querySelectorAll('#chipGroup .chip').forEach(chip => {
     chip.addEventListener('click', () => {
@@ -805,45 +823,34 @@
   });
 </script>
 
-<!-- PHONE FORMATTING -->
 <script>
   const phoneInput = document.getElementById('phone');
   phoneInput.addEventListener('input', () => {
     let val = phoneInput.value.replace(/\D/g, '').substring(0, 10);
-    if (val.length >= 6) {
-      val = '(' + val.substring(0,3) + ') ' + val.substring(3,6) + '-' + val.substring(6);
-    } else if (val.length >= 3) {
-      val = '(' + val.substring(0,3) + ') ' + val.substring(3);
-    }
+    if (val.length >= 6) val = '(' + val.slice(0,3) + ') ' + val.slice(3,6) + '-' + val.slice(6);
+    else if (val.length >= 3) val = '(' + val.slice(0,3) + ') ' + val.slice(3);
     phoneInput.value = val;
   });
 </script>
 
-<!-- FORM SUBMIT -->
 <script>
   const form = document.getElementById('contactForm');
   const successMsg = document.getElementById('formSuccess');
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-
     let valid = true;
-    const required = form.querySelectorAll('[required]');
-    required.forEach(field => {
-      field.style.borderColor = '';
-      if (!field.value.trim()) {
-        field.style.borderColor = 'var(--red)';
-        valid = false;
-      }
+    form.querySelectorAll('[required]').forEach(field => {
+      field.style.borderBottomColor = '';
+      if (!field.value.trim()) { field.style.borderBottomColor = 'var(--red)'; valid = false; }
     });
-
     if (!valid) return;
 
     const btn = document.getElementById('submitBtn');
     btn.textContent = 'Sending…';
     btn.disabled = true;
 
-    // Replace with your actual form service (Formspree, backend endpoint, etc.)
+    // Replace with your actual backend / Formspree endpoint
     setTimeout(() => {
       form.style.display = 'none';
       successMsg.style.display = 'block';
@@ -851,17 +858,13 @@
   });
 </script>
 
-<!-- GOOGLE MAP -->
 <script>
   async function initMap() {
     const { Map } = await google.maps.importLibrary("maps");
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
     const center = { lat: 29.9118911718676, lng: -95.36409313241205 };
-
     const map = new Map(document.getElementById("googleMap"), {
-      center,
-      zoom: 13,
+      center, zoom: 13,
       mapId: "8b312c924f7d81ecb8810be1",
       disableDefaultUI: true,
       zoomControl: true,
@@ -869,20 +872,13 @@
       streetViewControl: false,
       mapTypeControl: false
     });
-
-    new AdvancedMarkerElement({
-      map,
-      position: center,
-      title: "All-Type Roofing & Construction"
-    });
+    new AdvancedMarkerElement({ map, position: center, title: "All-Type Roofing & Construction" });
   }
 </script>
 
 <script
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfAQVdQC9mx-mFcZ5oFIYMVHQY-vGzimI&loading=async&callback=initMap"
-  async
-  defer
-></script>
+  async defer></script>
 
 <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
 <script src="/navbar.js" defer></script>
