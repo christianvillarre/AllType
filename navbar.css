@@ -687,3 +687,15 @@
     line-height: 1.5;
   }
 }
+.swap .svg2{
+  opacity: 0;
+  transform: scale(1) rotate(6deg);
+  transition:
+    transform 360ms ease var(--svg2InDelay),
+    opacity 220ms ease var(--svg2InDelay);
+}
+
+.swap.is-on .svg2{
+  opacity: 1;
+  transform: scale(1) rotate(-45deg);
+}
