@@ -1,3 +1,15 @@
+  const path = window.location.pathname;
+
+  if (path.endsWith(".html")) {
+    const clean = path
+      .replace("index.html", "")
+      .replace(".html", "");
+
+    window.history.replaceState({}, "", clean);
+  }
+
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   const mount = document.getElementById("site-navbar");
   if (!mount) return;
