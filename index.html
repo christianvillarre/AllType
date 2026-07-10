@@ -1264,281 +1264,1120 @@ html.lenis body {
     </g>
   </svg>
 
-  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+<form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  data-netlify-recaptcha="true"
+  netlify-honeypot="bot-field"
+  hidden
+>
   <input type="hidden" name="form-name" value="contact">
+
+  <p hidden>
+    <label>
+      Don’t fill this out:
+      <input name="bot-field">
+    </label>
+  </p>
+
   <input type="text" name="fullName">
   <input type="email" name="emailAddress">
   <input type="tel" name="phoneNumber">
   <textarea name="message"></textarea>
-  <input type="text" name="bot-field">
+
+  <div data-netlify-recaptcha="true"></div>
 </form>
-  <!--
 <script>
-    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+function waitForPageContent() {
+  const promises = [];
 
-    // Easing
-    const easeOut = (t) => 1 - Math.pow(1 - t, 4.5);
-    const easeInOutCubic = (t) => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
-    const easeLinear   = (t) => t;
-    const easeSoftOut  = (t) => 1 - Math.pow(1 - t, 4.5);
-    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-    const easeOutQuint = (t) => 1 - Math.pow(1 - t, 6);
+  // Wait for the normal window load event
+  if (document.readyState !== "complete") {
+    promises.push(
+      new Promise(resolve => {
+        window.addEventListener("load", resolve, { once: true });
+      })
+    );
+  }
 
-    const SQUARE_WIDTH_SCALE = 1;
+  // Wait for fonts
+  if (document.fonts?.ready) {
+    promises.push(document.fonts.ready);
+  }
 
-    function lockScroll(){
-      const y = window.scrollY || document.documentElement.scrollTop || 0;
-      document.body.dataset.scrollY = String(y);
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${y}px`;
-      document.body.style.left = "0";
-      document.body.style.right = "0";
-      document.body.style.width = "100%";
+  // Wait for all regular images
+  document.querySelectorAll("img").forEach(img => {
+    if (img.complete) return;
+
+    promises.push(
+      new Promise(resolve => {
+        img.addEventListener("load", resolve, { once: true });
+        img.addEventListener("error", resolve, { once: true });
+      })
+    );
+  });
+
+  // Wait for videos to have enough data to display
+  document.querySelectorAll("video").forEach(video => {
+    if (video.readyState >= 3) return;
+
+    promises.push(
+      new Promise(resolve => {
+        video.addEventListener("canplay", resolve, { once: true });
+        video.addEventListener("error", resolve, { once: true });
+      })
+    );
+  });
+
+  return Promise.all(promises);
+}
+</script>
+<script>
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  // =========================
+  // EASING
+  // =========================
+  const easeOut = (t) => 1 - Math.pow(1 - t, 4.5);
+
+  const easeSoftOut = (t) =>
+    1 - Math.pow(1 - t, 4.5);
+
+  const easeOutCubic = (t) =>
+    1 - Math.pow(1 - t, 3);
+
+  const easeOutQuint = (t) =>
+    1 - Math.pow(1 - t, 6);
+
+  const SQUARE_WIDTH_SCALE = 1;
+
+
+  // =========================
+  // CONTENT LOADING
+  // =========================
+
+  /**
+   * Waits for an image to finish loading.
+   * Resolves on both success and failure so one broken
+   * image cannot permanently trap the user in the loader.
+   */
+  function waitForImage(image) {
+    if (!image) return Promise.resolve();
+
+    if (image.complete) {
+      return Promise.resolve();
     }
-    function unlockScroll(){
-      const y = parseInt(document.body.dataset.scrollY || "0", 10);
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
-      document.body.removeAttribute("data-scroll-y");
-      window.scrollTo(0, y);
+
+    return new Promise(resolve => {
+      const finish = () => {
+        image.removeEventListener("load", finish);
+        image.removeEventListener("error", finish);
+        resolve();
+      };
+
+      image.addEventListener("load", finish, { once: true });
+      image.addEventListener("error", finish, { once: true });
+    });
+  }
+
+
+  /**
+   * Waits for an SVG <image> element.
+   * SVG images do not always behave exactly like normal HTML images,
+   * so the source is also preloaded with a regular Image object.
+   */
+  function waitForSvgImage(svgImage) {
+    if (!svgImage) return Promise.resolve();
+
+    const source =
+      svgImage.getAttribute("href") ||
+      svgImage.getAttributeNS(
+        "http://www.w3.org/1999/xlink",
+        "href"
+      );
+
+    if (!source) return Promise.resolve();
+
+    return new Promise(resolve => {
+      const preloadImage = new Image();
+
+      preloadImage.onload = resolve;
+      preloadImage.onerror = resolve;
+      preloadImage.src = source;
+
+      if (preloadImage.complete) {
+        resolve();
+      }
+    });
+  }
+
+
+  /**
+   * Waits until a video has enough data to display.
+   */
+  function waitForVideo(video) {
+    if (!video) return Promise.resolve();
+
+    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+      return Promise.resolve();
     }
 
-    // animate helper (+ ty support)
-    function animateAttrs(el, from, to, duration, easeFn = (x)=>x){
-      return new Promise(resolve=>{
-        const t0 = performance.now();
-        function frame(now){
-          const t = Math.min(1, (now - t0)/duration);
-          const e = easeFn(t);
+    return new Promise(resolve => {
+      let finished = false;
 
-          if ("x" in from) el.setAttribute("x", from.x + (to.x - from.x)*e);
-          if ("y" in from) el.setAttribute("y", from.y + (to.y - from.y)*e);
-          if ("w" in from) el.setAttribute("width",  from.w + (to.w - from.w)*e);
-          if ("h" in from) el.setAttribute("height", from.h + (to.h - from.h)*e);
+      const finish = () => {
+        if (finished) return;
+        finished = true;
 
-          if (
-            "tx" in from || "ty" in from || "sx" in from || "sy" in from ||
-            "tx" in to   || "ty" in to   || "sx" in to   || "sy" in to
-          ){
-            const tx = (from.tx ?? 0) + ((to.tx ?? 0) - (from.tx ?? 0))*e;
-            const ty = (from.ty ?? 0) + ((to.ty ?? 0) - (from.ty ?? 0))*e;
+        video.removeEventListener("loadeddata", finish);
+        video.removeEventListener("canplay", finish);
+        video.removeEventListener("error", finish);
 
-            const hasScale =
-              ("sx" in from) || ("sy" in from) || ("sx" in to) || ("sy" in to);
+        resolve();
+      };
 
-            if (hasScale){
-              const sx = (from.sx ?? 1) + ((to.sx ?? 1) - (from.sx ?? 1))*e;
-              const sy = (from.sy ?? 1) + ((to.sy ?? 1) - (from.sy ?? 1))*e;
-              el.setAttribute("transform", `translate(${tx},${ty}) scale(${sx},${sy})`);
-            } else {
-              el.setAttribute("transform", `translate(${tx},${ty})`);
-            }
-          }
+      video.addEventListener("loadeddata", finish, { once: true });
+      video.addEventListener("canplay", finish, { once: true });
+      video.addEventListener("error", finish, { once: true });
 
-          if ("op" in from){
-            const op = from.op + (to.op - from.op)*e;
-            el.setAttribute("opacity", op);
-          }
+      // Make sure the browser begins loading it.
+      video.load();
+    });
+  }
 
-          if(t < 1) requestAnimationFrame(frame);
-          else resolve();
+
+  /**
+   * Waits for dynamically inserted fragment content,
+   * such as the navbar and footer.
+   *
+   * A timeout is included so a failed fragment request
+   * cannot permanently lock the page.
+   */
+  function waitForElementContent(selector, timeout = 5000) {
+    const element = document.querySelector(selector);
+
+    if (!element) {
+      return Promise.resolve();
+    }
+
+    if (element.children.length > 0 || element.innerHTML.trim() !== "") {
+      return Promise.resolve();
+    }
+
+    return new Promise(resolve => {
+      let completed = false;
+
+      const finish = () => {
+        if (completed) return;
+        completed = true;
+
+        observer.disconnect();
+        clearTimeout(timeoutId);
+
+        resolve();
+      };
+
+      const observer = new MutationObserver(() => {
+        if (
+          element.children.length > 0 ||
+          element.innerHTML.trim() !== ""
+        ) {
+          finish();
         }
-        requestAnimationFrame(frame);
       });
+
+      observer.observe(element, {
+        childList: true,
+        subtree: true,
+        characterData: true
+      });
+
+      const timeoutId = setTimeout(finish, timeout);
+    });
+  }
+
+
+  /**
+   * Prevents the loader from becoming permanently stuck.
+   */
+  function withTimeout(promise, timeout = 10000) {
+    return Promise.race([
+      promise,
+      new Promise(resolve => {
+        setTimeout(resolve, timeout);
+      })
+    ]);
+  }
+
+
+  /**
+   * Waits only for content that is important when
+   * the first screen is revealed.
+   *
+   * It does not wait for every image farther down the page.
+   */
+  function waitForCriticalContent() {
+    const loadingTasks = [];
+
+    // Wait for the page's normal load event.
+    if (document.readyState !== "complete") {
+      loadingTasks.push(
+        new Promise(resolve => {
+          window.addEventListener("load", resolve, {
+            once: true
+          });
+        })
+      );
     }
 
-    // quick diminishing jolt
-    async function jolt(elements){
-      const keyframes = [0, -18, 12, -8, 5, -3, 0];
-      const durations = [60, 55, 50, 45, 40, 35];
+    // Wait for web fonts.
+    if (document.fonts && document.fonts.ready) {
+      loadingTasks.push(
+        document.fonts.ready.catch(() => {})
+      );
+    }
 
-      for (const el of elements) el.setAttribute("transform", "translate(0,0)");
+    // Wait for dynamically fetched page fragments.
+    loadingTasks.push(
+      waitForElementContent("#site-navbar", 5000)
+    );
 
-      for (let i = 0; i < durations.length; i++){
-        const fromY = keyframes[i];
-        const toY   = keyframes[i+1];
-        await Promise.all(elements.map(el =>
-          animateAttrs(el, { ty: fromY }, { ty: toY }, durations[i], easeOutCubic)
-        ));
+    loadingTasks.push(
+      waitForElementContent("#site-footer", 5000)
+    );
+
+    // Wait for the hero background.
+    const heroBackground = document.querySelector(
+      ".hero-bg .bg-back"
+    );
+
+    loadingTasks.push(
+      waitForImage(heroBackground)
+    );
+
+    // Wait for the hero video.
+    const heroVideo = document.querySelector(
+      ".hero-bg video"
+    );
+
+    loadingTasks.push(
+      waitForVideo(heroVideo)
+    );
+
+    // Wait for the loader's own SVG graphics.
+    loadingTasks.push(
+      waitForSvgImage(document.getElementById("bgImg"))
+    );
+
+    loadingTasks.push(
+      waitForSvgImage(document.getElementById("ovalLImg"))
+    );
+
+    loadingTasks.push(
+      waitForSvgImage(document.getElementById("ovalRImg"))
+    );
+
+    loadingTasks.push(
+      waitForSvgImage(document.getElementById("rectImg"))
+    );
+
+    loadingTasks.push(
+      waitForSvgImage(document.getElementById("squareImg"))
+    );
+
+    return withTimeout(
+      Promise.allSettled(loadingTasks),
+      12000
+    );
+  }
+
+
+  // =========================
+  // SCROLL LOCK
+  // =========================
+
+  function lockScroll() {
+    const scrollY =
+      window.scrollY ||
+      document.documentElement.scrollTop ||
+      0;
+
+    document.body.dataset.scrollY = String(scrollY);
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+
+    document.documentElement.style.overflow = "hidden";
+
+    if (window.lenis) {
+      window.lenis.stop();
+    }
+  }
+
+
+  function unlockScroll() {
+    const scrollY = parseInt(
+      document.body.dataset.scrollY || "0",
+      10
+    );
+
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    document.body.style.overflow = "";
+
+    document.documentElement.style.overflow = "";
+
+    document.body.removeAttribute("data-scroll-y");
+
+    window.scrollTo(0, scrollY);
+
+    if (window.lenis) {
+      window.lenis.start();
+    }
+  }
+
+
+  // =========================
+  // ATTRIBUTE ANIMATION
+  // =========================
+
+  function animateAttrs(
+    element,
+    from,
+    to,
+    duration,
+    easeFunction = (value) => value
+  ) {
+    if (!element) {
+      return Promise.resolve();
+    }
+
+    return new Promise(resolve => {
+      const startTime = performance.now();
+
+      function frame(currentTime) {
+        const progress = Math.min(
+          1,
+          (currentTime - startTime) / duration
+        );
+
+        const easedProgress = easeFunction(progress);
+
+        if ("x" in from) {
+          element.setAttribute(
+            "x",
+            from.x + (to.x - from.x) * easedProgress
+          );
+        }
+
+        if ("y" in from) {
+          element.setAttribute(
+            "y",
+            from.y + (to.y - from.y) * easedProgress
+          );
+        }
+
+        if ("w" in from) {
+          element.setAttribute(
+            "width",
+            from.w + (to.w - from.w) * easedProgress
+          );
+        }
+
+        if ("h" in from) {
+          element.setAttribute(
+            "height",
+            from.h + (to.h - from.h) * easedProgress
+          );
+        }
+
+        const hasTransform =
+          "tx" in from ||
+          "ty" in from ||
+          "sx" in from ||
+          "sy" in from ||
+          "tx" in to ||
+          "ty" in to ||
+          "sx" in to ||
+          "sy" in to;
+
+        if (hasTransform) {
+          const translateX =
+            (from.tx ?? 0) +
+            ((to.tx ?? 0) - (from.tx ?? 0)) *
+              easedProgress;
+
+          const translateY =
+            (from.ty ?? 0) +
+            ((to.ty ?? 0) - (from.ty ?? 0)) *
+              easedProgress;
+
+          const hasScale =
+            "sx" in from ||
+            "sy" in from ||
+            "sx" in to ||
+            "sy" in to;
+
+          if (hasScale) {
+            const scaleX =
+              (from.sx ?? 1) +
+              ((to.sx ?? 1) - (from.sx ?? 1)) *
+                easedProgress;
+
+            const scaleY =
+              (from.sy ?? 1) +
+              ((to.sy ?? 1) - (from.sy ?? 1)) *
+                easedProgress;
+
+            element.setAttribute(
+              "transform",
+              `translate(${translateX},${translateY}) scale(${scaleX},${scaleY})`
+            );
+          } else {
+            element.setAttribute(
+              "transform",
+              `translate(${translateX},${translateY})`
+            );
+          }
+        }
+
+        if ("op" in from) {
+          const opacity =
+            from.op +
+            (to.op - from.op) * easedProgress;
+
+          element.setAttribute("opacity", opacity);
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+        } else {
+          resolve();
+        }
       }
 
-      for (const el of elements) el.setAttribute("transform", "translate(0,0)");
+      requestAnimationFrame(frame);
+    });
+  }
+
+
+  // =========================
+  // LOGO JOLT
+  // =========================
+
+  async function jolt(elements) {
+    const validElements = elements.filter(Boolean);
+
+    const keyframes = [
+      0,
+      -18,
+      12,
+      -8,
+      5,
+      -3,
+      0
+    ];
+
+    const durations = [
+      60,
+      55,
+      50,
+      45,
+      40,
+      35
+    ];
+
+    validElements.forEach(element => {
+      element.setAttribute(
+        "transform",
+        "translate(0,0)"
+      );
+    });
+
+    for (let index = 0; index < durations.length; index++) {
+      const fromY = keyframes[index];
+      const toY = keyframes[index + 1];
+
+      await Promise.all(
+        validElements.map(element =>
+          animateAttrs(
+            element,
+            { ty: fromY },
+            { ty: toY },
+            durations[index],
+            easeOutCubic
+          )
+        )
+      );
     }
 
-    function sizeScene(){
-      const svg = document.getElementById("loaderSvg");
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+    validElements.forEach(element => {
+      element.setAttribute(
+        "transform",
+        "translate(0,0)"
+      );
+    });
+  }
 
-      const root = getComputedStyle(document.documentElement);
-      const sq    = parseFloat(root.getPropertyValue("--square")) || 96;
-      const rectW = parseFloat(root.getPropertyValue("--rectW")) || 254;
-      const rectH = parseFloat(root.getPropertyValue("--rectH")) || 96;
-      const ovalW = parseFloat(root.getPropertyValue("--ovalW")) || 800;
 
-      const sqW = sq * SQUARE_WIDTH_SCALE;
-      const sqOffsetX = (sq - sqW) / 2;
+  // =========================
+  // RESPONSIVE LOADER SIZING
+  // =========================
 
-      const maskBase = document.getElementById("maskBase");
-      const cover = document.getElementById("cover");
-      maskBase.setAttribute("width", w);
-      maskBase.setAttribute("height", h);
-      cover.setAttribute("width", w);
-      cover.setAttribute("height", h);
+  function sizeScene() {
+    const svg = document.getElementById("loaderSvg");
 
-      // fullscreen bg
-      const bgImg = document.getElementById("bgImg");
-      bgImg.setAttribute("x", 0);
-      bgImg.setAttribute("y", 0);
-      bgImg.setAttribute("width", w);
-      bgImg.setAttribute("height", h);
+    if (!svg) return null;
 
-      // square centered
-      const sqX = (w - sq)/2;
-      const sqY = (h - sq)/2;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
 
-      // alltype centered in viewport
-      const rectX = (w - rectW) / 2;
-      const rectY = (h - rectH) / 2;
+    svg.setAttribute(
+      "viewBox",
+      `0 0 ${viewportWidth} ${viewportHeight}`
+    );
 
-      // square image
-      const squareImg = document.getElementById("squareImg");
-      squareImg.setAttribute("x", sqX + sqOffsetX);
-      squareImg.setAttribute("y", sqY);
-      squareImg.setAttribute("width", sqW);
-      squareImg.setAttribute("height", sq);
-      squareImg.setAttribute("opacity", 1);
+    const rootStyles = getComputedStyle(
+      document.documentElement
+    );
 
-      // square clip starts at center (center -> out)
-      const sqMidY = sqY + (sq / 2);
-      const squareClipRect = document.getElementById("squareClipRect");
-      squareClipRect.setAttribute("x", sqX + sqOffsetX);
-      squareClipRect.setAttribute("y", sqMidY);
-      squareClipRect.setAttribute("width", sqW);
-      squareClipRect.setAttribute("height", 0);
+    const squareSize =
+      parseFloat(
+        rootStyles.getPropertyValue("--square")
+      ) || 96;
 
-      // alltype image centered but hidden initially
-      const rectImg = document.getElementById("rectImg");
-      rectImg.setAttribute("width", rectW);
-      rectImg.setAttribute("height", rectH);
-      rectImg.setAttribute("x", rectX);
-      rectImg.setAttribute("y", rectY);
-      rectImg.setAttribute("opacity", 0);
+    const rectangleWidth =
+      parseFloat(
+        rootStyles.getPropertyValue("--rectW")
+      ) || 254;
 
-      // alltype clip starts at center horizontally, full height
-      const rectRevealRect = document.getElementById("rectRevealRect");
-      rectRevealRect.setAttribute("x", rectX + rectW/2);
-      rectRevealRect.setAttribute("y", rectY);
-      rectRevealRect.setAttribute("width", 0);
-      rectRevealRect.setAttribute("height", rectH);
+    const rectangleHeight =
+      parseFloat(
+        rootStyles.getPropertyValue("--rectH")
+      ) || 96;
 
-      // ovals
-      const ovalLImg = document.getElementById("ovalLImg");
-      const ovalRImg = document.getElementById("ovalRImg");
-      ovalLImg.setAttribute("width", ovalW);
-      ovalLImg.setAttribute("height", h);
-      ovalLImg.setAttribute("x", 0);
-      ovalLImg.setAttribute("y", 0);
+    const ovalWidth =
+      parseFloat(
+        rootStyles.getPropertyValue("--ovalW")
+      ) || 800;
 
-      ovalRImg.setAttribute("width", ovalW);
-      ovalRImg.setAttribute("height", h);
-      ovalRImg.setAttribute("x", w - ovalW);
-      ovalRImg.setAttribute("y", 0);
+    const squareWidth =
+      squareSize * SQUARE_WIDTH_SCALE;
 
-      return {
-        w, h,
-        sq, sqW, sqOffsetX,
-        rectW, rectH, ovalW,
-        sqX, sqY,
-        rectX, rectY
-      };
+    const squareOffsetX =
+      (squareSize - squareWidth) / 2;
+
+    const maskBase =
+      document.getElementById("maskBase");
+
+    const cover =
+      document.getElementById("cover");
+
+    if (maskBase) {
+      maskBase.setAttribute(
+        "width",
+        viewportWidth
+      );
+
+      maskBase.setAttribute(
+        "height",
+        viewportHeight
+      );
     }
 
-    (async function run(){
-      lockScroll();
+    if (cover) {
+      cover.setAttribute(
+        "width",
+        viewportWidth
+      );
 
-      let S = sizeScene();
-      const onResize = () => { S = sizeScene(); };
-      window.addEventListener("resize", onResize, { passive:true });
+      cover.setAttribute(
+        "height",
+        viewportHeight
+      );
+    }
 
-      const maskWindow = document.getElementById("maskWindow");
+    // Fullscreen loader background.
+    const backgroundImage =
+      document.getElementById("bgImg");
+
+    if (backgroundImage) {
+      backgroundImage.setAttribute("x", 0);
+      backgroundImage.setAttribute("y", 0);
+
+      backgroundImage.setAttribute(
+        "width",
+        viewportWidth
+      );
+
+      backgroundImage.setAttribute(
+        "height",
+        viewportHeight
+      );
+    }
+
+    // Center the lightning square.
+    const squareX =
+      (viewportWidth - squareSize) / 2;
+
+    const squareY =
+      (viewportHeight - squareSize) / 2;
+
+    // Center the full logo.
+    const rectangleX =
+      (viewportWidth - rectangleWidth) / 2;
+
+    const rectangleY =
+      (viewportHeight - rectangleHeight) / 2;
+
+    const squareImage =
+      document.getElementById("squareImg");
+
+    if (squareImage) {
+      squareImage.setAttribute(
+        "x",
+        squareX + squareOffsetX
+      );
+
+      squareImage.setAttribute(
+        "y",
+        squareY
+      );
+
+      squareImage.setAttribute(
+        "width",
+        squareWidth
+      );
+
+      squareImage.setAttribute(
+        "height",
+        squareSize
+      );
+
+      squareImage.setAttribute(
+        "opacity",
+        1
+      );
+    }
+
+    // Square clip begins at its vertical center.
+    const squareMiddleY =
+      squareY + squareSize / 2;
+
+    const squareClipRectangle =
+      document.getElementById(
+        "squareClipRect"
+      );
+
+    if (squareClipRectangle) {
+      squareClipRectangle.setAttribute(
+        "x",
+        squareX + squareOffsetX
+      );
+
+      squareClipRectangle.setAttribute(
+        "y",
+        squareMiddleY
+      );
+
+      squareClipRectangle.setAttribute(
+        "width",
+        squareWidth
+      );
+
+      squareClipRectangle.setAttribute(
+        "height",
+        0
+      );
+    }
+
+    const rectangleImage =
+      document.getElementById("rectImg");
+
+    if (rectangleImage) {
+      rectangleImage.setAttribute(
+        "width",
+        rectangleWidth
+      );
+
+      rectangleImage.setAttribute(
+        "height",
+        rectangleHeight
+      );
+
+      rectangleImage.setAttribute(
+        "x",
+        rectangleX
+      );
+
+      rectangleImage.setAttribute(
+        "y",
+        rectangleY
+      );
+
+      rectangleImage.setAttribute(
+        "opacity",
+        0
+      );
+    }
+
+    // Full-logo clip begins at the horizontal center.
+    const rectangleReveal =
+      document.getElementById(
+        "rectRevealRect"
+      );
+
+    if (rectangleReveal) {
+      rectangleReveal.setAttribute(
+        "x",
+        rectangleX + rectangleWidth / 2
+      );
+
+      rectangleReveal.setAttribute(
+        "y",
+        rectangleY
+      );
+
+      rectangleReveal.setAttribute(
+        "width",
+        0
+      );
+
+      rectangleReveal.setAttribute(
+        "height",
+        rectangleHeight
+      );
+    }
+
+    const leftOval =
+      document.getElementById("ovalLImg");
+
+    const rightOval =
+      document.getElementById("ovalRImg");
+
+    if (leftOval) {
+      leftOval.setAttribute(
+        "width",
+        ovalWidth
+      );
+
+      leftOval.setAttribute(
+        "height",
+        viewportHeight
+      );
+
+      leftOval.setAttribute("x", 0);
+      leftOval.setAttribute("y", 0);
+    }
+
+    if (rightOval) {
+      rightOval.setAttribute(
+        "width",
+        ovalWidth
+      );
+
+      rightOval.setAttribute(
+        "height",
+        viewportHeight
+      );
+
+      rightOval.setAttribute(
+        "x",
+        viewportWidth - ovalWidth
+      );
+
+      rightOval.setAttribute("y", 0);
+    }
+
+    return {
+      w: viewportWidth,
+      h: viewportHeight,
+
+      sq: squareSize,
+      sqW: squareWidth,
+      sqOffsetX: squareOffsetX,
+
+      rectW: rectangleWidth,
+      rectH: rectangleHeight,
+
+      ovalW: ovalWidth,
+
+      sqX: squareX,
+      sqY: squareY,
+
+      rectX: rectangleX,
+      rectY: rectangleY
+    };
+  }
+
+
+  // =========================
+  // RUN LOADER
+  // =========================
+
+  (async function runLoader() {
+    const loaderSvg =
+      document.getElementById("loaderSvg");
+
+    if (!loaderSvg) return;
+
+    lockScroll();
+
+    let scene = sizeScene();
+
+    if (!scene) {
+      unlockScroll();
+      return;
+    }
+
+    const handleResize = () => {
+      const updatedScene = sizeScene();
+
+      if (updatedScene) {
+        scene = updatedScene;
+      }
+    };
+
+    window.addEventListener(
+      "resize",
+      handleResize,
+      { passive: true }
+    );
+
+    // Begin loading the real page while the loader animation plays.
+    const contentReadyPromise =
+      waitForCriticalContent();
+
+    const maskWindow =
+      document.getElementById("maskWindow");
+
+    const squareImage =
+      document.getElementById("squareImg");
+
+    const squareClipRectangle =
+      document.getElementById("squareClipRect");
+
+    const rectangleImage =
+      document.getElementById("rectImg");
+
+    const rectangleReveal =
+      document.getElementById("rectRevealRect");
+
+    const leftOval =
+      document.getElementById("ovalLImg");
+
+    const rightOval =
+      document.getElementById("ovalRImg");
+
+    const backgroundImage =
+      document.getElementById("bgImg");
+
+    if (maskWindow) {
       maskWindow.setAttribute("x", 0);
       maskWindow.setAttribute("y", 0);
       maskWindow.setAttribute("width", 0);
       maskWindow.setAttribute("height", 0);
+    }
 
-      const squareImg      = document.getElementById("squareImg");
-      const squareClipRect = document.getElementById("squareClipRect");
-      const rectImg        = document.getElementById("rectImg");
-      const rectRevealRect = document.getElementById("rectRevealRect");
-      const ovalLImg       = document.getElementById("ovalLImg");
-      const ovalRImg       = document.getElementById("ovalRImg");
-      const bgImg          = document.getElementById("bgImg");
+    // Ovals begin outside the viewport.
+    if (leftOval) {
+      leftOval.setAttribute(
+        "transform",
+        `translate(${-scene.ovalW},0)`
+      );
+    }
 
-      // ovals start offscreen
-      ovalLImg.setAttribute("transform", `translate(${-S.ovalW},0)`);
-      ovalRImg.setAttribute("transform", `translate(${ S.ovalW},0)`);
+    if (rightOval) {
+      rightOval.setAttribute(
+        "transform",
+        `translate(${scene.ovalW},0)`
+      );
+    }
 
-      // bg starts hidden
-      bgImg.setAttribute("opacity", "0");
+    // Loader background begins hidden.
+    if (backgroundImage) {
+      backgroundImage.setAttribute(
+        "opacity",
+        "0"
+      );
+    }
 
-      // fade bg in during loader
-      const bgFade = animateAttrs(bgImg, { op: 0 }, { op: 1 }, 900, easeSoftOut);
+    try {
+      // Fade in the loader background.
+      const backgroundFade = animateAttrs(
+        backgroundImage,
+        { op: 0 },
+        { op: 1 },
+        900,
+        easeSoftOut
+      );
 
-      // 1) Square reveal (center -> out vertically) ✅ longer initial reveal
-      const sqMidY = S.sqY + (S.sq / 2);
+      // 1. Reveal the lightning bolt from its center.
+      const squareMiddleY =
+        scene.sqY + scene.sq / 2;
+
       await Promise.all([
-        bgFade,
+        backgroundFade,
+
         animateAttrs(
-          squareClipRect,
-          { x: S.sqX + S.sqOffsetX, y: sqMidY, w: S.sqW, h: 0 },
-          { x: S.sqX + S.sqOffsetX, y: S.sqY,  w: S.sqW, h: S.sq },
+          squareClipRectangle,
+          {
+            x: scene.sqX + scene.sqOffsetX,
+            y: squareMiddleY,
+            w: scene.sqW,
+            h: 0
+          },
+          {
+            x: scene.sqX + scene.sqOffsetX,
+            y: scene.sqY,
+            w: scene.sqW,
+            h: scene.sq
+          },
           2200,
           easeOutCubic
         )
       ]);
 
-      // 2) quick jolt
-      await jolt([squareImg, squareClipRect]);
+      // 2. Lightning bolt jolt.
+      await jolt([
+        squareImage,
+        squareClipRectangle
+      ]);
 
-      // 3) square fades out quickly
-      await animateAttrs(squareImg, { op: 1 }, { op: 0 }, 180, easeOutCubic);
+      // 3. Fade out the lightning bolt.
+      await animateAttrs(
+        squareImage,
+        { op: 1 },
+        { op: 0 },
+        180,
+        easeOutCubic
+      );
 
-      // 4) alltype appears + reveal from center -> left/right
-      rectImg.setAttribute("opacity", "0");
-      const rectMidX = S.rectX + (S.rectW / 2);
+      // 4. Reveal the complete All-Type logo.
+      if (rectangleImage) {
+        rectangleImage.setAttribute(
+          "opacity",
+          "0"
+        );
+      }
 
-      await animateAttrs(rectImg, { op: 0 }, { op: 1 }, 120, easeOutCubic);
+      const rectangleMiddleX =
+        scene.rectX + scene.rectW / 2;
 
       await animateAttrs(
-        rectRevealRect,
-        { x: rectMidX, y: S.rectY, w: 0,       h: S.rectH },
-        { x: S.rectX,  y: S.rectY, w: S.rectW, h: S.rectH },
+        rectangleImage,
+        { op: 0 },
+        { op: 1 },
+        120,
+        easeOutCubic
+      );
+
+      await animateAttrs(
+        rectangleReveal,
+        {
+          x: rectangleMiddleX,
+          y: scene.rectY,
+          w: 0,
+          h: scene.rectH
+        },
+        {
+          x: scene.rectX,
+          y: scene.rectY,
+          w: scene.rectW,
+          h: scene.rectH
+        },
         520,
         easeOutCubic
       );
 
       await sleep(120);
 
-      // 5) ovals in (optional)
+      // 5. Slide both oval graphics inward.
       await Promise.all([
-        animateAttrs(ovalLImg, { tx:-S.ovalW }, { tx:0 }, 1100, easeOut),
-        animateAttrs(ovalRImg, { tx: S.ovalW }, { tx:0 }, 1100, easeOut),
+        animateAttrs(
+          leftOval,
+          { tx: -scene.ovalW },
+          { tx: 0 },
+          1100,
+          easeOut
+        ),
+
+        animateAttrs(
+          rightOval,
+          { tx: scene.ovalW },
+          { tx: 0 },
+          1100,
+          easeOut
+        )
       ]);
 
-      // 6) fade out alltype before mask reveal (optional)
-      await animateAttrs(rectImg, { op: 1 }, { op: 0 }, 220, easeOutCubic);
+      // 6. Fade out the complete logo.
+      await animateAttrs(
+        rectangleImage,
+        { op: 1 },
+        { op: 0 },
+        220,
+        easeOutCubic
+      );
 
-      // ---- MASK: 2 phases ----
+      /*
+       * The animation has reached its final reveal point.
+       * Wait here until the real page content is ready.
+       */
+      await contentReadyPromise;
+
+      // Attempt to start the hero video.
+      const heroVideo =
+        document.querySelector(".hero-bg video");
+
+      if (heroVideo) {
+        try {
+          await heroVideo.play();
+        } catch (error) {
+          // Muted autoplay can still be blocked in some circumstances.
+          console.warn(
+            "Hero video autoplay was blocked:",
+            error
+          );
+        }
+      }
+
+      // Reveal the hero background image.
+      const heroBackground =
+        document.querySelector(
+          ".hero-bg .bg-back"
+        );
+
+      if (heroBackground) {
+        heroBackground.classList.add(
+          "is-visible"
+        );
+      }
+
+      // Allow the browser to paint the prepared content.
+      await new Promise(resolve => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(resolve);
+        });
+      });
+
+      // =========================
+      // FINAL MASK REVEAL
+      // =========================
+
       const startSize = 16;
 
       const maskPhase1 = {
-        vw: 0.99,
-        vh: 0.005,
+        viewportWidth: 0.99,
+        viewportHeight: 0.005,
         duration: 750,
         ease: easeSoftOut,
         hold: 120
@@ -1549,34 +2388,87 @@ html.lenis body {
         ease: easeOutQuint
       };
 
-      const midW = S.w * maskPhase1.vw;
-      const midH = S.h * maskPhase1.vh;
-      const midX = (S.w - midW) / 2;
-      const midY = (S.h - midH) / 2;
+      const middleWidth =
+        scene.w * maskPhase1.viewportWidth;
 
+      const middleHeight =
+        scene.h * maskPhase1.viewportHeight;
+
+      const middleX =
+        (scene.w - middleWidth) / 2;
+
+      const middleY =
+        (scene.h - middleHeight) / 2;
+
+      // First expand into a thin horizontal line.
       await animateAttrs(
         maskWindow,
-        { x:(S.w-startSize)/2, y:(S.h-startSize)/2, w:startSize, h:startSize },
-        { x:midX, y:midY, w:midW, h:midH },
+        {
+          x: (scene.w - startSize) / 2,
+          y: (scene.h - startSize) / 2,
+          w: startSize,
+          h: startSize
+        },
+        {
+          x: middleX,
+          y: middleY,
+          w: middleWidth,
+          h: middleHeight
+        },
         maskPhase1.duration,
         maskPhase1.ease
       );
 
-      if ((maskPhase1.hold ?? 0) > 0) await sleep(maskPhase1.hold);
+      if (maskPhase1.hold > 0) {
+        await sleep(maskPhase1.hold);
+      }
 
+      // Expand the line vertically to reveal the full site.
       await animateAttrs(
         maskWindow,
-        { x:midX, y:midY, w:midW, h:midH },
-        { x:0, y:0, w:S.w, h:S.h },
+        {
+          x: middleX,
+          y: middleY,
+          w: middleWidth,
+          h: middleHeight
+        },
+        {
+          x: 0,
+          y: 0,
+          w: scene.w,
+          h: scene.h
+        },
         maskPhase2.duration,
         maskPhase2.ease
       );
+    } catch (error) {
+      console.error(
+        "Loader animation error:",
+        error
+      );
+    } finally {
+      window.removeEventListener(
+        "resize",
+        handleResize
+      );
 
-      window.removeEventListener("resize", onResize);
-      document.getElementById("loaderSvg").remove();
+      if (loaderSvg.isConnected) {
+        loaderSvg.remove();
+      }
+
       unlockScroll();
-    })();
-  </script>-->
+
+      // Recalculate GSAP positions after the page becomes visible.
+      if (
+        typeof ScrollTrigger !== "undefined"
+      ) {
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+        });
+      }
+    }
+  })();
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>

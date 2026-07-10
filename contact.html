@@ -73,6 +73,7 @@
 </head>
 
 <style>
+  
   :root {
     --red: #f00303;
     --black: #0a0a0a;
@@ -127,15 +128,12 @@
     pointer-events: none;
   }
 
-  .contact-hero-inner {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(3rem, 6vw, 8rem);
-    align-items: end;
-  }
+.contact-hero-inner{
+  display:grid;
+  grid-template-columns: minmax(700px, 1.35fr) 0.9fr;
+  gap: clamp(3rem, 6vw, 8rem);
+  align-items:end;
+}
 
   .hero-eyebrow {
     display: block;
@@ -649,9 +647,59 @@
     <div class="container contact-hero-inner">
 
       <div class="hero-left">
-        <span class="hero-eyebrow">Get in Touch</span>
-        <h1 class="hero-title">Let's Talk<br />About Your <span>Roof</span></h1>
+       
+
+          <div class="form-wrap">
+        <div class="form-eyebrow">Free Estimate</div>
+        <h2 class="form-title">Get a Fast Response</h2>
+
+         <form
+  class="contact-form"
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value="contact">
+
+  <p class="hidden-honeypot">
+    <label>
+      Don’t fill this out if you’re human:
+      <input name="bot-field" type="text">
+    </label>
+  </p>
+
+  <div class="form-row">
+    <input type="text" name="fullName" placeholder="Full Name*" required>
+  </div>
+
+  <div class="form-row">
+    <input type="email" name="emailAddress" placeholder="Email Address*" required>
+  </div>
+
+  <div class="form-row">
+    <input type="tel" name="phoneNumber" placeholder="Phone Number*" required>
+  </div>
+
+  <div class="form-row form-row-textarea">
+    <textarea name="message" placeholder="Message*" rows="6" required></textarea>
+  </div>
+
+  <div data-netlify-recaptcha="true"></div>
+
+  <button type="submit" class="contact-submit">Send Message</button>
+</form>
+
+        <div class="form-success" id="formSuccess">
+          <h3>Message Received</h3>
+          <p>Thank you for reaching out. A member of our team will be in touch shortly. For urgent issues or active leaks, please call us directly at <a href="tel:+12813976614" style="color:var(--red);text-decoration:none;">(281) 397-6614</a>.</p>
+        </div>
+
       </div>
+
+      </div>
+
+      
 
       <div class="hero-right">
         <p class="hero-desc">
@@ -698,78 +746,6 @@
     </div>
   </section>
 
-  <!-- ══ FORM + SIDEBAR ══ -->
-  <section class="contact-body">
-    <div class="container contact-body-inner">
-
-      <!-- FORM -->
-      <div class="form-wrap">
-        <div class="form-eyebrow">Free Estimate</div>
-        <h2 class="form-title">Get a Fast Response</h2>
-
-        <form id="contactForm" novalidate>
-
-          <!-- Name + Phone -->
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="name">Your Name *</label>
-              <input class="form-input" type="text" id="name" name="name" placeholder="John Smith" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="phone">Phone Number *</label>
-              <input class="form-input" type="tel" id="phone" name="phone" placeholder="(281) 000-0000" required />
-            </div>
-          </div>
-
-          <!-- Email -->
-          <div class="form-row full">
-            <div class="form-group">
-              <label class="form-label" for="email">Email Address *</label>
-              <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required />
-            </div>
-          </div>
-
-          <!-- Service chips -->
-          <div class="service-section">
-            <hr class="service-divider" />
-            <span class="service-label">What do you need?</span>
-            <div class="chip-group" id="chipGroup">
-              <div class="chip" data-val="Repair / Leak Detection">Repair &amp; Leak</div>
-              <div class="chip" data-val="Roof Replacement">Replacement</div>
-              <div class="chip" data-val="Restoration / Coatings">Restoration</div>
-              <div class="chip" data-val="Preventative Maintenance">Maintenance</div>
-              <div class="chip" data-val="Roof Inspection">Inspection</div>
-              <div class="chip" data-val="Other / Not Sure">Not Sure</div>
-            </div>
-            <input type="hidden" id="serviceType" name="serviceType" value="Repair / Leak Detection" />
-          </div>
-
-          <!-- Details -->
-          <div class="form-row full">
-            <div class="form-group">
-              <label class="form-label" for="message">Details <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
-              <textarea class="form-textarea" id="message" name="message" placeholder="Property address, roof size, urgency, or anything else that helps us respond accurately…"></textarea>
-            </div>
-          </div>
-
-          <div class="form-submit">
-            <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
-            <p class="submit-note">We typically respond same day. For emergencies, call us directly.</p>
-          </div>
-
-        </form>
-
-        <div class="form-success" id="formSuccess">
-          <h3>Message Received</h3>
-          <p>Thank you for reaching out. A member of our team will be in touch shortly. For urgent issues or active leaks, please call us directly at <a href="tel:+12813976614" style="color:var(--red);text-decoration:none;">(281) 397-6614</a>.</p>
-        </div>
-
-      </div>
-
-      
-
-    </div>
-  </section>
 
   <!-- ══ MAP ══ -->
   <section class="map-section">
