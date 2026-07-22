@@ -252,6 +252,49 @@ body{
       .hero{
         padding: 0 1.25rem 4rem;
       }
+      .hero{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 4rem;
+  background: black;
+  overflow: hidden;
+}
+
+.hero-content{
+  position: relative;
+  z-index: 4;
+  color: white;
+  max-width: 800px;
+}
+.cta-button {
+      display: inline-block;
+      padding: 10px 18px;
+      font-size: 16px;
+      background-color: transparent;
+      border: 5px solid white;
+      color: white;
+
+      border-radius: 99px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+      .hero-content h1 {
+      font-size: clamp(32px, 3.5vw, 56px);
+      margin-bottom: 10px;
+      line-height: 0.9;
+      font-weight: 800;
+    }
+
+    .hero-content p {
+      font-size: clamp(15px, 2.1vw, 22px);
+      line-height: 1.1;
+      margin-bottom: 44px;
+      font-weight: 400;
+    }
+
     }
 
 
@@ -2202,6 +2245,11 @@ function waitForPageContent() {
       );
     }
 
+    if (window.innerWidth <= 767) {
+  leftOval?.setAttribute("display", "none");
+  rightOval?.setAttribute("display", "none");
+}
+
     // Loader background begins hidden.
     if (backgroundImage) {
       backgroundImage.setAttribute(
@@ -2299,6 +2347,29 @@ function waitForPageContent() {
       );
 
       await sleep(120);
+
+      const isMobileLoader = window.innerWidth <= 767;
+
+      // 5. Slide both oval graphics inward.
+if (!isMobileLoader) {
+  await Promise.all([
+    animateAttrs(
+      leftOval,
+      { tx: -scene.ovalW },
+      { tx: 0 },
+      1100,
+      easeOut
+    ),
+
+    animateAttrs(
+      rightOval,
+      { tx: scene.ovalW },
+      { tx: 0 },
+      1100,
+      easeOut
+    )
+  ]);
+}
 
       // 5. Slide both oval graphics inward.
       await Promise.all([
