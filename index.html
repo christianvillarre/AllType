@@ -84,6 +84,30 @@
   <link rel="stylesheet" href="/navbar.css" />
   <link rel="stylesheet" href="/footer.css" />
   <link rel="stylesheet" href="https://use.typekit.net/vml5vif.css" />
+  <!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://magnaflow.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '4']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='https://cdn.matomo.cloud/magnaflow.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+ <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ypl49gsy1v");
+</script>
+
+
 </head>
   <style>
     :root{
@@ -1455,6 +1479,12 @@ function waitForPageContent() {
     });
   }
 
+  function waitForSvgImages(svgImages) {
+    return Promise.all(
+      svgImages.map(svgImage => waitForSvgImage(svgImage))
+    );
+  }
+
 
   /**
    * Waits until a video has enough data to display.
@@ -2223,6 +2253,14 @@ function waitForPageContent() {
     const backgroundImage =
       document.getElementById("bgImg");
 
+    const loaderImagesReadyPromise = waitForSvgImages([
+      backgroundImage,
+      squareImage,
+      rectangleImage,
+      leftOval,
+      rightOval
+    ]);
+
     if (maskWindow) {
       maskWindow.setAttribute("x", 0);
       maskWindow.setAttribute("y", 0);
@@ -2259,6 +2297,8 @@ function waitForPageContent() {
     }
 
     try {
+      await loaderImagesReadyPromise;
+
       // Fade in the loader background.
       const backgroundFade = animateAttrs(
         backgroundImage,
@@ -2291,7 +2331,10 @@ function waitForPageContent() {
           },
           2200,
           easeOutCubic
-        )
+        ),
+
+        // Keep the first masked logo on screen while the page loads.
+        contentReadyPromise
       ]);
 
       // 2. Lightning bolt jolt.
@@ -2324,7 +2367,7 @@ function waitForPageContent() {
         rectangleImage,
         { op: 0 },
         { op: 1 },
-        120,
+        80,
         easeOutCubic
       );
 
@@ -2342,68 +2385,43 @@ function waitForPageContent() {
           w: scene.rectW,
           h: scene.rectH
         },
-        520,
+        360,
         easeOutCubic
       );
 
-      await sleep(120);
+      await sleep(60);
 
       const isMobileLoader = window.innerWidth <= 767;
 
       // 5. Slide both oval graphics inward.
-if (!isMobileLoader) {
-  await Promise.all([
-    animateAttrs(
-      leftOval,
-      { tx: -scene.ovalW },
-      { tx: 0 },
-      1100,
-      easeOut
-    ),
+      if (!isMobileLoader) {
+        await Promise.all([
+          animateAttrs(
+            leftOval,
+            { tx: -scene.ovalW },
+            { tx: 0 },
+            650,
+            easeOut
+          ),
 
-    animateAttrs(
-      rightOval,
-      { tx: scene.ovalW },
-      { tx: 0 },
-      1100,
-      easeOut
-    )
-  ]);
-}
-
-      // 5. Slide both oval graphics inward.
-      await Promise.all([
-        animateAttrs(
-          leftOval,
-          { tx: -scene.ovalW },
-          { tx: 0 },
-          1100,
-          easeOut
-        ),
-
-        animateAttrs(
-          rightOval,
-          { tx: scene.ovalW },
-          { tx: 0 },
-          1100,
-          easeOut
-        )
-      ]);
+          animateAttrs(
+            rightOval,
+            { tx: scene.ovalW },
+            { tx: 0 },
+            650,
+            easeOut
+          )
+        ]);
+      }
 
       // 6. Fade out the complete logo.
       await animateAttrs(
         rectangleImage,
         { op: 1 },
         { op: 0 },
-        220,
+        160,
         easeOutCubic
       );
-
-      /*
-       * The animation has reached its final reveal point.
-       * Wait here until the real page content is ready.
-       */
-      await contentReadyPromise;
 
       // Attempt to start the hero video.
       const heroVideo =
@@ -2449,13 +2467,13 @@ if (!isMobileLoader) {
       const maskPhase1 = {
         viewportWidth: 0.99,
         viewportHeight: 0.005,
-        duration: 750,
+        duration: 520,
         ease: easeSoftOut,
-        hold: 120
+        hold: 60
       };
 
       const maskPhase2 = {
-        duration: 950,
+        duration: 680,
         ease: easeOutQuint
       };
 
@@ -3083,21 +3101,6 @@ if (!isMobileLoader) {
 </script>
 
 
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="https://magnaflow.matomo.cloud/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '4']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src='https://cdn.matomo.cloud/magnaflow.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
 
 <style>
   
