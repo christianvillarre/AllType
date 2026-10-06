@@ -1,0 +1,4 @@
+# Consolidate both construction-domain aliases on the site's primary domain.
+# Keep the requested path so service and contact links reach the same page.
+https://www.alltype-construction.com/* https://alltyperoofingandconstruction.com/:splat 301!
+https://alltype-construction.com/* https://alltyperoofingandconstruction.com/:splat 301!

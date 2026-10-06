@@ -1282,7 +1282,7 @@
   <!-- ══════════ MAP ══════════ -->
   <section class="map-section">
     <div class="map-shell">
-      <div id="googleMap"></div>
+      <iframe id="googleMap" title="Google Map showing All-Type Roofing &amp; Construction at 13625 Chrisman Rd, Houston, TX 77039" src="https://maps.google.com/maps?q=13625%20Chrisman%20Rd%2C%20Houston%2C%20TX%2077039&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen style="border:0"></iframe>
       <div class="map-card">
         <div class="map-eyebrow">Corporate Office</div>
         <h3>All-Type Roofing &amp; Construction</h3>
@@ -1342,40 +1342,10 @@
   <div data-netlify-recaptcha="true"></div>
 </form>
 
-<script>
-  async function initMap() {
-    const { Map } = await google.maps.importLibrary("maps");
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-    const center = { lat: 29.9118911718676, lng: -95.36409313241205 };
-
-    const map = new Map(document.getElementById("googleMap"), {
-      center,
-      zoom: 10,
-      mapId: "8b312c924f7d81ecb8810be1",
-      disableDefaultUI: true,
-      zoomControl: true,
-      fullscreenControl: false,
-      streetViewControl: false,
-      mapTypeControl: false
-    });
-
-    new AdvancedMarkerElement({
-      map,
-      position: center,
-      title: "All-Type Roofing & Construction"
-    });
-  }
-</script>
-
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfAQVdQC9mx-mFcZ5oFIYMVHQY-vGzimI&loading=async&callback=initMap"
-  async
-  defer
-></script>
 
 <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-<script src="/navbar.js" defer></script>
+<script src="/navbar.js?v=20261005b" defer></script>
 
 </body>
 </html>

@@ -199,16 +199,17 @@
   pointer-events: none;
   transition: transform 420ms ease, opacity 320ms ease;
   padding-top: 0px;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .menu-panel-inner{
-  min-height: 100vh;
+  box-sizing: border-box;
+  height: 100dvh;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
   padding-top: 8.5rem; /* leaves room for fixed-positioned header row */
-  padding-bottom: 4rem;
+  padding-bottom: 3rem;
   align-items: stretch;
   position: relative;
   z-index: 1;
@@ -279,12 +280,20 @@
     .menu-right{
       display: flex;
       flex-direction: column;
-      min-height: 100%;
+      min-height: 0;
     }
     @media (min-width: 1100px){
       .menu-right {
-      margin-left: -4rem;
+      margin-left: 2rem;
     }
+    }
+    .menu-right{
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.45) transparent;
+      padding-right: 1rem;
     }
     
     .menu-list{
@@ -377,11 +386,22 @@
       line-height: 1.2;
       color: rgba(255,255,255,.85);
     }
+    .office-block a{
+      color: inherit;
+      text-decoration: none;
+    }
+    .office-block a:hover{
+      color: #fff;
+    }
+    .office-block a:focus-visible{
+      outline: 2px solid var(--red);
+      outline-offset: 3px;
+    }
 
     .menu-right-top{
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
       align-items: start;
     }
 
@@ -391,20 +411,20 @@
       color: var(--red);
       letter-spacing: .06em;
       text-transform: none;
-      margin-bottom: 3rem;
+      margin-bottom: 1.25rem;
     }
 
     .menu-sublist{
       display: grid;
-      gap: 12px;
+      gap: 5px;
     }
 
     .menu-subitem{
       color: #fff;
       text-decoration: none;
-      font-size: clamp(24px, 3.5vw, 32px);
-      line-height: 0.72;
-      padding-bottom: 0.22em; /* space for descenders */
+      font-size: clamp(18px, 1.8vw, 24px);
+      line-height: 1.15;
+      padding: 2px 0;
       font-weight: 600;
       opacity: .92;
         background-image: linear-gradient(to right, var(--red), var(--red));
@@ -481,10 +501,7 @@
     height: 58px;
   }
 
-  .menu-panel{
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+  .menu-panel{overflow: hidden}
 
   .menu-panel-top{
     top: 12px;
@@ -511,16 +528,17 @@
   }
 
   .menu-panel-inner{
-    min-height: auto;
+    height: 100dvh;
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 1rem;
     padding-top: 6.5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
   }
 
   .menu-left,
   .menu-right{
-    min-height: auto;
+    min-height: 0;
   }
 
   .menu-list{
@@ -549,13 +567,13 @@
   }
 
   .menu-sublist{
-    gap: 10px;
+    gap: 5px;
   }
 
   .menu-subitem{
-    font-size: clamp(20px, 6vw, 28px);
-    line-height: 1.05;
-    padding-bottom: 0;
+    font-size: clamp(18px, 4.5vw, 23px);
+    line-height: 1.15;
+    padding: 2px 0;
   }
 
   .menu-left-bottom{
@@ -667,7 +685,7 @@
 
   .menu-panel-inner{
     padding-top: 5.8rem;
-    gap: 2rem;
+    gap: .75rem;
   }
 
   .menu-link{
@@ -675,7 +693,7 @@
   }
 
   .menu-subitem{
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .office-block{

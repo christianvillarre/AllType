@@ -21,7 +21,7 @@
   <header class="navbar" aria-label="Primary">
     <div class="container navbar-inner">
       <div class="nav-logo">
-        <a href="/">
+        <a href="/index.html">
           <img src="images/Alltype Logo.png" alt="Alltype" />
         </a>
       </div>
@@ -43,7 +43,7 @@
     <div class="container menu-panel-inner">
       <div class="menu-panel-top">
         <div class="menu-panel-brand">
-          <a href="/">
+          <a href="/index.html">
             <img src="images/Alltype Logo.png" alt="Alltype" />
           </a>
         </div>
@@ -62,7 +62,7 @@
           <a class="menu-link" href="/services.html">Services</a>
           <a class="menu-link" href="/locations.html">Locations</a>
           <a class="menu-link" href="/about.html">About</a>
-          <a class="menu-link" href="#contact-section">Contact</a>
+          <a class="menu-link" href="/contact.html">Contact</a>
         </nav>
 
         <div class="menu-left-bottom">
@@ -101,8 +101,10 @@
       <div class="menu-sublist">
         <a class="menu-subitem" href="/commercial-roofing.html">Commercial Roofing</a>
         <a class="menu-subitem" href="/commercial-construction.html">Commercial Construction</a>
-        <a class="menu-subitem" href="/emergency-roofing.html">Emergency Response</a>
-        <a class="menu-subitem" href="/roof-restoration.html">Restoration</a>
+        <a class="menu-subitem" href="/emergency-commercial-building-repair.html">Emergency Building Repair</a>
+        <a class="menu-subitem" href="/commercial-storm-damage-repair.html">Commercial Storm Damage Repair</a>
+        <a class="menu-subitem" href="/emergency-roofing.html">Emergency Commercial Roof Repair</a>
+        <a class="menu-subitem" href="/roof-restoration.html">Roof Restoration</a>
         <a class="menu-subitem" href="/roof-replacement.html">Roof Replacement</a>
         <a class="menu-subitem" href="/roof-repair-leak-detection.html">Repair & Leak Detection</a>
       </div>
@@ -117,12 +119,12 @@
     </div>-->
   </div>
 
-  <div class="office-block" style="margin-top: 3rem;">
+  <div class="office-block" style="margin-top: 2rem;">
     <div class="menu-section-title">Corporate Office</div>
     <p class="office-block">
-      (281) 397-6614<br>
-      frontdesk@alltype-construction.com<br>
-      13625 Chrisman Rd, Houston, TX 77039
+      <a href="tel:+12813976614">(281) 397-6614</a><br>
+      <a href="mailto:frontdesk@alltype-construction.com">frontdesk@alltype-construction.com</a><br>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=13625%20Chrisman%20Rd%2C%20Houston%2C%20TX%2077039" target="_blank" rel="noopener noreferrer">13625 Chrisman Rd, Houston, TX 77039</a>
     </p>
   </div>
 </div>

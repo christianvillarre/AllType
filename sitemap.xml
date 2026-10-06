@@ -20,6 +20,14 @@
   </url>
 
   <url>
+    <loc>https://alltyperoofingandconstruction.com/emergency-commercial-building-repair</loc>
+  </url>
+
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/commercial-storm-damage-repair</loc>
+  </url>
+
+  <url>
     <loc>https://alltyperoofingandconstruction.com/emergency-roofing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -53,6 +61,18 @@
     <loc>https://alltyperoofingandconstruction.com/services</loc>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/painting</loc>
+  </url>
+
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/locations</loc>
+  </url>
+
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/contact</loc>
   </url>
 
 </urlset>

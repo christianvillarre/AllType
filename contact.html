@@ -7,13 +7,13 @@
   <title>Contact All-Type Roofing Houston TX | Get a Free Estimate | (281) 397-6614</title>
   <meta name="description" content="Contact All-Type Roofing & Construction in Houston TX. Call (281) 397-6614 for commercial roofing estimates, emergency response, inspections, and project inquiries. Serving Greater Houston 24/7." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://www.alltyperoofing.com/contact.html" />
+  <link rel="canonical" href="https://alltyperoofingandconstruction.com/contact" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.alltyperoofing.com/contact.html" />
+  <meta property="og:url" content="https://alltyperoofingandconstruction.com/contact" />
   <meta property="og:title" content="Contact All-Type Roofing & Construction | Houston TX" />
   <meta property="og:description" content="Reach out for commercial roofing estimates, emergency response, and project inquiries. Serving Greater Houston 24/7." />
-  <meta property="og:image" content="https://www.alltyperoofing.com/images/og-image.jpg" />
+  <meta property="og:image" content="https://alltyperoofingandconstruction.com/images/og-image.jpg" />
   <meta property="og:site_name" content="All-Type Roofing & Construction" />
   <meta property="og:locale" content="en_US" />
 
@@ -22,9 +22,9 @@
     "@context": "https://schema.org",
     "@type": "RoofingContractor",
     "name": "All-Type Roofing & Construction",
-    "url": "https://www.alltyperoofing.com",
+    "url": "https://alltyperoofingandconstruction.com",
     "telephone": "+1-281-397-6614",
-    "email": "info@alltyperoofing.com",
+    "email": "frontdesk@alltype-construction.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "13625 Chrisman Rd",
@@ -267,6 +267,15 @@
   }
 
   /* ── form fields ── */
+  .hidden-honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
   .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -681,6 +690,7 @@
   name="contact"
   method="POST"
   data-netlify="true"
+  data-netlify-recaptcha="true"
   netlify-honeypot="bot-field"
 >
   <input type="hidden" name="form-name" value="contact">
@@ -741,7 +751,7 @@
               <div class="hero-contact-value">(281) 397-6614</div>
             </div>
           </a>
-          <a href="mailto:info@alltyperoofing.com" class="hero-contact-item">
+          <a href="mailto:frontdesk@alltype-construction.com" class="hero-contact-item">
             <div class="hero-contact-icon">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -749,7 +759,7 @@
             </div>
             <div>
               <div class="hero-contact-label">Email Us</div>
-              <div class="hero-contact-value">info@alltyperoofing.com</div>
+              <div class="hero-contact-value">frontdesk@alltype-construction.com</div>
             </div>
           </a>
           <a href="https://maps.google.com/?q=13625+Chrisman+Rd+Houston+TX+77039" target="_blank" class="hero-contact-item">
@@ -773,7 +783,7 @@
   <!-- ══ MAP ══ -->
   <section class="map-section">
     <div class="map-shell">
-      <div id="googleMap"></div>
+      <iframe id="googleMap" title="Google Map showing All-Type Roofing &amp; Construction at 13625 Chrisman Rd, Houston, TX 77039" src="https://maps.google.com/maps?q=13625%20Chrisman%20Rd%2C%20Houston%2C%20TX%2077039&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen style="border:0"></iframe>
       <div class="map-card">
         <div class="map-eyebrow">Corporate Office</div>
         <h3>All-Type Roofing &amp; Construction</h3>
@@ -793,98 +803,11 @@
     .then(html => { document.getElementById('site-footer').innerHTML = html; });
 </script>
 
-<!-- CHIP SELECTOR -->
-<script>
-  document.querySelectorAll('#chipGroup .chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      document.querySelectorAll('#chipGroup .chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      document.getElementById('serviceType').value = chip.dataset.val;
-    });
-  });
-</script>
-
-<!-- PHONE FORMATTING -->
-<script>
-  const phoneInput = document.getElementById('phone');
-  phoneInput.addEventListener('input', () => {
-    let val = phoneInput.value.replace(/\D/g, '').substring(0, 10);
-    if (val.length >= 6) {
-      val = '(' + val.substring(0,3) + ') ' + val.substring(3,6) + '-' + val.substring(6);
-    } else if (val.length >= 3) {
-      val = '(' + val.substring(0,3) + ') ' + val.substring(3);
-    }
-    phoneInput.value = val;
-  });
-</script>
-
-<!-- FORM SUBMIT -->
-<script>
-  const form = document.getElementById('contactForm');
-  const successMsg = document.getElementById('formSuccess');
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    let valid = true;
-    const required = form.querySelectorAll('[required]');
-    required.forEach(field => {
-      field.style.borderColor = '';
-      if (!field.value.trim()) {
-        field.style.borderColor = 'var(--red)';
-        valid = false;
-      }
-    });
-
-    if (!valid) return;
-
-    const btn = document.getElementById('submitBtn');
-    btn.textContent = 'Sending…';
-    btn.disabled = true;
-
-    // Replace with your actual form service (Formspree, backend endpoint, etc.)
-    setTimeout(() => {
-      form.style.display = 'none';
-      successMsg.style.display = 'block';
-    }, 900);
-  });
-</script>
-
 <!-- GOOGLE MAP -->
-<script>
-  async function initMap() {
-    const { Map } = await google.maps.importLibrary("maps");
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-    const center = { lat: 29.9118911718676, lng: -95.36409313241205 };
-
-    const map = new Map(document.getElementById("googleMap"), {
-      center,
-      zoom: 13,
-      mapId: "8b312c924f7d81ecb8810be1",
-      disableDefaultUI: true,
-      zoomControl: true,
-      fullscreenControl: false,
-      streetViewControl: false,
-      mapTypeControl: false
-    });
-
-    new AdvancedMarkerElement({
-      map,
-      position: center,
-      title: "All-Type Roofing & Construction"
-    });
-  }
-</script>
-
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfAQVdQC9mx-mFcZ5oFIYMVHQY-vGzimI&loading=async&callback=initMap"
-  async
-  defer
-></script>
 
 <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-<script src="/navbar.js" defer></script>
+<script src="/navbar.js?v=20261005b" defer></script>
 
 </body>
 </html>

@@ -6,7 +6,7 @@
   <link rel="icon" type="image/x-icon" href="/images/favicon-96x96.png">
 
   <!-- ===================== PRIMARY SEO ===================== -->
-  <title>Commercial Roofing & Construction Houston TX | All-Type Roofing</title>
+  <title>Emergency Roofing & Construction in Houston, TX | All-Type Roofing</title>
   <meta name="description" content="All-Type Roofing & Construction delivers commercial roofing, emergency restoration, and large-scale repairs across Houston, TX and surrounding areas. 24/7 response. Call (281) 397-6614." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://alltyperoofingandconstruction.com/" />
@@ -14,7 +14,7 @@
   <!-- ===================== OPEN GRAPH (Facebook / LinkedIn) ===================== -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://alltyperoofingandconstruction.com/" />
-  <meta property="og:title" content="Commercial Roofing & Construction Houston TX | All-Type Roofing" />
+  <meta property="og:title" content="Emergency Roofing & Construction in Houston, TX | All-Type Roofing" />
   <meta property="og:description" content="24/7 emergency restoration, commercial roofing, and construction for Houston and surrounding areas. When other contractors walk away, we get the job done." />
   <meta property="og:image" content="https://alltyperoofingandconstruction.com/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -24,7 +24,7 @@
 
   <!-- ===================== TWITTER CARD ===================== -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Commercial Roofing & Construction Houston TX | All-Type Roofing" />
+  <meta name="twitter:title" content="Emergency Roofing & Construction in Houston, TX | All-Type Roofing" />
   <meta name="twitter:description" content="24/7 emergency restoration, commercial roofing, and construction for Houston and surrounding areas." />
   <meta name="twitter:image" content="https://alltyperoofingandconstruction.com/images/og-image.jpg" />
 
@@ -226,10 +226,18 @@ body{
     }
 
     .hero-content p {
+      max-width: 590px;
       font-size: clamp(16px, 2.5vw, 26px);
       line-height: 1.1;
       margin-bottom: 44px;
       font-weight: 400;
+    }
+
+    .hero-location {
+      margin: 16px 0 18px;
+      font-size: clamp(16px, 1.6vw, 22px);
+      font-weight: 700;
+      letter-spacing: 0.03em;
     }
 
     .cta-button {
@@ -369,7 +377,8 @@ html.lenis body {
   </div>
 
   <div class="hero-content">
-    <h1>Roofing & Restoration</h1>
+    <h1>Commercial Roofing & Emergency Construction</h1>
+    <div class="hero-location">Serving Houston, TX</div>
     <p>
       24/7 emergency restoration for commercial property damage, accident repair,
       and specialized commercial and industrial roofing. When other contractors
@@ -404,7 +413,7 @@ html.lenis body {
   <div class="container roofing-grid">
 
     <!-- LEFT LARGE CARD -->
-   <a href="/commercial-roofing.html" class="roofing-card roofing-card-large">
+   <a href="/commercial-roofing" class="roofing-card roofing-card-large">
   <div class="roofing-image">
     <img src="images/stock8.jpeg" alt="Commercial Roofing" />
   </div>
@@ -425,7 +434,7 @@ html.lenis body {
 </a>
 
     <!-- RIGHT SMALL CARD -->
-<a href="/commercial-construction.html" class="roofing-card roofing-card-small">
+<a href="/commercial-construction" class="roofing-card roofing-card-small">
   <div class="roofing-image">
     <img src="images/stock9.jpeg" alt="Metal Roofing" />
   </div>
@@ -802,7 +811,7 @@ html.lenis body {
             <img src="images/emergency_response.jpeg" alt="Commercial roofing project 2" draggable="false" />
           </div>
           <div class="scroller-copy">
-            <h3>Emergency Response</h3>
+            <h3><a href="/emergency-commercial-building-repair" style="color:inherit">Emergency Commercial Building Repair</a></h3>
             <p>Rapid response services to stabilize damage, prevent further loss, and restore safety after unexpected events.</p>
           </div>
         </article>
@@ -812,7 +821,7 @@ html.lenis body {
             <img src="images/renovation.png" alt="Commercial roofing project 3" draggable="false" />
           </div>
           <div class="scroller-copy">
-            <h3>Restoration Work</h3>
+            <h3><a href="/commercial-storm-damage-repair" style="color:inherit">Commercial Storm Damage Repair</a></h3>
             <p>Fast-response repair and restoration solutions for damaged commercial and residential properties.</p>
           </div>
         </article>
@@ -1311,8 +1320,6 @@ html.lenis body {
              preserveAspectRatio="xMidYMid slice"
              opacity="0"></image>
 
-      <image id="ovalLImg" href="images/img3.png" x="0" y="0" width="180" height="1" preserveAspectRatio="none"></image>
-      <image id="ovalRImg" href="images/img4.png" x="0" y="0" width="180" height="1" preserveAspectRatio="none"></image>
 
       <g id="stage">
         <g clip-path="url(#rectRevealClip)">
@@ -1641,14 +1648,6 @@ function waitForPageContent() {
     // Wait for the loader's own SVG graphics.
     loadingTasks.push(
       waitForSvgImage(document.getElementById("bgImg"))
-    );
-
-    loadingTasks.push(
-      waitForSvgImage(document.getElementById("ovalLImg"))
-    );
-
-    loadingTasks.push(
-      waitForSvgImage(document.getElementById("ovalRImg"))
     );
 
     loadingTasks.push(
@@ -3106,7 +3105,7 @@ function waitForPageContent() {
   
 </style>
 
-<script src="/navbar.js" defer></script>
+<script src="/navbar.js?v=20261005b" defer></script>
 </body>
 
 </html>
