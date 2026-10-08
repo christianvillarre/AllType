@@ -81,7 +81,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet" />
 
   <!-- ===================== STYLES ===================== -->
-  <link rel="stylesheet" href="/navbar.css" />
+  <link rel="stylesheet" href="/navbar.css?v=20261008i" />
   <link rel="stylesheet" href="/footer.css" />
   <link rel="stylesheet" href="https://use.typekit.net/vml5vif.css" />
   <!-- Matomo -->
@@ -179,19 +179,6 @@ body{
       height: 100%;
       overflow: hidden;
     }
-.hero-bg .bg-back{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-  opacity: 0;
-  transition: opacity 1.2s ease;
-}
-
-.hero-bg .bg-back.is-visible{
-  opacity: 1;
-}
-
 .hero-bg .bg-frame {
   position: absolute;
   inset: 0;
@@ -200,21 +187,6 @@ body{
   object-fit: cover;
   z-index: 1;
   pointer-events: none;
-
-  -webkit-mask-image: url("images/mask.svg");
-  mask-image: url("images/mask.svg");
-
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-
-  -webkit-mask-position: center;
-  mask-position: center;
-
-  -webkit-mask-size: cover;
-  mask-size: cover; 
-
-  -webkit-mask-mode: alpha;
-  mask-mode: alpha;
 }
 
 
@@ -350,30 +322,9 @@ html.lenis body {
   <main id="site">
     <section class="hero">
   <div class="hero-bg">
-    <img src="images/Houston.jpg" alt="Houston BG" class="bg-back" />
-
-    <svg width="0" height="0" aria-hidden="true">
-      <defs>
-        <mask id="video-hole-mask" maskUnits="objectBoundingBox">
-          <rect x="0" y="0" width="1" height="1" fill="white" />
-          <circle cx="0.5" cy="0.5" r="0.14" fill="black" />
-        </mask>
-      </defs>
-    </svg>
-
-    <video
-      src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/alltype-hero.mp4"
-      class="bg-frame"
-      autoplay
-      loop
-      muted
-      playsinline
-    ></video>
-
-      <!--<img src="images/redlinebg.png" alt="" class="redline-overlay" />-->
-
-
-    <div class="circle-ring"></div>
+    <video class="bg-frame" autoplay muted loop playsinline preload="auto" poster="images/Alltype_HP1.jpg" aria-hidden="true">
+      <source src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/alltype-hero.mp4" type="video/mp4" />
+    </video>
   </div>
 
   <div class="hero-content">
@@ -385,6 +336,22 @@ html.lenis body {
       walk away, we get the job done.
     </p>
     <a href="#contact-section" class="cta-button">Request a Quote</a>
+  </div>
+  <div class="hero-feature-cards" aria-label="Featured services">
+    <a class="hero-feature-card" href="/emergency-commercial-building-repair.html">
+      <img src="images/Alltype_HP2.jpg" alt="Crew repairing a damaged commercial building" />
+      <span class="hero-feature-caption">
+        <span>Emergency Building Repair</span>
+        <svg viewBox="0 0 600 378" aria-hidden="true"><path d="M0 155H406L273 78V0L600 189 273 378V300L406 223H0Z" /></svg>
+      </span>
+    </a>
+    <a class="hero-feature-card" href="/commercial-construction.html">
+      <img src="images/Alltype_HP3.jpg" alt="Construction crew working on a steel structure" />
+      <span class="hero-feature-caption">
+        <span>Commercial Construction</span>
+        <svg viewBox="0 0 600 378" aria-hidden="true"><path d="M0 155H406L273 78V0L600 189 273 378V300L406 223H0Z" /></svg>
+      </span>
+    </a>
   </div>
 </section>
 
@@ -415,7 +382,7 @@ html.lenis body {
     <!-- LEFT LARGE CARD -->
    <a href="/commercial-roofing" class="roofing-card roofing-card-large">
   <div class="roofing-image">
-    <img src="images/stock8.jpeg" alt="Commercial Roofing" />
+    <img src="images/20260729_134656.jpg" alt="Commercial Roofing" />
   </div>
 
   <div class="roofing-copy">
@@ -465,15 +432,15 @@ html.lenis body {
 
     <div class="work-cards">
       <article class="work-card card-1">
-        <img src="images/roofing1.jpeg" alt="Project one" />
+        <img src="images/20260729_132651.JPG" alt="Project one" />
       </article>
 
       <article class="work-card card-2">
-        <img src="images/roofing2.jpeg" alt="Project two" />
+        <img src="images/20260729_133123.JPG" alt="Project two" />
       </article>
 
       <article class="work-card card-3">
-        <img src="images/roofing3.jpeg" alt="Project three" />
+        <img src="images/20260729_134146.JPG" alt="Project three" />
       </article>
     </div>
     <div class="work-cta"><a href="#contact" class="cta-button">Our Work</a></div>
@@ -788,7 +755,7 @@ html.lenis body {
       <div class="image-scroller-track">
         <article class="scroller-card">
           <div class="scroller-image-wrap">
-            <img src="images/commercial_roof.png" alt="Commercial roofing project 1" draggable="false" />
+            <img src="images/roofing1.jpeg" alt="Commercial roofing project 1" draggable="false" />
           </div>
           <div class="scroller-copy">
             <h3>Commercial Roofing</h3>
@@ -1276,9 +1243,166 @@ html.lenis body {
 </style>
 
 <style>
+  .hero-feature-cards {
+    position: absolute;
+    z-index: 5;
+    right: var(--gutter);
+    bottom: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 290px));
+    gap: 12px;
+  }
 
+  .hero-feature-card {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    background: #080808;
+    border: 3px solid var(--red);
+    text-decoration: none;
+  }
 
+  .hero-feature-card img {
+    display: block;
+    width: 100%;
+    height: 135px;
+    object-fit: cover;
+    transition: transform .3s ease;
+  }
 
+  .hero-feature-card:hover img { transform: scale(1.04); }
+
+  .hero-feature-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 52px;
+    padding: 6px 10px;
+    background: var(--red);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .hero-feature-caption svg {
+    display: block;
+    width: 24px;
+    height: auto;
+    flex: none;
+    fill: currentColor;
+    shape-rendering: geometricPrecision;
+  }
+
+  .hero-feature-card:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+  @media (max-width: 1099px) {
+    .hero {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 7rem var(--gutter) 2rem;
+      gap: 2rem;
+    }
+
+    .hero-feature-cards {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      width: 100%;
+      margin-top: auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-feature-card img { height: 100px; }
+    .hero-feature-caption { min-height: 48px; padding: 5px 8px; font-size: 12px; }
+    .hero-feature-caption svg { width: 22px; }
+  }
+
+  .emergency-popup {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 145;
+    width: min(380px, calc(100vw - 32px));
+    padding: 22px 24px 24px;
+    color: #fff;
+    background: #111;
+    border: 1px solid rgba(240, 3, 3, .8);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, .45);
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity .35s ease, transform .35s ease;
+  }
+
+  .emergency-popup.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .emergency-popup[hidden] { display: none; }
+
+  .emergency-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .emergency-popup h2 {
+    margin: 0 32px 8px 0;
+    color: var(--red);
+    font-size: 24px;
+    line-height: 1.1;
+  }
+
+  .emergency-popup p {
+    margin: 0 0 18px;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .emergency-popup-call {
+    display: inline-block;
+    padding: 11px 18px;
+    border-radius: 999px;
+    background: var(--red);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .emergency-popup-close:focus-visible,
+  .emergency-popup-call:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 640px) {
+    .emergency-popup {
+      right: 16px;
+      bottom: max(16px, env(safe-area-inset-bottom));
+      padding: 18px 20px 20px;
+    }
+    .emergency-popup h2 { font-size: 21px; }
+    .emergency-popup p { font-size: 15px; }
+  }
 </style>
 
 
@@ -1295,6 +1419,13 @@ html.lenis body {
 
 
   </main>
+
+  <aside class="emergency-popup" id="emergencyPopup" aria-label="Emergency response">
+    <button class="emergency-popup-close" type="button" aria-label="Close emergency response notice">&times;</button>
+    <h2>Emergency Response</h2>
+    <p>Roof leak or property damage? Our team is available 24/7.</p>
+    <a class="emergency-popup-call" href="tel:+12813976614">Call (281) 397-6614</a>
+  </aside>
 
   <svg id="loaderSvg" aria-hidden="true">
     <defs>
@@ -1334,6 +1465,10 @@ html.lenis body {
                preserveAspectRatio="xMidYMid meet"
                clip-path="url(#squareClip)"
                opacity="1"></image>
+      </g>
+      <g id="loaderTagline" opacity="0" fill="#ffffff" text-anchor="middle"
+         font-family="Roboto Slab, serif" font-weight="700">
+        <text id="loaderTaglineSecondary">24/7 Emergency Response</text>
       </g>
     </g>
   </svg>
@@ -1392,18 +1527,6 @@ function waitForPageContent() {
     );
   });
 
-  // Wait for videos to have enough data to display
-  document.querySelectorAll("video").forEach(video => {
-    if (video.readyState >= 3) return;
-
-    promises.push(
-      new Promise(resolve => {
-        video.addEventListener("canplay", resolve, { once: true });
-        video.addEventListener("error", resolve, { once: true });
-      })
-    );
-  });
-
   return Promise.all(promises);
 }
 </script>
@@ -1430,31 +1553,6 @@ function waitForPageContent() {
   // =========================
   // CONTENT LOADING
   // =========================
-
-  /**
-   * Waits for an image to finish loading.
-   * Resolves on both success and failure so one broken
-   * image cannot permanently trap the user in the loader.
-   */
-  function waitForImage(image) {
-    if (!image) return Promise.resolve();
-
-    if (image.complete) {
-      return Promise.resolve();
-    }
-
-    return new Promise(resolve => {
-      const finish = () => {
-        image.removeEventListener("load", finish);
-        image.removeEventListener("error", finish);
-        resolve();
-      };
-
-      image.addEventListener("load", finish, { once: true });
-      image.addEventListener("error", finish, { once: true });
-    });
-  }
-
 
   /**
    * Waits for an SVG <image> element.
@@ -1490,40 +1588,6 @@ function waitForPageContent() {
     return Promise.all(
       svgImages.map(svgImage => waitForSvgImage(svgImage))
     );
-  }
-
-
-  /**
-   * Waits until a video has enough data to display.
-   */
-  function waitForVideo(video) {
-    if (!video) return Promise.resolve();
-
-    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
-      return Promise.resolve();
-    }
-
-    return new Promise(resolve => {
-      let finished = false;
-
-      const finish = () => {
-        if (finished) return;
-        finished = true;
-
-        video.removeEventListener("loadeddata", finish);
-        video.removeEventListener("canplay", finish);
-        video.removeEventListener("error", finish);
-
-        resolve();
-      };
-
-      video.addEventListener("loadeddata", finish, { once: true });
-      video.addEventListener("canplay", finish, { once: true });
-      video.addEventListener("error", finish, { once: true });
-
-      // Make sure the browser begins loading it.
-      video.load();
-    });
   }
 
 
@@ -1625,24 +1689,6 @@ function waitForPageContent() {
 
     loadingTasks.push(
       waitForElementContent("#site-footer", 5000)
-    );
-
-    // Wait for the hero background.
-    const heroBackground = document.querySelector(
-      ".hero-bg .bg-back"
-    );
-
-    loadingTasks.push(
-      waitForImage(heroBackground)
-    );
-
-    // Wait for the hero video.
-    const heroVideo = document.querySelector(
-      ".hero-bg video"
-    );
-
-    loadingTasks.push(
-      waitForVideo(heroVideo)
     );
 
     // Wait for the loader's own SVG graphics.
@@ -2010,6 +2056,16 @@ function waitForPageContent() {
     const rectangleY =
       (viewportHeight - rectangleHeight) / 2;
 
+    const taglineSecondary = document.getElementById("loaderTaglineSecondary");
+    const taglineSize = Math.max(14, Math.min(22, viewportWidth * 0.04));
+    const taglineY = rectangleY + rectangleHeight + 34;
+
+    if (taglineSecondary) {
+      taglineSecondary.setAttribute("x", viewportWidth / 2);
+      taglineSecondary.setAttribute("y", taglineY);
+      taglineSecondary.setAttribute("font-size", taglineSize);
+    }
+
     const squareImage =
       document.getElementById("squareImg");
 
@@ -2234,6 +2290,9 @@ function waitForPageContent() {
     const squareImage =
       document.getElementById("squareImg");
 
+    const loaderTagline =
+      document.getElementById("loaderTagline");
+
     const squareClipRectangle =
       document.getElementById("squareClipRect");
 
@@ -2314,6 +2373,11 @@ function waitForPageContent() {
       await Promise.all([
         backgroundFade,
 
+        (async () => {
+          await sleep(300);
+          await animateAttrs(loaderTagline, { op: 0 }, { op: 1 }, 450, easeSoftOut);
+        })(),
+
         animateAttrs(
           squareClipRectangle,
           {
@@ -2328,7 +2392,7 @@ function waitForPageContent() {
             w: scene.sqW,
             h: scene.sq
           },
-          2200,
+          1300,
           easeOutCubic
         ),
 
@@ -2414,41 +2478,10 @@ function waitForPageContent() {
       }
 
       // 6. Fade out the complete logo.
-      await animateAttrs(
-        rectangleImage,
-        { op: 1 },
-        { op: 0 },
-        160,
-        easeOutCubic
-      );
-
-      // Attempt to start the hero video.
-      const heroVideo =
-        document.querySelector(".hero-bg video");
-
-      if (heroVideo) {
-        try {
-          await heroVideo.play();
-        } catch (error) {
-          // Muted autoplay can still be blocked in some circumstances.
-          console.warn(
-            "Hero video autoplay was blocked:",
-            error
-          );
-        }
-      }
-
-      // Reveal the hero background image.
-      const heroBackground =
-        document.querySelector(
-          ".hero-bg .bg-back"
-        );
-
-      if (heroBackground) {
-        heroBackground.classList.add(
-          "is-visible"
-        );
-      }
+      await Promise.all([
+        animateAttrs(rectangleImage, { op: 1 }, { op: 0 }, 160, easeOutCubic),
+        animateAttrs(loaderTagline, { op: 1 }, { op: 0 }, 160, easeOutCubic)
+      ]);
 
       // Allow the browser to paint the prepared content.
       await new Promise(resolve => {
@@ -2658,6 +2691,7 @@ function waitForPageContent() {
     let currentX = 0;
     let maxX = 0;
     let cardStep = 0;
+    let snapStops = [0];
     let dragStartX = 0;
     let startTrackX = 0;
     let isDragging = false;
@@ -2681,14 +2715,9 @@ function waitForPageContent() {
       return Math.max(0, track.scrollWidth - viewport.clientWidth);
     }
 
-    function getPages() {
-      if (!cardStep) return 1;
-      return Math.max(1, Math.round(maxX / cardStep) + 1);
-    }
-
     function getNearestPage() {
-      if (!cardStep) return 0;
-      return clamp(Math.round(Math.abs(currentX) / cardStep), 0, getPages() - 1);
+      return snapStops.reduce((nearest, stop, index) =>
+        Math.abs(stop + currentX) < Math.abs(snapStops[nearest] + currentX) ? index : nearest, 0);
     }
 
     function setTrackX(x) {
@@ -2698,8 +2727,8 @@ function waitForPageContent() {
     }
 
     function animateToPage(index, duration = 0.75) {
-      const page = clamp(index, 0, getPages() - 1);
-      const targetX = -(page * cardStep);
+      const page = clamp(index, 0, snapStops.length - 1);
+      const targetX = -snapStops[page];
 
       gsap.killTweensOf(track);
 
@@ -2720,7 +2749,7 @@ function waitForPageContent() {
 
     function buildDots() {
       dotsWrap.innerHTML = "";
-      const pages = getPages();
+      const pages = snapStops.length;
 
       for (let i = 0; i < pages; i++) {
         const dot = document.createElement("button");
@@ -2746,6 +2775,13 @@ function waitForPageContent() {
     function refresh() {
       cardStep = getCardStep();
       maxX = getMaxX();
+      snapStops = [0];
+      if (cardStep > 0) {
+        for (let position = cardStep; position < maxX - 1; position += cardStep) {
+          snapStops.push(position);
+        }
+      }
+      if (maxX > 1) snapStops.push(maxX);
       currentX = -clamp(Math.abs(currentX), 0, maxX);
       gsap.set(track, { x: currentX });
       buildDots();
@@ -3019,34 +3055,13 @@ function waitForPageContent() {
     autoRaf: true
   });
 
-  const hero = document.querySelector(".hero");
-  const heroBgBack = document.querySelector(".hero-bg .bg-back");
-
-  function updateParallax(scrollY = window.scrollY) {
-    if (!hero || !heroBgBack) return;
-
-    const rect = hero.getBoundingClientRect();
-    const viewportH = window.innerHeight;
-
-    if (rect.bottom > 0 && rect.top < viewportH) {
-      const offset = rect.top * -0.28;
-      heroBgBack.style.transform = `translate3d(0, ${offset}px, 0) scale(1.08)`;
-    }
-  }
-
-  window.lenis.on("scroll", ({ scroll }) => {
+  window.lenis.on("scroll", () => {
     syncNavUI();
-    updateParallax(scroll);
   });
 
   window.addEventListener("load", () => {
     syncNavUI();
-    updateParallax(window.scrollY);
   });
-
-  window.addEventListener("resize", () => {
-    updateParallax(window.scrollY);
-  }, { passive: true });
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", (e) => {
@@ -3073,39 +3088,22 @@ function waitForPageContent() {
 
 
 <style>
-  .bg-back {
-  opacity: 0;
-  transition: opacity 1.2s ease;
-}
-
-.bg-back.is-visible {
-  opacity: 1;
-}
 </style>
+
+<script src="/navbar.js?v=20261008i" defer></script>
 <script>
-  const video = document.querySelector('.bg-frame');
-  const bgImg = document.querySelector('.bg-back');
-
-  if (video && bgImg) {
-    const showImage = () => {
-      bgImg.classList.add('is-visible');
-    };
-
-    video.addEventListener('loadeddata', showImage);
-    video.addEventListener('canplay', showImage);
-
-    // fallback (in case autoplay loads instantly)
-    setTimeout(showImage, 1000);
+  const hero = document.querySelector(".hero");
+  const emergencyPopup = document.getElementById("emergencyPopup");
+  if (hero && emergencyPopup) {
+    new IntersectionObserver(([entry]) => {
+      emergencyPopup.classList.toggle("is-visible", entry.intersectionRatio < 0.2);
+    }, { threshold: [0, 0.2] }).observe(hero);
   }
+
+  document.querySelector(".emergency-popup-close")?.addEventListener("click", () => {
+    document.getElementById("emergencyPopup").hidden = true;
+  });
 </script>
-
-
-
-<style>
-  
-</style>
-
-<script src="/navbar.js?v=20261005b" defer></script>
 </body>
 
 </html>

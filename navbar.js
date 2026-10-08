@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!mount) return;
 
   try {
-    const res = await fetch("/navbar.fragment");
+    const res = await fetch("/navbar.fragment?v=20261008i");
     if (!res.ok) throw new Error(`Failed to load navbar: ${res.status}`);
     mount.innerHTML = await res.text();
   } catch (err) {
@@ -16,11 +16,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const panel = mount.querySelector("#menuPanel");
   const navbar = mount.querySelector(".navbar");
 
-  console.log("btn:", btn);
-  console.log("swap:", swap);
-  console.log("panel:", panel);
-  console.log("navbar:", navbar);
-
   if (!btn || !swap || !panel || !navbar) {
     console.warn("Navbar elements missing after fragment load.");
     return;
@@ -32,9 +27,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     ".menu-section-title, .menu-subitem, .menu-right > .office-block"
   );
   const menuItems = [...mount.querySelectorAll(".menu-panel-top"), ...mainItems, ...detailItems];
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const desktopMenu = window.matchMedia("(min-width: 992px)");
   let menuTimeline;
+  let fallbackAnimations = [];
 
   // The navbar is shared by pages that do not otherwise use GSAP.
   if (!window.gsap) {
@@ -46,11 +41,59 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function resetMenuItems() {
     menuTimeline?.kill();
+    fallbackAnimations.forEach(animation => animation.cancel());
+    fallbackAnimations = [];
+    panel.classList.remove("items-pending");
     if (window.gsap) gsap.set(menuItems, { clearProps: "opacity,transform,visibility" });
   }
 
+  function revealMenuItems() {
+    if (!isOpen || !panel.classList.contains("items-pending")) return;
+    const travel = desktopMenu.matches ? 32 : 24;
+
+    if (window.gsap) {
+      gsap.set(menuItems, { autoAlpha: 0, y: travel });
+      panel.classList.remove("items-pending");
+      menuTimeline = gsap.timeline({
+        delay: desktopMenu.matches ? 0.18 : 0.08,
+        onComplete: resetMenuItems
+      });
+      menuTimeline.to(mount.querySelector(".menu-panel-top"), {
+        autoAlpha: 1, y: 0, duration: 0.28, ease: "power3.out"
+      });
+      menuTimeline.to(mainItems, {
+        autoAlpha: 1, y: 0, duration: 0.58, stagger: 0.09, ease: "power3.out"
+      }, 0.08);
+      menuTimeline.to(detailItems, {
+        autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.03, ease: "power3.out"
+      }, 0.24);
+      return;
+    }
+
+    // Keep the reveal visible when GSAP is blocked or has not loaded yet.
+    fallbackAnimations = menuItems.map((item, index) => item.animate(
+      [
+        { opacity: 0, transform: `translateY(${travel}px)` },
+        { opacity: 1, transform: "translateY(0)" }
+      ],
+      {
+        duration: 480,
+        delay: (desktopMenu.matches ? 180 : 80) + index * 45,
+        easing: "cubic-bezier(.22,1,.36,1)",
+        fill: "forwards"
+      }
+    ));
+    Promise.all(fallbackAnimations.map(animation => animation.finished.catch(() => {})))
+      .then(() => { if (isOpen) resetMenuItems(); });
+  }
+
+  panel.addEventListener("transitionend", event => {
+    if (event.target === panel && event.propertyName === "transform") revealMenuItems();
+  });
+
   function syncNavUI() {
     const atTop = window.scrollY <= 10;
+    btn.classList.toggle("is-scrolled", !atTop);
     if (atTop || isOpen) {
       navbar.classList.add("show-nav-ui");
     } else {
@@ -76,43 +119,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function openMenu() {
     resetMenuItems();
-    if (window.gsap && !reducedMotion.matches) {
-      gsap.set(menuItems, { autoAlpha: 0, y: desktopMenu.matches ? 64 : 36 });
-    }
+    panel.classList.add("items-pending");
     isOpen = true;
     btn.classList.remove("is-closing");
     btn.classList.add("is-open");
     btn.setAttribute("aria-expanded", "true");
+    btn.setAttribute("aria-label", "Close menu");
 
     swap.classList.remove("is-off");
     swap.classList.add("is-on");
 
     panel.classList.add("is-open");
     panel.setAttribute("aria-hidden", "false");
-
-    if (window.gsap && !reducedMotion.matches) {
-      menuTimeline = gsap.timeline({ delay: 0.44, onComplete: resetMenuItems });
-      menuTimeline.to(mount.querySelector(".menu-panel-top"), {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.35,
-        ease: "power3.out"
-      });
-      menuTimeline.to(mainItems, {
-        autoAlpha: 1,
-        y: 0,
-        duration: desktopMenu.matches ? 0.85 : 0.7,
-        stagger: desktopMenu.matches ? 0.15 : 0.11,
-        ease: "power3.out"
-      }, 0.08);
-      menuTimeline.to(detailItems, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.045,
-        ease: "power3.out"
-      }, 0.24);
-    }
 
     document.documentElement.classList.add("lenis-stopped");
     if (window.lenis) window.lenis.stop();
@@ -126,6 +144,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     btn.classList.remove("is-open");
     btn.classList.add("is-closing");
     btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Open menu");
 
     swap.classList.add("is-off");
     swap.classList.remove("is-on");

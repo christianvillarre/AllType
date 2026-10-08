@@ -52,17 +52,18 @@
 /* ALWAYS visible menu button */
 .menu-btn{
   background: transparent;
+  color: #fff;
   border: none;
   padding: 0;
   width: 75px;
   height: 75px;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform .18s ease;
+  transition: transform .18s ease, background-color .2s ease, color .2s ease;
   position: relative;
   z-index: 210;
 }
@@ -79,68 +80,82 @@
   transform: translateX(-50%) translateY(-1px);
 }
 
-   .swap{
+.menu-btn-backdrop{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 70%;
+  border-radius: 60px;
+  transform: translate(-50%, -50%);
+  display: block;
+  background: rgb(255, 255, 255);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, background-color .2s ease;
+}
+
+.menu-btn-fixed.is-scrolled:not(.is-open) .menu-btn-backdrop{
+  opacity: 1;
+}
+
+.menu-btn-fixed.is-scrolled:not(.is-open){
+  color: var(--red);
+}
+
+.menu-btn-fixed.is-scrolled:not(.is-open):hover,
+.menu-btn-fixed.is-scrolled:not(.is-open):focus-visible{
+  color: #fff;
+}
+
+.menu-btn-fixed.is-scrolled:not(.is-open):hover .menu-btn-backdrop,
+.menu-btn-fixed.is-scrolled:not(.is-open):focus-visible .menu-btn-backdrop{
+  background: var(--red);
+}
+
+.swap {
   position: relative;
+  z-index: 1;
   width: 75px;
   height: 75px;
   display: block;
-  overflow: hidden; /* contain the scaled svg */
-  --svg1OpacityDelay: 0ms;
-  --svg2InDelay: 0ms;
+  transition: transform 320ms cubic-bezier(.22, 1, .36, 1);
 }
 
-.swap svg{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  display:block;
-  transform-origin:50% 50%;
-  transform-box: fill-box;
-  will-change: transform, opacity;
-  pointer-events: none; /* don't let scaled svg create weird hit area */
-}
-    .swap .svg1{
-      opacity: 1;
-      transform: rotate(0deg);
-      transition:
-        transform 260ms ease,
-        opacity 220ms ease var(--svg1OpacityDelay);
-    }
-    .swap .svg2{
-      opacity: 0;
-      transform: scale(4.8) rotate(6deg);
-      transition:
-        transform 360ms ease var(--svg2InDelay),
-        opacity 220ms ease var(--svg2InDelay);
-    }
-
-    .swap.is-on{
-      --svg1OpacityDelay: 40ms;
-      --svg2InDelay: 20ms;
-    }
-    .swap.is-on .svg1{
-      transform: rotate(-90deg);
-      opacity: 0;
-    }
-    .swap.is-on .svg2{
-      opacity: 1;
-      transform: scale(6) rotate(-45deg);
-    }
-
-    .swap.is-off{
-      --svg1OpacityDelay: 0ms;
-      --svg2InDelay: 0ms;
-    }
-
-.menu-btn.is-open .swap{
-  transform: rotate(45deg);
-  transition: transform 320ms ease;
+.menu-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform-origin: center;
+  transition: transform 320ms cubic-bezier(.22, 1, .36, 1), background-color 200ms ease;
 }
 
-.menu-btn.is-closing .swap{
+.menu-line:first-child {
+  transform: translate(-50%, -50%) translateY(-2px);
+}
+
+.menu-line:last-child {
+  transform: translate(-50%, -50%) translateY(7px);
+}
+
+.swap.is-on .menu-line:first-child {
+  transform: translate(-50%, -50%);
+}
+
+.swap.is-on .menu-line:last-child {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.menu-btn.is-open .swap {
+  transform: rotate(-45deg);
+}
+
+.menu-btn.is-closing .swap {
   transform: rotate(0deg);
-  transition: transform 320ms ease;
 }
 
 
@@ -256,11 +271,20 @@
   justify-content: flex-end;
 }
 
-    .menu-panel.is-open{
+.menu-panel.is-open{
       transform: translateY(0);
       opacity: 1;
       pointer-events: auto;
     }
+
+.menu-panel.items-pending .menu-panel-top,
+.menu-panel.items-pending .menu-link,
+.menu-panel.items-pending .menu-section-title,
+.menu-panel.items-pending .menu-subitem,
+.menu-panel.items-pending .menu-right > .office-block{
+  opacity: 0;
+  transform: translateY(64px);
+}
 
 
 .menu-panel::before{
@@ -705,19 +729,6 @@
     line-height: 1.5;
   }
 }
-.swap .svg2{
-  opacity: 0;
-  transform: scale(1) rotate(6deg);
-  transition:
-    transform 360ms ease var(--svg2InDelay),
-    opacity 220ms ease var(--svg2InDelay);
-}
-
-.swap.is-on .svg2{
-  opacity: 1;
-  transform: scale(1) rotate(-45deg);
-}
-
 @media (max-width: 768px){
 
   .navbar-inner{
