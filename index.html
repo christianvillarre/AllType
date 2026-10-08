@@ -81,7 +81,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet" />
 
   <!-- ===================== STYLES ===================== -->
-  <link rel="stylesheet" href="/navbar.css?v=20261008i" />
+  <link rel="stylesheet" href="/navbar.css?v=20261008l" />
   <link rel="stylesheet" href="/footer.css" />
   <link rel="stylesheet" href="https://use.typekit.net/vml5vif.css" />
   <!-- Matomo -->
@@ -1191,6 +1191,10 @@ html.lenis body {
 }
 @media (max-width: 767px){
 
+  .image-scroller-track { gap: 1rem; }
+  .scroller-card { flex: 0 0 84vw; min-width: 0; }
+  .image-scroller-viewport { touch-action: pan-y; }
+
   .image-scroller-head{
     flex-direction: column;
     align-items: flex-start;
@@ -1317,6 +1321,10 @@ html.lenis body {
     }
   }
 
+  @media (max-width: 767px) {
+    .hero { padding-bottom: 7rem; }
+  }
+
   @media (max-width: 600px) {
     .hero-feature-card img { height: 100px; }
     .hero-feature-caption { min-height: 48px; padding: 5px 8px; font-size: 12px; }
@@ -1394,10 +1402,10 @@ html.lenis body {
     outline-offset: 3px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 767px) {
     .emergency-popup {
       right: 16px;
-      bottom: max(16px, env(safe-area-inset-bottom));
+      bottom: calc(100px + env(safe-area-inset-bottom));
       padding: 18px 20px 20px;
     }
     .emergency-popup h2 { font-size: 21px; }
@@ -2693,7 +2701,10 @@ function waitForPageContent() {
     let cardStep = 0;
     let snapStops = [0];
     let dragStartX = 0;
+    let dragStartY = 0;
     let startTrackX = 0;
+    let startPage = 0;
+    let touchAxis = null;
     let isDragging = false;
 
     function clamp(value, min, max) {
@@ -2862,18 +2873,28 @@ function waitForPageContent() {
     });
 
     viewport.addEventListener("touchstart", (e) => {
-      isDragging = true;
+      isDragging = false;
+      touchAxis = null;
       dragStartX = e.touches[0].clientX;
+      dragStartY = e.touches[0].clientY;
       startTrackX = currentX;
-
-      viewport.classList.add("is-dragging");
+      startPage = getNearestPage();
       gsap.killTweensOf(track);
     }, { passive: true });
 
     viewport.addEventListener("touchmove", (e) => {
-      if (!isDragging) return;
-
       const delta = e.touches[0].clientX - dragStartX;
+      const verticalDelta = e.touches[0].clientY - dragStartY;
+      if (!touchAxis) {
+        if (Math.max(Math.abs(delta), Math.abs(verticalDelta)) < 8) return;
+        touchAxis = Math.abs(delta) > Math.abs(verticalDelta) ? "horizontal" : "vertical";
+        if (touchAxis === "horizontal") {
+          isDragging = true;
+          viewport.classList.add("is-dragging");
+        }
+      }
+      if (touchAxis !== "horizontal") return;
+
       let nextX = startTrackX + delta;
 
       if (nextX > 0) {
@@ -2891,8 +2912,13 @@ function waitForPageContent() {
     }, { passive: true });
 
     viewport.addEventListener("touchend", () => {
+      if (touchAxis !== "horizontal") {
+        touchAxis = null;
+        return;
+      }
       if (!isDragging) return;
       isDragging = false;
+      touchAxis = null;
 
       viewport.classList.remove("is-dragging");
 
@@ -2922,7 +2948,12 @@ function waitForPageContent() {
         return;
       }
 
-      animateToPage(getNearestPage(), 0.72);
+      const swipeDistance = currentX - startTrackX;
+      if (Math.abs(swipeDistance) > 35) {
+        animateToPage(startPage + (swipeDistance < 0 ? 1 : -1), 0.55);
+      } else {
+        animateToPage(startPage, 0.55);
+      }
     }, { passive: true });
 
     window.addEventListener("resize", refresh);

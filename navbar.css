@@ -805,3 +805,56 @@
 .office-block a:hover{
   text-decoration: underline;
 }
+
+@media (max-width: 767px) {
+  .menu-panel-inner {
+    padding-top: 5rem;
+    gap: .5rem;
+  }
+
+  .menu-list { gap: 2px; }
+  .menu-link { padding: 3px 0; }
+  .menu-section-title { margin-bottom: .7rem; }
+  .menu-sublist { gap: 3px; }
+
+  .menu-btn-fixed {
+    top: auto;
+    bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .menu-btn {
+    width: 64px;
+    height: 64px;
+    padding: 8px;
+  }
+
+  .swap {
+    width: 48px;
+    height: 48px;
+  }
+
+  .menu-line { width: 32px; }
+
+  .menu-btn-fixed,
+  .menu-btn-fixed.is-scrolled:not(.is-open),
+  .menu-btn-fixed.is-scrolled:not(.is-open):hover,
+  .menu-btn-fixed.is-scrolled:not(.is-open):focus-visible,
+  .menu-btn-fixed.is-open {
+    color: var(--red);
+  }
+
+  .menu-btn-fixed .menu-btn-backdrop,
+  .menu-btn-fixed.is-scrolled:not(.is-open):hover .menu-btn-backdrop,
+  .menu-btn-fixed.is-scrolled:not(.is-open):focus-visible .menu-btn-backdrop {
+    background: #fff;
+    opacity: 1;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, .22);
+    transition: width .3s ease, height .3s ease, border-radius .3s ease, background-color .2s ease;
+  }
+
+  .menu-btn-fixed.is-open .menu-btn-backdrop {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+}
