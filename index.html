@@ -325,6 +325,8 @@ html.lenis body {
     <video class="bg-frame" autoplay muted loop playsinline preload="auto" poster="images/Alltype_HP1.jpg" aria-hidden="true">
       <source src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/alltype-hero.mp4" type="video/mp4" />
     </video>
+    <img class="hero-slide-image" src="images/Alltype_HP2.jpg" alt="" aria-hidden="true" />
+    <img class="hero-slide-image" src="images/Alltype_HP3.jpg" alt="" aria-hidden="true" />
   </div>
 
   <div class="hero-content">
@@ -338,20 +340,22 @@ html.lenis body {
     <a href="#contact-section" class="cta-button">Request a Quote</a>
   </div>
   <div class="hero-feature-cards" aria-label="Featured services">
-    <a class="hero-feature-card" href="/emergency-commercial-building-repair.html">
-      <img src="images/Alltype_HP2.jpg" alt="Crew repairing a damaged commercial building" />
+    <button class="hero-feature-card" type="button" data-hero-service="repair" aria-label="Show Emergency Building Repair">
+      <img src="images/Alltype_HP2.jpg" alt="" />
+      <video muted loop playsinline preload="none" poster="images/Alltype_HP1.jpg" aria-hidden="true" hidden><source src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/alltype-hero.mp4" type="video/mp4" /></video>
       <span class="hero-feature-caption">
         <span>Emergency Building Repair</span>
         <svg viewBox="0 0 600 378" aria-hidden="true"><path d="M0 155H406L273 78V0L600 189 273 378V300L406 223H0Z" /></svg>
       </span>
-    </a>
-    <a class="hero-feature-card" href="/commercial-construction.html">
-      <img src="images/Alltype_HP3.jpg" alt="Construction crew working on a steel structure" />
+    </button>
+    <button class="hero-feature-card" type="button" data-hero-service="construction" aria-label="Show Commercial Construction">
+      <img src="images/Alltype_HP3.jpg" alt="" />
+      <video muted loop playsinline preload="none" poster="images/Alltype_HP1.jpg" aria-hidden="true" hidden><source src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/alltype-hero.mp4" type="video/mp4" /></video>
       <span class="hero-feature-caption">
         <span>Commercial Construction</span>
         <svg viewBox="0 0 600 378" aria-hidden="true"><path d="M0 155H406L273 78V0L600 189 273 378V300L406 223H0Z" /></svg>
       </span>
-    </a>
+    </button>
   </div>
 </section>
 
@@ -1247,34 +1251,67 @@ html.lenis body {
 </style>
 
 <style>
+  .hero-bg .hero-slide-image {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: linear-gradient(90deg, rgba(0, 0, 0, .72), rgba(0, 0, 0, .16));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .5s ease;
+  }
+
+  .hero.hero-has-selection .hero-bg::after { opacity: 1; }
+
   .hero-feature-cards {
     position: absolute;
     z-index: 5;
     right: var(--gutter);
     bottom: 24px;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 290px));
+    grid-template-columns: repeat(2, minmax(0, clamp(290px, 20vw, 520px)));
     gap: 12px;
   }
 
   .hero-feature-card {
     display: block;
     min-width: 0;
+    width: 100%;
+    padding: 0;
     overflow: hidden;
     background: #080808;
     border: 3px solid var(--red);
+    color: inherit;
+    font: inherit;
+    text-align: left;
     text-decoration: none;
+    cursor: pointer;
   }
 
-  .hero-feature-card img {
+  .hero-feature-card > img,
+  .hero-feature-card > video {
     display: block;
     width: 100%;
-    height: 135px;
+    height: clamp(135px, 11vw, 280px);
     object-fit: cover;
     transition: transform .3s ease;
   }
 
-  .hero-feature-card:hover img { transform: scale(1.04); }
+  .hero-feature-card > [hidden] { display: none; }
+  .hero-feature-card:hover > img,
+  .hero-feature-card:hover > video { transform: scale(1.04); }
 
   .hero-feature-caption {
     display: flex;
@@ -1301,6 +1338,10 @@ html.lenis body {
 
   .hero-feature-card:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg::after { transition-duration: 0ms; }
+  }
+
   @media (max-width: 1099px) {
     .hero {
       flex-direction: column;
@@ -1319,6 +1360,9 @@ html.lenis body {
       margin-top: auto;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .hero-feature-card > img,
+    .hero-feature-card > video { height: clamp(130px, 22vw, 210px); }
   }
 
   @media (max-width: 767px) {
@@ -1326,7 +1370,8 @@ html.lenis body {
   }
 
   @media (max-width: 600px) {
-    .hero-feature-card img { height: 100px; }
+    .hero-feature-card > img,
+    .hero-feature-card > video { height: 100px; }
     .hero-feature-caption { min-height: 48px; padding: 5px 8px; font-size: 12px; }
     .hero-feature-caption svg { width: 22px; }
   }
@@ -2504,32 +2549,7 @@ function waitForPageContent() {
 
       const startSize = 16;
 
-      const maskPhase1 = {
-        viewportWidth: 0.99,
-        viewportHeight: 0.005,
-        duration: 520,
-        ease: easeSoftOut,
-        hold: 60
-      };
-
-      const maskPhase2 = {
-        duration: 680,
-        ease: easeOutQuint
-      };
-
-      const middleWidth =
-        scene.w * maskPhase1.viewportWidth;
-
-      const middleHeight =
-        scene.h * maskPhase1.viewportHeight;
-
-      const middleX =
-        (scene.w - middleWidth) / 2;
-
-      const middleY =
-        (scene.h - middleHeight) / 2;
-
-      // First expand into a thin horizontal line.
+      // Reveal the page in one motion, expanding from the center.
       await animateAttrs(
         maskWindow,
         {
@@ -2539,36 +2559,13 @@ function waitForPageContent() {
           h: startSize
         },
         {
-          x: middleX,
-          y: middleY,
-          w: middleWidth,
-          h: middleHeight
-        },
-        maskPhase1.duration,
-        maskPhase1.ease
-      );
-
-      if (maskPhase1.hold > 0) {
-        await sleep(maskPhase1.hold);
-      }
-
-      // Expand the line vertically to reveal the full site.
-      await animateAttrs(
-        maskWindow,
-        {
-          x: middleX,
-          y: middleY,
-          w: middleWidth,
-          h: middleHeight
-        },
-        {
           x: 0,
           y: 0,
           w: scene.w,
           h: scene.h
         },
-        maskPhase2.duration,
-        maskPhase2.ease
+        760,
+        easeOutQuint
       );
     } catch (error) {
       console.error(
@@ -2599,8 +2596,8 @@ function waitForPageContent() {
   })();
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
 
 <script>
   gsap.registerPlugin(ScrollTrigger);
@@ -3120,6 +3117,166 @@ function waitForPageContent() {
 
 <style>
 </style>
+
+<script>
+  (() => {
+    const hero = document.querySelector(".hero");
+    const content = hero?.querySelector(".hero-content");
+    const video = hero?.querySelector(".bg-frame");
+    const images = [...(hero?.querySelectorAll(".hero-slide-image") || [])];
+    const cards = [...(hero?.querySelectorAll(".hero-feature-card") || [])];
+    if (!hero || !content || !video || images.length !== 2 || cards.length !== 2) return;
+
+    const title = content.querySelector("h1");
+    const location = content.querySelector(".hero-location");
+    const description = content.querySelector("p");
+    const action = content.querySelector(".cta-button");
+    const defaultHero = {
+      title: title.textContent,
+      location: location.textContent,
+      description: description.textContent.trim(),
+      button: action.textContent,
+      href: action.getAttribute("href"),
+      cardTitle: "Commercial Roofing & Emergency Construction",
+      cardImage: "images/Alltype_HP1.jpg"
+    };
+    const services = {
+      repair: {
+        title: "Emergency Commercial Building Repair",
+        location: "24/7 response across Greater Houston",
+        description: "Storm damage, vehicle impacts, and unexpected building damage can disrupt operations. We assess affected areas, plan protection, and coordinate construction repairs.",
+        button: "Explore Building Repair",
+        href: "/emergency-commercial-building-repair.html",
+        image: 0,
+        cardTitle: "Emergency Building Repair",
+        cardImage: "images/Alltype_HP2.jpg"
+      },
+      construction: {
+        title: "Commercial Construction in Houston",
+        location: "Built for complex commercial projects",
+        description: "From structural installations and concrete work to renovations and large-scale repairs, All-Type handles challenging commercial construction across Greater Houston.",
+        button: "Explore Construction",
+        href: "/commercial-construction.html",
+        image: 1,
+        cardTitle: "Commercial Construction",
+        cardImage: "images/Alltype_HP3.jpg"
+      }
+    };
+
+    const states = { home: defaultHero, ...services };
+    let currentHero = "home";
+    let switchTimeline;
+    let transitionImage;
+    const textElements = [title, location, description, action];
+
+    const updateText = state => {
+      title.textContent = state.title;
+      location.textContent = state.location;
+      description.textContent = state.description;
+      action.textContent = state.button;
+      action.href = state.href;
+    };
+
+    const showBackground = key => {
+      const imageIndex = states[key].image;
+      images.forEach((image, index) => {
+        if (typeof gsap !== "undefined") {
+          gsap.set(image, { opacity: imageIndex === index ? 1 : 0, clearProps: "transform,clipPath" });
+        } else {
+          image.style.opacity = imageIndex === index ? "1" : "0";
+        }
+      });
+      if (key === "home") video.play().catch(() => {});
+      else video.pause();
+      hero.classList.toggle("hero-has-selection", key !== "home");
+    };
+
+    cards.forEach(card => card.addEventListener("click", () => {
+      const incoming = card.dataset.heroService;
+      const outgoing = currentHero;
+      const state = states[incoming];
+      const previous = states[outgoing];
+      if (!state || !previous) return;
+
+      const cardMedia = card.querySelector("img:not([hidden]), video:not([hidden])");
+      const mediaBounds = cardMedia.getBoundingClientRect();
+      const heroBounds = hero.getBoundingClientRect();
+      if (switchTimeline) switchTimeline.kill();
+      transitionImage?.remove();
+      transitionImage = null;
+      if (typeof gsap !== "undefined") {
+        gsap.killTweensOf(textElements);
+        gsap.set(textElements, { clearProps: "opacity,transform" });
+      }
+      showBackground(outgoing);
+
+      currentHero = incoming;
+      card.dataset.heroService = outgoing;
+      card.querySelector("img").src = previous.cardImage;
+      card.querySelector(".hero-feature-caption span").textContent = previous.cardTitle;
+      card.setAttribute("aria-label", `Show ${previous.cardTitle}`);
+      const cardVideo = card.querySelector("video");
+      const showVideo = outgoing === "home";
+      card.querySelector("img").hidden = showVideo;
+      cardVideo.hidden = !showVideo;
+      if (showVideo) cardVideo.play().catch(() => {});
+      else cardVideo.pause();
+
+      if (typeof gsap === "undefined") {
+        showBackground(incoming);
+        updateText(state);
+        return;
+      }
+
+      transitionImage = document.createElement("img");
+      transitionImage.src = state.cardImage;
+      transitionImage.alt = "";
+      transitionImage.setAttribute("aria-hidden", "true");
+      hero.appendChild(transitionImage);
+      gsap.set(transitionImage, {
+        position: "absolute",
+        zIndex: 6,
+        left: mediaBounds.left - heroBounds.left,
+        top: mediaBounds.top - heroBounds.top,
+        width: mediaBounds.width,
+        height: mediaBounds.height,
+        objectFit: "cover",
+        border: "4px solid #ed1c24",
+        pointerEvents: "none"
+      });
+      const desktopTransition = window.matchMedia("(min-width: 1100px)").matches;
+      const expandDuration = desktopTransition ? 1.2 : .9;
+      const expansionEnd = expandDuration;
+      switchTimeline = gsap.timeline({
+        onComplete: () => {
+          transitionImage?.remove();
+          transitionImage = null;
+          gsap.set(textElements, { clearProps: "opacity,transform" });
+        }
+      });
+      switchTimeline
+        .to(textElements, { opacity: 0, y: -12, duration: .18, stagger: .02 }, 0)
+        .to(transitionImage, {
+          left: 0,
+          top: 0,
+          width: heroBounds.width,
+          height: heroBounds.height,
+          borderWidth: 0,
+          duration: expandDuration,
+          ease: "power2.out"
+        }, 0)
+        .call(() => {
+          showBackground(incoming);
+          updateText(state);
+        }, null, expansionEnd - .04)
+        .to(transitionImage, { opacity: 0, duration: .18 }, expansionEnd)
+        .fromTo(textElements,
+          { opacity: 0, y: 22 },
+          { opacity: 1, y: 0, duration: .45, stagger: .055, ease: "power3.out" },
+          expansionEnd + .05);
+    }));
+  })();
+</script>
 
 <script src="/navbar.js?v=20261008i" defer></script>
 <script>
