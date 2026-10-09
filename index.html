@@ -6,7 +6,7 @@
   <link rel="icon" type="image/x-icon" href="/images/favicon-96x96.png">
 
   <!-- ===================== PRIMARY SEO ===================== -->
-  <title>Emergency Roofing & Construction in Houston, TX | All-Type Roofing</title>
+  <title>Commercial Roofing & Construction in Houston, TX | All-Type Roofing</title>
   <meta name="description" content="All-Type Roofing & Construction delivers commercial roofing, emergency restoration, and large-scale repairs across Houston, TX and surrounding areas. 24/7 response. Call (281) 397-6614." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://alltyperoofingandconstruction.com/" />
@@ -337,7 +337,7 @@ html.lenis body {
       and specialized commercial and industrial roofing. When other contractors
       walk away, we get the job done.
     </p>
-    <a href="#contact-section" class="cta-button">Request a Quote</a>
+    <a href="/contact.html" class="cta-button">Request a Quote</a>
   </div>
   <div class="hero-feature-cards" aria-label="Featured services">
     <button class="hero-feature-card" type="button" data-hero-service="repair" aria-label="Show Emergency Building Repair">
@@ -569,7 +569,8 @@ html.lenis body {
 
 .roofing-subtitle{
   margin-top:.3rem;
-  font-size:22px;
+  font-size:16px;
+  line-height:1.45;
   color:rgba(17,17,17,.7);
 }
 
@@ -782,7 +783,7 @@ html.lenis body {
             <img src="images/emergency_response.jpeg" alt="Commercial roofing project 2" draggable="false" />
           </div>
           <div class="scroller-copy">
-            <h3><a href="/emergency-commercial-building-repair" style="color:inherit">Emergency Commercial Building Repair</a></h3>
+            <h3><a href="/emergency-commercial-building-repair.html">Emergency Commercial Building Repair</a></h3>
             <p>Rapid response services to stabilize damage, prevent further loss, and restore safety after unexpected events.</p>
           </div>
         </article>
@@ -792,7 +793,7 @@ html.lenis body {
             <img src="images/renovation.png" alt="Commercial roofing project 3" draggable="false" />
           </div>
           <div class="scroller-copy">
-            <h3><a href="/commercial-storm-damage-repair" style="color:inherit">Commercial Storm Damage Repair</a></h3>
+            <h3><a href="/commercial-storm-damage-repair.html">Commercial Storm Damage Repair</a></h3>
             <p>Fast-response repair and restoration solutions for damaged commercial and residential properties.</p>
           </div>
         </article>
@@ -946,10 +947,15 @@ html.lenis body {
   font-weight: 800;
 }
 
+.scroller-copy h3 a{
+  color: inherit;
+  text-decoration: none;
+}
+
 .scroller-copy p{
   margin: 0;
-  font-size: 24px;
-  line-height: 1.25;
+  font-size: 16px;
+  line-height: 1.45;
   color: rgba(17,17,17,.72);
   max-width: 48ch;
 }
@@ -3296,10 +3302,23 @@ function waitForPageContent() {
 <script>
   const hero = document.querySelector(".hero");
   const emergencyPopup = document.getElementById("emergencyPopup");
-  if (hero && emergencyPopup) {
+  const footer = document.getElementById("site-footer");
+  if (hero && footer && emergencyPopup) {
+    let heroVisible = true;
+    let footerVisible = false;
+    const updatePopup = () => {
+      emergencyPopup.classList.toggle("is-visible", !heroVisible && !footerVisible && !emergencyPopup.hidden);
+    };
+
     new IntersectionObserver(([entry]) => {
-      emergencyPopup.classList.toggle("is-visible", entry.intersectionRatio < 0.2);
+      heroVisible = entry.intersectionRatio >= 0.2;
+      updatePopup();
     }, { threshold: [0, 0.2] }).observe(hero);
+
+    new IntersectionObserver(([entry]) => {
+      footerVisible = entry.isIntersecting;
+      updatePopup();
+    }, { threshold: 0 }).observe(footer);
   }
 
   document.querySelector(".emergency-popup-close")?.addEventListener("click", () => {
