@@ -1366,14 +1366,28 @@ html.lenis body {
   }
 
   @media (max-width: 767px) {
-    .hero { padding-bottom: 7rem; }
+    .hero {
+      min-height: 100svh;
+      padding-top: clamp(5rem, 12svh, 7rem);
+      padding-bottom: calc(6.25rem + env(safe-area-inset-bottom));
+      gap: clamp(.875rem, 2.5svh, 2rem);
+    }
   }
 
   @media (max-width: 600px) {
     .hero-feature-card > img,
-    .hero-feature-card > video { height: 100px; }
+    .hero-feature-card > video { height: clamp(76px, 12svh, 100px); }
     .hero-feature-caption { min-height: 48px; padding: 5px 8px; font-size: 12px; }
     .hero-feature-caption svg { width: 22px; }
+  }
+
+  @media (max-width: 767px) and (max-height: 760px) {
+    .hero { padding-top: max(4.5rem, env(safe-area-inset-top)); gap: .875rem; }
+    .hero-content h1 { font-size: clamp(29px, 8vw, 40px); line-height: .95; }
+    .hero-location { margin: 9px 0 10px; font-size: 14px; }
+    .hero-content p { font-size: 14px; line-height: 1.15; margin-bottom: 16px; }
+    .hero-content .cta-button { padding: 8px 14px; border-width: 3px; font-size: 14px; }
+    .hero-feature-caption { min-height: 42px; }
   }
 
   .emergency-popup {
