@@ -830,15 +830,138 @@
 
 </main>
 
-<div id="site-footer" role="contentinfo"></div>
+<div id="site-footer">
+<!-- BEGIN SHARED FOOTER -->
+<section class="work-together-section">
+  <div class="work-diamonds" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
-<script>
-  fetch('/footer.fragment')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('site-footer').innerHTML = html;
-    });
-</script>
+  <div class="work-together-inner">
+    <div class="work-together-eyebrow">LET'S WORK TOGETHER!</div>
+
+    <a href="tel:+12813976614" class="work-together-phone">
+      281-397-6614
+    </a>
+
+    <a href="#contact-section" class="cta-button">
+      Request a Quote
+    </a>
+  </div>
+</section>
+
+<section class="contact-section" id="contact-section">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <h2>Contact</h2>
+
+      <div class="contact-info-block">
+        <div class="contact-label">Call Us</div>
+        <a href="tel:+12813976614">(281) 397-6614</a>
+      </div>
+
+      <div class="contact-info-block">
+        <div class="contact-label">Email Us</div>
+        <a href="mailto:frontdesk@alltype-construction.com">frontdesk@alltype-construction.com</a>
+      </div>
+    </div>
+
+    <div class="contact-right">
+     <form
+  class="contact-form"
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  data-netlify-recaptcha="true"
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value="contact">
+
+  <p class="hidden-honeypot">
+    <label>
+      Don’t fill this out if you’re human:
+      <input name="bot-field" type="text">
+    </label>
+  </p>
+
+  <div class="form-row">
+    <input type="text" name="fullName" placeholder="Full Name*" required>
+  </div>
+
+  <div class="form-row">
+    <input type="email" name="emailAddress" placeholder="Email Address*" required>
+  </div>
+
+  <div class="form-row">
+    <input type="tel" name="phoneNumber" placeholder="Phone Number*" required>
+  </div>
+
+  <div class="form-row form-row-textarea">
+    <textarea name="message" placeholder="Message*" rows="6" required></textarea>
+  </div>
+
+  <div data-netlify-recaptcha="true"></div>
+
+  <button type="submit" class="contact-submit">Send Message</button>
+</form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-mark" aria-hidden="true"></div>
+
+  <div class="footer-top">
+    <h3>All Type Roofing and Construction</h3>
+    <p>
+      Our team of qualified and insured staff members have over 100 years of combined
+      experience in roofing and construction industry. Our services start with a responsive
+      and attentive representative who caters to each individual client’s specific needs.
+      We work with owners, chief engineers, property managers, operations managers, portfolio
+      managers and maintenance coordinators to find solutions to issues that arise day of or
+      a service needed that local and national clients follow day to day. At All Type Roofing
+      and Construction these safety very serious and follow each and every safety guideline
+      set forth by OSHA. We strive to have all our projects run smoothly while in turn make
+      tenants and all parties involved happy.
+    </p>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <a href="/">
+          <img src="images/Alltype Logo 2.png" alt="All Type Roofing and Construction">
+        </a>
+      </div>
+
+      <div class="footer-contact-lines">
+        <p>13625 Chrisman Rd</p>
+        <p>Houston, TX 77039</p>
+        <p><a href="tel:+12813976614">(281) 397-6614</a></p>
+        <p><a href="mailto:frontdesk@alltype-construction.com">frontdesk@alltype-construction.com</a></p>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+        Facebook →<br><span>Follow us</span>
+      </a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        Instagram →<br><span>On-site updates</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <span>© 2026 Alltype Construction Inc.</span>
+    <span>Web Design by mcvdesign.</span>
+  </div>
+</footer>
+<!-- END SHARED FOOTER -->
+</div>
 
 <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
 
