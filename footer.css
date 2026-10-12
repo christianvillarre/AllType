@@ -243,7 +243,8 @@
 }
 
 .footer-links{
-  display:flex;
+  /* Keep social links in the markup until the profiles are ready. */
+  display:none;
   gap:3rem;
   flex-wrap:wrap;
 }
