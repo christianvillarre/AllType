@@ -10,6 +10,8 @@ OUTPUT = ROOT / "optimized"
 OUTPUT.mkdir(exist_ok=True)
 
 IMAGES = {
+    "Alltype Logo.png": 440,
+    "Alltype_HP1.jpg": 1600,
     "Alltype_HP2.jpg": 1600,
     "Alltype_HP3.jpg": 1600,
     "stock9.jpeg": 1100,
@@ -28,9 +30,10 @@ IMAGES = {
 
 for filename, max_width in IMAGES.items():
     source = ROOT / filename
-    target = OUTPUT / (Path(filename).stem.lower() + ".webp")
+    target = OUTPUT / (Path(filename).stem.lower().replace(" ", "-") + ".webp")
     with Image.open(source) as original:
-        image = ImageOps.exif_transpose(original).convert("RGB")
+        image = ImageOps.exif_transpose(original)
+        image = image.convert("RGBA" if "A" in image.getbands() else "RGB")
         if image.width > max_width:
             image.thumbnail((max_width, max_width * 3), Image.Resampling.LANCZOS)
         image.save(target, "WEBP", quality=78, method=6)

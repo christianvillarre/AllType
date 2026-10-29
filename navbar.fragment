@@ -12,7 +12,7 @@
     <div class="container navbar-inner">
       <div class="nav-logo">
         <a href="/index.html">
-          <img src="images/Alltype Logo.png" alt="Alltype" />
+          <img src="/images/optimized/alltype-logo.webp" alt="Alltype" width="214" height="78" />
         </a>
       </div>
 
@@ -34,7 +34,7 @@
       <div class="menu-panel-top">
         <div class="menu-panel-brand">
           <a href="/index.html">
-            <img src="images/Alltype Logo.png" alt="Alltype" />
+            <img src="/images/optimized/alltype-logo.webp" alt="Alltype" width="214" height="78" />
           </a>
         </div>
 

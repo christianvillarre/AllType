@@ -78,12 +78,15 @@
   <!-- ===================== FONTS ===================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" /></noscript>
+  <link rel="preload" as="image" href="/images/optimized/alltype_hp1.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/optimized/alltype-logo.webp" />
 
   <!-- ===================== STYLES ===================== -->
   <link rel="stylesheet" href="/navbar.css?v=20261008l" />
-  <link rel="stylesheet" href="/footer.css" />
-  <link rel="stylesheet" href="https://use.typekit.net/vml5vif.css" />
+  <link rel="stylesheet" href="/footer.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/footer.css" /></noscript>
   <!-- Matomo -->
 <script>
   var _paq = window._paq = window._paq || [];
@@ -322,8 +325,8 @@ html.lenis body {
   <main id="site">
     <section class="hero">
   <div class="hero-bg">
-    <video class="bg-frame" autoplay muted loop playsinline preload="auto" poster="images/Alltype_HP1.jpg" aria-hidden="true">
-      <source src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/alltype-hero.mp4" type="video/mp4" />
+    <video class="bg-frame" muted loop playsinline preload="none" poster="images/optimized/alltype_hp1.webp" aria-hidden="true">
+      <source data-src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/alltype-hero.mp4" type="video/mp4" />
     </video>
     <img class="hero-slide-image" src="images/optimized/alltype_hp2.webp" alt="" aria-hidden="true" decoding="async" />
     <img class="hero-slide-image" src="images/optimized/alltype_hp3.webp" alt="" aria-hidden="true" decoding="async" />
@@ -1650,7 +1653,7 @@ html.lenis body {
 
       <g id="stage">
         <g clip-path="url(#rectRevealClip)">
-          <image id="rectImg" href="images/Alltype Logo.png"
+          <image id="rectImg" href="images/optimized/alltype-logo.webp"
                  x="0" y="0" width="400" height="96"
                  preserveAspectRatio="xMidYMid meet"
                  opacity="0"></image>
@@ -2400,6 +2403,20 @@ function waitForPageContent() {
   // RUN LOADER
   // =========================
 
+  function startHeroVideo() {
+    // Let the poster and text paint before the video uses the connection.
+    setTimeout(() => {
+      const video = document.querySelector(".hero-bg .bg-frame");
+      const source = video?.querySelector("source[data-src]");
+      if (!source) return;
+      source.src = source.dataset.src;
+      video.load();
+      if (!document.querySelector(".hero.hero-has-selection")) {
+        video.play().catch(() => {});
+      }
+    }, 200);
+  }
+
   (async function runLoader() {
     const loaderSvg =
       document.getElementById("loaderSvg");
@@ -2412,6 +2429,7 @@ function waitForPageContent() {
 
     if (!scene) {
       unlockScroll();
+      startHeroVideo();
       return;
     }
 
@@ -2679,6 +2697,7 @@ function waitForPageContent() {
       }
 
       unlockScroll();
+      startHeroVideo();
 
       // Recalculate GSAP positions after the page becomes visible.
       if (
