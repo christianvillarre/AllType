@@ -1649,6 +1649,8 @@ html.lenis body {
              x="0" y="0" width="1" height="1"
              preserveAspectRatio="xMidYMid slice"
              opacity="0"></image>
+      <image id="stormImg" x="0" y="0" width="1" height="1"
+             preserveAspectRatio="xMidYMid slice" opacity="0"></image>
 
 
       <g id="stage">
@@ -1934,9 +1936,9 @@ function waitForPageContent() {
       const startTime = performance.now();
 
       function frame(currentTime) {
-        const progress = Math.min(
-          1,
-          (currentTime - startTime) / duration
+        const progress = Math.max(
+          0,
+          Math.min(1, (currentTime - startTime) / duration)
         );
 
         const easedProgress = easeFunction(progress);
@@ -2194,6 +2196,12 @@ function waitForPageContent() {
       );
     }
 
+    const stormImage = document.getElementById("stormImg");
+    if (stormImage) {
+      stormImage.setAttribute("width", viewportWidth);
+      stormImage.setAttribute("height", viewportHeight);
+    }
+
     // Center the lightning square.
     const squareX =
       (viewportWidth - squareSize) / 2;
@@ -2403,6 +2411,34 @@ function waitForPageContent() {
   // RUN LOADER
   // =========================
 
+  const stormFrames = [1, 2, 3, 4].map(
+    number => `images/optimized/lightning${number}.webp`
+  );
+
+  function preloadStormFrames() {
+    return Promise.all(stormFrames.map(source => new Promise(resolve => {
+      const image = new Image();
+      image.onload = resolve;
+      image.onerror = resolve;
+      image.src = source;
+      if (image.complete) resolve();
+    })));
+  }
+
+  async function playLightningStorm(stormImage, framesReady) {
+    if (!stormImage) return;
+    await framesReady;
+    await sleep(180);
+    stormImage.setAttribute("href", stormFrames[0]);
+    await animateAttrs(stormImage, { op: 0 }, { op: 1 }, 90, easeOutCubic);
+    for (const [index, hold] of [140, 150, 170].entries()) {
+      await sleep(hold);
+      stormImage.setAttribute("href", stormFrames[index + 1]);
+    }
+    await sleep(230);
+    await animateAttrs(stormImage, { op: 1 }, { op: 0 }, 200, easeOutCubic);
+  }
+
   function startHeroVideo() {
     // Let the poster and text paint before the video uses the connection.
     setTimeout(() => {
@@ -2478,6 +2514,9 @@ function waitForPageContent() {
     const backgroundImage =
       document.getElementById("bgImg");
 
+    const stormImage = document.getElementById("stormImg");
+    const stormFramesReadyPromise = preloadStormFrames();
+
     const loaderImagesReadyPromise = waitForSvgImages([
       backgroundImage,
       squareImage,
@@ -2539,6 +2578,8 @@ function waitForPageContent() {
 
       await Promise.all([
         backgroundFade,
+
+        playLightningStorm(stormImage, stormFramesReadyPromise),
 
         (async () => {
           await sleep(300);

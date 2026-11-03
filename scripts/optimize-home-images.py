@@ -10,6 +10,10 @@ OUTPUT = ROOT / "optimized"
 OUTPUT.mkdir(exist_ok=True)
 
 IMAGES = {
+    "lightning1.png": 1200,
+    "lightning2.png": 1200,
+    "lightning3.png": 1200,
+    "lightning4.png": 1200,
     "Alltype Logo.png": 440,
     "Alltype_HP1.jpg": 1600,
     "Alltype_HP2.jpg": 1600,
@@ -36,5 +40,5 @@ for filename, max_width in IMAGES.items():
         image = image.convert("RGBA" if "A" in image.getbands() else "RGB")
         if image.width > max_width:
             image.thumbnail((max_width, max_width * 3), Image.Resampling.LANCZOS)
-        image.save(target, "WEBP", quality=78, method=6)
+        image.save(target, "WEBP", quality=65 if filename.startswith("lightning") else 78, method=6)
     print(f"{filename}: {source.stat().st_size // 1024} KiB -> {target.stat().st_size // 1024} KiB")
