@@ -253,6 +253,37 @@ body{
       pointer-events:none;
     }
 
+    html.site-entering #site-navbar,
+    html.site-entering .hero-content,
+    html.site-entering .hero-feature-cards {
+      opacity: 0;
+    }
+
+    html.site-entering .hero-content,
+    html.site-entering .hero-feature-cards {
+      transform: translateY(16px);
+    }
+
+    html.site-entering.site-revealing #site-navbar,
+    html.site-entering.site-revealing .hero-content,
+    html.site-entering.site-revealing .hero-feature-cards {
+      opacity: 1;
+      transition: opacity .6s ease-out, transform .7s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    html.site-entering.site-revealing .hero-content,
+    html.site-entering.site-revealing .hero-feature-cards {
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html.site-entering.site-revealing #site-navbar,
+      html.site-entering.site-revealing .hero-content,
+      html.site-entering.site-revealing .hero-feature-cards {
+        transition-duration: 0ms;
+      }
+    }
+
     @media (max-width: 980px){
 
 
@@ -1648,11 +1679,6 @@ html.lenis body {
 
   <svg id="loaderSvg" aria-hidden="true">
     <defs>
-      <mask id="revealMask" maskUnits="userSpaceOnUse">
-        <rect id="maskBase" x="0" y="0" width="1" height="1" fill="white"></rect>
-        <rect id="maskWindow" x="0" y="0" width="0" height="0" fill="black"></rect>
-      </mask>
-
       <clipPath id="squareClip">
         <rect id="squareClipRect" x="0" y="0" width="0" height="0"></rect>
       </clipPath>
@@ -1667,7 +1693,7 @@ html.lenis body {
       </radialGradient>
     </defs>
 
-    <g id="sheet" mask="url(#revealMask)">
+    <g id="sheet">
       <rect id="cover" x="0" y="0" width="1" height="1" fill="#000000"></rect>
 
           <image id="bgImg" href="images/Alltype Web BG.jpg"
@@ -1750,9 +1776,6 @@ function waitForPageContent() {
 
   const easeOutCubic = (t) =>
     1 - Math.pow(1 - t, 3);
-
-  const easeOutQuint = (t) =>
-    1 - Math.pow(1 - t, 6);
 
   const SQUARE_WIDTH_SCALE = 1;
 
@@ -2178,23 +2201,8 @@ function waitForPageContent() {
     const squareOffsetX =
       (squareSize - squareWidth) / 2;
 
-    const maskBase =
-      document.getElementById("maskBase");
-
     const cover =
       document.getElementById("cover");
-
-    if (maskBase) {
-      maskBase.setAttribute(
-        "width",
-        viewportWidth
-      );
-
-      maskBase.setAttribute(
-        "height",
-        viewportHeight
-      );
-    }
 
     if (cover) {
       cover.setAttribute(
@@ -2549,6 +2557,8 @@ function waitForPageContent() {
       return;
     }
 
+    document.documentElement.classList.add("site-entering");
+
     const handleResize = () => {
       const updatedScene = sizeScene();
 
@@ -2566,9 +2576,6 @@ function waitForPageContent() {
     // Begin loading the real page while the loader animation plays.
     const contentReadyPromise =
       waitForCriticalContent();
-
-    const maskWindow =
-      document.getElementById("maskWindow");
 
     const squareImage =
       document.getElementById("squareImg");
@@ -2604,13 +2611,6 @@ function waitForPageContent() {
       leftOval,
       rightOval
     ]);
-
-    if (maskWindow) {
-      maskWindow.setAttribute("x", 0);
-      maskWindow.setAttribute("y", 0);
-      maskWindow.setAttribute("width", 0);
-      maskWindow.setAttribute("height", 0);
-    }
 
     // Ovals begin outside the viewport.
     if (leftOval) {
@@ -2778,30 +2778,11 @@ function waitForPageContent() {
         });
       });
 
-      // =========================
-      // FINAL MASK REVEAL
-      // =========================
-
-      const startSize = 16;
-
-      // Reveal the page in one motion, expanding from the center.
-      await animateAttrs(
-        maskWindow,
-        {
-          x: (scene.w - startSize) / 2,
-          y: (scene.h - startSize) / 2,
-          w: startSize,
-          h: startSize
-        },
-        {
-          x: 0,
-          y: 0,
-          w: scene.w,
-          h: scene.h
-        },
-        760,
-        easeOutQuint
-      );
+      // The loader and hero share a sky, so let the lighter page emerge
+      // as the clouds and logo softly fade away.
+      document.documentElement.classList.add("site-revealing");
+      const revealDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 180 : 700;
+      await animateAttrs(loaderSvg, { op: 1 }, { op: 0 }, revealDuration, easeSoftOut);
     } catch (error) {
       console.error(
         "Loader animation error:",
@@ -2816,6 +2797,8 @@ function waitForPageContent() {
       if (loaderSvg.isConnected) {
         loaderSvg.remove();
       }
+
+      document.documentElement.classList.remove("site-entering", "site-revealing");
 
       unlockScroll();
       notifyHeroReady();
