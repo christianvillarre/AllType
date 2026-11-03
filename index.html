@@ -80,7 +80,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" /></noscript>
-  <link rel="preload" as="image" href="/images/Alltype%20Web%20BG.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/optimized/alltype_hp1.webp" fetchpriority="high" />
   <link rel="preload" as="image" href="/images/optimized/alltype-logo.webp" />
 
   <!-- ===================== STYLES ===================== -->
@@ -325,7 +325,8 @@ html.lenis body {
   <main id="site">
     <section class="hero">
   <div class="hero-bg">
-    <img class="bg-frame" src="images/Alltype Web BG.jpg" alt="" aria-hidden="true" fetchpriority="high" />
+    <img class="bg-frame" src="images/optimized/alltype_hp1.webp" alt="" aria-hidden="true" fetchpriority="high" />
+    <div class="hero-lightning-glow" aria-hidden="true"></div>
     <img class="hero-lightning-flash" alt="" aria-hidden="true" />
     <img class="hero-slide-image" src="images/optimized/alltype_hp2.webp" alt="" aria-hidden="true" decoding="async" />
     <img class="hero-slide-image" src="images/optimized/alltype_hp3.webp" alt="" aria-hidden="true" decoding="async" />
@@ -1281,6 +1282,26 @@ html.lenis body {
     transition: opacity .1s ease-out;
   }
 
+  .hero-bg .hero-lightning-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse 30% 32% at 55% 22%, rgba(235, 244, 255, .38), rgba(210, 225, 255, .12) 48%, transparent 80%);
+    mix-blend-mode: screen;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .13s ease-out;
+  }
+
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, .38);
+    pointer-events: none;
+  }
+
   .hero-bg::after {
     content: "";
     position: absolute;
@@ -1357,7 +1378,8 @@ html.lenis body {
 
   @media (prefers-reduced-motion: reduce) {
     .hero-bg::after { transition-duration: 0ms; }
-    .hero-lightning-flash { display: none; }
+    .hero-lightning-flash,
+    .hero-lightning-glow { display: none; }
   }
 
   @media (max-width: 1099px) {
@@ -1647,17 +1669,30 @@ html.lenis body {
       <clipPath id="rectRevealClip">
         <rect id="rectRevealRect" x="0" y="0" width="0" height="0"></rect>
       </clipPath>
+      <filter id="stormBoltGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="softGlow"></feGaussianBlur>
+        <feMerge>
+          <feMergeNode in="softGlow"></feMergeNode>
+          <feMergeNode in="SourceGraphic"></feMergeNode>
+        </feMerge>
+      </filter>
     </defs>
 
     <g id="sheet" mask="url(#revealMask)">
       <rect id="cover" x="0" y="0" width="1" height="1" fill="#000000"></rect>
 
-      <image id="bgImg" href="images/Alltype Web BG.jpg"
+          <image id="bgImg" href="images/optimized/alltype_hp1.webp"
              x="0" y="0" width="1" height="1"
              preserveAspectRatio="xMidYMid slice"
              opacity="0"></image>
+      <rect id="loaderShade" x="0" y="0" width="1" height="1" fill="#000" opacity=".48"></rect>
+      <rect id="stormFlashGlow" x="0" y="0" width="1" height="1" fill="#e4edff" opacity="0"></rect>
+      <image id="stormImgLeft" x="0" y="0" width="1" height="1"
+             preserveAspectRatio="xMidYMid slice" opacity="0" filter="url(#stormBoltGlow)"></image>
       <image id="stormImg" x="0" y="0" width="1" height="1"
-             preserveAspectRatio="xMidYMid slice" opacity="0"></image>
+             preserveAspectRatio="xMidYMid slice" opacity="0" filter="url(#stormBoltGlow)"></image>
+      <image id="stormImgRight" x="0" y="0" width="1" height="1"
+             preserveAspectRatio="xMidYMid slice" opacity="0" filter="url(#stormBoltGlow)"></image>
 
 
       <g id="stage">
@@ -2203,11 +2238,26 @@ function waitForPageContent() {
       );
     }
 
-    const stormImage = document.getElementById("stormImg");
-    if (stormImage) {
-      stormImage.setAttribute("width", viewportWidth);
-      stormImage.setAttribute("height", viewportHeight);
-    }
+    ["loaderShade", "stormFlashGlow"].forEach(id => {
+      const layer = document.getElementById(id);
+      if (!layer) return;
+      layer.setAttribute("width", viewportWidth);
+      layer.setAttribute("height", viewportHeight);
+    });
+
+    const stormPositions = [
+      ["stormImgLeft", -.12, -.07, .85],
+      ["stormImg", 0, 0, 1],
+      ["stormImgRight", .28, -.06, .85]
+    ];
+    stormPositions.forEach(([id, x, y, scale]) => {
+      const image = document.getElementById(id);
+      if (!image) return;
+      image.setAttribute("x", viewportWidth * x);
+      image.setAttribute("y", viewportHeight * y);
+      image.setAttribute("width", viewportWidth * scale);
+      image.setAttribute("height", viewportHeight * scale);
+    });
 
     // Center the lightning square.
     const squareX =
@@ -2473,18 +2523,38 @@ function waitForPageContent() {
     });
   }
 
-  async function playLightningStorm(stormImage, framesReady) {
-    if (!stormImage) return;
+  async function playLightningStorm(stormImages, flashGlow, framesReady) {
+    if (stormImages.some(image => !image) || !flashGlow) return;
     const lightningLayers = await framesReady;
     await sleep(180);
-    stormImage.setAttribute("href", lightningLayers[0]);
-    await animateAttrs(stormImage, { op: 0 }, { op: 1 }, 90, easeOutCubic);
+    const frameSequences = [
+      [0, 1, 1, 2],
+      [0, 1, 2, 3],
+      [1, 2, 3, 3]
+    ];
+    stormImages.forEach((image, index) => {
+      image.setAttribute("href", lightningLayers[frameSequences[index][0]]);
+    });
+    await Promise.all([
+      ...stormImages.map((image, index) =>
+        animateAttrs(image, { op: 0 }, { op: index === 1 ? 1 : .9 }, 90, easeOutCubic)
+      ),
+      animateAttrs(flashGlow, { op: 0 }, { op: .06 }, 90, easeOutCubic)
+    ]);
     for (const [index, hold] of [140, 150, 170].entries()) {
       await sleep(hold);
-      stormImage.setAttribute("href", lightningLayers[index + 1]);
+      stormImages.forEach((image, position) => {
+        image.setAttribute("href", lightningLayers[frameSequences[position][index + 1]]);
+      });
+      flashGlow.setAttribute("opacity", [.08, .11, .14][index]);
     }
-    await sleep(230);
-    await animateAttrs(stormImage, { op: 1 }, { op: 0 }, 200, easeOutCubic);
+    await sleep(200);
+    await Promise.all([
+      ...stormImages.map((image, index) =>
+        animateAttrs(image, { op: index === 1 ? 1 : .9 }, { op: 0 }, 240, easeOutCubic)
+      ),
+      animateAttrs(flashGlow, { op: .14 }, { op: 0 }, 240, easeOutCubic)
+    ]);
   }
 
   window.lightningLayersPromise = preloadStormFrames();
@@ -2555,7 +2625,8 @@ function waitForPageContent() {
     const backgroundImage =
       document.getElementById("bgImg");
 
-    const stormImage = document.getElementById("stormImg");
+    const stormImages = ["stormImgLeft", "stormImg", "stormImgRight"].map(id => document.getElementById(id));
+    const flashGlow = document.getElementById("stormFlashGlow");
     const stormFramesReadyPromise = window.lightningLayersPromise;
 
     const loaderImagesReadyPromise = waitForSvgImages([
@@ -2620,7 +2691,7 @@ function waitForPageContent() {
       await Promise.all([
         backgroundFade,
 
-        playLightningStorm(stormImage, stormFramesReadyPromise),
+        playLightningStorm(stormImages, flashGlow, stormFramesReadyPromise),
 
         (async () => {
           await sleep(300);
@@ -3320,9 +3391,10 @@ function waitForPageContent() {
     const hero = document.querySelector(".hero");
     const content = hero?.querySelector(".hero-content");
     const lightning = hero?.querySelector(".hero-lightning-flash");
+    const lightningGlow = hero?.querySelector(".hero-lightning-glow");
     const images = [...(hero?.querySelectorAll(".hero-slide-image") || [])];
     const cards = [...(hero?.querySelectorAll(".hero-feature-card") || [])];
-    if (!hero || !content || !lightning || images.length !== 2 || cards.length !== 2) return;
+    if (!hero || !content || !lightning || !lightningGlow || images.length !== 2 || cards.length !== 2) return;
 
     const title = content.querySelector("h1");
     const location = content.querySelector(".hero-location");
@@ -3335,7 +3407,7 @@ function waitForPageContent() {
       button: action.textContent,
       href: action.getAttribute("href"),
       cardTitle: "Commercial Roofing & Emergency Construction",
-      cardImage: "images/Alltype Web BG.jpg"
+      cardImage: "images/optimized/alltype_hp1.webp"
     };
     const services = {
       repair: {
@@ -3371,14 +3443,17 @@ function waitForPageContent() {
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(entries => {
         heroInView = entries[0].isIntersecting;
-        if (!heroInView) lightning.style.opacity = 0;
+        if (!heroInView) {
+          lightning.style.opacity = 0;
+          lightningGlow.style.opacity = 0;
+        }
       }, { threshold: .05 }).observe(hero);
     }
     const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     const lightningSpots = [
-      { shift: "-30%", scale: .68, direction: -1, frames: [0, 1, 2], rest: 2300 },
-      { shift: "28%", scale: .78, direction: 1, frames: [1, 2, 3], rest: 2900 },
-      { shift: "10%", scale: .74, direction: -1, frames: [0, 2, 3], rest: 2600 }
+      { shift: "-24%", rise: "-2%", scale: .88, direction: -1, frames: [0, 1, 2, 3], glow: .65, rest: 2300 },
+      { shift: "28%", rise: "-7%", scale: .78, direction: 1, frames: [1, 2, 3], glow: .4, rest: 2900 },
+      { shift: "10%", rise: "-8%", scale: .74, direction: -1, frames: [0, 2, 3], glow: .4, rest: 2600 }
     ];
 
     const cycleLightning = async () => {
@@ -3390,19 +3465,24 @@ function waitForPageContent() {
       while (hero.isConnected) {
         if (document.hidden || !heroInView || currentHero !== "home" || hero.classList.contains("hero-has-selection")) {
           lightning.style.opacity = 0;
+          lightningGlow.style.opacity = 0;
           await pause(400);
           continue;
         }
 
         const spot = lightningSpots[strikeNumber++ % lightningSpots.length];
-        lightning.style.transform = `translate(${spot.shift}, -16%) scale(${spot.scale * spot.direction}, ${spot.scale})`;
+        const placement = `translate(${spot.shift}, ${spot.rise}) scale(${spot.scale * spot.direction}, ${spot.scale})`;
+        lightning.style.transform = placement;
+        lightningGlow.style.transform = placement;
         for (const frame of spot.frames) {
           if (currentHero !== "home" || !heroInView) break;
           lightning.src = layers[frame];
-          lightning.style.opacity = frame === spot.frames[0] ? .72 : 1;
+          lightning.style.opacity = frame === spot.frames[0] ? .85 : 1;
+          lightningGlow.style.opacity = spot.glow * (frame === spot.frames[spot.frames.length - 1] ? 1 : .65);
           await pause(frame === spot.frames[spot.frames.length - 1] ? 190 : 115);
         }
         lightning.style.opacity = 0;
+        lightningGlow.style.opacity = 0;
         await pause(spot.rest);
       }
     };
@@ -3426,7 +3506,10 @@ function waitForPageContent() {
           image.style.opacity = imageIndex === index ? "1" : "0";
         }
       });
-      if (key !== "home") lightning.style.opacity = 0;
+      if (key !== "home") {
+        lightning.style.opacity = 0;
+        lightningGlow.style.opacity = 0;
+      }
       hero.classList.toggle("hero-has-selection", key !== "home");
     };
 
