@@ -1723,6 +1723,10 @@ html.lenis body {
                preserveAspectRatio="xMidYMid meet"
                clip-path="url(#squareClip)"
                opacity="1"></image>
+        <g id="loaderProgress" opacity="0">
+          <rect id="loaderProgressTrack" height="2" fill="#ffffff" opacity=".3"></rect>
+          <rect id="loaderProgressFill" width="0" height="2" fill="#ffffff"></rect>
+        </g>
       </g>
       <g id="loaderTagline" opacity="0" fill="#ffffff" text-anchor="middle"
          font-family="Roboto Slab, serif" font-weight="700">
@@ -2272,7 +2276,19 @@ function waitForPageContent() {
 
     const taglineSecondary = document.getElementById("loaderTaglineSecondary");
     const taglineSize = Math.max(14, Math.min(22, viewportWidth * 0.04));
-    const taglineY = rectangleY + rectangleHeight + 34;
+    const taglineY = rectangleY + rectangleHeight + 76;
+
+    const progressWidth = Math.min(168, viewportWidth * .38);
+    const progressX = (viewportWidth - progressWidth) / 2;
+    const progressY = squareY + squareSize + 24;
+    const progressTrack = document.getElementById("loaderProgressTrack");
+    const progressFill = document.getElementById("loaderProgressFill");
+    [progressTrack, progressFill].forEach(bar => {
+      if (!bar) return;
+      bar.setAttribute("x", progressX);
+      bar.setAttribute("y", progressY);
+    });
+    progressTrack?.setAttribute("width", progressWidth);
 
     if (taglineSecondary) {
       taglineSecondary.setAttribute("x", viewportWidth / 2);
@@ -2449,6 +2465,7 @@ function waitForPageContent() {
 
       rectW: rectangleWidth,
       rectH: rectangleHeight,
+      progressW: progressWidth,
 
       ovalW: ovalWidth,
 
@@ -2583,6 +2600,9 @@ function waitForPageContent() {
     const loaderTagline =
       document.getElementById("loaderTagline");
 
+    const loaderProgress = document.getElementById("loaderProgress");
+    const loaderProgressFill = document.getElementById("loaderProgressFill");
+
     const squareClipRectangle =
       document.getElementById("squareClipRect");
 
@@ -2652,6 +2672,8 @@ function waitForPageContent() {
         easeSoftOut
       );
 
+      loaderProgress?.setAttribute("opacity", "1");
+
       // 1. Reveal the lightning bolt from its center.
       const squareMiddleY =
         scene.sqY + scene.sq / 2;
@@ -2660,6 +2682,8 @@ function waitForPageContent() {
         backgroundFade,
 
         showLightningClouds(stormImages, stormFramesReadyPromise),
+
+        animateAttrs(loaderProgressFill, { w: 0 }, { w: scene.progressW * .85 }, 1300, easeSoftOut),
 
         (async () => {
           await sleep(300);
@@ -2688,6 +2712,8 @@ function waitForPageContent() {
         contentReadyPromise
       ]);
 
+      await animateAttrs(loaderProgressFill, { w: scene.progressW * .85 }, { w: scene.progressW }, 180, easeSoftOut);
+
       // 2. Lightning bolt jolt.
       await jolt([
         squareImage,
@@ -2714,13 +2740,10 @@ function waitForPageContent() {
       const rectangleMiddleX =
         scene.rectX + scene.rectW / 2;
 
-      await animateAttrs(
-        rectangleImage,
-        { op: 0 },
-        { op: 1 },
-        80,
-        easeOutCubic
-      );
+      await Promise.all([
+        animateAttrs(rectangleImage, { op: 0 }, { op: 1 }, 80, easeOutCubic),
+        animateAttrs(loaderProgress, { op: 1 }, { op: 0 }, 180, easeOutCubic)
+      ]);
 
       await animateAttrs(
         rectangleReveal,
