@@ -1728,7 +1728,7 @@ html.lenis body {
           <rect id="loaderProgressFill" width="0" height="2" fill="#ffffff"></rect>
         </g>
       </g>
-      <g id="loaderTagline" opacity="0" fill="#ffffff" text-anchor="middle"
+      <g id="loaderTagline" display="none" fill="#ffffff" text-anchor="middle"
          font-family="Roboto Slab, serif" font-weight="700">
         <text id="loaderTaglineSecondary">24/7 Emergency Response</text>
       </g>
@@ -2274,10 +2274,6 @@ function waitForPageContent() {
     const rectangleY =
       (viewportHeight - rectangleHeight) / 2;
 
-    const taglineSecondary = document.getElementById("loaderTaglineSecondary");
-    const taglineSize = Math.max(14, Math.min(22, viewportWidth * 0.04));
-    const taglineY = rectangleY + rectangleHeight + 76;
-
     const progressWidth = Math.min(168, viewportWidth * .38);
     const progressX = (viewportWidth - progressWidth) / 2;
     const progressY = squareY + squareSize + 24;
@@ -2289,12 +2285,6 @@ function waitForPageContent() {
       bar.setAttribute("y", progressY);
     });
     progressTrack?.setAttribute("width", progressWidth);
-
-    if (taglineSecondary) {
-      taglineSecondary.setAttribute("x", viewportWidth / 2);
-      taglineSecondary.setAttribute("y", taglineY);
-      taglineSecondary.setAttribute("font-size", taglineSize);
-    }
 
     const squareImage =
       document.getElementById("squareImg");
@@ -2597,9 +2587,6 @@ function waitForPageContent() {
     const squareImage =
       document.getElementById("squareImg");
 
-    const loaderTagline =
-      document.getElementById("loaderTagline");
-
     const loaderProgress = document.getElementById("loaderProgress");
     const loaderProgressFill = document.getElementById("loaderProgressFill");
 
@@ -2684,11 +2671,6 @@ function waitForPageContent() {
         showLightningClouds(stormImages, stormFramesReadyPromise),
 
         animateAttrs(loaderProgressFill, { w: 0 }, { w: scene.progressW * .85 }, 1300, easeSoftOut),
-
-        (async () => {
-          await sleep(300);
-          await animateAttrs(loaderTagline, { op: 0 }, { op: 1 }, 450, easeSoftOut);
-        })(),
 
         animateAttrs(
           squareClipRectangle,
@@ -2789,10 +2771,7 @@ function waitForPageContent() {
       }
 
       // 6. Fade out the complete logo.
-      await Promise.all([
-        animateAttrs(rectangleImage, { op: 1 }, { op: 0 }, 160, easeOutCubic),
-        animateAttrs(loaderTagline, { op: 1 }, { op: 0 }, 160, easeOutCubic)
-      ]);
+      await animateAttrs(rectangleImage, { op: 1 }, { op: 0 }, 160, easeOutCubic);
 
       // Allow the browser to paint the prepared content.
       await new Promise(resolve => {
