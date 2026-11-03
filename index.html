@@ -1324,6 +1324,15 @@ html.lenis body {
     transition: opacity .13s ease-out;
   }
 
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: rgba(0, 0, 0, .16);
+    pointer-events: none;
+  }
+
   .hero-bg::after {
     content: "";
     position: absolute;
