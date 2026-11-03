@@ -2416,24 +2416,65 @@ function waitForPageContent() {
   );
 
   function preloadStormFrames() {
-    return Promise.all(stormFrames.map(source => new Promise(resolve => {
+    const loadImage = source => new Promise(resolve => {
       const image = new Image();
-      image.onload = resolve;
-      image.onerror = resolve;
+      image.onload = () => resolve(image);
+      image.onerror = () => resolve(null);
       image.src = source;
-      if (image.complete) resolve();
-    })));
+      if (image.complete && image.naturalWidth) resolve(image);
+    });
+
+    return Promise.all([
+      loadImage("images/Alltype Web BG.jpg"),
+      ...stormFrames.map(loadImage)
+    ]).then(([background, ...frames]) => {
+      if (!background || frames.some(frame => !frame)) return stormFrames;
+
+      // Keep the photographed clouds fixed and extract only the brighter strike.
+      const canvas = document.createElement("canvas");
+      canvas.width = frames[0].naturalWidth;
+      canvas.height = frames[0].naturalHeight;
+      const context = canvas.getContext("2d", { willReadFrequently: true });
+      if (!context) return stormFrames;
+
+      try {
+        context.drawImage(background, 0, 0, canvas.width, canvas.height);
+        const clouds = context.getImageData(0, 0, canvas.width, canvas.height).data;
+        return frames.map(frame => {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.drawImage(frame, 0, 0, canvas.width, canvas.height);
+          const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+          const strike = context.createImageData(canvas.width, canvas.height);
+          for (let index = 0; index <pixels.length; index += 4) {
+            const brightnessGain = Math.max(
+              pixels[index] - clouds[index],
+              pixels[index + 1] - clouds[index + 1],
+              pixels[index + 2] - clouds[index + 2]
+            );
+            strike.data[index] = pixels[index];
+            strike.data[index + 1] = pixels[index + 1];
+            strike.data[index + 2] = pixels[index + 2];
+            strike.data[index + 3] = Math.max(0, Math.min(255, (brightnessGain - 24) * 3));
+          }
+          context.putImageData(strike, 0, 0);
+          return canvas.toDataURL("image/png");
+        });
+      } catch (error) {
+        console.warn("Using original lightning frames", error);
+        return stormFrames;
+      }
+    });
   }
 
   async function playLightningStorm(stormImage, framesReady) {
     if (!stormImage) return;
-    await framesReady;
+    const lightningLayers = await framesReady;
     await sleep(180);
-    stormImage.setAttribute("href", stormFrames[0]);
+    stormImage.setAttribute("href", lightningLayers[0]);
     await animateAttrs(stormImage, { op: 0 }, { op: 1 }, 90, easeOutCubic);
     for (const [index, hold] of [140, 150, 170].entries()) {
       await sleep(hold);
-      stormImage.setAttribute("href", stormFrames[index + 1]);
+      stormImage.setAttribute("href", lightningLayers[index + 1]);
     }
     await sleep(230);
     await animateAttrs(stormImage, { op: 1 }, { op: 0 }, 200, easeOutCubic);
