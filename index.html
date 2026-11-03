@@ -80,7 +80,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" /></noscript>
-  <link rel="preload" as="image" href="/images/optimized/alltype_hp1.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/Alltype%20Web%20BG.jpg" fetchpriority="high" />
   <link rel="preload" as="image" href="/images/optimized/alltype-logo.webp" />
 
   <!-- ===================== STYLES ===================== -->
@@ -325,7 +325,7 @@ html.lenis body {
   <main id="site">
     <section class="hero">
   <div class="hero-bg">
-    <img class="bg-frame" src="images/optimized/alltype_hp1.webp" alt="" aria-hidden="true" fetchpriority="high" />
+    <img class="bg-frame" src="images/Alltype Web BG.jpg" alt="" aria-hidden="true" fetchpriority="high" />
     <div class="hero-lightning-glow" aria-hidden="true"></div>
     <img class="hero-lightning-flash" alt="" aria-hidden="true" />
     <img class="hero-slide-image" src="images/optimized/alltype_hp2.webp" alt="" aria-hidden="true" decoding="async" />
@@ -1293,15 +1293,6 @@ html.lenis body {
     transition: opacity .13s ease-out;
   }
 
-  .hero-bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: rgba(0, 0, 0, .38);
-    pointer-events: none;
-  }
-
   .hero-bg::after {
     content: "";
     position: absolute;
@@ -1669,30 +1660,28 @@ html.lenis body {
       <clipPath id="rectRevealClip">
         <rect id="rectRevealRect" x="0" y="0" width="0" height="0"></rect>
       </clipPath>
-      <filter id="stormBoltGlow" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="softGlow"></feGaussianBlur>
-        <feMerge>
-          <feMergeNode in="softGlow"></feMergeNode>
-          <feMergeNode in="SourceGraphic"></feMergeNode>
-        </feMerge>
-      </filter>
+      <radialGradient id="cloudLightningGlow" cx="50%" cy="8%" r="72%">
+        <stop offset="0%" stop-color="#e2edff" stop-opacity=".34"></stop>
+        <stop offset="55%" stop-color="#d4e2f6" stop-opacity=".1"></stop>
+        <stop offset="100%" stop-color="#d4e2f6" stop-opacity="0"></stop>
+      </radialGradient>
     </defs>
 
     <g id="sheet" mask="url(#revealMask)">
       <rect id="cover" x="0" y="0" width="1" height="1" fill="#000000"></rect>
 
-          <image id="bgImg" href="images/optimized/alltype_hp1.webp"
+          <image id="bgImg" href="images/Alltype Web BG.jpg"
              x="0" y="0" width="1" height="1"
              preserveAspectRatio="xMidYMid slice"
              opacity="0"></image>
-      <rect id="loaderShade" x="0" y="0" width="1" height="1" fill="#000" opacity=".48"></rect>
-      <rect id="stormFlashGlow" x="0" y="0" width="1" height="1" fill="#e4edff" opacity="0"></rect>
+      <rect id="loaderShade" x="0" y="0" width="1" height="1" fill="#000" opacity=".55"></rect>
+      <rect id="stormCloudLight" x="0" y="0" width="1" height="1" fill="url(#cloudLightningGlow)" opacity=".55"></rect>
       <image id="stormImgLeft" x="0" y="0" width="1" height="1"
-             preserveAspectRatio="xMidYMid slice" opacity="0" filter="url(#stormBoltGlow)"></image>
+             preserveAspectRatio="xMidYMid slice" opacity="0"></image>
       <image id="stormImg" x="0" y="0" width="1" height="1"
-             preserveAspectRatio="xMidYMid slice" opacity="0" filter="url(#stormBoltGlow)"></image>
+             preserveAspectRatio="xMidYMid slice" opacity="0"></image>
       <image id="stormImgRight" x="0" y="0" width="1" height="1"
-             preserveAspectRatio="xMidYMid slice" opacity="0" filter="url(#stormBoltGlow)"></image>
+             preserveAspectRatio="xMidYMid slice" opacity="0"></image>
 
 
       <g id="stage">
@@ -2238,7 +2227,7 @@ function waitForPageContent() {
       );
     }
 
-    ["loaderShade", "stormFlashGlow"].forEach(id => {
+    ["loaderShade", "stormCloudLight"].forEach(id => {
       const layer = document.getElementById(id);
       if (!layer) return;
       layer.setAttribute("width", viewportWidth);
@@ -2246,9 +2235,9 @@ function waitForPageContent() {
     });
 
     const stormPositions = [
-      ["stormImgLeft", -.12, -.07, .85],
-      ["stormImg", 0, 0, 1],
-      ["stormImgRight", .28, -.06, .85]
+      ["stormImgLeft", -.32, -.14, .95],
+      ["stormImg", 0, -.08, 1],
+      ["stormImgRight", .28, -.14, .95]
     ];
     stormPositions.forEach(([id, x, y, scale]) => {
       const image = document.getElementById(id);
@@ -2523,38 +2512,18 @@ function waitForPageContent() {
     });
   }
 
-  async function playLightningStorm(stormImages, flashGlow, framesReady) {
-    if (stormImages.some(image => !image) || !flashGlow) return;
+  async function showLightningClouds(stormImages, framesReady) {
+    if (stormImages.some(image => !image)) return;
     const lightningLayers = await framesReady;
-    await sleep(180);
-    const frameSequences = [
-      [0, 1, 1, 2],
-      [0, 1, 2, 3],
-      [1, 2, 3, 3]
-    ];
+    // A wide, steady branch pattern stays visible through the entire loader.
+    const frameIndexes = [1, 3, 2];
+    const brightness = [.5, .72, .5];
     stormImages.forEach((image, index) => {
-      image.setAttribute("href", lightningLayers[frameSequences[index][0]]);
+      image.setAttribute("href", lightningLayers[frameIndexes[index]]);
     });
-    await Promise.all([
-      ...stormImages.map((image, index) =>
-        animateAttrs(image, { op: 0 }, { op: index === 1 ? 1 : .9 }, 90, easeOutCubic)
-      ),
-      animateAttrs(flashGlow, { op: 0 }, { op: .06 }, 90, easeOutCubic)
-    ]);
-    for (const [index, hold] of [140, 150, 170].entries()) {
-      await sleep(hold);
-      stormImages.forEach((image, position) => {
-        image.setAttribute("href", lightningLayers[frameSequences[position][index + 1]]);
-      });
-      flashGlow.setAttribute("opacity", [.08, .11, .14][index]);
-    }
-    await sleep(200);
-    await Promise.all([
-      ...stormImages.map((image, index) =>
-        animateAttrs(image, { op: index === 1 ? 1 : .9 }, { op: 0 }, 240, easeOutCubic)
-      ),
-      animateAttrs(flashGlow, { op: .14 }, { op: 0 }, 240, easeOutCubic)
-    ]);
+    await Promise.all(stormImages.map((image, index) =>
+      animateAttrs(image, { op: 0 }, { op: brightness[index] }, 320, easeOutCubic)
+    ));
   }
 
   window.lightningLayersPromise = preloadStormFrames();
@@ -2626,7 +2595,6 @@ function waitForPageContent() {
       document.getElementById("bgImg");
 
     const stormImages = ["stormImgLeft", "stormImg", "stormImgRight"].map(id => document.getElementById(id));
-    const flashGlow = document.getElementById("stormFlashGlow");
     const stormFramesReadyPromise = window.lightningLayersPromise;
 
     const loaderImagesReadyPromise = waitForSvgImages([
@@ -2691,7 +2659,7 @@ function waitForPageContent() {
       await Promise.all([
         backgroundFade,
 
-        playLightningStorm(stormImages, flashGlow, stormFramesReadyPromise),
+        showLightningClouds(stormImages, stormFramesReadyPromise),
 
         (async () => {
           await sleep(300);
@@ -3407,7 +3375,7 @@ function waitForPageContent() {
       button: action.textContent,
       href: action.getAttribute("href"),
       cardTitle: "Commercial Roofing & Emergency Construction",
-      cardImage: "images/optimized/alltype_hp1.webp"
+      cardImage: "images/Alltype Web BG.jpg"
     };
     const services = {
       repair: {
