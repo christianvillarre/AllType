@@ -84,7 +84,7 @@
   <link rel="preload" as="image" href="/images/optimized/alltype-logo.webp" />
 
   <!-- ===================== STYLES ===================== -->
-  <link rel="stylesheet" href="/navbar.css?v=20261008l" />
+  <link rel="stylesheet" href="/navbar.css?v=20261104a" />
   <link rel="stylesheet" href="/footer.css" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="/footer.css" /></noscript>
   <!-- Matomo -->
@@ -357,15 +357,20 @@ html.lenis body {
     <section class="hero">
   <div class="hero-bg">
     <img class="bg-frame" src="images/Alltype Web BG.jpg" alt="" aria-hidden="true" fetchpriority="high" />
+    <img class="hero-lightning-cloudframe" alt="" aria-hidden="true" />
+    <img class="hero-lightning-cloudframe-secondary" alt="" aria-hidden="true" />
     <div class="hero-lightning-glow" aria-hidden="true"></div>
-    <img class="hero-lightning-flash" alt="" aria-hidden="true" />
+    <div class="hero-lightning-skywash" aria-hidden="true"></div>
+    <img class="hero-lightning-ground" alt="" aria-hidden="true" />
+    <div class="hero-lightning-impact" aria-hidden="true"></div>
     <img class="hero-slide-image" src="images/optimized/alltype_hp2.webp" alt="" aria-hidden="true" decoding="async" />
     <img class="hero-slide-image" src="images/optimized/alltype_hp3.webp" alt="" aria-hidden="true" decoding="async" />
+    <div class="hero-bottom-fade" aria-hidden="true"></div>
   </div>
 
   <div class="hero-content">
-    <h1>Commercial Roofing & Emergency Construction</h1>
     <div class="hero-location">Serving Houston, TX</div>
+    <h1>Roofing Contractor &amp; Emergency Construction Services</h1>
     <p>
       24/7 emergency restoration for commercial property damage, accident repair,
       and specialized commercial and industrial roofing. When other contractors
@@ -373,7 +378,11 @@ html.lenis body {
     </p>
     <a href="/contact.html" class="cta-button">Request a Quote</a>
   </div>
-  <div class="hero-feature-cards" aria-label="Featured services">
+  <a class="hero-emergency-icon" href="/emergency-roofing.html" aria-label="24/7 emergency response">
+    <img class="hero-emergency-circle" src="/images/emergency-24-hour.png" alt="" aria-hidden="true" width="76" height="76" />
+    <span class="hero-emergency-label">Emergency<br />Response</span>
+  </a>
+  <div class="hero-feature-cards" aria-label="Featured services" hidden>
     <button class="hero-feature-card" type="button" data-hero-service="repair" aria-label="Show Emergency Building Repair">
       <img src="images/optimized/alltype_hp2.webp" alt="" decoding="async" />
       <span class="hero-feature-caption">
@@ -397,6 +406,7 @@ html.lenis body {
           
 
 <section class="intro-band">
+  <h2 class="intro-storm-heading">STORM PROOF <span>YOUR ROOF</span></h2>
   <div class="container intro-grid">
     <div class="intro-eyebrow-wrap">
       <div class="intro-eyebrow">Who We Are</div>
@@ -404,9 +414,11 @@ html.lenis body {
 
     <div class="intro-copy">
       <p>
-        All-Type Construction handles the commercial roofing and construction jobs other contractors won’t touch. 
-        From complex repairs to large-scale restoration, we deliver fast response times, practical solutions, 
-        and workmanship built to protect your property long-term.
+        <span class="intro-accent">All-Type Roofing & Construction</span> handles technically demanding work for
+        commercial properties across Greater Houston. Our capabilities span commercial roofing,
+        waterproofing, renovations, and emergency building repairs.
+        We bring practical solutions and disciplined execution to projects
+        that need more than a standard repair.
       </p>
     </div>
   </div>
@@ -500,10 +512,27 @@ html.lenis body {
   }
   /* ===================== INTRO BAND ===================== */
 .intro-band{
-  background: #d9d2c7;
-  color: #111;
-  padding: 8rem 0;
+  background: #000;
+  color: #fff;
+  padding: clamp(4rem, 7vw, 7rem) 0 8rem;
 }
+
+.intro-storm-heading {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto 5rem;
+  padding: 0 clamp(12px, 2vw, 32px);
+  font-size: clamp(19px, 6.4vw, 110px);
+  font-weight: 900;
+  letter-spacing: -.065em;
+  line-height: .95;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.intro-storm-heading span { color: var(--red); }
+
+.intro-accent { color: var(--red); }
 
 .intro-grid{
   display: grid;
@@ -539,9 +568,9 @@ html.lenis body {
 
 /* ===================== ROOFING FEATURE ===================== */
 .roofing-feature{
-  background:#d9d2c7;
+  background:#000;
   padding:0 0 8rem;
-  color:#111;
+  color:#fff;
 }
 
 .roofing-grid{
@@ -603,7 +632,7 @@ html.lenis body {
   margin-top:.3rem;
   font-size:16px;
   line-height:1.45;
-  color:rgba(17,17,17,.7);
+  color:rgba(255,255,255,.72);
 }
 
 @media (max-width:980px){
@@ -1300,7 +1329,19 @@ html.lenis body {
     pointer-events: none;
   }
 
-  .hero-bg .hero-lightning-flash {
+  .hero-bg .hero-lightning-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse 30% 32% at var(--strike-cloud-x, 55%) 22%, rgba(235, 244, 255, .38), rgba(210, 225, 255, .12) 48%, transparent 80%);
+    mix-blend-mode: screen;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .13s ease-out;
+  }
+
+  .hero-bg .hero-lightning-cloudframe,
+  .hero-bg .hero-lightning-cloudframe-secondary {
     position: absolute;
     inset: 0;
     z-index: 1;
@@ -1309,19 +1350,59 @@ html.lenis body {
     object-fit: cover;
     opacity: 0;
     pointer-events: none;
-    filter: drop-shadow(0 0 12px rgba(220, 230, 255, .55));
+    mix-blend-mode: screen;
+    filter: blur(2px) brightness(1.25);
     transition: opacity .1s ease-out;
   }
 
-  .hero-bg .hero-lightning-glow {
+  .hero-bg .hero-lightning-cloudframe-secondary { filter: blur(3px) brightness(1.1); }
+
+  .hero-bg .hero-lightning-skywash,
+  .hero-bg .hero-lightning-impact {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: radial-gradient(ellipse 30% 32% at 55% 22%, rgba(235, 244, 255, .38), rgba(210, 225, 255, .12) 48%, transparent 80%);
-    mix-blend-mode: screen;
     opacity: 0;
     pointer-events: none;
-    transition: opacity .13s ease-out;
+    mix-blend-mode: screen;
+    transition: opacity .75s ease-out;
+  }
+
+  .hero-bg .hero-lightning-skywash {
+    background:
+      radial-gradient(ellipse 42% 54% at var(--strike-cloud-x, 65%) 19%, rgba(225, 237, 255, .54), rgba(170, 205, 250, .15) 54%, transparent 86%),
+      radial-gradient(ellipse 36% 38% at 27% 14%, rgba(210, 230, 255, .19), transparent 78%),
+      radial-gradient(ellipse 43% 42% at 83% 31%, rgba(215, 232, 255, .22), transparent 82%);
+  }
+
+  .hero-bg .hero-lightning-impact {
+    background: radial-gradient(ellipse 20% 14% at var(--strike-impact-x, 50%) 100%, rgba(235, 245, 255, .9), rgba(180, 210, 255, .28) 45%, transparent 100%);
+  }
+
+  .hero-bg .hero-lightning-ground {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .08s ease-out;
+    filter: brightness(2) drop-shadow(0 0 12px rgba(245, 250, 255, .95)) drop-shadow(0 0 26px rgba(175, 215, 255, .6));
+  }
+
+  .hero-bg .hero-bottom-fade {
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 3;
+    height: clamp(170px, 30vh, 360px);
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .6) 55%, #000 100%);
+    pointer-events: none;
+  }
+
+  .hero.hero-right-strike .hero-bg .hero-lightning-ground {
+    filter: brightness(2.1) drop-shadow(0 0 2px rgba(255, 255, 255, .75)) drop-shadow(0 0 12px rgba(245, 250, 255, .95)) drop-shadow(0 0 26px rgba(175, 215, 255, .6));
   }
 
   .hero-bg::before {
@@ -1329,7 +1410,7 @@ html.lenis body {
     position: absolute;
     inset: 0;
     z-index: 3;
-    background: rgba(0, 0, 0, .16);
+    background: rgba(0, 0, 0, .32);
     pointer-events: none;
   }
 
@@ -1345,6 +1426,7 @@ html.lenis body {
   }
 
   .hero.hero-has-selection .hero-bg::after { opacity: 1; }
+  .hero.hero-has-selection .hero-bg::before { background: rgba(0, 0, 0, .2); }
 
   .hero-feature-cards {
     position: absolute;
@@ -1409,8 +1491,12 @@ html.lenis body {
 
   @media (prefers-reduced-motion: reduce) {
     .hero-bg::after { transition-duration: 0ms; }
-    .hero-lightning-flash,
-    .hero-lightning-glow { display: none; }
+    .hero-lightning-glow,
+    .hero-lightning-cloudframe,
+    .hero-lightning-cloudframe-secondary,
+    .hero-lightning-skywash,
+    .hero-lightning-ground,
+    .hero-lightning-impact { display: none; }
   }
 
   @media (max-width: 1099px) {
@@ -1459,86 +1545,156 @@ html.lenis body {
     .hero-feature-caption { min-height: 42px; }
   }
 
-  .emergency-popup {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 145;
-    width: min(380px, calc(100vw - 32px));
-    padding: 22px 24px 24px;
-    color: #fff;
-    background: #111;
-    border: 1px solid rgba(240, 3, 3, .8);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, .45);
-    opacity: 0;
-    transform: translateY(20px);
-    pointer-events: none;
-    transition: opacity .35s ease, transform .35s ease;
+  .hero {
+    align-items: center;
+    justify-content: center;
   }
 
-  .emergency-popup.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+  .hero-feature-cards[hidden] { display: none !important; }
+
+  .hero-content {
+    width: min(100%, 1120px);
+    max-width: 1120px;
+    text-align: center;
   }
 
-  .emergency-popup[hidden] { display: none; }
-
-  .emergency-popup-close {
-    position: absolute;
-    top: 10px;
-    right: 12px;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: #fff;
-    font: inherit;
-    font-size: 26px;
-    line-height: 1;
-    cursor: pointer;
+  .hero-content .hero-location {
+    margin: 0 0 20px;
+    color: #ff4b4b;
+    font-size: clamp(12px, 1.1vw, 15px);
+    font-weight: 800;
+    letter-spacing: .18em;
+    line-height: 1.3;
+    text-transform: uppercase;
   }
 
-  .emergency-popup h2 {
-    margin: 0 32px 8px 0;
-    color: var(--red);
-    font-size: 24px;
-    line-height: 1.1;
+  .hero-content h1 {
+    max-width: 1120px;
+    margin: 0 auto 24px;
+    font-size: clamp(40px, 4.7vw, 74px);
+    font-weight: 800;
+    letter-spacing: -.045em;
+    line-height: .98;
+    text-wrap: balance;
+    text-shadow: 0 4px 28px rgba(0, 0, 0, .55);
   }
 
-  .emergency-popup p {
-    margin: 0 0 18px;
-    font-size: 16px;
-    line-height: 1.4;
+  .hero-content p {
+    max-width: 820px;
+    margin-inline: auto;
+    margin-bottom: 34px;
+    color: rgba(255, 255, 255, .86);
+    font-size: clamp(16px, 1.45vw, 21px);
+    line-height: 1.42;
+    text-wrap: pretty;
   }
 
-  .emergency-popup-call {
-    display: inline-block;
-    padding: 11px 18px;
-    border-radius: 999px;
+  .hero-content .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    padding: 15px 32px;
+    border: 2px solid var(--red);
     background: var(--red);
     color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    text-decoration: none;
+    border-radius: 6px;
+    font-size: clamp(16px, 1.2vw, 19px);
+    font-weight: 800;
+    letter-spacing: .02em;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .35), 0 0 22px rgba(240, 3, 3, .22);
+    transition: background .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
   }
 
-  .emergency-popup-close:focus-visible,
-  .emergency-popup-call:focus-visible {
-    outline: 2px solid #fff;
-    outline-offset: 3px;
+  .hero-content .cta-button:hover,
+  .hero-content .cta-button:focus-visible {
+    background: #fff;
+    border-color: #fff;
+    color: #b90000;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .4);
+  }
+
+  .hero-emergency-icon {
+    position: absolute;
+    right: var(--gutter);
+    bottom: 32px;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    color: #fff;
+    font-family: inherit;
+    text-decoration: none;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .45));
+    transition: transform .2s ease, filter .2s ease;
+  }
+
+  .hero-emergency-circle {
+    position: relative;
+    z-index: 2;
+    display: block;
+    flex: none;
+    width: 76px;
+    height: 76px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: #fff;
+    object-fit: cover;
+  }
+
+  .hero-emergency-label {
+    display: grid;
+    place-items: center;
+    min-width: 164px;
+    min-height: 62px;
+    margin-left: -21px;
+    padding: 8px 14px 8px 28px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    background: #101010;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: .04em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background .2s ease, color .2s ease;
+  }
+
+  .hero-emergency-icon:hover,
+  .hero-emergency-icon:focus-visible { transform: translateY(-5px); filter: drop-shadow(0 15px 26px rgba(0, 0, 0, .55)); }
+  .hero-emergency-icon:hover .hero-emergency-label,
+  .hero-emergency-icon:focus-visible .hero-emergency-label { background: #242424; color: #fff; }
+  .hero-emergency-icon:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+
+  @media (max-width: 1099px) {
+    .hero { align-items: center; justify-content: center; gap: 0; }
   }
 
   @media (max-width: 767px) {
-    .emergency-popup {
-      right: 16px;
-      bottom: calc(100px + env(safe-area-inset-bottom));
-      padding: 18px 20px 20px;
+    .hero-content h1 { font-size: clamp(34px, 8.2vw, 50px); }
+    .hero-content p { font-size: 16px; line-height: 1.38; }
+    .hero-content .cta-button { min-height: 56px; padding: 13px 26px; }
+    .intro-storm-heading {
+      margin-bottom: 3.5rem;
+      font-size: clamp(48px, 13vw, 90px);
+      letter-spacing: -.075em;
+      line-height: .9;
+      white-space: normal;
     }
-    .emergency-popup h2 { font-size: 21px; }
-    .emergency-popup p { font-size: 15px; }
+    .intro-storm-heading span { display: block; }
+    .intro-eyebrow { font-size: 12px; }
+    .intro-copy p { font-size: 20px; line-height: 1.25; }
+    .hero-emergency-icon {
+      right: 16px;
+      bottom: calc(94px + env(safe-area-inset-bottom));
+      gap: 0;
+    }
+    .hero-emergency-circle { width: 60px; height: 60px; }
+    .hero-emergency-label { min-width: 120px; min-height: 52px; margin-left: -17px; padding: 6px 9px 6px 20px; font-size: 11px; }
   }
+
 </style>
 
 
@@ -1679,13 +1835,6 @@ html.lenis body {
 
   </main>
 
-  <aside class="emergency-popup" id="emergencyPopup" aria-label="Emergency response">
-    <button class="emergency-popup-close" type="button" aria-label="Close emergency response notice">&times;</button>
-    <h2>Emergency Response</h2>
-    <p>Roof leak or property damage? Our team is available 24/7.</p>
-    <a class="emergency-popup-call" href="tel:+12813976614">Call (281) 397-6614</a>
-  </aside>
-
   <svg id="loaderSvg" aria-hidden="true">
     <defs>
       <clipPath id="squareClip">
@@ -1695,11 +1844,6 @@ html.lenis body {
       <clipPath id="rectRevealClip">
         <rect id="rectRevealRect" x="0" y="0" width="0" height="0"></rect>
       </clipPath>
-      <radialGradient id="cloudLightningGlow" cx="50%" cy="8%" r="72%">
-        <stop offset="0%" stop-color="#e2edff" stop-opacity=".34"></stop>
-        <stop offset="55%" stop-color="#d4e2f6" stop-opacity=".1"></stop>
-        <stop offset="100%" stop-color="#d4e2f6" stop-opacity="0"></stop>
-      </radialGradient>
     </defs>
 
     <g id="sheet">
@@ -1710,13 +1854,6 @@ html.lenis body {
              preserveAspectRatio="xMidYMid slice"
              opacity="0"></image>
       <rect id="loaderShade" x="0" y="0" width="1" height="1" fill="#000" opacity=".55"></rect>
-      <rect id="stormCloudLight" x="0" y="0" width="1" height="1" fill="url(#cloudLightningGlow)" opacity=".55"></rect>
-      <image id="stormImgLeft" x="0" y="0" width="1" height="1"
-             preserveAspectRatio="xMidYMid slice" opacity="0"></image>
-      <image id="stormImg" x="0" y="0" width="1" height="1"
-             preserveAspectRatio="xMidYMid slice" opacity="0"></image>
-      <image id="stormImgRight" x="0" y="0" width="1" height="1"
-             preserveAspectRatio="xMidYMid slice" opacity="0"></image>
 
 
       <g id="stage">
@@ -2248,25 +2385,11 @@ function waitForPageContent() {
       );
     }
 
-    ["loaderShade", "stormCloudLight"].forEach(id => {
+    ["loaderShade"].forEach(id => {
       const layer = document.getElementById(id);
       if (!layer) return;
       layer.setAttribute("width", viewportWidth);
       layer.setAttribute("height", viewportHeight);
-    });
-
-    const stormPositions = [
-      ["stormImgLeft", -.32, -.14, .95],
-      ["stormImg", 0, -.08, 1],
-      ["stormImgRight", .28, -.14, .95]
-    ];
-    stormPositions.forEach(([id, x, y, scale]) => {
-      const image = document.getElementById(id);
-      if (!image) return;
-      image.setAttribute("x", viewportWidth * x);
-      image.setAttribute("y", viewportHeight * y);
-      image.setAttribute("width", viewportWidth * scale);
-      image.setAttribute("height", viewportHeight * scale);
     });
 
     // Center the lightning square.
@@ -2483,6 +2606,11 @@ function waitForPageContent() {
 
   const stormFrames = [1, 2, 3, 4].map(
     number => `images/optimized/lightning${number}.webp`
+  ).concat(
+    "images/optimized/lightning-ground.webp",
+    "images/optimized/lightning-clouds.webp",
+    "images/optimized/lightning-ground-left.webp",
+    "images/optimized/lightning-clouds-left.webp"
   );
 
   function preloadStormFrames() {
@@ -2510,11 +2638,12 @@ function waitForPageContent() {
       try {
         context.drawImage(background, 0, 0, canvas.width, canvas.height);
         const clouds = context.getImageData(0, 0, canvas.width, canvas.height).data;
-        return frames.map(frame => {
+        return frames.map((frame, frameIndex) => {
           context.clearRect(0, 0, canvas.width, canvas.height);
           context.drawImage(frame, 0, 0, canvas.width, canvas.height);
           const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
           const strike = context.createImageData(canvas.width, canvas.height);
+          const isGroundStrike = frameIndex === 4 || frameIndex === 6;
           for (let index = 0; index <pixels.length; index += 4) {
             const brightnessGain = Math.max(
               pixels[index] - clouds[index],
@@ -2524,7 +2653,9 @@ function waitForPageContent() {
             strike.data[index] = pixels[index];
             strike.data[index + 1] = pixels[index + 1];
             strike.data[index + 2] = pixels[index + 2];
-            strike.data[index + 3] = Math.max(0, Math.min(255, (brightnessGain - 24) * 3));
+            strike.data[index + 3] = Math.max(0, Math.min(255,
+              (brightnessGain - (isGroundStrike ? 18 : 24)) * (isGroundStrike ? 4 : 3)
+            ));
           }
           context.putImageData(strike, 0, 0);
           return canvas.toDataURL("image/png");
@@ -2534,20 +2665,6 @@ function waitForPageContent() {
         return stormFrames;
       }
     });
-  }
-
-  async function showLightningClouds(stormImages, framesReady) {
-    if (stormImages.some(image => !image)) return;
-    const lightningLayers = await framesReady;
-    // A wide, steady branch pattern stays visible through the entire loader.
-    const frameIndexes = [1, 3, 2];
-    const brightness = [.5, .72, .5];
-    stormImages.forEach((image, index) => {
-      image.setAttribute("href", lightningLayers[frameIndexes[index]]);
-    });
-    await Promise.all(stormImages.map((image, index) =>
-      animateAttrs(image, { op: 0 }, { op: brightness[index] }, 320, easeOutCubic)
-    ));
   }
 
   window.lightningLayersPromise = preloadStormFrames();
@@ -2617,9 +2734,6 @@ function waitForPageContent() {
     const backgroundImage =
       document.getElementById("bgImg");
 
-    const stormImages = ["stormImgLeft", "stormImg", "stormImgRight"].map(id => document.getElementById(id));
-    const stormFramesReadyPromise = window.lightningLayersPromise;
-
     const loaderImagesReadyPromise = waitForSvgImages([
       backgroundImage,
       squareImage,
@@ -2676,8 +2790,6 @@ function waitForPageContent() {
 
       await Promise.all([
         backgroundFade,
-
-        showLightningClouds(stormImages, stormFramesReadyPromise),
 
         animateAttrs(loaderProgressFill, { w: 0 }, { w: scene.progressW * .85 }, 1300, easeSoftOut),
 
@@ -3304,18 +3416,20 @@ function waitForPageContent() {
 
 <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
 <script>
-  window.lenis = new Lenis({
-    duration: 1.1,
-    smoothWheel: true,
-    smoothTouch: false,
-    wheelMultiplier: 1,
-    touchMultiplier: 1,
-    autoRaf: true
-  });
+  const isIPad = /iPad/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const isIPadSizeTouchscreen = window.matchMedia("(pointer: coarse) and (min-width: 744px) and (max-width: 1376px)").matches;
+  if (!isIPad && !isIPadSizeTouchscreen && window.Lenis) {
+    window.lenis = new Lenis({
+      duration: 1.1,
+      smoothWheel: true,
+      smoothTouch: false,
+      wheelMultiplier: 1,
+      touchMultiplier: 1,
+      autoRaf: true
+    });
 
-  window.lenis.on("scroll", () => {
-    syncNavUI();
-  });
+    window.lenis.on("scroll", syncNavUI);
+  }
 
   window.addEventListener("load", () => {
     syncNavUI();
@@ -3335,10 +3449,8 @@ function waitForPageContent() {
       if (wasOpen) closeMenu();
 
       setTimeout(() => {
-        window.lenis.scrollTo(target, {
-          offset: 0,
-          duration: 1.1
-        });
+        if (window.lenis) window.lenis.scrollTo(target, { offset: 0, duration: 1.1 });
+        else target.scrollIntoView({ behavior: "auto", block: "start" });
       }, wasOpen ? 250 : 0);
     });
   });
@@ -3352,11 +3464,15 @@ function waitForPageContent() {
   (() => {
     const hero = document.querySelector(".hero");
     const content = hero?.querySelector(".hero-content");
-    const lightning = hero?.querySelector(".hero-lightning-flash");
+    const lightningCloudFrame = hero?.querySelector(".hero-lightning-cloudframe");
+    const lightningCloudFrameSecondary = hero?.querySelector(".hero-lightning-cloudframe-secondary");
     const lightningGlow = hero?.querySelector(".hero-lightning-glow");
+    const lightningGround = hero?.querySelector(".hero-lightning-ground");
+    const lightningSkywash = hero?.querySelector(".hero-lightning-skywash");
+    const lightningImpact = hero?.querySelector(".hero-lightning-impact");
     const images = [...(hero?.querySelectorAll(".hero-slide-image") || [])];
     const cards = [...(hero?.querySelectorAll(".hero-feature-card") || [])];
-    if (!hero || !content || !lightning || !lightningGlow || images.length !== 2 || cards.length !== 2) return;
+    if (!hero || !content || !lightningCloudFrame || !lightningCloudFrameSecondary || !lightningGlow || !lightningGround || !lightningSkywash || !lightningImpact || images.length !== 2 || cards.length !== 2) return;
 
     const title = content.querySelector("h1");
     const location = content.querySelector(".hero-location");
@@ -3402,50 +3518,181 @@ function waitForPageContent() {
 
     // Reuse the transparent strike layers from the loader over one fixed sky.
     let heroInView = true;
+    function clearLightning() {
+      lightningCloudFrame.style.transition = "none";
+      lightningCloudFrameSecondary.style.transition = "none";
+      lightningGlow.style.transition = "none";
+      lightningSkywash.style.transition = "none";
+      lightningImpact.style.transition = "none";
+      lightningCloudFrame.style.opacity = 0;
+      lightningCloudFrameSecondary.style.opacity = 0;
+      lightningGlow.style.opacity = 0;
+      lightningGround.style.opacity = 0;
+      lightningSkywash.style.opacity = 0;
+      lightningImpact.style.opacity = 0;
+      lightningGround.style.clipPath = "none";
+    }
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(entries => {
         heroInView = entries[0].isIntersecting;
-        if (!heroInView) {
-          lightning.style.opacity = 0;
-          lightningGlow.style.opacity = 0;
-        }
+        if (!heroInView) clearLightning();
       }, { threshold: .05 }).observe(hero);
     }
     const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     const lightningSpots = [
-      { shift: "-24%", rise: "-2%", scale: .88, direction: -1, frames: [0, 1, 2, 3], glow: .65, rest: 2300 },
-      { shift: "28%", rise: "-7%", scale: .78, direction: 1, frames: [1, 2, 3], glow: .4, rest: 2900 },
-      { shift: "10%", rise: "-8%", scale: .74, direction: -1, frames: [0, 2, 3], glow: .4, rest: 2600 }
+      { cloudX: "22%", impactX: "28%", groundIndex: 6, cloudIndex: 7, otherCloudIndex: 5, groundShift: "-4%", rest: 3100 },
+      { cloudX: "68%", impactX: "68%", groundIndex: 4, cloudIndex: 5, otherCloudIndex: 7, groundShift: "0%", rest: 3500 },
+      { cloudX: "33%", impactX: "39%", groundIndex: 6, cloudIndex: 7, otherCloudIndex: 5, groundShift: "7%", rest: 3200 },
+      { cloudX: "82%", impactX: "82%", groundIndex: 4, cloudIndex: 5, otherCloudIndex: 7, groundShift: "14%", rest: 3400 }
     ];
+    const stormActive = () => !document.hidden && heroInView && currentHero === "home" && !hero.classList.contains("hero-has-selection");
 
     const cycleLightning = async () => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       const layers = await window.lightningLayersPromise;
-      if (!layers?.length) return;
+      if (!layers?.[4] || !layers?.[5] || !layers?.[6] || !layers?.[7]) return;
       let strikeNumber = 0;
       await pause(600);
       while (hero.isConnected) {
-        if (document.hidden || !heroInView || currentHero !== "home" || hero.classList.contains("hero-has-selection")) {
-          lightning.style.opacity = 0;
-          lightningGlow.style.opacity = 0;
+        if (!stormActive()) {
+          clearLightning();
           await pause(400);
           continue;
         }
 
         const spot = lightningSpots[strikeNumber++ % lightningSpots.length];
-        const placement = `translate(${spot.shift}, ${spot.rise}) scale(${spot.scale * spot.direction}, ${spot.scale})`;
-        lightning.style.transform = placement;
-        lightningGlow.style.transform = placement;
-        for (const frame of spot.frames) {
-          if (currentHero !== "home" || !heroInView) break;
-          lightning.src = layers[frame];
-          lightning.style.opacity = frame === spot.frames[0] ? .85 : 1;
-          lightningGlow.style.opacity = spot.glow * (frame === spot.frames[spot.frames.length - 1] ? 1 : .65);
-          await pause(frame === spot.frames[spot.frames.length - 1] ? 190 : 115);
+        hero.classList.toggle("hero-right-strike", spot.groundIndex === 4);
+        lightningGround.src = layers[spot.groundIndex];
+        lightningCloudFrame.src = layers[spot.cloudIndex];
+        lightningCloudFrameSecondary.src = layers[spot.otherCloudIndex];
+        hero.style.setProperty("--strike-cloud-x", spot.cloudX);
+        hero.style.setProperty("--strike-impact-x", spot.impactX);
+        lightningCloudFrame.style.transform = `translateX(${parseFloat(spot.groundShift) * .5}%)`;
+        lightningGround.style.transform = `translateX(${spot.groundShift})`;
+        lightningGround.style.clipPath = "none";
+        lightningCloudFrame.style.transition = "opacity .09s ease-out";
+        lightningCloudFrameSecondary.style.transition = "opacity .12s ease-out";
+        lightningGlow.style.transition = "opacity .09s ease-out";
+        lightningSkywash.style.transition = "opacity .09s ease-out";
+        lightningImpact.style.transition = "opacity .09s ease-out";
+
+        // Some bolts have almost no warning; others follow a brief cloud flicker.
+        const leadIns = [
+          [[.08, .04, .12, 130]],
+          [[.28, .14, .32, 120], [.06, .03, .08, 160]],
+          [[.04, .02, .06, 90]],
+          [[.4, .22, .45, 110], [.1, .05, .12, 170], [.2, .1, .25, 90]]
+        ];
+        const leadIn = leadIns[(strikeNumber - 1) % leadIns.length];
+        for (const [sky, glow, cloud, hold] of leadIn) {
+          if (!stormActive()) break;
+          lightningSkywash.style.opacity = sky;
+          lightningGlow.style.opacity = glow;
+          lightningCloudFrame.style.opacity = cloud;
+          lightningCloudFrameSecondary.style.opacity = sky * .18;
+          await pause(hold);
         }
-        lightning.style.opacity = 0;
+        if (!stormActive()) { clearLightning(); continue; }
+
+        // A photographed single channel reaches the horizon in one fast flash.
+        lightningGround.style.opacity = 1;
+        lightningCloudFrame.style.opacity = .9;
+        lightningCloudFrameSecondary.style.opacity = .4;
+        lightningSkywash.style.opacity = 1;
+        lightningGlow.style.opacity = .78;
+        lightningImpact.style.opacity = 1;
+        await pause(110);
+        if (!stormActive()) { clearLightning(); continue; }
+        lightningGround.style.opacity = .12;
+        lightningCloudFrame.style.opacity = .42;
+        lightningCloudFrameSecondary.style.opacity = .28;
+        lightningSkywash.style.opacity = .42;
+        lightningGlow.style.opacity = .3;
+        lightningImpact.style.opacity = .25;
+        await pause(125);
+
+        // Return strokes follow the same channel while the cloud bank stays illuminated.
+        if (!stormActive()) { clearLightning(); continue; }
+        lightningGround.style.clipPath = "inset(0 0 30% 0)";
+        lightningGround.style.opacity = .82;
+        lightningCloudFrame.style.opacity = .78;
+        lightningSkywash.style.opacity = .86;
+        lightningGlow.style.opacity = .62;
+        await pause(70);
+        lightningGround.style.opacity = 0;
+        lightningCloudFrame.style.opacity = .4;
+        lightningSkywash.style.opacity = .42;
+        await pause(135);
+        if (!stormActive()) { clearLightning(); continue; }
+        lightningGround.style.opacity = .48;
+        lightningGround.style.clipPath = "inset(0 0 48% 0)";
+        lightningCloudFrame.style.opacity = .67;
+        lightningSkywash.style.opacity = .72;
+        await pause(55);
+        lightningGround.style.opacity = 0;
+        if (strikeNumber % lightningSpots.length === 0) {
+          // The final position gets one smaller, separate strike after the main channel.
+          await pause(115);
+          if (!stormActive()) { clearLightning(); continue; }
+          lightningGround.style.clipPath = "inset(0 0 42% 0)";
+          lightningGround.style.opacity = .7;
+          lightningCloudFrame.style.opacity = .76;
+          lightningSkywash.style.opacity = .82;
+          lightningGlow.style.opacity = .5;
+          await pause(75);
+          lightningGround.style.opacity = 0;
+        }
+        lightningImpact.style.opacity = 0;
+        lightningSkywash.style.transition = "opacity 1.2s ease-out";
+        lightningGlow.style.transition = "opacity 1.2s ease-out";
+        lightningCloudFrame.style.transition = "opacity 1.2s ease-out";
+        lightningCloudFrameSecondary.style.transition = "opacity 1.2s ease-out";
+        lightningSkywash.style.opacity = .42;
+        lightningGlow.style.opacity = .3;
+        lightningCloudFrame.style.opacity = .45;
+        lightningCloudFrameSecondary.style.opacity = .3;
+        await pause(250);
+        if (!stormActive()) { clearLightning(); continue; }
+        lightningSkywash.style.transition = "opacity .12s ease-out";
+        lightningGlow.style.transition = "opacity .12s ease-out";
+        lightningCloudFrame.style.transition = "opacity .12s ease-out";
+        lightningCloudFrameSecondary.style.transition = "opacity .12s ease-out";
+        lightningSkywash.style.opacity = .62;
+        lightningGlow.style.opacity = .42;
+        lightningCloudFrame.style.opacity = .66;
+        lightningCloudFrameSecondary.style.opacity = .46;
+        await pause(85);
+        lightningSkywash.style.transition = "opacity 1.25s ease-out";
+        lightningGlow.style.transition = "opacity 1.25s ease-out";
+        lightningCloudFrame.style.transition = "opacity 1.25s ease-out";
+        lightningCloudFrameSecondary.style.transition = "opacity 1.25s ease-out";
+        lightningSkywash.style.opacity = 0;
         lightningGlow.style.opacity = 0;
-        await pause(spot.rest);
+        lightningCloudFrame.style.opacity = 0;
+        lightningCloudFrameSecondary.style.opacity = 0;
+        // Distant electrical activity continues through the quiet space between bolts.
+        const ambientFlashes = [
+          [.34, .08, .24, 500],
+          [.04, .05, .04, 400],
+          [.08, .38, .27, 500],
+          [.26, .24, .2, 450],
+          [.03, .04, .03, 350],
+          [.12, .3, .18, 500]
+        ];
+        for (const [nearCloud, farCloud, sky, hold] of ambientFlashes) {
+          if (!stormActive()) break;
+          lightningCloudFrame.style.transition = "opacity .4s ease-in-out";
+          lightningCloudFrameSecondary.style.transition = "opacity .4s ease-in-out";
+          lightningSkywash.style.transition = "opacity .4s ease-in-out";
+          lightningCloudFrame.style.opacity = nearCloud;
+          lightningCloudFrameSecondary.style.opacity = farCloud;
+          lightningSkywash.style.opacity = sky;
+          await pause(hold);
+        }
+        lightningCloudFrame.style.opacity = 0;
+        lightningCloudFrameSecondary.style.opacity = 0;
+        lightningSkywash.style.opacity = 0;
+        await pause(spot.rest - 2700);
       }
     };
     if (window.heroRevealReady) cycleLightning();
@@ -3469,8 +3716,7 @@ function waitForPageContent() {
         }
       });
       if (key !== "home") {
-        lightning.style.opacity = 0;
-        lightningGlow.style.opacity = 0;
+        clearLightning();
       }
       hero.classList.toggle("hero-has-selection", key !== "home");
     };
@@ -3556,33 +3802,7 @@ function waitForPageContent() {
   })();
 </script>
 
-<script src="/navbar.js?v=20261008i" defer></script>
-<script>
-  const hero = document.querySelector(".hero");
-  const emergencyPopup = document.getElementById("emergencyPopup");
-  const footer = document.getElementById("site-footer");
-  if (hero && footer && emergencyPopup) {
-    let heroVisible = true;
-    let footerVisible = false;
-    const updatePopup = () => {
-      emergencyPopup.classList.toggle("is-visible", !heroVisible && !footerVisible && !emergencyPopup.hidden);
-    };
-
-    new IntersectionObserver(([entry]) => {
-      heroVisible = entry.intersectionRatio >= 0.2;
-      updatePopup();
-    }, { threshold: [0, 0.2] }).observe(hero);
-
-    new IntersectionObserver(([entry]) => {
-      footerVisible = entry.isIntersecting;
-      updatePopup();
-    }, { threshold: 0 }).observe(footer);
-  }
-
-  document.querySelector(".emergency-popup-close")?.addEventListener("click", () => {
-    document.getElementById("emergencyPopup").hidden = true;
-  });
-</script>
+<script src="/navbar.js?v=20261104a" defer></script>
 </body>
 
 </html>

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!mount) return;
 
   try {
-    const res = await fetch("/navbar.fragment?v=20261008i");
+    const res = await fetch("/navbar.fragment?v=20261104a");
     if (!res.ok) throw new Error(`Failed to load navbar: ${res.status}`);
     mount.innerHTML = await res.text();
   } catch (err) {
@@ -23,9 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let isOpen = false;
   const mainItems = mount.querySelectorAll(".menu-link");
-  const detailItems = mount.querySelectorAll(
-    ".menu-section-title, .menu-subitem, .menu-right > .office-block"
-  );
+  const detailItems = mount.querySelectorAll(".menu-subitem, .menu-right > .office-block");
   const menuItems = [...mount.querySelectorAll(".menu-panel-top"), ...mainItems, ...detailItems];
   const desktopMenu = window.matchMedia("(min-width: 992px)");
   let menuTimeline;
@@ -50,6 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   function revealMenuItems() {
     if (!isOpen || !panel.classList.contains("items-pending")) return;
     const travel = desktopMenu.matches ? 32 : 24;
+    const visibleDetails = [...mount.querySelectorAll(".menu-service-group.is-active .menu-subitem")];
 
     if (window.gsap) {
       gsap.set(menuItems, { autoAlpha: 0, y: travel });
@@ -64,14 +63,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       menuTimeline.to(mainItems, {
         autoAlpha: 1, y: 0, duration: 0.58, stagger: 0.09, ease: "power3.out"
       }, 0.08);
-      menuTimeline.to(detailItems, {
+      menuTimeline.to(visibleDetails, {
         autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.03, ease: "power3.out"
       }, 0.24);
       return;
     }
 
     // Keep the reveal visible when GSAP is blocked or has not loaded yet.
-    fallbackAnimations = menuItems.map((item, index) => item.animate(
+    fallbackAnimations = [...mount.querySelectorAll(".menu-panel-top"), ...mainItems, ...visibleDetails].map((item, index) => item.animate(
       [
         { opacity: 0, transform: `translateY(${travel}px)` },
         { opacity: 1, transform: "translateY(0)" }
@@ -182,6 +181,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   mount.querySelectorAll(".menu-link, .menu-subitem").forEach(link => {
     link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && isOpen) {
+      closeMenu();
+      btn.focus();
+    }
   });
 
   window.addEventListener("scroll", syncNavUI, { passive: true });
