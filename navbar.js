@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!mount) return;
 
   try {
-    const res = await fetch("/navbar.fragment?v=20261104a");
+    const res = await fetch("/navbar.fragment?v=20261104c");
     if (!res.ok) throw new Error(`Failed to load navbar: ${res.status}`);
     mount.innerHTML = await res.text();
   } catch (err) {

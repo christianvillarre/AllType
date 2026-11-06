@@ -3,6 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    html.site-booting::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: #000;
+      pointer-events: none;
+    }
+  </style>
+  <script>document.documentElement.classList.add("site-entering", "site-booting");</script>
   <link rel="icon" type="image/x-icon" href="/images/favicon-96x96.png">
 
   <!-- ===================== PRIMARY SEO ===================== -->
@@ -84,7 +95,7 @@
   <link rel="preload" as="image" href="/images/optimized/alltype-logo.webp" />
 
   <!-- ===================== STYLES ===================== -->
-  <link rel="stylesheet" href="/navbar.css?v=20261104a" />
+  <link rel="stylesheet" href="/navbar.css?v=20261104c" />
   <link rel="stylesheet" href="/footer.css" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="/footer.css" /></noscript>
   <!-- Matomo -->
@@ -424,53 +435,58 @@ html.lenis body {
   </div>
 </section>
 
-<section class="roofing-feature">
-  <div class="container roofing-grid">
-
-    <!-- LEFT LARGE CARD -->
-   <a href="/commercial-roofing" class="roofing-card roofing-card-large">
-  <div class="roofing-image">
-    <img src="images/optimized/20260729_134656.webp" alt="Commercial Roofing" loading="lazy" decoding="async" />
-  </div>
-
-  <div class="roofing-copy">
-    <div class="roofing-title-row">
-      <span>Commercial Roofing</span>
-
-      <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
-            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor">
-              <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
-            </g>
-          </svg>
+<section class="featured-services" aria-labelledby="featured-services-title">
+  <div class="container">
+    <div class="featured-services-heading">
+      <h2 id="featured-services-title">What We Do</h2>
     </div>
-
-    <p class="roofing-subtitle">Services include demolition, replacement, and repair.</p>
-  </div>
-</a>
-
-    <!-- RIGHT SMALL CARD -->
-<a href="/commercial-construction" class="roofing-card roofing-card-small">
-  <div class="roofing-image">
-    <img src="images/optimized/stock9.webp" alt="Metal Roofing" loading="lazy" decoding="async" />
-  </div>
-
-  <div class="roofing-copy">
-    <div class="roofing-title-row">
-      <span>Commercial Construction</span>
-
-      <svg class="roofing-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg">
-            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor">
-              <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
-            </g>
-          </svg>
+    <div class="featured-services-grid">
+      <a class="featured-service" href="/commercial-roofing.html">
+        <span class="featured-service-image"><img src="images/optimized/20260729_134656.webp" alt="Commercial roofing work" loading="lazy" decoding="async" /></span>
+        <span class="featured-service-title-row"><span class="featured-service-title">Commercial Roofing</span><svg class="roofing-arrow" viewBox="0 0 600 378" aria-hidden="true"><g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor"><path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/></g></svg></span>
+        <span class="featured-service-subtitle">Roofing systems and repairs for commercial properties.</span>
+      </a>
+      <a class="featured-service" href="/commercial-construction.html">
+        <span class="featured-service-image"><img src="images/optimized/commercial_construction.webp" alt="Commercial construction project" loading="lazy" decoding="async" /></span>
+        <span class="featured-service-title-row"><span class="featured-service-title">Commercial Construction</span><svg class="roofing-arrow" viewBox="0 0 600 378" aria-hidden="true"><g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor"><path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/></g></svg></span>
+        <span class="featured-service-subtitle">Construction, renovation, and complex repair scopes.</span>
+      </a>
+      <a class="featured-service" href="/commercial-waterproofing.html">
+        <span class="featured-service-image"><img src="images/optimized/commercial-waterproofing-installation-v11.webp" alt="Crew installing commercial roof waterproofing" loading="lazy" decoding="async" /></span>
+        <span class="featured-service-title-row"><span class="featured-service-title">Commercial Waterproofing</span><svg class="roofing-arrow" viewBox="0 0 600 378" aria-hidden="true"><g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor"><path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/></g></svg></span>
+        <span class="featured-service-subtitle">Protect roofs, walls, joints, and building envelope details.</span>
+      </a>
+      <a class="featured-service" href="/roof-replacement.html">
+        <span class="featured-service-image"><img src="images/optimized/roofing1.webp" alt="Commercial roofing project" loading="lazy" decoding="async" /></span>
+        <span class="featured-service-title-row"><span class="featured-service-title">Roof Replacement</span><svg class="roofing-arrow" viewBox="0 0 600 378" aria-hidden="true"><g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor"><path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/></g></svg></span>
+        <span class="featured-service-subtitle">New roofing systems planned around your building and operations.</span>
+      </a>
+      <a class="featured-service" href="/commercial-roof-maintenance-inspections.html">
+        <span class="featured-service-image"><img src="images/optimized/20260729_132651.webp" alt="Commercial roof project" loading="lazy" decoding="async" /></span>
+        <span class="featured-service-title-row"><span class="featured-service-title">Roof Maintenance &amp; Inspections</span><svg class="roofing-arrow" viewBox="0 0 600 378" aria-hidden="true"><g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor"><path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/></g></svg></span>
+        <span class="featured-service-subtitle">Catch wear early and keep a clear plan for upkeep.</span>
+      </a>
+      <a class="featured-service" href="/roof-repair-leak-detection.html">
+        <span class="featured-service-image"><img src="images/optimized/stock5.webp" alt="Commercial roof repair work" loading="lazy" decoding="async" /></span>
+        <span class="featured-service-title-row"><span class="featured-service-title">Repair &amp; Leak Detection</span><svg class="roofing-arrow" viewBox="0 0 600 378" aria-hidden="true"><g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor"><path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/></g></svg></span>
+        <span class="featured-service-subtitle">Trace water intrusion and address the source.</span>
+      </a>
+      <a class="featured-service" href="/emergency-roofing.html">
+        <span class="featured-service-image"><img src="images/optimized/emergency_response.webp" alt="Emergency roofing response" loading="lazy" decoding="async" /></span>
+        <span class="featured-service-title-row"><span class="featured-service-title">Emergency Commercial Roof Repair</span><svg class="roofing-arrow" viewBox="0 0 600 378" aria-hidden="true"><g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor"><path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/></g></svg></span>
+        <span class="featured-service-subtitle">Fast help for active leaks and unexpected roof damage.</span>
+      </a>
+      <a class="featured-service" href="/commercial-building-restoration-renovation.html">
+        <span class="featured-service-image"><img src="images/optimized/renovation.webp" alt="Commercial building renovation" loading="lazy" decoding="async" /></span>
+        <span class="featured-service-title-row"><span class="featured-service-title">Building Restoration &amp; Renovation</span><svg class="roofing-arrow" viewBox="0 0 600 378" aria-hidden="true"><g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor"><path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/></g></svg></span>
+        <span class="featured-service-subtitle">Restore damaged areas and renovate spaces for continued use.</span>
+      </a>
+      <a class="featured-service" href="/emergency-commercial-building-repair.html">
+        <span class="featured-service-image"><img src="images/optimized/alltype_hp2.webp" alt="Commercial building repair" loading="lazy" decoding="async" /></span>
+        <span class="featured-service-title-row"><span class="featured-service-title">Emergency Building Repair</span><svg class="roofing-arrow" viewBox="0 0 600 378" aria-hidden="true"><g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor"><path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/></g></svg></span>
+        <span class="featured-service-subtitle">Stabilize and repair buildings after sudden damage.</span>
+      </a>
     </div>
-
-    <p class="roofing-subtitle">
-      Wide range of construction, renovation and emergency services.
-    </p>
-  </div>
-</a>
-
   </div>
 </section>
 
@@ -567,88 +583,106 @@ html.lenis body {
 }
 
 /* ===================== ROOFING FEATURE ===================== */
-.roofing-feature{
-  background:#000;
-  padding:0 0 8rem;
-  color:#fff;
+.featured-services {
+  background: #000;
+  color: #fff;
+  padding: 1.5rem 0 8rem;
 }
 
-.roofing-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr;
-  /*grid-template-columns:1fr 550px;*/
-  gap: clamp(1rem, 5vw, 10rem);
-  align-items:start;
+.featured-services-heading {
+  margin-bottom: 2rem;
 }
 
-.roofing-card {
-  display: block;       /* makes <a> behave like a div */
+.featured-services-heading h2 {
+  margin: 0;
+  color: var(--red);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.featured-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(18px, 2.5vw, 40px);
+  row-gap: clamp(36px, 4vw, 60px);
+}
+
+.featured-service {
+  display: block;
+  min-width: 0;
+  color: #fff;
   text-decoration: none;
-  color: inherit;
-}
-.roofing-card:hover .roofing-arrow {
-  transform: translateX(6px);
-  transition: 0.2s ease;
 }
 
-.roofing-card {
-  cursor: pointer;
+.featured-service-image {
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 1.42;
+  background: #171717;
 }
 
-.roofing-card-large .roofing-image img{
-  height:640px;
+.featured-service-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1);
 }
 
-.roofing-card-small .roofing-image img{
-  height:420px;
+.featured-service:hover .featured-service-image img,
+.featured-service:focus-visible .featured-service-image img { transform: scale(1.045); }
+
+.featured-service-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: .8rem;
 }
 
-.roofing-image img{
-  width:100%;
-  object-fit:cover;
-  border-radius:18px;
-  display:block;
+.featured-service-title {
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 800;
+  line-height: 1.12;
 }
 
-.roofing-copy{
-  padding-top:1rem;
+.roofing-arrow {
+  flex: 0 0 32px;
+  width: 32px;
+  height: auto;
+  color: var(--red);
+  transition: transform .2s ease;
 }
 
-.roofing-title-row{
-  display:inline-flex;
-  align-items:center;
-  gap:14px;
-  font-size:clamp(20px,3vw,26px);
-  font-weight:800;
-  margin-top:.3rem;
+.featured-service:hover .roofing-arrow,
+.featured-service:focus-visible .roofing-arrow { transform: translateX(6px); }
+
+.featured-service-subtitle {
+  display: block;
+  margin-top: .45rem;
+  color: rgba(255, 255, 255, .72);
+  font-size: 16px;
+  line-height: 1.45;
 }
 
-.roofing-arrow{
-  width:32px;
-  color:var(--red);
+.featured-service:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 6px;
+  border-radius: 2px;
 }
 
-.roofing-subtitle{
-  margin-top:.3rem;
-  font-size:16px;
-  line-height:1.45;
-  color:rgba(255,255,255,.72);
+@media (max-width: 980px) {
+  .featured-services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-@media (max-width:980px){
-
-  .roofing-grid{
-    grid-template-columns:1fr;
-  }
-
-  .roofing-card-large .roofing-image img{
-    height:420px;
-  }
-
-  .roofing-card-small .roofing-image img{
-    height:300px;
-  }
-
+@media (max-width: 600px) {
+  .featured-services { padding: 1rem 0 5rem; }
+  .featured-services-heading { margin-bottom: 1.5rem; }
+  .featured-services-grid { grid-template-columns: 1fr; row-gap: 2.25rem; }
+  .featured-service-image { aspect-ratio: 1.48; }
 }
 
 /* ===================== WORK STACK ===================== */
@@ -738,14 +772,6 @@ html.lenis body {
   .intro-eyebrow{
     writing-mode: initial;
     transform: none;
-  }
-
-  .roofing-grid{
-    grid-template-columns: 1fr;
-  }
-
-  .roofing-image-large img{
-    height: 420px;
   }
 
   .work-cards{
@@ -1200,9 +1226,6 @@ html.lenis body {
       .intro-grid{ grid-template-columns: 1fr; gap: 1.5rem; }
       .intro-eyebrow-wrap{ justify-content: flex-start; }
       .intro-eyebrow{ writing-mode: initial; transform: none; }
-      .roofing-grid{ grid-template-columns: 1fr; }
-      .roofing-card-large .roofing-image img{ height: 420px; }
-      .roofing-card-small .roofing-image img{ height: 300px; }
       .work-cards{ width: calc(100vw - 2.5rem); }
       .work-card{ height: calc(100vh - 7rem); border-radius: 18px; }
       .scroller-card{ flex: 0 0 78vw; }
@@ -1730,11 +1753,6 @@ html.lenis body {
         <div class="contact-label">Call Us</div>
         <a href="tel:+12813976614">(281) 397-6614</a>
       </div>
-
-      <div class="contact-info-block">
-        <div class="contact-label">Email Us</div>
-        <a href="mailto:frontdesk@alltype-construction.com">frontdesk@alltype-construction.com</a>
-      </div>
     </div>
 
     <div class="contact-right">
@@ -1809,7 +1827,6 @@ html.lenis body {
         <p>13625 Chrisman Rd</p>
         <p>Houston, TX 77039</p>
         <p><a href="tel:+12813976614">(281) 397-6614</a></p>
-        <p><a href="mailto:frontdesk@alltype-construction.com">frontdesk@alltype-construction.com</a></p>
       </div>
     </div>
 
@@ -2678,19 +2695,25 @@ function waitForPageContent() {
     const loaderSvg =
       document.getElementById("loaderSvg");
 
-    if (!loaderSvg) return;
+    if (!loaderSvg) {
+      document.documentElement.classList.remove("site-entering", "site-booting");
+      return;
+    }
 
     lockScroll();
 
     let scene = sizeScene();
 
     if (!scene) {
+      document.documentElement.classList.remove("site-entering", "site-booting");
       unlockScroll();
       notifyHeroReady();
       return;
     }
 
     document.documentElement.classList.add("site-entering");
+    // The SVG now covers the viewport; let its artwork show through.
+    document.documentElement.classList.remove("site-booting");
 
     const handleResize = () => {
       const updatedScene = sizeScene();
@@ -2921,7 +2944,7 @@ function waitForPageContent() {
         loaderSvg.remove();
       }
 
-      document.documentElement.classList.remove("site-entering", "site-revealing");
+      document.documentElement.classList.remove("site-entering", "site-revealing", "site-booting");
 
       unlockScroll();
       notifyHeroReady();
@@ -3802,7 +3825,7 @@ function waitForPageContent() {
   })();
 </script>
 
-<script src="/navbar.js?v=20261104a" defer></script>
+<script src="/navbar.js?v=20261104c" defer></script>
 </body>
 
 </html>
