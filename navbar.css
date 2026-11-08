@@ -1503,8 +1503,8 @@
   .menu-btn-fixed .menu-btn-backdrop,
   .menu-btn-fixed.is-open .menu-btn-backdrop { width: 100%; height: 32px; }
   .navbar-inner, .menu-panel-top { padding-right: calc(var(--gutter) + 84px); }
-  .menu-category-links li + li { margin-top: 4px; }
-  .menu-category-links .menu-subitem { line-height: 1.1; padding: 1px 0; }
+  .menu-category-links li + li { margin-top: 6px; }
+  .menu-category-links .menu-subitem { line-height: 1.24; padding: 2px 0; }
   .menu-service-category summary { padding-top: 12px; padding-bottom: 12px; line-height: 1.1; }
   .menu-mobile-phone { display: flex; align-items: center; gap: 12px; }
   .menu-mobile-phone .phone-arrow { width: 26px; height: auto; color: currentColor; }
