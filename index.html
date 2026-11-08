@@ -1786,6 +1786,8 @@ html.lenis body {
     flex-wrap: wrap;
     gap: 12px;
   }
+  .footer-contact-link { text-decoration: none; width: fit-content; }
+  .footer-contact-prompt { color: #fff; font-size: 18px; line-height: 1.5; }
   .hero-actions .hero-emergency-call { display: none; }
   @media (max-width: 767px) { .hero-actions .hero-emergency-call { display: inline-flex; } }
   .hero-form-card {
@@ -1925,43 +1927,8 @@ html.lenis body {
     </div>
 
     <div class="contact-right">
-     <form
-  class="contact-form"
-  name="contact"
-  method="POST"
-  data-netlify="true"
-  data-netlify-recaptcha="true"
-  netlify-honeypot="bot-field"
->
-  <input type="hidden" name="form-name" value="contact">
-
-  <p class="hidden-honeypot">
-    <label>
-      Don’t fill this out if you’re human:
-      <input name="bot-field" type="text">
-    </label>
-  </p>
-
-  <div class="form-row">
-    <input type="text" name="fullName" placeholder="Full Name*" required>
-  </div>
-
-  <div class="form-row">
-    <input type="email" name="emailAddress" placeholder="Email Address*" required>
-  </div>
-
-  <div class="form-row">
-    <input type="tel" name="phoneNumber" placeholder="Phone Number*" required>
-  </div>
-
-  <div class="form-row form-row-textarea">
-    <textarea name="message" placeholder="Message*" rows="6" required></textarea>
-  </div>
-
-  <div data-netlify-recaptcha="true"></div>
-
-  <button type="submit" class="contact-submit">Send Message</button>
-</form>
+      <p class="footer-contact-prompt">Tell us about your property and the work you need.</p>
+      <a class="contact-submit footer-contact-link" href="/contact.html">Open Contact Form</a>
     </div>
   </div>
 </section>
