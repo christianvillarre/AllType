@@ -508,7 +508,15 @@
 }</script>
 <link rel="stylesheet" href="/seo.css">
 <link rel="stylesheet" href="/service-titles.css">
-</head>
+<style>
+@media (max-width: 767px) {
+  /* Use the same stacked menu spacing as the other pages. */
+  #site-navbar .menu-panel-inner { gap: 1rem; }
+  /* Keep the hero image clear on small screens. */
+  .seo-breadcrumbs { display: none; }
+  .seo-breadcrumbs + section.hero-services { padding-top: 9rem; }
+}
+</style></head>
 
 <body>
 
