@@ -1,0 +1,32 @@
+/* Shared service-page hero heading scale, based on Commercial Roofing. */
+.hero h1.hero-title,
+.about-hero h1.hero-title {
+  font-size: clamp(58px, 8vw, 8rem) !important;
+  line-height: .88 !important;
+  letter-spacing: -.05em !important;
+  font-weight: 800 !important;
+  max-width: 19ch !important;
+}
+@media (max-width: 720px) {
+  .hero h1.hero-title,
+  .about-hero h1.hero-title { font-size: clamp(46px, 13vw, 78px) !important; }
+}
+
+.hero h1.hero-title span,
+.about-hero h1.hero-title span { color: var(--red, #d00000) !important; }
+
+/* Main navigation pages use the same heading treatment. */
+.hero-title,
+.hero-services h1 {
+  font-size: clamp(58px, 8vw, 8rem) !important;
+  line-height: .88 !important;
+  letter-spacing: -.05em !important;
+  font-weight: 800 !important;
+  max-width: 19ch !important;
+}
+.hero-title span,
+.hero-services h1 span { color: var(--red, #d00000) !important; }
+@media (max-width: 720px) {
+  .hero-title,
+  .hero-services h1 { font-size: clamp(46px, 13vw, 78px) !important; }
+}

@@ -316,7 +316,7 @@
 
 @media (max-width: 640px){
   .work-together-section{
-    padding:4.5rem 1.25rem 5rem;
+    padding:4.5rem .75rem 5rem;
   }
 
   .contact-section,
@@ -397,4 +397,12 @@
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .work-together-eyebrow {
+    font-size: clamp(1.1rem, 5.2vw, 1.65rem);
+    letter-spacing: .02em;
+    white-space: nowrap;
+  }
 }

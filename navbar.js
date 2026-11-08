@@ -3,9 +3,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!mount) return;
 
   try {
-    const res = await fetch("/navbar.fragment?v=20261107-commercial-painting");
+    const res = await fetch("/navbar.fragment?v=20261108-menu-logo");
     if (!res.ok) throw new Error(`Failed to load navbar: ${res.status}`);
     mount.innerHTML = await res.text();
+    if (document.documentElement.classList.contains("site-entering")) {
+      // The homepage loader covers the header; start its fade after the loader leaves.
+      window.addEventListener("hero:ready", () => {
+        setTimeout(() => mount.classList.add("mobile-nav-ready"), 80);
+      }, { once: true });
+    } else {
+      setTimeout(() => mount.classList.add("mobile-nav-ready"), 80);
+    }
   } catch (err) {
     console.error("Navbar load failed:", err);
     return;
@@ -147,6 +155,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function openMenu() {
+    clearTimeout(showHoverOut._t);
+    clearTimeout(closeMenu._t1);
+    clearTimeout(closeMenu._t2);
     resetMenuItems();
     panel.classList.add(mobileMenu.matches ? "mobile-items-pending" : "items-pending");
     isOpen = true;
@@ -200,8 +211,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     syncNavUI();
   }
 
-  btn.addEventListener("mouseenter", showHoverIn, { passive: true });
-  btn.addEventListener("mouseleave", showHoverOut, { passive: true });
+  // Touch must activate the button directly, never enter the mouse-only plus state.
+  btn.addEventListener("pointerenter", event => {
+    if (event.pointerType === "mouse") showHoverIn();
+  }, { passive: true });
+  btn.addEventListener("pointerleave", event => {
+    if (event.pointerType === "mouse") showHoverOut();
+  }, { passive: true });
 
   btn.addEventListener("click", () => {
     if (isOpen) {

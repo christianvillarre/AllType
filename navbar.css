@@ -1547,3 +1547,101 @@
 @media (prefers-reduced-motion: reduce) {
   .menu-panel.is-open.service-buttons-revealed .menu-service-category > summary { animation: none; }
 }
+
+/* Match service navigation typography to the primary mobile links. */
+@media (max-width: 767px) {
+  .menu-service-category summary,
+  .menu-category-links .menu-subitem,
+  .menu-right .menu-view-all {
+    font-size: clamp(20px, 5.2vw, 24px);
+    font-weight: 800;
+  }
+}
+@media (max-width: 767px) {
+  .menu-category-links .menu-subitem {
+    font-size: clamp(17px, 4.5vw, 20px);
+    font-weight: 500;
+  }
+  .menu-left { border-bottom: 0; }
+  .menu-right { border-top: 3px dotted #fff; }
+}
+/* Keep expanded mobile services compact, including wrapped labels. */
+@media (max-width: 767px) {
+  .menu-category-links { display: flex; flex-direction: column; gap: 6px; }
+  .menu-category-links li,
+  .menu-category-links li + li { margin: 0; padding: 0; min-height: 0; }
+  .menu-category-links .menu-subitem {
+    display: block;
+    width: auto;
+    margin: 0;
+    padding: 2px 0;
+    min-height: 0;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  .menu-category-links .menu-subitem::after { display: none; }
+  .menu-panel-top { border-bottom: 0; }
+  .nav-logo img { width: 140px; max-width: 140px; height: auto; }
+}
+/* Reveal each expanded list as one layer, without staggered rows. */
+@keyframes service-list-fade { from { opacity: 0; } to { opacity: 1; } }
+.menu-panel.is-open .menu-service-category[open] .menu-category-links li {
+  animation: none;
+}
+.menu-panel.is-open .menu-service-category[open] .menu-category-links {
+  animation: service-list-fade 280ms ease-out both;
+}
+@media (max-width: 767px) {
+  .menu-right { border-top: 3px dashed #fff; padding-top: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-panel.is-open .menu-service-category[open] .menu-category-links { animation: none; }
+}
+
+/* Touch interaction goes directly from hamburger to the open-menu X. */
+.menu-btn { touch-action: manipulation; }
+@media (hover: none), (pointer: coarse) {
+  .menu-btn:not(.is-open) .swap .menu-line:first-child {
+    transform: translate(-50%, -50%) translateY(-2px);
+  }
+  .menu-btn:not(.is-open) .swap .menu-line:last-child {
+    transform: translate(-50%, -50%) translateY(7px);
+  }
+}
+
+@media (max-width: 767px) {
+  .menu-right {
+    border-top: 0;
+    background-image: repeating-linear-gradient(to right, #fff 0 18px, transparent 18px 26px);
+    background-size: 100% 3px;
+    background-position: left top;
+    background-repeat: no-repeat;
+    padding-top: 13px;
+  }
+}
+@media (max-width: 767px) {
+  .menu-list { gap: 9px; }
+  .menu-list .menu-link { line-height: 1.2; }
+}
+
+@media (max-width: 767px) {
+  .menu-right { position: relative; background-image: none; }
+  .menu-right::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(to right, #fff 0 18px, transparent 18px 26px);
+    pointer-events: none;
+  }
+}
+/* Smooth the asynchronously loaded mobile header into view. */
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  #site-navbar > .navbar,
+  #site-navbar > .menu-btn { opacity: 0; transition: opacity 450ms ease-out; }
+  #site-navbar.mobile-nav-ready > .navbar,
+  #site-navbar.mobile-nav-ready > .menu-btn { opacity: 1; }
+}
