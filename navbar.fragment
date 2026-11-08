@@ -29,7 +29,7 @@
     </div>
   </header>
 
-  <div class="menu-panel" id="menuPanel" aria-hidden="true">
+  <div class="menu-panel" id="menuPanel" aria-hidden="true" data-lenis-prevent>
     <div class="container menu-panel-inner">
       <div class="menu-panel-top">
         <div class="menu-panel-brand">
@@ -47,13 +47,8 @@
           </svg>
         </a>
       </div>
-      <div class="menu-left">
-        <nav class="menu-list" aria-label="Site menu">
-          <a class="menu-link" data-menu-section="services" href="/services.html">Services</a>
-          <a class="menu-link" href="/locations.html">Locations</a>
-          <a class="menu-link" href="/about.html">About</a>
-          <a class="menu-link" href="/contact.html">Contact</a>
-        </nav>
+      <div class="menu-left" data-lenis-prevent>
+        <nav class="menu-list" aria-label="Site menu"><a class="menu-link" href="/index.html">Home</a><a class="menu-link" href="/services.html">Services</a><a class="menu-link" href="/properties-we-serve.html">Properties We Serve</a><a class="menu-link" href="/projects.html">Projects / Case Studies</a><a class="menu-link" href="/locations.html">Service Areas</a><a class="menu-link" href="/about.html">About</a><a class="menu-link" href="/contact.html">Contact / Request Service</a></nav>
 
         <div class="menu-left-bottom">
  <!-- <div class="social-row">
@@ -84,31 +79,50 @@
 </div>
       </div>
 
-     <div class="menu-right">
+     <div class="menu-right" data-lenis-prevent>
   <div class="menu-right-top">
     <div class="menu-section">
       <div class="menu-section-title">Services</div>
-      <div class="menu-sublist">
-        <div class="menu-service-group is-active">
-          <div class="menu-service-column">
-            <a class="menu-subitem" href="/commercial-roofing.html">Commercial Roofing</a>
-            <a class="menu-subitem" href="/roof-replacement.html">Roof Replacement</a>
-            <a class="menu-subitem" href="/roof-restoration.html">Roof Restoration</a>
-            <a class="menu-subitem" href="/commercial-roof-maintenance-inspections.html">Roof Maintenance &amp; Inspections</a>
-            <a class="menu-subitem" href="/roof-repair-leak-detection.html">Repair &amp; Leak Detection</a>
-            <a class="menu-subitem" href="/emergency-roofing.html">Emergency Commercial Roof Repair</a>
-            <a class="menu-subitem" href="/commercial-waterproofing.html">Commercial Waterproofing</a>
-          </div>
-          <div class="menu-service-column">
-            <a class="menu-subitem" href="/commercial-construction.html">Commercial Construction</a>
-            <a class="menu-subitem" href="/commercial-building-restoration-renovation.html">Building Restoration &amp; Renovation</a>
-            <a class="menu-subitem" href="/emergency-commercial-building-repair.html">Emergency Building Repair</a>
-            <a class="menu-subitem" href="/commercial-storm-damage-repair.html">Commercial Storm Damage Repair</a>
-            <a class="menu-subitem" href="/painting.html">Commercial Painting</a>
-          </div>
-        </div>
-      </div>
-    </div>
+      <div class="menu-sublist"><div class="menu-service-group is-active menu-service-accordion">
+<details class="menu-service-category" name="service-navigation">
+<summary>Property Repairs &amp; Maintenance<span class="menu-category-toggle" aria-hidden="true"></span></summary>
+<ul class="menu-category-links">
+<li><a class="menu-subitem" href="/services/commercial-property-maintenance-repairs.html">View All: Property Repairs &amp; Maintenance</a></li>
+<li><a class="menu-subitem" href="/services/commercial-property-maintenance-repairs/concrete-masonry-repair.html">Concrete &amp; Masonry Repair</a></li>
+<li><a class="menu-subitem" href="/services/commercial-property-maintenance-repairs/stucco-eifs-repair.html">Stucco, EIFS &amp; Exterior Repair</a></li>
+</ul></details>
+<details class="menu-service-category" name="service-navigation">
+<summary>Commercial Roofing<span class="menu-category-toggle" aria-hidden="true"></span></summary>
+<ul class="menu-category-links">
+<li><a class="menu-subitem" href="/services/commercial-roofing.html">View All: Commercial Roofing</a></li>
+<li><a class="menu-subitem" href="/services/commercial-roofing/roof-repair-leak-detection.html">Roof Repair &amp; Leak Detection</a></li>
+<li><a class="menu-subitem" href="/services/commercial-roofing/roof-replacement.html">Roof Replacement</a></li>
+<li><a class="menu-subitem" href="/services/commercial-roofing/roof-restoration.html">Roof Coatings &amp; Restoration</a></li>
+<li><a class="menu-subitem" href="/services/commercial-roofing/roof-maintenance-inspections.html">Roof Maintenance &amp; Inspections</a></li>
+<li><a class="menu-subitem" href="/services/commercial-roofing/metal-sheet-metal-roofing.html">Metal &amp; Sheet Metal Roofing</a></li>
+<li><a class="menu-subitem" href="/services/commercial-roofing/roof-curbs-penetrations.html">Roof Curbs, Penetrations &amp; Accessories</a></li>
+<li><a class="menu-subitem" href="/services/commercial-roofing/emergency-roof-repair.html">24/7 Emergency Roof Repair</a></li>
+</ul></details>
+<details class="menu-service-category" name="service-navigation">
+<summary>Construction &amp; Renovation<span class="menu-category-toggle" aria-hidden="true"></span></summary>
+<ul class="menu-category-links">
+<li><a class="menu-subitem" href="/services/commercial-construction.html">View All: Construction &amp; Renovation</a></li>
+<li><a class="menu-subitem" href="/services/commercial-construction/tenant-improvements.html">Tenant Improvements &amp; White Box Work</a></li>
+</ul></details>
+<details class="menu-service-category" name="service-navigation">
+<summary>Painting &amp; Waterproofing<span class="menu-category-toggle" aria-hidden="true"></span></summary>
+<ul class="menu-category-links">
+<li><a class="menu-subitem" href="/services/commercial-painting.html">Commercial Painting</a></li>
+<li><a class="menu-subitem" href="/services/commercial-waterproofing.html">Commercial Waterproofing</a></li>
+</ul></details>
+<details class="menu-service-category" name="service-navigation">
+<summary>Emergency Services<span class="menu-category-toggle" aria-hidden="true"></span></summary>
+<ul class="menu-category-links">
+<li><a class="menu-subitem" href="/services/emergency-commercial-building-repair.html">Emergency Commercial Building Repair</a></li>
+<li><a class="menu-subitem" href="/services/commercial-roofing/emergency-roof-repair.html">Emergency Commercial Roof Repair</a></li>
+<li><a class="menu-subitem" href="/services/commercial-storm-damage-repair.html">Commercial Storm Damage Repair</a></li>
+</ul></details>
+</div><a class="menu-subitem menu-view-all" href="/services.html">View All Services &rarr;</a></div></div>
 <!--
     <div class="menu-section">
       <div class="menu-section-title">Company</div>
@@ -123,9 +137,14 @@
     <div class="menu-section-title">Corporate Office</div>
     <p class="office-block">
       <a href="tel:+12813976614">(281) 397-6614</a><br>
-      <a href="https://www.google.com/maps/search/?api=1&amp;query=13625%20Chrisman%20Rd%2C%20Houston%2C%20TX%2077039" target="_blank" rel="noopener noreferrer">13625 Chrisman Rd, Houston, TX 77039</a>
+      <a href="https://www.google.com/maps/search/?api=1&amp;amp;query=13625%20Chrisman%20Rd%2C%20Houston%2C%20TX%2077039" target="_blank" rel="noopener noreferrer">13625 Chrisman Rd, Houston, TX 77039</a>
     </p>
   </div>
 </div>
+      <a class="menu-mobile-phone" href="tel:+12813976614"><span>(281) 397-6614</span><svg class="phone-arrow" viewBox="0 0 600 378" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(0,378) scale(0.05,-0.05)" fill="currentColor" stroke="none">
+              <path d="M5465 6827 l5 -716 280 -162 c154 -89 429 -247 610 -352 462 -268 1778 -1026 1970 -1136 l160 -91 -4240 -10 -4240 -10 -5 -615 -6 -615 4172 0 c2294 0 4167 -7 4161 -16 -5 -9 -112 -76 -236 -148 -680 -394 -1274 -737 -1656 -956 -236 -135 -502 -288 -590 -340 -88 -52 -212 -123 -275 -158 l-115 -65 0 -708 c0 -390 4 -709 8 -709 11 0 602 340 3252 1870 138 79 462 266 720 415 259 149 578 333 710 410 577 333 788 455 1240 715 264 152 505 292 537 311 l56 35 -106 63 c-109 66 -549 320 -1317 760 -236 136 -479 277 -540 313 -141 83 -1887 1091 -2060 1188 -71 40 -251 143 -400 230 -148 86 -436 253 -640 370 -203 117 -523 302 -710 410 -187 108 -403 232 -480 276 -77 43 -169 96 -205 118 l-66 40 6 -717z"/>
+            </g>
+          </svg></a>
     </div>
   </div>

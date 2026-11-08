@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!mount) return;
 
   try {
-    const res = await fetch("/navbar.fragment?v=20261104c");
+    const res = await fetch("/navbar.fragment?v=20261107-commercial-painting");
     if (!res.ok) throw new Error(`Failed to load navbar: ${res.status}`);
     mount.innerHTML = await res.text();
   } catch (err) {
@@ -21,11 +21,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
+  const serviceCategories = [...mount.querySelectorAll(".menu-service-category")];
+  serviceCategories.forEach(category => {
+    category.addEventListener("toggle", () => {
+      if (!category.open) return;
+      serviceCategories.forEach(other => { if (other !== category) other.open = false; });
+    });
+  });
+
   let isOpen = false;
   const mainItems = mount.querySelectorAll(".menu-link");
   const detailItems = mount.querySelectorAll(".menu-subitem, .menu-right > .office-block");
   const menuItems = [...mount.querySelectorAll(".menu-panel-top"), ...mainItems, ...detailItems];
   const desktopMenu = window.matchMedia("(min-width: 992px)");
+  const mobileMenu = window.matchMedia("(max-width: 767px)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let revealTimer;
   let menuTimeline;
   let fallbackAnimations = [];
 
@@ -38,21 +49,39 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function resetMenuItems() {
+    clearTimeout(revealTimer);
     menuTimeline?.kill();
     fallbackAnimations.forEach(animation => animation.cancel());
     fallbackAnimations = [];
-    panel.classList.remove("items-pending");
+    panel.classList.remove("items-pending", "mobile-items-pending", "service-buttons-revealed");
     if (window.gsap) gsap.set(menuItems, { clearProps: "opacity,transform,visibility" });
   }
 
   function revealMenuItems() {
-    if (!isOpen || !panel.classList.contains("items-pending")) return;
+    if (!isOpen) return;
+    if (panel.classList.contains("mobile-items-pending")) {
+      clearTimeout(revealTimer);
+      // Fade the whole content layer together, after the panel finishes opening.
+      // No per-link transforms or stagger, including hidden accordion links.
+      const content = panel.querySelector(".menu-panel-inner");
+      if (!reducedMotion.matches) {
+        fallbackAnimations = [content.animate(
+          [{ opacity: 0 }, { opacity: 1 }],
+          { duration: 240, easing: "ease-out" }
+        )];
+      }
+      panel.classList.remove("mobile-items-pending");
+      panel.classList.add("service-buttons-revealed");
+      return;
+    }
+    if (!panel.classList.contains("items-pending")) return;
     const travel = desktopMenu.matches ? 32 : 24;
     const visibleDetails = [...mount.querySelectorAll(".menu-service-group.is-active .menu-subitem")];
 
     if (window.gsap) {
       gsap.set(menuItems, { autoAlpha: 0, y: travel });
       panel.classList.remove("items-pending");
+      panel.classList.add("service-buttons-revealed");
       menuTimeline = gsap.timeline({
         delay: desktopMenu.matches ? 0.18 : 0.08,
         onComplete: resetMenuItems
@@ -70,6 +99,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Keep the reveal visible when GSAP is blocked or has not loaded yet.
+    panel.classList.add("service-buttons-revealed");
     fallbackAnimations = [...mount.querySelectorAll(".menu-panel-top"), ...mainItems, ...visibleDetails].map((item, index) => item.animate(
       [
         { opacity: 0, transform: `translateY(${travel}px)` },
@@ -118,7 +148,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function openMenu() {
     resetMenuItems();
-    panel.classList.add("items-pending");
+    panel.classList.add(mobileMenu.matches ? "mobile-items-pending" : "items-pending");
     isOpen = true;
     btn.classList.remove("is-closing");
     btn.classList.add("is-open");
@@ -130,6 +160,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     panel.classList.add("is-open");
     panel.setAttribute("aria-hidden", "false");
+    // Also reveal if the transition is interrupted or disabled by browser settings.
+    revealTimer = setTimeout(revealMenuItems, reducedMotion.matches ? 0 : 550);
 
     document.documentElement.classList.add("lenis-stopped");
     if (window.lenis) window.lenis.stop();

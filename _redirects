@@ -1,4 +1,97 @@
-# Consolidate both construction-domain aliases on the site's primary domain.
-# Keep the requested path so service and contact links reach the same page.
+# Preferred domain; preserve the requested path.
 https://www.alltype-construction.com/* https://alltyperoofingandconstruction.com/:splat 301!
 https://alltype-construction.com/* https://alltyperoofingandconstruction.com/:splat 301!
+https://www.alltyperoofingandconstruction.com/* https://alltyperoofingandconstruction.com/:splat 301!
+/index.html / 301!
+/index / 301!
+/index-old.html / 301!
+/contact%20(1).html /contact 301!
+/about.html /about 301!
+/services.html /services 301!
+/contact.html /contact 301!
+/locations.html /locations 301!
+/properties-we-serve.html /properties-we-serve 301!
+/projects.html /projects 301!
+/commercial-construction/houston.html /commercial-construction/houston 301!
+/commercial-construction/katy.html /commercial-construction/katy 301!
+/commercial-construction/cypress.html /commercial-construction/cypress 301!
+/commercial-construction/pearland.html /commercial-construction/pearland 301!
+/commercial-construction/the-woodlands.html /commercial-construction/the-woodlands 301!
+/commercial-construction/sugar-land.html /commercial-construction/sugar-land 301!
+
+# Internal static-file rewrites after canonical redirects.
+/about /about.html 200
+/services /services.html 200
+/contact /contact.html 200
+/locations /locations.html 200
+/properties-we-serve /properties-we-serve.html 200
+/projects /projects.html 200
+/commercial-construction/houston /commercial-construction/houston.html 200
+/commercial-construction/katy /commercial-construction/katy.html 200
+/commercial-construction/cypress /commercial-construction/cypress.html 200
+/commercial-construction/pearland /commercial-construction/pearland.html 200
+/commercial-construction/the-woodlands /commercial-construction/the-woodlands.html 200
+/commercial-construction/sugar-land /commercial-construction/sugar-land.html 200
+
+# Nested service pages: preserve legacy inbound links.
+/commercial-property-maintenance-repairs /services/commercial-property-maintenance-repairs.html 301!
+/commercial-property-maintenance-repairs.html /services/commercial-property-maintenance-repairs.html 301!
+/services/commercial-property-maintenance-repairs /services/commercial-property-maintenance-repairs.html 301!
+/commercial-concrete-masonry-repair /services/commercial-property-maintenance-repairs/concrete-masonry-repair.html 301!
+/commercial-concrete-masonry-repair.html /services/commercial-property-maintenance-repairs/concrete-masonry-repair.html 301!
+/services/commercial-property-maintenance-repairs/concrete-masonry-repair /services/commercial-property-maintenance-repairs/concrete-masonry-repair.html 301!
+/commercial-stucco-eifs-repair /services/commercial-property-maintenance-repairs/stucco-eifs-repair.html 301!
+/commercial-stucco-eifs-repair.html /services/commercial-property-maintenance-repairs/stucco-eifs-repair.html 301!
+/services/commercial-property-maintenance-repairs/stucco-eifs-repair /services/commercial-property-maintenance-repairs/stucco-eifs-repair.html 301!
+/commercial-roofing /services/commercial-roofing.html 301!
+/commercial-roofing.html /services/commercial-roofing.html 301!
+/services/commercial-roofing /services/commercial-roofing.html 301!
+/roof-repair-leak-detection /services/commercial-roofing/roof-repair-leak-detection.html 301!
+/roof-repair-leak-detection.html /services/commercial-roofing/roof-repair-leak-detection.html 301!
+/services/commercial-roofing/roof-repair-leak-detection /services/commercial-roofing/roof-repair-leak-detection.html 301!
+/roof-replacement /services/commercial-roofing/roof-replacement.html 301!
+/roof-replacement.html /services/commercial-roofing/roof-replacement.html 301!
+/services/commercial-roofing/roof-replacement /services/commercial-roofing/roof-replacement.html 301!
+/roof-restoration /services/commercial-roofing/roof-restoration.html 301!
+/roof-restoration.html /services/commercial-roofing/roof-restoration.html 301!
+/services/commercial-roofing/roof-restoration /services/commercial-roofing/roof-restoration.html 301!
+/commercial-roof-maintenance-inspections /services/commercial-roofing/roof-maintenance-inspections.html 301!
+/commercial-roof-maintenance-inspections.html /services/commercial-roofing/roof-maintenance-inspections.html 301!
+/services/commercial-roofing/roof-maintenance-inspections /services/commercial-roofing/roof-maintenance-inspections.html 301!
+/sheet-metal-roofing /services/commercial-roofing/metal-sheet-metal-roofing.html 301!
+/sheet-metal-roofing.html /services/commercial-roofing/metal-sheet-metal-roofing.html 301!
+/services/commercial-roofing/metal-sheet-metal-roofing /services/commercial-roofing/metal-sheet-metal-roofing.html 301!
+/commercial-roof-curbs-penetrations /services/commercial-roofing/roof-curbs-penetrations.html 301!
+/commercial-roof-curbs-penetrations.html /services/commercial-roofing/roof-curbs-penetrations.html 301!
+/services/commercial-roofing/roof-curbs-penetrations /services/commercial-roofing/roof-curbs-penetrations.html 301!
+/emergency-roofing /services/commercial-roofing/emergency-roof-repair.html 301!
+/emergency-roofing.html /services/commercial-roofing/emergency-roof-repair.html 301!
+/services/commercial-roofing/emergency-roof-repair /services/commercial-roofing/emergency-roof-repair.html 301!
+/commercial-construction /services/commercial-construction.html 301!
+/commercial-construction.html /services/commercial-construction.html 301!
+/services/commercial-construction /services/commercial-construction.html 301!
+/commercial-building-restoration-renovation /services/commercial-construction.html 301!
+/commercial-building-restoration-renovation.html /services/commercial-construction.html 301!
+/services/commercial-construction/building-restoration-renovation /services/commercial-construction.html 301!
+/commercial-tenant-improvements /services/commercial-construction/tenant-improvements.html 301!
+/commercial-tenant-improvements.html /services/commercial-construction/tenant-improvements.html 301!
+/services/commercial-construction/tenant-improvements /services/commercial-construction/tenant-improvements.html 301!
+/painting /services/commercial-painting.html 301!
+/painting.html /services/commercial-painting.html 301!
+/services/painting /services/commercial-painting.html 301!
+/commercial-waterproofing /services/commercial-waterproofing.html 301!
+/commercial-waterproofing.html /services/commercial-waterproofing.html 301!
+/services/commercial-waterproofing /services/commercial-waterproofing.html 301!
+/emergency-commercial-building-repair /services/emergency-commercial-building-repair.html 301!
+/emergency-commercial-building-repair.html /services/emergency-commercial-building-repair.html 301!
+/services/emergency-commercial-building-repair /services/emergency-commercial-building-repair.html 301!
+/commercial-storm-damage-repair /services/commercial-storm-damage-repair.html 301!
+/commercial-storm-damage-repair.html /services/commercial-storm-damage-repair.html 301!
+/services/commercial-storm-damage-repair /services/commercial-storm-damage-repair.html 301!
+/commercial-roofing/houston /services/commercial-roofing.html 301!
+/commercial-roofing/houston.html /services/commercial-roofing.html 301!
+
+/services/commercial-construction/building-restoration-renovation.html /services/commercial-construction.html 301!
+
+/services/painting.html /services/commercial-painting.html 301!
+/services/commercial-painting /services/commercial-painting.html 301!

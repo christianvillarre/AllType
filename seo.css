@@ -1,0 +1,5 @@
+.seo-breadcrumbs { padding-top: 120px; padding-bottom: 18px; color: #f0ede8; background: #111418; font-size: 14px; line-height: 1.7; }
+.seo-breadcrumbs a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.seo-breadcrumbs a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.seo-breadcrumbs + section.hero, .seo-breadcrumbs + section.about-hero, .seo-breadcrumbs + section.paint-hero, .seo-breadcrumbs + section.hero-services { padding-top: 48px; }
+@media(max-width:720px) { .seo-breadcrumbs { padding-top: 95px; } }

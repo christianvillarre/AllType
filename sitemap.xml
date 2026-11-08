@@ -1,96 +1,93 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
     <loc>https://alltyperoofingandconstruction.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
-
   <url>
-    <loc>https://alltyperoofingandconstruction.com/commercial-roofing</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-construction.html</loc>
   </url>
-
-  <url>
-    <loc>https://alltyperoofingandconstruction.com/commercial-construction</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://alltyperoofingandconstruction.com/commercial-roof-maintenance-inspections</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://alltyperoofingandconstruction.com/commercial-building-restoration-renovation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://alltyperoofingandconstruction.com/commercial-waterproofing</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://alltyperoofingandconstruction.com/emergency-commercial-building-repair</loc>
-  </url>
-
-  <url>
-    <loc>https://alltyperoofingandconstruction.com/commercial-storm-damage-repair</loc>
-  </url>
-
-  <url>
-    <loc>https://alltyperoofingandconstruction.com/emergency-roofing</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://alltyperoofingandconstruction.com/roof-repair-leak-detection</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://alltyperoofingandconstruction.com/roof-replacement</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://alltyperoofingandconstruction.com/roof-restoration</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
   <url>
     <loc>https://alltyperoofingandconstruction.com/about</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
   </url>
-
   <url>
     <loc>https://alltyperoofingandconstruction.com/services</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://alltyperoofingandconstruction.com/painting</loc>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-roofing.html</loc>
   </url>
-
   <url>
-    <loc>https://alltyperoofingandconstruction.com/locations</loc>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-roofing/roof-repair-leak-detection.html</loc>
   </url>
-
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-roofing/roof-replacement.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-roofing/emergency-roof-repair.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-roofing/roof-restoration.html</loc>
+  </url>
   <url>
     <loc>https://alltyperoofingandconstruction.com/contact</loc>
   </url>
-
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/locations</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-painting.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/emergency-commercial-building-repair.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-storm-damage-repair.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-roofing/roof-maintenance-inspections.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-waterproofing.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-roofing/metal-sheet-metal-roofing.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-property-maintenance-repairs.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-property-maintenance-repairs/concrete-masonry-repair.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-property-maintenance-repairs/stucco-eifs-repair.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-roofing/roof-curbs-penetrations.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/services/commercial-construction/tenant-improvements.html</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/properties-we-serve</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/projects</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/commercial-construction/houston</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/commercial-construction/katy</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/commercial-construction/cypress</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/commercial-construction/pearland</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/commercial-construction/the-woodlands</loc>
+  </url>
+  <url>
+    <loc>https://alltyperoofingandconstruction.com/commercial-construction/sugar-land</loc>
+  </url>
 </urlset>
