@@ -1,0 +1,90 @@
+  .hero-bg .hero-lightning-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse 30% 32% at var(--strike-cloud-x, 55%) 22%, rgba(235, 244, 255, .38), rgba(210, 225, 255, .12) 48%, transparent 80%);
+    mix-blend-mode: screen;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .13s ease-out;
+  }
+
+  .hero-bg .hero-lightning-cloudframe,
+  .hero-bg .hero-lightning-cloudframe-secondary {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    filter: blur(2px) brightness(1.25);
+    transition: opacity .1s ease-out;
+  }
+
+  .hero-bg .hero-lightning-cloudframe-secondary { filter: blur(3px) brightness(1.1); }
+
+  .hero-bg .hero-lightning-skywash,
+  .hero-bg .hero-lightning-impact {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    transition: opacity .75s ease-out;
+  }
+
+  .hero-bg .hero-lightning-skywash {
+    background:
+      radial-gradient(ellipse 42% 54% at var(--strike-cloud-x, 65%) 19%, rgba(225, 237, 255, .54), rgba(170, 205, 250, .15) 54%, transparent 86%),
+      radial-gradient(ellipse 36% 38% at 27% 14%, rgba(210, 230, 255, .19), transparent 78%),
+      radial-gradient(ellipse 43% 42% at 83% 31%, rgba(215, 232, 255, .22), transparent 82%);
+  }
+
+  .hero-bg .hero-lightning-impact {
+    background: radial-gradient(ellipse 20% 14% at var(--strike-impact-x, 50%) 100%, rgba(235, 245, 255, .9), rgba(180, 210, 255, .28) 45%, transparent 100%);
+  }
+
+  .hero-bg .hero-lightning-ground {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .08s ease-out;
+    filter: brightness(2) drop-shadow(0 0 12px rgba(245, 250, 255, .95)) drop-shadow(0 0 26px rgba(175, 215, 255, .6));
+  }
+
+  .hero-bg .hero-bottom-fade {
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 3;
+    height: clamp(170px, 30vh, 360px);
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .6) 55%, #000 100%);
+    pointer-events: none;
+  }
+
+  .hero.hero-right-strike .hero-bg .hero-lightning-ground {
+    filter: brightness(2.1) drop-shadow(0 0 2px rgba(255, 255, 255, .75)) drop-shadow(0 0 12px rgba(245, 250, 255, .95)) drop-shadow(0 0 26px rgba(175, 215, 255, .6));
+  }
+
+/* Match the homepage storm layering and brightness. */
+.hero::before,.hero::after{display:none}
+.hero-bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;overflow:hidden;pointer-events:none;background:#000}
+.hero-bg .bg-frame{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:3;background:rgba(0,0,0,.32);pointer-events:none}
+.hero-grid{position:relative;z-index:4}
+@media(prefers-reduced-motion:reduce){.hero-bg [class*="hero-lightning"]{display:none}}
+/* Preserve the complete 2560 × 1600 sky and align every strike to it. */
+.hero{min-height:62.5vw;background:#000}
+.hero .hero-bg{bottom:auto;height:62.5vw}
+.hero-bg .bg-frame,
+.hero-bg .hero-lightning-cloudframe,
+.hero-bg .hero-lightning-cloudframe-secondary,
+.hero-bg .hero-lightning-ground{object-fit:contain;object-position:center top}
