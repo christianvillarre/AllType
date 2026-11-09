@@ -1,0 +1,155 @@
+[
+  {
+    "slug": "commercial-property-maintenance-repairs",
+    "primary_seed_target": "commercial property maintenance Houston",
+    "supporting_terms": "commercial building repairs; retail property maintenance",
+    "title": "Commercial Property Maintenance Houston | All-Type",
+    "description": "Commercial property maintenance and building repairs for Houston retail centers, offices, and warehouses. Plan repairs, upkeep, and tenant coordination.",
+    "pricing_factors": "number of repair areas, required trades, repeat visits, material condition, and access",
+    "url": "/services/commercial-property-maintenance-repairs.html"
+  },
+  {
+    "slug": "commercial-roofing",
+    "primary_seed_target": "commercial roofing Houston",
+    "supporting_terms": "commercial roofing contractor; commercial roofing services",
+    "title": "Commercial Roofing Houston | All-Type",
+    "description": "Commercial roofing in Houston: roof repair, replacement, coatings, maintenance, metal roofing, and emergency response for commercial properties.",
+    "pricing_factors": "roof size, system type, condition, equipment access, and repair versus replacement scope",
+    "url": "/services/commercial-roofing.html"
+  },
+  {
+    "slug": "roof-repair-leak-detection",
+    "primary_seed_target": "commercial roof repair Houston",
+    "supporting_terms": "commercial roof leak repair; commercial leak detection",
+    "title": "Commercial Roof Repair & Leak Detection Houston | All-Type",
+    "description": "Commercial roof repair and leak detection for Houston shopping centers, offices, and warehouses. Diagnose leaks and plan targeted roofing repairs.",
+    "pricing_factors": "leak investigation, affected area, roof materials, flashing repairs, and access",
+    "url": "/services/commercial-roofing/roof-repair-leak-detection.html"
+  },
+  {
+    "slug": "roof-restoration",
+    "primary_seed_target": "commercial roof coating Houston",
+    "supporting_terms": "commercial roof restoration; roof coating systems",
+    "title": "Commercial Roof Coating & Restoration Houston | All-Type",
+    "description": "Commercial roof coatings and restoration in Houston. Assess roof condition, localized coating needs, preparation, and compatible restoration systems.",
+    "pricing_factors": "roof area, surface preparation, existing coatings, required repairs, and the selected coating system",
+    "url": "/services/commercial-roofing/roof-restoration.html"
+  },
+  {
+    "slug": "commercial-concrete-masonry-repair",
+    "primary_seed_target": "commercial concrete repair Houston",
+    "supporting_terms": "parking-lot concrete repair; commercial curb repair",
+    "title": "Commercial Concrete & Masonry Repair Houston | All-Type",
+    "description": "Commercial concrete and masonry repair in Houston: parking-lot concrete, curbs, small slabs, post bases, stone repairs, and block work.",
+    "pricing_factors": "demolition limits, base condition, concrete depth, reinforcement, material matching, and site access",
+    "url": "/services/commercial-property-maintenance-repairs/concrete-masonry-repair.html"
+  },
+  {
+    "slug": "commercial-stucco-eifs-repair",
+    "primary_seed_target": "commercial stucco repair Houston",
+    "supporting_terms": "commercial EIFS repair; shopping-center exterior repair",
+    "title": "Commercial Stucco & EIFS Repair Houston | All-Type",
+    "description": "Commercial stucco and EIFS repair in Houston, including exterior patches, column finishes, soffits, and awning assessments for commercial properties.",
+    "pricing_factors": "repair area, substrate condition, moisture damage, lift access, and texture or color matching",
+    "url": "/services/commercial-property-maintenance-repairs/stucco-eifs-repair.html"
+  },
+  {
+    "slug": "commercial-tenant-improvements",
+    "primary_seed_target": "commercial tenant improvements Houston",
+    "supporting_terms": "retail white box contractor; commercial drywall repair",
+    "title": "Commercial Tenant Improvements Houston | All-Type",
+    "description": "Houston commercial tenant improvements and white box work: drywall, ceiling and tile repairs, finish updates, and tenant-turnover scope planning.",
+    "pricing_factors": "space size, demolition, finish selection, fixture work, included trades, and handoff requirements",
+    "url": "/services/commercial-construction/tenant-improvements.html"
+  },
+  {
+    "slug": "painting",
+    "primary_seed_target": "commercial painting Houston",
+    "supporting_terms": "shopping-center painting; commercial exterior painting",
+    "title": "Commercial Painting Houston | All-Type",
+    "description": "Commercial painting in Houston for shopping centers, offices, and warehouses. Exterior finishes, bollards, fascia, penthouses, and pavement markings.",
+    "pricing_factors": "surface area, preparation, coating selection, height, color changes, and working-hour restrictions",
+    "url": "/services/commercial-painting.html"
+  },
+  {
+    "slug": "commercial-waterproofing",
+    "primary_seed_target": "commercial waterproofing Houston",
+    "supporting_terms": "commercial window leak repair; exterior wall waterproofing",
+    "title": "Commercial Waterproofing Houston | All-Type",
+    "description": "Commercial waterproofing in Houston for window perimeters, exterior wall joints, and roof-to-wall transitions. Assess water intrusion and repair needs.",
+    "pricing_factors": "investigation, joint length, removal and preparation, access height, and concealed deterioration",
+    "url": "/services/commercial-waterproofing.html"
+  },
+  {
+    "slug": "sheet-metal-roofing",
+    "primary_seed_target": "commercial metal roofing Houston",
+    "supporting_terms": "sheet metal roofing; commercial gutter installation",
+    "title": "Commercial Metal & Sheet Metal Roofing Houston | All-Type",
+    "description": "Commercial metal and sheet metal roofing in Houston. Installation, repairs, flashings, gutters, downspouts, and roof-edge details.",
+    "pricing_factors": "panel type, flashing fabrication, attachment condition, drainage details, and lift access",
+    "url": "/services/commercial-roofing/metal-sheet-metal-roofing.html"
+  },
+  {
+    "slug": "roof-replacement",
+    "primary_seed_target": "commercial roof replacement Houston",
+    "supporting_terms": "shopping-center roof replacement; commercial reroofing",
+    "title": "Commercial Roof Replacement Houston | All-Type",
+    "description": "Commercial roof replacement in Houston with system assessment, tenant coordination, staging, and access planning for occupied commercial properties.",
+    "pricing_factors": "roof area, tear-off, disposal, insulation or deck condition, system selection, and staging",
+    "url": "/services/commercial-roofing/roof-replacement.html"
+  },
+  {
+    "slug": "commercial-roof-maintenance-inspections",
+    "primary_seed_target": "commercial roof maintenance Houston",
+    "supporting_terms": "commercial roof inspections; commercial roof cleaning",
+    "title": "Commercial Roof Maintenance & Inspections Houston | All-Type",
+    "description": "Commercial roof maintenance and inspections in Houston. Review roof condition, cleaning, debris, drainage, repair priorities, and visit frequency.",
+    "pricing_factors": "roof size, cleaning scope, drainage access, visit frequency, and reporting requirements",
+    "url": "/services/commercial-roofing/roof-maintenance-inspections.html"
+  },
+  {
+    "slug": "commercial-roof-curbs-penetrations",
+    "primary_seed_target": "commercial roof curb installation Houston",
+    "supporting_terms": "roof penetrations; roof hatch replacement; commercial skylights",
+    "title": "Commercial Roof Curbs & Penetrations Houston | All-Type",
+    "description": "Commercial roof curb and penetration work in Houston, including AC curbs, hatch replacement, skylights, flashings, and equipment-scope coordination.",
+    "pricing_factors": "opening size, curb condition, flashing requirements, access, equipment coordination, and support evaluation",
+    "url": "/services/commercial-roofing/roof-curbs-penetrations.html"
+  },
+  {
+    "slug": "commercial-construction",
+    "primary_seed_target": "commercial construction renovation Houston",
+    "supporting_terms": "commercial building improvements; property renovation",
+    "title": "Commercial Construction & Renovation Houston | All-Type",
+    "description": "Commercial construction and renovation in Houston focused on building repairs, concrete work, tenant-space improvements, and coordinated property upgrades.",
+    "pricing_factors": "scope across trades, site conditions, design requirements, access, and project sequencing",
+    "url": "/services/commercial-construction.html"
+  },
+  {
+    "slug": "emergency-roofing",
+    "primary_seed_target": "emergency commercial roof repair Houston",
+    "supporting_terms": "urgent commercial roof leak; emergency roof protection",
+    "title": "24/7 Emergency Commercial Roof Repair Houston | All-Type",
+    "description": "Call All-Type for 24/7 emergency commercial roof repair in Houston. Share the property address, active leak conditions, access, and onsite contact.",
+    "pricing_factors": "damage extent, immediate protection, access, conditions during response, and permanent repair needs",
+    "url": "/services/commercial-roofing/emergency-roof-repair.html"
+  },
+  {
+    "slug": "emergency-commercial-building-repair",
+    "primary_seed_target": "emergency commercial building repair Houston",
+    "supporting_terms": "commercial board-up; storefront damage repair",
+    "title": "Emergency Commercial Building Repair Houston | All-Type",
+    "description": "24/7 emergency commercial building repair and storefront board-up in Houston. Call with damage details, property access, and an onsite contact.",
+    "pricing_factors": "opening size, damage type, temporary protection, access, materials, and permanent repair requirements",
+    "url": "/services/emergency-commercial-building-repair.html"
+  },
+  {
+    "slug": "commercial-storm-damage-repair",
+    "primary_seed_target": "commercial storm damage repair Houston",
+    "supporting_terms": "commercial storm recovery; permanent storm repairs",
+    "title": "Commercial Storm Damage Repair Houston | All-Type",
+    "description": "Commercial storm damage assessment and permanent repairs in Houston. Coordinate roofing, exterior damage, access, and recovery scopes after a storm.",
+    "pricing_factors": "affected building areas, assessment needs, protection, repair materials, and coordination across trades",
+    "url": "/services/commercial-storm-damage-repair.html"
+  }
+]

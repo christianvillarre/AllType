@@ -1,0 +1,20 @@
+{
+  "commercial-property-maintenance-repairs": "services/commercial-property-maintenance-repairs.html",
+  "commercial-concrete-masonry-repair": "services/commercial-property-maintenance-repairs/concrete-masonry-repair.html",
+  "commercial-stucco-eifs-repair": "services/commercial-property-maintenance-repairs/stucco-eifs-repair.html",
+  "commercial-roofing": "services/commercial-roofing.html",
+  "roof-repair-leak-detection": "services/commercial-roofing/roof-repair-leak-detection.html",
+  "roof-replacement": "services/commercial-roofing/roof-replacement.html",
+  "roof-restoration": "services/commercial-roofing/roof-restoration.html",
+  "commercial-roof-maintenance-inspections": "services/commercial-roofing/roof-maintenance-inspections.html",
+  "sheet-metal-roofing": "services/commercial-roofing/metal-sheet-metal-roofing.html",
+  "commercial-roof-curbs-penetrations": "services/commercial-roofing/roof-curbs-penetrations.html",
+  "emergency-roofing": "services/commercial-roofing/emergency-roof-repair.html",
+  "commercial-construction": "services/commercial-construction.html",
+  "commercial-building-restoration-renovation": "services/commercial-construction.html",
+  "commercial-tenant-improvements": "services/commercial-construction/tenant-improvements.html",
+  "painting": "services/commercial-painting.html",
+  "commercial-waterproofing": "services/commercial-waterproofing.html",
+  "emergency-commercial-building-repair": "services/emergency-commercial-building-repair.html",
+  "commercial-storm-damage-repair": "services/commercial-storm-damage-repair.html"
+}

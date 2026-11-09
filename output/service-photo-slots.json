@@ -1,0 +1,266 @@
+[
+  {
+    "page": "services/commercial-roofing/roof-curbs-penetrations.html",
+    "id": "ac-curb-installation",
+    "title": "AC Curb Installation",
+    "description": "Installation and repair of rooftop AC curbs, surrounding flashings, and roof tie-ins. Equipment setting, ductwork, refrigerant, and electrical connections are identified separately in the agreed scope."
+  },
+  {
+    "page": "services/commercial-roofing/roof-restoration.html",
+    "id": "localized-aluminum-coating",
+    "title": "Aluminum Coating Around Exhausts & Roof Objects",
+    "description": "Localized coating work around exhaust curbs and roof objects starts with cleaning, surface assessment, and needed repairs. Aluminum-pigmented coating is selected only where the product is compatible with the roof and existing finish."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs/stucco-eifs-repair.html",
+    "id": "awning-repair",
+    "title": "Awning Repair",
+    "description": "Assessment and repair planning for storefront awnings and canopies, including damaged coverings, panels, trim, and attachments. Fabric, vinyl, aluminum, or steel components are identified before the repair materials and scope are agreed."
+  },
+  {
+    "page": "services/commercial-painting.html",
+    "id": "bollard-painting",
+    "title": "Bollard Painting",
+    "description": "Preparation and repainting of commercial parking-area and walkway bollards. We review deteriorated coatings and surface condition; damaged bases or anchorage are a separate repair scope."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "banner-installation",
+    "title": "Banner Installation",
+    "description": "Installation of supplied banners on commercial properties, with mounting surfaces, attachment details, and access reviewed before work. Banner design and fabrication are separate from installation."
+  },
+  {
+    "page": "services/commercial-construction/tenant-improvements.html",
+    "id": "drywall-ceiling-repair",
+    "title": "Drywall Ceiling Repair",
+    "description": "Repair of damaged drywall ceilings in occupied commercial spaces and tenant-turnover projects. The scope includes agreed patching, joint finishing, and paint preparation after the source of recurring damage is addressed."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs/stucco-eifs-repair.html",
+    "id": "stucco-ceiling-repair",
+    "title": "Stucco Ceiling Repair",
+    "description": "Repair planning for damaged stucco ceilings and soffits at covered walkways, storefront recesses, and canopy undersides. We review overhead finish condition, substrate needs, moisture sources, and finish matching."
+  },
+  {
+    "page": "services/commercial-roofing/roof-restoration.html",
+    "id": "full-roof-coating",
+    "title": "Roof Coating",
+    "description": "Full-roof coating scopes include assessment, compatible cleaning, preparation, and necessary localized repairs. System selection depends on the existing roof, drainage, condition, and coating compatibility."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs/stucco-eifs-repair.html",
+    "id": "exterior-column-repair",
+    "title": "Exterior Column Repair",
+    "description": "Repair of stucco, EIFS, trim, and decorative enclosures around shopping-center columns. Finish repairs are distinguished from structural column damage, which requires its own evaluation and scope."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs/concrete-masonry-repair.html",
+    "id": "concrete-post-bases",
+    "title": "Concrete Base Repair",
+    "description": "Repair or replacement planning for damaged concrete bases supporting fencing posts, bollards, signs, and other site fixtures. Base condition, anchors, adjoining concrete, and fixture support are assessed together."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs/concrete-masonry-repair.html",
+    "id": "parking-lot-concrete",
+    "title": "Parking-Lot Concrete Repair",
+    "description": "Localized concrete patching or replacement in commercial parking and service areas. The repair plan considers removal limits, base condition, drainage, loading, and access while the work is completed."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "drain-cleanout",
+    "title": "Drain Cleanout",
+    "description": "Drain cleanout begins by identifying the affected system, location of the blockage, and available access. Plumbing drains, roof drains, and site storm drains are assessed separately so the method and included work are clear."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs/stucco-eifs-repair.html",
+    "id": "stucco-eifs-repair",
+    "title": "EIFS Repair",
+    "description": "Repair of damaged exterior insulation and finish system areas after identifying the existing assembly and moisture concerns. Compatible materials, affected layers, joints, and finish preparation are defined in the proposal."
+  },
+  {
+    "page": "services/commercial-painting.html",
+    "id": "fascia-painting",
+    "title": "Fascia Painting",
+    "description": "Preparation and painting of commercial fascia and storefront trim. We review the existing finish, access height, deteriorated areas, and color requirements before repainting."
+  },
+  {
+    "page": "services/commercial-painting.html",
+    "id": "graffiti-removal",
+    "title": "Graffiti Removal",
+    "description": "Graffiti treatment for commercial walls, doors, and other affected surfaces. Depending on the material and existing finish, the scope may involve removal, cleaning, surface preparation, and repainting."
+  },
+  {
+    "page": "services/commercial-roofing/metal-sheet-metal-roofing.html",
+    "id": "commercial-gutter-installation",
+    "title": "Gutter Installation",
+    "description": "Installation and repair of commercial gutters and downspouts, with attention to roof-edge attachments, outlets, and discharge routes. Underground drainage connections are identified separately from roof-edge work."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "handrail-repair",
+    "title": "Handrail Repair",
+    "description": "Assessment and repair of damaged commercial handrails, posts, connections, and anchors. The proposal identifies component replacement, adjustment, and any specific metalwork required for the existing assembly."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "handrail-installation",
+    "title": "Handrail Installation",
+    "description": "Installation planning for commercial handrails around property access routes and steps. Rail materials, dimensions, mounting surfaces, anchorage, and any required fabrication are defined before work begins."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "lighting-electrical",
+    "title": "Lighting & Electrical Repairs",
+    "description": "All-Type performs commercial lighting and electrical repairs. Share the affected fixture or connection, symptoms, access requirements, and operating hours so the repair scope and any shutdown coordination can be established."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs/stucco-eifs-repair.html",
+    "id": "stucco-patch-paint",
+    "title": "Stucco Patch & Paint",
+    "description": "Localized stucco patching, finish preparation, and painting for commercial exteriors. The scope considers damaged substrate, moisture sources, texture matching, and the area needed to blend the finish."
+  },
+  {
+    "page": "services/commercial-roofing/roof-curbs-penetrations.html",
+    "id": "roof-penetration-installation",
+    "title": "Roof Penetration Installation",
+    "description": "Installation of roofing details around new pipe, duct, and equipment penetrations. Opening locations, boots, flashings, adjacent drainage, and coordination with the equipment trades are reviewed before work."
+  },
+  {
+    "page": "services/commercial-painting.html",
+    "id": "penthouse-pressure-wash-paint",
+    "title": "Penthouse Pressure Wash & Paint",
+    "description": "Cleaning and painting of rooftop mechanical penthouse enclosures that house or screen building equipment. Methods are matched to the surface, with protection of adjacent roofing and equipment included in planning."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "plumbing-repairs",
+    "title": "Plumbing Repairs",
+    "description": "All-Type performs plumbing repairs for commercial properties, including assessment of affected fixtures, leaks, and connected piping. Included materials, access, and service interruptions are agreed in the repair scope."
+  },
+  {
+    "page": "services/commercial-painting.html",
+    "id": "pressure-wash-paint",
+    "title": "Pressure Washing & Painting",
+    "description": "Commercial surface cleaning, preparation, and repainting coordinated as one scope. Cleaning pressure and methods are selected for the material and condition, with drying and coating compatibility addressed before painting."
+  },
+  {
+    "page": "services/commercial-roofing/roof-maintenance-inspections.html",
+    "id": "roof-cleaning",
+    "title": "Roof Cleaning",
+    "description": "System-appropriate roof cleaning and debris removal for commercial properties. We assess the membrane or coating before selecting methods and identify accessible drain clearing, disposal, and repair needs separately."
+  },
+  {
+    "page": "services/commercial-roofing/roof-curbs-penetrations.html",
+    "id": "roof-hatch-replacement",
+    "title": "Roof Hatch Replacement",
+    "description": "Replacement of commercial roof hatches with review of the opening, curb, assembly, and surrounding flashing. Roof tie-ins are coordinated with building access; ladder or structural changes are separately assessed."
+  },
+  {
+    "page": "services/commercial-roofing/roof-repair-leak-detection.html",
+    "id": "commercial-roof-repairs",
+    "title": "Roof Repair",
+    "description": "Diagnosis and targeted repair of commercial roofing leaks and damaged details. We review the affected area, seams, flashings, penetrations, and drainage before defining the repair instead of relying only on the interior stain location."
+  },
+  {
+    "page": "services/commercial-construction/tenant-improvements.html",
+    "id": "drywall-sheetrock",
+    "title": "Sheetrock / Drywall Repair",
+    "description": "Repair of damaged commercial drywall, also called sheetrock, including patches, joint finishing, and paint preparation. Work is coordinated around occupants and any underlying leak or recurring damage."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "signage-installation",
+    "title": "Signage Installation",
+    "description": "Installation of supplied commercial signage with review of the mounting surface, attachments, access, and any included electrical connections. Sign design and fabrication are separate services from installation."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "sink-installation",
+    "title": "Sink Installation",
+    "description": "Installation or replacement of commercial sinks with review of fixture requirements and existing water and drain connections. The scope identifies the supplied fixture, connection work, access, and any related repairs."
+  },
+  {
+    "page": "services/commercial-roofing/roof-curbs-penetrations.html",
+    "id": "skylight-installation",
+    "title": "Skylight Installation",
+    "description": "Installation or replacement planning for commercial skylights, including assembly, curb, flashing, and roof compatibility. New openings and powered controls may require separately defined support or electrical work."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs/concrete-masonry-repair.html",
+    "id": "stone-repair",
+    "title": "Stone Repair",
+    "description": "Repair assessment for damaged stone finishes and adjoining mortar joints at commercial properties. We distinguish decorative finish repairs from load-bearing masonry and discuss material matching and support needs."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "stop-sign-repair",
+    "title": "Private-Property Stop-Sign Repair",
+    "description": "Repair of stop-sign panels, posts, attachments, and bases in commercial parking lots and private drives. This scope concerns private-property fixtures rather than public-road traffic-control work."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "storm-drain-cleanout",
+    "title": "Storm-Drain Cleanout",
+    "description": "Assessment and cleanout planning for commercial site storm drains and catch basins. Describe where runoff backs up and when it occurs so accessible areas, debris removal, disposal, and any further investigation can be defined."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "tank-cleanout",
+    "title": "Tank Cleanout \u2014 Scope Review",
+    "description": "Tank cleanout requires confirmation of the tank type, contents, condition, and access before a service can be quoted or scheduled. Send those details for review; a specific cleaning method and included work have not yet been established."
+  },
+  {
+    "page": "services/commercial-construction/tenant-improvements.html",
+    "id": "tile-repair",
+    "title": "Tile Repair",
+    "description": "Localized commercial tile repair with review of damaged tile, grout, and the underlying surface. The scope identifies removal, preparation, replacement material, and finishing, including whether matching tile is available."
+  },
+  {
+    "page": "services/commercial-construction/tenant-improvements.html",
+    "id": "white-box-work",
+    "title": "White Boxing & Tenant Turnover",
+    "description": "Preparation of a commercial tenant space for an agreed landlord or next-tenant handoff. Included demolition, drywall, ceilings, finishes, fixtures, and trade work are defined in writing because white-box requirements vary by property."
+  },
+  {
+    "page": "services/emergency-commercial-building-repair.html",
+    "id": "commercial-board-up",
+    "title": "Emergency Board-Up",
+    "description": "Temporary board-up of damaged commercial storefronts and exposed building openings. Call with the address, affected doors or windows, access details, and an onsite contact; permanent glazing or building repairs are scoped separately."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs.html",
+    "id": "signage-removal",
+    "title": "Signage Removal",
+    "description": "Removal of commercial signage with planning for access, attachments, disposal, and the condition of the mounting surface. Electrical disconnection and patching of former attachment points are identified in the agreed scope."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs/concrete-masonry-repair.html",
+    "id": "cinder-block-installation",
+    "title": "Cinder Block / Concrete Block Installation",
+    "description": "Installation and repair planning for concrete masonry units, often called cinder blocks. The scope distinguishes non-load-bearing work from structural walls and establishes materials, reinforcement, support, and any required evaluation."
+  },
+  {
+    "page": "services/commercial-waterproofing.html",
+    "id": "windows-roof-transitions",
+    "title": "Window & Roof-Transition Waterproofing",
+    "description": "Assessment and repair of window-perimeter seals, storefront joints, wall penetrations, and roof-to-wall transitions. Full-roof coating work is addressed on the roof coatings and restoration page."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs/concrete-masonry-repair.html",
+    "id": "concrete-curbs",
+    "title": "Concrete Curb Replacement",
+    "description": "Removal and replacement planning for damaged commercial curbs at parking edges, islands, and delivery routes. Adjacent pavement, drainage, access, and return-to-service requirements are reviewed before scheduling."
+  },
+  {
+    "page": "services/commercial-property-maintenance-repairs/concrete-masonry-repair.html",
+    "id": "concrete-work",
+    "title": "Commercial Concrete Work",
+    "description": "Concrete scopes for small slabs, walkways, service areas, and commercial site improvements. We review loading, base condition, drainage, access, and the intended use before defining materials and work limits."
+  },
+  {
+    "page": "services/commercial-painting.html",
+    "id": "accessible-parking-markings",
+    "title": "Accessible Parking Symbols & Pavement Markings",
+    "description": "Painting and refreshing accessible parking symbols and agreed pavement markings on commercial properties. Confirm the approved layout and preparation; painting alone does not establish full accessibility compliance."
+  }
+]
