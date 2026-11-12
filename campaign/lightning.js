@@ -106,7 +106,6 @@
     const stormActive = () => !document.hidden && heroInView && currentHero === "home" && !hero.classList.contains("hero-has-selection");
 
     const cycleLightning = async () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       const layers = await window.lightningLayersPromise;
       if (!layers?.[4] || !layers?.[5] || !layers?.[6] || !layers?.[7]) return;
       let strikeNumber = 0;

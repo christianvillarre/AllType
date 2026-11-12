@@ -2761,21 +2761,8 @@ html.lenis body {
       }
     };
     const playLightning = () => cycleLightning().catch(error => console.warn("Lightning artwork unavailable", error));
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      const play = document.createElement("button");
-      play.type = "button";
-      play.className = "cta-button";
-      play.textContent = "Play lightning";
-      content.querySelector(".hero-actions").append(play);
-      play.addEventListener("click", () => {
-        hero.classList.add("lightning-enabled");
-        action.focus();
-        play.remove();
-        playLightning();
-      }, { once: true });
-    } else {
-      playLightning();
-    }
+    hero.classList.add("lightning-enabled");
+    playLightning();
 
     const updateText = state => {
       title.textContent = state.title;

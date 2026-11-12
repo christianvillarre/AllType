@@ -80,7 +80,6 @@
 .hero-bg .bg-frame{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .hero-bg::before{content:"";position:absolute;inset:0;z-index:3;background:rgba(0,0,0,.32);pointer-events:none}
 .hero-grid{position:relative;z-index:4}
-@media(prefers-reduced-motion:reduce){.hero-bg [class*="hero-lightning"]{display:none}}
 /* Preserve the complete 2560 × 1600 sky and align every strike to it. */
 .hero{min-height:62.5vw;background:#000}
 .hero .hero-bg{bottom:auto;height:62.5vw}
