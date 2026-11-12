@@ -2879,6 +2879,23 @@ html.lenis body {
 }
 </style>
 <style>
+@media (min-width: 1100px) {
+  /* Place the photographed bolts in the open sky between the copy and form. */
+  .hero .hero-lightning-ground {
+    translate: 28% 0;
+  }
+  .hero.hero-right-strike .hero-lightning-ground {
+    translate: -24% 0;
+  }
+}
+@media (min-width: 1100px) and (prefers-reduced-motion: reduce) {
+  .hero .hero-bg::after {
+    background: url("/images/optimized/strike-ground-left.webp") center / cover no-repeat;
+    translate: 28% 0;
+    opacity: 1;
+  }
+  .hero.hero-has-selection .hero-bg::after { opacity: 0; }
+}
 @media (max-width: 767px) {
   /* Size the storm to the viewport instead of the tall, stacked hero content. */
   .hero .hero-bg {
