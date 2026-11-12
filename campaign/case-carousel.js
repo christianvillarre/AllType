@@ -24,32 +24,38 @@
   track.prepend(copyPhotos());
   track.append(copyPhotos());
   let cycleWidth = 0;
+  let position = 0;
   function measure() {
-    cycleWidth = originals[0].offsetLeft - track.children[0].offsetLeft;
-    viewport.scrollLeft = cycleWidth;
+    cycleWidth = originals[0].getBoundingClientRect().left - track.children[0].getBoundingClientRect().left;
+    position = cycleWidth;
+    viewport.scrollLeft = position;
   }
   new ResizeObserver(measure).observe(viewport);
   measure();
 
-  let hovering = false;
+
+
   let dragging = false;
   let moved = false;
   let lastX = 0;
   let startX = 0;
   let arrowDistance = 0;
   let previousTime = 0;
-  let resumeAt = 0;
+
   function wrap() {
     if (!cycleWidth) return;
-    while (viewport.scrollLeft < cycleWidth) viewport.scrollLeft += cycleWidth;
-    while (viewport.scrollLeft >= cycleWidth * 2) viewport.scrollLeft -= cycleWidth;
+    while (position < cycleWidth) position += cycleWidth;
+    while (position >= cycleWidth * 2) position -= cycleWidth;
+    viewport.scrollLeft = position;
   }
-  carousel.addEventListener("mouseenter", () => { hovering = true; });
-  carousel.addEventListener("mouseleave", () => { hovering = false; });
+
+
   viewport.addEventListener("dragstart", event => event.preventDefault());
   viewport.addEventListener("pointerdown", event => {
     if (event.button !== 0) return;
     dragging = true;
+    viewport.setPointerCapture(event.pointerId);
+
     moved = false;
     startX = lastX = event.clientX;
     arrowDistance = 0;
@@ -58,11 +64,12 @@
     if (!dragging) return;
     if (Math.abs(event.clientX - startX) > 6) {
       moved = true;
+
       viewport.classList.add("is-dragging");
-      viewport.setPointerCapture(event.pointerId);
+
     }
     if (moved) {
-      viewport.scrollLeft -= event.clientX - lastX;
+      position -= event.clientX - lastX;
       wrap();
     }
     lastX = event.clientX;
@@ -70,10 +77,11 @@
   function finishDrag() {
     dragging = false;
     viewport.classList.remove("is-dragging");
-    resumeAt = performance.now() + 1200;
+
   }
   viewport.addEventListener("pointerup", finishDrag);
   viewport.addEventListener("pointercancel", finishDrag);
+  viewport.addEventListener("lostpointercapture", finishDrag);
   window.addEventListener("pointerup", finishDrag);
   viewport.addEventListener("click", event => {
     if (!moved) return;
@@ -85,20 +93,19 @@
     button.addEventListener("click", () => {
       const photoWidth = originals[0].getBoundingClientRect().width + 14;
       arrowDistance += button.classList.contains("case-carousel-prev") ? -photoWidth : photoWidth;
-      resumeAt = performance.now() + 1200;
+
     });
   });
   function animate(now) {
     const elapsed = Math.min(now - previousTime, 50);
     previousTime = now;
-    const paused = hovering || dragging || carousel.matches(":focus-within") ||
-      document.hidden || document.querySelector(".photo-lightbox[open]");
     if (!dragging && Math.abs(arrowDistance) > 0.5) {
       const distance = arrowDistance * (1 - Math.exp(-elapsed / 90));
-      viewport.scrollLeft += distance;
+      position += distance;
       arrowDistance -= distance;
-    } else if (!paused && now > resumeAt) {
-      viewport.scrollLeft += elapsed * 0.035;
+    } else if (!dragging) {
+      // Keep fractional progress even when a browser rounds scrollLeft.
+      position += elapsed * 0.05;
     }
     wrap();
     requestAnimationFrame(animate);

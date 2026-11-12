@@ -413,7 +413,7 @@ body,.site-mark,.section,.foot{background:#000}
 </style>
 <style>
 .case-carousel { position: relative; padding: 0 48px; }
-.case-carousel-viewport { overflow: hidden; touch-action: pan-y; cursor: grab; }
+.case-carousel-viewport { overflow: hidden; touch-action: none; cursor: grab; }
 .case-carousel-viewport.is-dragging { cursor: grabbing; user-select: none; }
 #roofing-gallery .project-gallery-grid { display: flex; gap: 14px; width: max-content; }
 #roofing-gallery .project-gallery-item { flex: 0 0 auto; width: clamp(230px, 29vw, 460px); aspect-ratio: 4 / 3; cursor: grab; }
@@ -428,9 +428,21 @@ body,.site-mark,.section,.foot{background:#000}
 .case-carousel-next { right: 0; }
 .case-carousel-arrow:hover { background: #444; }
 @media (max-width: 600px) {
-  .case-carousel { padding: 0 36px; }
-  .case-carousel-arrow { width: 30px; }
-  #roofing-gallery .project-gallery-item { width: 70vw; }
+  .case-carousel {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 0 0 64px;
+  }
+  .case-carousel-arrow {
+    top: auto;
+    bottom: 0;
+    width: 40px;
+    height: 48px;
+    transform: none;
+  }
+  .case-carousel-prev { left: calc(50% - 48px); }
+  .case-carousel-next { left: calc(50% + 8px); right: auto; }
+  #roofing-gallery .project-gallery-item { width: 86vw; aspect-ratio: 3 / 2; }
 }
 </style>
 </head><body>
@@ -588,5 +600,5 @@ window.renderCampaignCaptchas = function () {
 
 <script src="/campaign/libphonenumber-max.js" defer></script>
 <script src="/campaign/form-validation.js?v=20261112-1" defer></script>
-<script src="/campaign/case-carousel.js?v=20261112-1" defer></script>
+<script src="/campaign/case-carousel.js?v=20261112-3" defer></script>
 </body></html>
