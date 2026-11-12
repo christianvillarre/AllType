@@ -1500,12 +1500,12 @@ html.lenis body {
 
   @media (prefers-reduced-motion: reduce) {
     .hero-bg::after { transition-duration: 0ms; }
-    .hero-lightning-glow,
-    .hero-lightning-cloudframe,
-    .hero-lightning-cloudframe-secondary,
-    .hero-lightning-skywash,
-    .hero-lightning-ground,
-    .hero-lightning-impact { display: none; }
+    .hero:not(.lightning-enabled) .hero-lightning-glow,
+    .hero:not(.lightning-enabled) .hero-lightning-cloudframe,
+    .hero:not(.lightning-enabled) .hero-lightning-cloudframe-secondary,
+    .hero:not(.lightning-enabled) .hero-lightning-skywash,
+    .hero:not(.lightning-enabled) .hero-lightning-ground,
+    .hero:not(.lightning-enabled) .hero-lightning-impact { display: none; }
   }
 
   @media (max-width: 1099px) {
@@ -2609,7 +2609,7 @@ html.lenis body {
     const stormActive = () => !document.hidden && heroInView && currentHero === "home" && !hero.classList.contains("hero-has-selection");
 
     const cycleLightning = async () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
       const layers = {};
       await Promise.all(["ground", "clouds", "ground-left", "clouds-left"].map(async name => {
         const image = new Image();
@@ -2760,7 +2760,22 @@ html.lenis body {
         await pause(spot.rest - 2700);
       }
     };
-    cycleLightning().catch(error => console.warn("Lightning artwork unavailable", error));
+    const playLightning = () => cycleLightning().catch(error => console.warn("Lightning artwork unavailable", error));
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const play = document.createElement("button");
+      play.type = "button";
+      play.className = "cta-button";
+      play.textContent = "Play lightning";
+      content.querySelector(".hero-actions").append(play);
+      play.addEventListener("click", () => {
+        hero.classList.add("lightning-enabled");
+        action.focus();
+        play.remove();
+        playLightning();
+      }, { once: true });
+    } else {
+      playLightning();
+    }
 
     const updateText = state => {
       title.textContent = state.title;
@@ -2879,23 +2894,6 @@ html.lenis body {
 }
 </style>
 <style>
-@media (min-width: 1100px) {
-  /* Place the photographed bolts in the open sky between the copy and form. */
-  .hero .hero-lightning-ground {
-    translate: 28% 0;
-  }
-  .hero.hero-right-strike .hero-lightning-ground {
-    translate: -24% 0;
-  }
-}
-@media (min-width: 1100px) and (prefers-reduced-motion: reduce) {
-  .hero .hero-bg::after {
-    background: url("/images/optimized/strike-ground-left.webp") center / cover no-repeat;
-    translate: 28% 0;
-    opacity: 1;
-  }
-  .hero.hero-has-selection .hero-bg::after { opacity: 0; }
-}
 @media (max-width: 767px) {
   /* Size the storm to the viewport instead of the tall, stacked hero content. */
   .hero .hero-bg {
