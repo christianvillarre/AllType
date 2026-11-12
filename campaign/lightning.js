@@ -1,73 +1,17 @@
-(() => { const hero = document.querySelector(".hero"); if (!hero) return; const currentHero = "home";  const stormFrames = [1, 2, 3, 4].map(
-    number => `/images/optimized/lightning${number}.webp`
-  ).concat(
-    "/images/optimized/lightning-ground.webp",
-    "/images/optimized/lightning-clouds.webp",
-    "/images/optimized/lightning-ground-left.webp",
-    "/images/optimized/lightning-clouds-left.webp"
-  );
+(() => {
+  const hero = document.querySelector(".hero");
+  if (!hero) return;
+  const currentHero = "home";
 
-  function preloadStormFrames() {
-    const loadImage = source => new Promise(resolve => {
+  // Load the same prepared lightning layers used by the homepage.
+  window.lightningLayersPromise = Promise.all(
+    ["ground", "clouds", "ground-left", "clouds-left"].map(async name => {
       const image = new Image();
-      image.onload = () => resolve(image);
-      image.onerror = () => resolve(null);
-      image.src = source;
-      if (image.complete && image.naturalWidth) resolve(image);
-    });
-
-    return Promise.all([
-      loadImage("/images/Alltype Web BG.jpg"),
-      ...stormFrames.map(loadImage)
-    ]).then(([background, ...frames]) => {
-      if (!background || frames.some(frame => !frame)) return stormFrames;
-
-      // Keep the photographed clouds fixed and extract only the brighter strike.
-      const canvas = document.createElement("canvas");
-      canvas.width = frames[0].naturalWidth;
-      canvas.height = Math.round(canvas.width * background.naturalHeight / background.naturalWidth);
-      const context = canvas.getContext("2d", { willReadFrequently: true });
-      if (!context) return stormFrames;
-
-      try {
-        context.drawImage(background, 0, 0, canvas.width, canvas.height);
-        const clouds = context.getImageData(0, 0, canvas.width, canvas.height).data;
-        return frames.map((frame, frameIndex) => {
-          context.clearRect(0, 0, canvas.width, canvas.height);
-          context.drawImage(frame, 0, 0, canvas.width, canvas.height);
-          const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
-          const strike = context.createImageData(canvas.width, canvas.height);
-          const isGroundStrike = frameIndex === 4 || frameIndex === 6;
-          for (let index = 0; index <pixels.length; index += 4) {
-            const brightnessGain = Math.max(
-              pixels[index] - clouds[index],
-              pixels[index + 1] - clouds[index + 1],
-              pixels[index + 2] - clouds[index + 2]
-            );
-            strike.data[index] = pixels[index];
-            strike.data[index + 1] = pixels[index + 1];
-            strike.data[index + 2] = pixels[index + 2];
-            // Feather translated frame boundaries so no rectangular seam flashes.
-            const x = (index / 4) % canvas.width;
-            const y = Math.floor(index / 4 / canvas.width);
-            const edgeDistance = Math.min(x, canvas.width - 1 - x, y, canvas.height - 1 - y);
-            const edgeProgress = Math.max(0, Math.min(1, edgeDistance / (canvas.width * (frameIndex === 6 || frameIndex === 7 ? .12 : .045))));
-            const edgeFade = edgeProgress * edgeProgress * (3 - 2 * edgeProgress);
-            strike.data[index + 3] = edgeFade * Math.max(0, Math.min(255,
-              (brightnessGain - (isGroundStrike ? 18 : 24)) * (isGroundStrike ? 4 : 3)
-            ));
-          }
-          context.putImageData(strike, 0, 0);
-          return canvas.toDataURL("image/png");
-        });
-      } catch (error) {
-        console.warn("Using original lightning frames", error);
-        return stormFrames;
-      }
-    });
-  }
-
-  window.lightningLayersPromise = preloadStormFrames();
+      image.src = "/images/optimized/strike-" + name + ".webp";
+      await image.decode();
+      return image.src;
+    })
+  ).then(layers => [null, null, null, null, ...layers]);
 
     const lightningCloudFrame = hero?.querySelector(".hero-lightning-cloudframe");
     const lightningCloudFrameSecondary = hero?.querySelector(".hero-lightning-cloudframe-secondary");
@@ -109,7 +53,7 @@
       const layers = await window.lightningLayersPromise;
       if (!layers?.[4] || !layers?.[5] || !layers?.[6] || !layers?.[7]) return;
       let strikeNumber = 0;
-      await pause(600);
+
       while (hero.isConnected) {
         if (!stormActive()) {
           clearLightning();
@@ -252,7 +196,7 @@
         await pause(spot.rest - 2700);
       }
     };
-    cycleLightning();
+    cycleLightning().catch(error => console.warn("Lightning artwork unavailable", error));
 
 
 })();

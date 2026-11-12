@@ -61,7 +61,7 @@ h1 span{color:#ef0808}
 .lead-form button:hover,.button:hover{background:#fff;color:#111}
 .section{padding:clamp(70px,8vw,120px) 0}.section h2{font-size:clamp(44px,5vw,82px);font-weight:900;line-height:.9;letter-spacing:-.04em;max-width:18ch;margin-bottom:24px}
 .section-intro{font-size:clamp(18px,1.6vw,22px);line-height:1.45}
-.roofing-services{background:#d9d2c7!important;color:#171717!important}
+
 .services-grid{gap:0;border-top:1px solid #4a4a4a;border-bottom:1px solid #4a4a4a}
 .service{background:transparent;color:#fff;border-top:0;border-right:1px solid #4a4a4a;padding:30px 26px 30px 0;margin-right:26px}
 .service:last-child{border-right:0;margin-right:0}
@@ -95,8 +95,9 @@ h1 span{color:#ef0808}
 .pair img{height:205px;object-fit:cover}
 @media(max-width:800px){.hero-grid{grid-template-columns:1fr}.hero-copy{padding-top:0}.lead-form{max-width:none;justify-self:stretch}.comparison-grid{grid-template-columns:1fr;gap:32px}.hero-project{height:220px}}
 @media(max-width:560px){.hero{padding:42px 0 54px}.hero h1{font-size:clamp(43px,11vw,58px);max-width:15ch}.hero-project{height:175px;margin-top:25px}.pair img{height:145px}.comparison-grid{gap:28px}}
-#roofing-gallery-title{max-width:100%;text-wrap:balance}
-#roofing-gallery .section-intro{max-width:1200px}
+#roofing-gallery-title{max-width:100%;text-wrap:balance;text-align:center}
+#roofing-gallery .section-intro{max-width:1200px;margin-left:auto;margin-right:auto;text-align:center}
+#roofing-gallery .eyebrow{text-align:center}
 /* Wider desktop canvas with a readable, bounded inquiry form. */
 @media(min-width:1100px){
   .wrap{width:min(1600px,calc(100% - 96px))}
@@ -168,10 +169,11 @@ body,.site-mark,.section,.foot{background:#000}
 </style>
 <link rel="stylesheet" href="/property-services.css">
 <style>
+.section.roofing-services{background:#000;color:#fff}
 .roofing-services h2{max-width:100%;font-size:clamp(32px,3.5vw,56px);line-height:1.12}
-.roofing-services .property-service-card{background:#f4f0e9;color:#171717;border:0;border-top:4px solid #bd0000}
-.roofing-services .property-service-card h3{color:#171717}
-.roofing-services .property-service-card p{color:#171717}
+.roofing-services .property-service-card{background:transparent;color:#fff;border:0;border-top:1px solid #555;padding:24px 0}
+.roofing-services .property-service-card h3{color:#fff;margin:0 0 10px;font-size:22px}
+.roofing-services .property-service-card p{color:#c9c9c9;margin:0;line-height:1.55}
 
 
 </style>
@@ -200,14 +202,14 @@ body,.site-mark,.section,.foot{background:#000}
 .footer-inquiry a:focus-visible,.foot a:focus-visible{outline-color:#fff}
 </style>
 <style>
-.roofing-services .property-service-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.roofing-services .property-service-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 36px}
 @media(max-width:900px){.roofing-services .property-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.roofing-services .property-service-grid{grid-template-columns:1fr}}
 </style>
 <style>
-.roofing-services h2{color:#171717}
-.roofing-services .section-intro{color:#171717}
-.roofing-services .eyebrow{color:#950000}
+.roofing-services h2{color:#fff;text-align:center}
+.roofing-services .section-intro{color:#c9c9c9;margin-left:auto;margin-right:auto;text-align:center}
+.roofing-services .eyebrow{color:#ff6464;text-align:center}
 </style>
 <style>
 .emergency-services-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:center}
@@ -223,7 +225,7 @@ body,.site-mark,.section,.foot{background:#000}
 .emergency-contact-note{font-size:14px;color:#c9c9c9;line-height:1.5;margin:18px 0 0;max-width:48ch}
 @media(max-width:900px){.emergency-services-grid{grid-template-columns:1fr}.emergency-services-photo img{height:auto;min-height:0;aspect-ratio:16/9}.emergency-services h2{max-width:100%}}
 </style>
-<link rel="stylesheet" href="/campaign/lightning.css?v=20261112-1"><script src="/campaign/lightning.js?v=20261112-1" defer></script><style>.hero .site-mark{position:relative;z-index:4;background:transparent;min-height:0;padding:0 20px 36px;border:0}.hero{padding-top:24px}@media(max-width:560px){.hero{padding-top:20px}.hero .site-mark{padding-bottom:28px}}</style><style>
+<link rel="stylesheet" href="/campaign/lightning.css?v=20261112-1"><script src="/campaign/lightning.js?v=20261112-2" defer></script><style>.hero .site-mark{position:relative;z-index:4;background:transparent;min-height:0;padding:0 20px 36px;border:0}.hero{padding-top:24px}@media(max-width:560px){.hero{padding-top:20px}.hero .site-mark{padding-bottom:28px}}</style><style>
 .hero .lead-form{background:rgba(0,0,0,.30);border-radius:16px}
 .hero .lead-form input,.hero .lead-form textarea{
   padding:12px 14px;background:rgba(12,16,22,.92);
@@ -309,6 +311,128 @@ body,.site-mark,.section,.foot{background:#000}
 }
 </style>
 <style>.lead-form .form-follow-up{margin:14px 0 0;font-size:14px;line-height:1.5}</style>
+<style>
+.roof-systems #roof-systems-title {
+  max-width: 100%;
+  text-align: center;
+}
+.roof-systems .section-intro {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.roof-systems .property-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px 24px;
+}
+.roof-systems .property-service-card { min-width: 0; padding: 20px; background: #3a3a3a; color: #fff; }
+.roof-systems .roof-system-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.roof-systems .property-service-card h3 { margin: 0 0 12px; font-size: 24px; color: #fff; }
+.roof-systems .property-service-card p { margin: 0; color: #fff; line-height: 1.55; }
+@media (max-width: 900px) {
+  .roof-systems #roof-systems-title {
+  max-width: 100%;
+  text-align: center;
+}
+.roof-systems .section-intro {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.roof-systems .property-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .roof-systems #roof-systems-title {
+  max-width: 100%;
+  text-align: center;
+}
+.roof-systems .section-intro {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.roof-systems .property-service-grid { grid-template-columns: 1fr; }
+}
+</style>
+<style>
+.assessment-process #assessment-process-title {
+  max-width: 100%;
+  text-align: center;
+}
+.assessment-process .section-intro {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.assessment-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 52px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.assessment-step {
+  position: relative;
+  padding: 28px;
+  border: 1px solid #666;
+  background: #202020;
+}
+.assessment-step h3 { margin: 0 0 14px; color: #fff; font-size: 24px; }
+.assessment-step p { margin: 0; color: #ddd; line-height: 1.55; }
+.assessment-step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  width: 28px;
+  color: #fff;
+  font-size: 32px;
+  line-height: 1;
+  text-align: center;
+  transform: translateY(-50%);
+}
+@media (max-width: 800px) {
+  .assessment-steps { grid-template-columns: 1fr; gap: 52px; }
+  .assessment-step:not(:last-child)::after {
+    content: "↓";
+    left: 50%;
+    top: calc(100% + 12px);
+    transform: translateX(-50%);
+  }
+}
+</style>
+<style>
+.case-carousel { position: relative; padding: 0 48px; }
+.case-carousel-viewport { overflow: hidden; touch-action: pan-y; cursor: grab; }
+.case-carousel-viewport.is-dragging { cursor: grabbing; user-select: none; }
+#roofing-gallery .project-gallery-grid { display: flex; gap: 14px; width: max-content; }
+#roofing-gallery .project-gallery-item { flex: 0 0 auto; width: clamp(230px, 29vw, 460px); aspect-ratio: 4 / 3; cursor: grab; }
+#roofing-gallery .is-dragging .project-gallery-item { cursor: grabbing; }
+#roofing-gallery .project-gallery-item img { pointer-events: none; user-select: none; }
+.case-carousel-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 48px; border: 1px solid #666; background: #202020;
+  color: #fff; font-size: 26px; cursor: pointer; z-index: 1;
+}
+.case-carousel-prev { left: 0; }
+.case-carousel-next { right: 0; }
+.case-carousel-arrow:hover { background: #444; }
+@media (max-width: 600px) {
+  .case-carousel { padding: 0 36px; }
+  .case-carousel-arrow { width: 30px; }
+  #roofing-gallery .project-gallery-item { width: 70vw; }
+}
+</style>
 </head><body>
 
 <main>
@@ -338,7 +462,19 @@ body,.site-mark,.section,.foot{background:#000}
 </section>
 <section class="section light roofing-comparisons" aria-label="Before and after roofing projects"><div class="wrap"><div class="comparison-grid"><article class="comparison"><h3>Roof coating</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/roof-coating-1.webp" aria-label="Enlarge: Weathered commercial roof before coating"><img src="/images/services/roof-coating-1.webp" alt="Weathered commercial roof before coating" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/roof-coating-2.webp" aria-label="Enlarge: Commercial flat roof after white coating"><img src="/images/services/roof-coating-2.webp" alt="Commercial flat roof after white coating" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article><article class="comparison"><h3>Roof cleaning</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/roof-cleaning-1.webp" aria-label="Enlarge: Commercial roof before cleaning"><img src="/images/services/roof-cleaning-1.webp" alt="Commercial roof before cleaning" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/roof-cleaning-2.webp" aria-label="Enlarge: Commercial roof after cleaning"><img src="/images/services/roof-cleaning-2.webp" alt="Commercial roof after cleaning" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article><article class="comparison"><h3>Roof repair</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/roof-repair-1.webp" aria-label="Enlarge: Damaged roof membrane before repair"><img src="/images/services/roof-repair-1.webp" alt="Damaged roof membrane before repair" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/roof-repair-2.webp" aria-label="Enlarge: Roof membrane after repair"><img src="/images/services/roof-repair-2.webp" alt="Roof membrane after repair" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article><article class="comparison"><h3>Skylight installation</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/skylight-installation-1.webp" aria-label="Enlarge: Commercial roof before skylight installation"><img src="/images/services/skylight-installation-1.webp" alt="Commercial roof before skylight installation" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/skylight-installation-2.webp" aria-label="Enlarge: Commercial roof after skylight installation"><img src="/images/services/skylight-installation-2.webp" alt="Commercial roof after skylight installation" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article><article class="comparison"><h3>Roof hatch replacement</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/roof-hatch-replacement-1.webp" aria-label="Enlarge: Commercial roof hatch before replacement"><img src="/images/services/roof-hatch-replacement-1.webp" alt="Commercial roof hatch before replacement" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/roof-hatch-replacement-2.webp" aria-label="Enlarge: Commercial roof hatch after replacement"><img src="/images/services/roof-hatch-replacement-2.webp" alt="Commercial roof hatch after replacement" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article><article class="comparison"><h3>Roof penetration installation</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/roof-penetration-installation-1.webp" aria-label="Enlarge: Commercial roof before penetration installation"><img src="/images/services/roof-penetration-installation-1.webp" alt="Commercial roof before penetration installation" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/roof-penetration-installation-2.webp" aria-label="Enlarge: Commercial roof after penetration installation"><img src="/images/services/roof-penetration-installation-2.webp" alt="Commercial roof after penetration installation" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article><article class="comparison"><h3>AC curb installation</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/ac-curb-installation-1.webp" aria-label="Enlarge: Workers preparing raised rooftop equipment curbs before installation is complete"><img src="/images/services/ac-curb-installation-1.webp" alt="Workers preparing raised rooftop equipment curbs before installation is complete" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/ac-curb-installation-2.webp" aria-label="Enlarge: Installed and flashed equipment curbs on a commercial flat roof"><img src="/images/services/ac-curb-installation-2.webp" alt="Installed and flashed equipment curbs on a commercial flat roof" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article>
 <article class="comparison"><h3>Aluminum coating</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/aluminum-coating-1.webp" aria-label="Enlarge: Roof penetration flashing surrounded by an uncoated roof surface"><img src="/images/services/aluminum-coating-1.webp" alt="Roof penetration flashing surrounded by an uncoated roof surface" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/aluminum-coating-2.webp" aria-label="Enlarge: Localized reflective coating applied around roof penetration flashing"><img src="/images/services/aluminum-coating-2.webp" alt="Localized reflective coating applied around roof penetration flashing" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article></div></div></section>
-<section class="section roofing-gallery" id="roofing-gallery" aria-labelledby="roofing-gallery-title"><div class="wrap"><div class="eyebrow">Flexible solutions</div><h2 id="roofing-gallery-title">Case Study: Industrial Roof Repair & Replacement</h2><p class="section-intro">This client needed targeted repairs on some roof areas and replacement on others. All-Type developed a plan for each area based on its condition, combining localized patching, protective coating around exhausts, and replacement where needed to address the property’s roofing needs and budget.</p><div class="project-gallery-grid">
+<section class="section roof-systems" aria-labelledby="roof-systems-title">
+<div class="wrap">
+<h2 id="roof-systems-title">Commercial roof systems we service</h2>
+<p class="section-intro">Repair, restoration, and replacement options based on your existing roof system and its condition.</p>
+<div class="property-service-grid">
+<article class="property-service-card"><img class="roof-system-photo" src="/images/roof-systems/metal.webp" alt="Representative standing-seam metal commercial roof" width="900" height="600" loading="lazy" decoding="async"><h3>Metal roofing</h3><p>Repairs to panels, seams, fasteners, and flashing, with coating or replacement options based on roof condition.</p></article>
+<article class="property-service-card"><img class="roof-system-photo" src="/images/roof-systems/tpo.webp" alt="Representative white TPO commercial roof membrane" width="900" height="600" loading="lazy" decoding="async"><h3>TPO roofing</h3><p>Assess membrane wear, seams, and rooftop penetrations to plan repairs or replacement.</p></article>
+<article class="property-service-card"><img class="roof-system-photo" src="/images/roof-systems/modified-bitumen.webp" alt="Representative granulated modified bitumen commercial roof" width="900" height="600" loading="lazy" decoding="async"><h3>Modified bitumen</h3><p>Address damaged areas, laps, and flashing on asphalt-based low-slope roofing.</p></article>
+<article class="property-service-card"><img class="roof-system-photo" src="/images/roof-systems/built-up.webp" alt="Representative gravel-surfaced built-up commercial roof" width="900" height="600" loading="lazy" decoding="async"><h3>Built-up roofing</h3><p>Evaluate layered roof surfaces and leak-prone details for repair, restoration, or replacement.</p></article>
+<article class="property-service-card"><img class="roof-system-photo" src="/images/roof-systems/epdm.webp" alt="Representative black EPDM rubber commercial roof" width="900" height="600" loading="lazy" decoding="async"><h3>EPDM roofing</h3><p>Repair rubber membrane damage and vulnerable seams and connections.</p></article>
+<article class="property-service-card"><img class="roof-system-photo" src="/images/roof-systems/pvc.webp" alt="Representative light gray PVC commercial roof membrane" width="900" height="600" loading="lazy" decoding="async"><h3>PVC roofing</h3><p>Assess membrane condition and welded seams to recommend suitable roofing work.</p></article>
+</div></div></section>
+<section class="section roofing-gallery" id="roofing-gallery" aria-labelledby="roofing-gallery-title"><div class="wrap"><div class="eyebrow">Case Study:</div><h2 id="roofing-gallery-title">Industrial Roof Repair & Replacement</h2><p class="section-intro">This client needed targeted repairs on some roof areas and replacement on others. All-Type developed a plan for each area based on its condition, combining localized patching, protective coating around exhausts, and replacement where needed to address the property’s roofing needs and budget.</p><div class="case-carousel" role="region" aria-label="Industrial roofing project photos"><button class="case-carousel-arrow case-carousel-prev" type="button" aria-label="Previous project photo">&#8592;</button><div class="case-carousel-viewport"><div class="project-gallery-grid">
 <a class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/134108-full.webp" aria-label="Enlarge: Metal roof beneath industrial pipe racks"><img src="/images/optimized/commercial-roofing-gallery/134108-thumb.webp" alt="Metal roof beneath industrial pipe racks" width="540" height="720" loading="lazy" decoding="async"></a>
 <a class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/134137-full.webp" aria-label="Enlarge: Close view of stack flashing on a metal roof"><img src="/images/optimized/commercial-roofing-gallery/134137-thumb.webp" alt="Close view of stack flashing on a metal roof" width="540" height="720" loading="lazy" decoding="async"></a>
 <a class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/134142-full.webp" aria-label="Enlarge: Exhaust stack and surrounding industrial roof"><img src="/images/optimized/commercial-roofing-gallery/134142-thumb.webp" alt="Exhaust stack and surrounding industrial roof" width="540" height="720" loading="lazy" decoding="async"></a>
@@ -359,7 +495,7 @@ body,.site-mark,.section,.foot{background:#000}
 <a class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/133456-full.webp" aria-label="Enlarge: Weathered rooftop equipment curb and mounting brackets"><img src="/images/optimized/commercial-roofing-gallery/133456-thumb.webp" alt="Weathered rooftop equipment curb and mounting brackets" width="540" height="720" loading="lazy" decoding="async"></a>
 <a class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/133500-full.webp" aria-label="Enlarge: Adjacent metal roof sections with rooftop equipment"><img src="/images/optimized/commercial-roofing-gallery/133500-thumb.webp" alt="Adjacent metal roof sections with rooftop equipment" width="540" height="720" loading="lazy" decoding="async"></a>
 <a class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/133506-full.webp" aria-label="Enlarge: Roof vent and translucent panel details"><img src="/images/optimized/commercial-roofing-gallery/133506-thumb.webp" alt="Roof vent and translucent panel details" width="540" height="720" loading="lazy" decoding="async"></a>
-</div><div class="gallery-cta"><p>Ready to find the right solution for your roof?</p><a class="button" href="#footer-request-service">Request a Roof Assessment</a><a class="call" href="tel:+12813976614">Or call (281) 397-6614</a></div></div></section>
+</div></div><button class="case-carousel-arrow case-carousel-next" type="button" aria-label="Next project photo">&#8594;</button></div><div class="gallery-cta"><p>Ready to find the right solution for your roof?</p><a class="button" href="#footer-request-service">Request a Roof Assessment</a><a class="call" href="tel:+12813976614">Or call (281) 397-6614</a></div></div></section>
 <section class="section light roofing-services" aria-labelledby="roofing-services-title"><div class="wrap"><div class="eyebrow">What we do</div><h2 id="roofing-services-title">All-Type Roofing Services</h2><p class="section-intro">We inspect the roof and recommend work that fits its condition and your building.</p><div class="property-service-grid"><article class="property-service-card"><h3>Repair &amp; leak detection</h3><p>Find and address problem areas at seams, flashings, and penetrations.</p></article>
 <article class="property-service-card"><h3>Coatings &amp; restoration</h3><p>Prepare and protect suitable existing roof systems.</p></article>
 <article class="property-service-card"><h3>Roof replacement</h3><p>Plan a replacement system that fits your building and day-to-day operations.</p></article>
@@ -368,16 +504,26 @@ body,.site-mark,.section,.foot{background:#000}
 <article class="property-service-card"><h3>Roof curbs &amp; penetrations</h3><p>Address flashing and roof connections around equipment curbs, pipes, and accessories.</p></article>
 <article class="property-service-card"><h3>24/7 emergency roof repair</h3><p>Get help with urgent roof damage and leaks to protect your property and limit disruption.</p></article><article class="property-service-card"><h3>Commercial waterproofing</h3><p>Address water intrusion at vulnerable building surfaces and connections with targeted waterproofing.</p></article>
 <article class="property-service-card"><h3>Storm damage repair</h3><p>Assess storm-related damage and plan repairs to help protect your commercial property.</p></article></div></div></section>
+<section class="section assessment-process" aria-labelledby="assessment-process-title">
+<div class="wrap">
+<h2 id="assessment-process-title">What happens next</h2>
+<p class="section-intro">Talk with real people at All-Type about your project. We’ll listen to what you need, assess your roof, and work with you on a solution that fits your property and budget.</p>
+<ol class="assessment-steps">
+<li class="assessment-step"><h3>Talk with our team</h3><p>Call or send the form. We’ll discuss your roofing concerns, project needs, and how soon you need help.</p></li>
+<li class="assessment-step"><h3>Assess your roof together</h3><p>We’ll coordinate a visit, evaluate the roof, and talk through your priorities and available options.</p></li>
+<li class="assessment-step"><h3>Agree on a solution</h3><p>We’ll explain our recommended scope and pricing, answer your questions, and help you plan the next step.</p></li>
+</ol>
+</div></section>
 <section class="section emergency-services" aria-labelledby="emergency-services-title">
 <div class="wrap emergency-services-grid">
-<figure class="emergency-services-photo"><img src="/images/services/emergency-board-up-1.webp" alt="Broken glass panel beside a commercial storefront door before emergency board-up" width="1931" height="2048" loading="lazy" decoding="async"></figure>
-<div class="emergency-services-copy"><div class="eyebrow">24/7 emergency services</div><h2 id="emergency-services-title">Damage can’t wait.</h2><p class="section-intro">Storm damage, an active roof leak, or a broken storefront can interrupt your business. All-Type helps Greater Houston property owners and managers assess the damage, arrange temporary protection, and plan repairs.</p>
+<figure class="emergency-services-photo"><img src="/images/services/roof-repair-1.webp" alt="Damaged commercial roof membrane requiring repair" loading="lazy" decoding="async"></figure>
+<div class="emergency-services-copy"><div class="eyebrow">24/7 emergency response · Greater Houston</div><h2 id="emergency-services-title">Emergency Roof Leak Repair</h2><p class="section-intro">An active roof leak or storm damage can interrupt your business at any hour. Call All-Type 24/7 to discuss urgent commercial roofing needs, coordinate a response, and arrange temporary protection and repairs.</p>
 <ul class="emergency-services-list">
-<li><h3>Emergency board-ups</h3><p>Temporary protection for broken storefront glass, damaged doors, and exposed building openings.</p></li>
-<li><h3>Storm damage repairs</h3><p>Assess wind and storm damage to roofing and building exteriors, then define the repair scope.</p></li>
-<li><h3>Urgent roof &amp; building repairs</h3><p>Address active leaks and damaged roof areas, with temporary protection and permanent repairs scoped to your property.</p></li>
+<li><h3>Active roof leaks</h3><p>Assess affected roof areas and arrange targeted repairs to help limit water intrusion and protect your building.</p></li>
+<li><h3>Storm damage response</h3><p>Assess wind and storm damage to roof surfaces, flashing, and rooftop connections, then define the repair scope.</p></li>
+<li><h3>Temporary protection &amp; permanent repairs</h3><p>Coordinate temporary measures where needed and plan permanent repairs based on the roof’s condition and safe access.</p></li>
 </ul>
-<a class="button" href="tel:+12813976614">Call for Emergency Service</a><p class="emergency-contact-note">(281) 397-6614 · Have your property address, damage details, and onsite contact ready.</p>
+<a class="button" href="tel:+12813976614">Call for 24/7 Roof Leak Response</a><p class="emergency-contact-note">(281) 397-6614 · Have your property address, leak details, and onsite contact ready.</p>
 </div></div></section>
 
 
@@ -442,4 +588,5 @@ window.renderCampaignCaptchas = function () {
 
 <script src="/campaign/libphonenumber-max.js" defer></script>
 <script src="/campaign/form-validation.js?v=20261112-1" defer></script>
+<script src="/campaign/case-carousel.js?v=20261112-1" defer></script>
 </body></html>
