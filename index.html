@@ -1952,77 +1952,7 @@ html.lenis body {
 
   </main>
 
-<script>
-  const stormFrames = [1, 2, 3, 4].map(
-    number => `images/optimized/lightning${number}.webp`
-  ).concat(
-    "images/optimized/lightning-ground.webp",
-    "images/optimized/lightning-clouds.webp",
-    "images/optimized/lightning-ground-left.webp",
-    "images/optimized/lightning-clouds-left.webp"
-  );
 
-  function preloadStormFrames() {
-    const loadImage = source => new Promise(resolve => {
-      const image = new Image();
-      image.onload = () => resolve(image);
-      image.onerror = () => resolve(null);
-      image.src = source;
-      if (image.complete && image.naturalWidth) resolve(image);
-    });
-
-    return Promise.all([
-      loadImage("images/Alltype Web BG.jpg"),
-      ...stormFrames.map(loadImage)
-    ]).then(([background, ...frames]) => {
-      if (!background || frames.some(frame => !frame)) return stormFrames;
-
-      // Keep the photographed clouds fixed and extract only the brighter strike.
-      const canvas = document.createElement("canvas");
-      canvas.width = frames[0].naturalWidth;
-      canvas.height = Math.round(canvas.width * background.naturalHeight / background.naturalWidth);
-      const context = canvas.getContext("2d", { willReadFrequently: true });
-      if (!context) return stormFrames;
-
-      try {
-        context.drawImage(background, 0, 0, canvas.width, canvas.height);
-        const clouds = context.getImageData(0, 0, canvas.width, canvas.height).data;
-        return frames.map((frame, frameIndex) => {
-          context.clearRect(0, 0, canvas.width, canvas.height);
-          context.drawImage(frame, 0, 0, canvas.width, canvas.height);
-          const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
-          const strike = context.createImageData(canvas.width, canvas.height);
-          const isGroundStrike = frameIndex === 4 || frameIndex === 6;
-          for (let index = 0; index <pixels.length; index += 4) {
-            const brightnessGain = Math.max(
-              pixels[index] - clouds[index],
-              pixels[index + 1] - clouds[index + 1],
-              pixels[index + 2] - clouds[index + 2]
-            );
-            strike.data[index] = pixels[index];
-            strike.data[index + 1] = pixels[index + 1];
-            strike.data[index + 2] = pixels[index + 2];
-            // Feather translated frame boundaries so no rectangular seam flashes.
-            const x = (index / 4) % canvas.width;
-            const y = Math.floor(index / 4 / canvas.width);
-            const edgeDistance = Math.min(x, canvas.width - 1 - x, y, canvas.height - 1 - y);
-            const edgeProgress = Math.max(0, Math.min(1, edgeDistance / (canvas.width * (frameIndex === 6 || frameIndex === 7 ? .12 : .045))));
-            const edgeFade = edgeProgress * edgeProgress * (3 - 2 * edgeProgress);
-            strike.data[index + 3] = edgeFade * Math.max(0, Math.min(255,
-              (brightnessGain - (isGroundStrike ? 18 : 24)) * (isGroundStrike ? 4 : 3)
-            ));
-          }
-          context.putImageData(strike, 0, 0);
-          return canvas.toDataURL("image/png");
-        });
-      } catch (error) {
-        console.warn("Using original lightning frames", error);
-        return stormFrames;
-      }
-    });
-  }
-
-</script>
 
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
@@ -2671,19 +2601,23 @@ html.lenis body {
     }
     const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     const lightningSpots = [
-      { cloudX: "22%", impactX: "28%", groundIndex: 6, cloudIndex: 7, otherCloudIndex: 5, groundShift: "-4%", rest: 3100 },
-      { cloudX: "68%", impactX: "68%", groundIndex: 4, cloudIndex: 5, otherCloudIndex: 7, groundShift: "0%", rest: 3500 },
-      { cloudX: "33%", impactX: "39%", groundIndex: 6, cloudIndex: 7, otherCloudIndex: 5, groundShift: "7%", rest: 3200 },
-      { cloudX: "82%", impactX: "82%", groundIndex: 4, cloudIndex: 5, otherCloudIndex: 7, groundShift: "14%", rest: 3400 }
+      { cloudX: "22%", impactX: "28%", groundIndex: "ground-left", cloudIndex: "clouds-left", otherCloudIndex: "clouds", groundShift: "-4%", rest: 3100 },
+      { cloudX: "68%", impactX: "68%", groundIndex: "ground", cloudIndex: "clouds", otherCloudIndex: "clouds-left", groundShift: "0%", rest: 3500 },
+      { cloudX: "33%", impactX: "39%", groundIndex: "ground-left", cloudIndex: "clouds-left", otherCloudIndex: "clouds", groundShift: "7%", rest: 3200 },
+      { cloudX: "82%", impactX: "82%", groundIndex: "ground", cloudIndex: "clouds", otherCloudIndex: "clouds-left", groundShift: "14%", rest: 3400 }
     ];
     const stormActive = () => !document.hidden && heroInView && currentHero === "home" && !hero.classList.contains("hero-has-selection");
 
     const cycleLightning = async () => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      const layers = await preloadStormFrames();
-      if (!layers?.[4] || !layers?.[5] || !layers?.[6] || !layers?.[7]) return;
+      const layers = {};
+      await Promise.all(["ground", "clouds", "ground-left", "clouds-left"].map(async name => {
+        const image = new Image();
+        image.src = "/images/optimized/strike-" + name + ".webp";
+        await image.decode();
+        layers[name] = image.src;
+      }));
       let strikeNumber = 0;
-      await pause(600);
       while (hero.isConnected) {
         if (!stormActive()) {
           clearLightning();
@@ -2692,7 +2626,7 @@ html.lenis body {
         }
 
         const spot = lightningSpots[strikeNumber++ % lightningSpots.length];
-        hero.classList.toggle("hero-right-strike", spot.groundIndex === 4);
+        hero.classList.toggle("hero-right-strike", spot.groundIndex === "ground");
         lightningGround.src = layers[spot.groundIndex];
         lightningCloudFrame.src = layers[spot.cloudIndex];
         lightningCloudFrameSecondary.src = layers[spot.otherCloudIndex];
@@ -2732,7 +2666,7 @@ html.lenis body {
         lightningSkywash.style.opacity = 1;
         lightningGlow.style.opacity = .78;
         lightningImpact.style.opacity = 1;
-        await pause(110);
+        await pause(320);
         if (!stormActive()) { clearLightning(); continue; }
         lightningGround.style.opacity = .12;
         lightningCloudFrame.style.opacity = .42;
@@ -2826,8 +2760,7 @@ html.lenis body {
         await pause(spot.rest - 2700);
       }
     };
-    if (document.readyState === "complete") cycleLightning();
-    else window.addEventListener("load", cycleLightning, { once: true });
+    cycleLightning().catch(error => console.warn("Lightning artwork unavailable", error));
 
     const updateText = state => {
       title.textContent = state.title;
