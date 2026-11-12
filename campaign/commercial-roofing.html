@@ -239,7 +239,74 @@ body,.site-mark,.section,.foot{background:#000}
 .hero .lead-form button:hover{background:#f01818;border-color:#fff;color:#fff}
 .hero .lead-form button:active{background:#b90000}
 @media(max-width:560px){.hero .lead-form button{font-size:15px}}
-</style><style>@media(min-width:901px){.section > .wrap > h2{max-width:none}}</style><style>.roofing-comparisons > .wrap > h2{margin-bottom:44px}</style><style>.roofing-gallery > .wrap > .eyebrow{margin-bottom:20px}</style><style>@media(max-width:560px){.gallery-cta > p{max-width:28ch;margin-left:auto;margin-right:auto}}</style></head><body>
+</style><style>@media(min-width:901px){.section > .wrap > h2{max-width:none}}</style><style>.roofing-comparisons > .wrap > h2{margin-bottom:44px}</style><style>.roofing-gallery > .wrap > .eyebrow{margin-bottom:20px}</style><style>@media(max-width:560px){.gallery-cta > p{max-width:28ch;margin-left:auto;margin-right:auto}}</style><style>
+.intro-band{
+  background: #000;
+  color: #fff;
+  padding: clamp(4rem, 7vw, 7rem) 0 8rem;
+}
+
+.intro-storm-heading {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto 5rem;
+  padding: 0 clamp(12px, 2vw, 32px);
+  font-size: clamp(19px, 6.4vw, 110px);
+  font-weight: 900;
+  letter-spacing: -.065em;
+  line-height: .95;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.intro-storm-heading span { color: var(--red); }
+
+.intro-accent { color: var(--red); }
+
+.intro-grid{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 3rem;
+  align-items: start;
+
+}
+
+.intro-eyebrow-wrap{
+  display: flex;
+  justify-content: center;
+}
+
+.intro-eyebrow{
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--red);
+}
+
+.intro-copy p{
+  margin: 0;
+  max-width: 900px;
+  font-size: clamp(26px, 2.7vw, 42px);
+  line-height: 1.08;
+  font-weight: 500;
+}
+@media (max-width: 980px) {
+  .intro-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .intro-eyebrow-wrap { justify-content: flex-start; }
+  .intro-eyebrow { writing-mode: initial; transform: none; }
+}
+@media (max-width: 767px) {
+  .intro-storm-heading { margin-bottom: 3.5rem; font-size: clamp(48px, 13vw, 90px); letter-spacing: -.075em; line-height: .9; white-space: normal; }
+  .intro-storm-heading span { display: block; }
+  .intro-eyebrow { font-size: 12px; }
+  .intro-copy p { font-size: 20px; line-height: 1.25; }
+}
+</style>
+</head><body>
 
 <main>
 <section class="hero"><header class="site-mark"><img src="/images/optimized/alltype-logo.webp" alt="All-Type Roofing &amp; Construction" width="214" height="78"></header>  <div class="hero-bg">
@@ -252,6 +319,24 @@ body,.site-mark,.section,.foot{background:#000}
     <div class="hero-lightning-impact" aria-hidden="true"></div>
 </div><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow">Commercial roofing · Greater Houston</div><h1>Commercial <span>roofing, repairs, and restoration</span>.</h1><p class="lead">Commercial roof leaks, worn surfaces, or an aging system? Get a clear plan for repair, restoration, or replacement.<br><br>All-Type Roofing &amp; Construction helps commercial property owners, property managers, and facility managers protect their buildings with roofing services tailored to their property and budget.</p><a class="call" href="tel:+12813976614">Call (281) 397-6614</a><img class="hero-project" src="/images/stock/roof-coating.webp" alt="Finished industrial metal roof beside a commercial building" width="1350" height="1800" decoding="async"></div>
 <form class="lead-form" id="request-service" name="commercial-roofing-campaign" method="POST" action="/campaign/thank-you" data-netlify="true" data-netlify-recaptcha="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="commercial-roofing-campaign"><p class="honeypot"><label>Leave this empty <input name="bot-field" type="text"></label></p><p class="form-eyebrow">Request service</p><h2>Tell us about your roof.</h2><p>Share the property and issue. We’ll follow up to discuss the next step.</p><label for="fullName">Full name</label><input id="fullName" name="fullName" autocomplete="name" required><label for="emailAddress">Email address</label><input id="emailAddress" name="emailAddress" type="email" autocomplete="email" required><label for="phoneNumber">Phone number</label><input id="phoneNumber" name="phoneNumber" type="tel" autocomplete="tel" required><label for="propertyAddress">Property address</label><input id="propertyAddress" name="propertyAddress" autocomplete="street-address"><label for="message">What is happening with the roof?</label><textarea id="message" name="message" required></textarea><div class="campaign-recaptcha" data-sitekey="6LdnkKEqAAAAAPvyqoRAmjXxvE6evlb5z-5Ol90Y"></div><button type="submit">Request Commercial Roofing Service</button></form></div></section>
+<section class="intro-band">
+  <h2 class="intro-storm-heading">STORM PROOF <span>YOUR ROOF</span></h2>
+  <div class="wrap intro-grid">
+    <div class="intro-eyebrow-wrap">
+      <div class="intro-eyebrow">Who We Are</div>
+    </div>
+
+    <div class="intro-copy">
+      <p>
+        <span class="intro-accent">All-Type Roofing & Construction</span> handles technically demanding work for
+        commercial properties across Greater Houston. Our capabilities span commercial roofing,
+        waterproofing, renovations, and emergency building repairs.
+        We bring practical solutions and disciplined execution to projects
+        that need more than a standard repair.
+      </p>
+    </div>
+  </div>
+</section>
 <section class="section light roofing-comparisons"><div class="wrap"><div class="eyebrow">Our work</div><h2>Roof coatings, cleaning, and repairs</h2><div class="comparison-grid"><article class="comparison"><h3>Roof coating</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/roof-coating-1.webp" aria-label="Enlarge: Weathered commercial roof before coating"><img src="/images/services/roof-coating-1.webp" alt="Weathered commercial roof before coating" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/roof-coating-2.webp" aria-label="Enlarge: Commercial flat roof after white coating"><img src="/images/services/roof-coating-2.webp" alt="Commercial flat roof after white coating" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article><article class="comparison"><h3>Roof cleaning</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/roof-cleaning-1.webp" aria-label="Enlarge: Commercial roof before cleaning"><img src="/images/services/roof-cleaning-1.webp" alt="Commercial roof before cleaning" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/roof-cleaning-2.webp" aria-label="Enlarge: Commercial roof after cleaning"><img src="/images/services/roof-cleaning-2.webp" alt="Commercial roof after cleaning" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article><article class="comparison"><h3>Roof repair</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/roof-repair-1.webp" aria-label="Enlarge: Damaged roof membrane before repair"><img src="/images/services/roof-repair-1.webp" alt="Damaged roof membrane before repair" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/roof-repair-2.webp" aria-label="Enlarge: Roof membrane after repair"><img src="/images/services/roof-repair-2.webp" alt="Roof membrane after repair" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article><article class="comparison"><h3>Skylight installation</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/skylight-installation-1.webp" aria-label="Enlarge: Commercial roof before skylight installation"><img src="/images/services/skylight-installation-1.webp" alt="Commercial roof before skylight installation" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/skylight-installation-2.webp" aria-label="Enlarge: Commercial roof after skylight installation"><img src="/images/services/skylight-installation-2.webp" alt="Commercial roof after skylight installation" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article><article class="comparison"><h3>Roof hatch replacement</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/roof-hatch-replacement-1.webp" aria-label="Enlarge: Commercial roof hatch before replacement"><img src="/images/services/roof-hatch-replacement-1.webp" alt="Commercial roof hatch before replacement" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/roof-hatch-replacement-2.webp" aria-label="Enlarge: Commercial roof hatch after replacement"><img src="/images/services/roof-hatch-replacement-2.webp" alt="Commercial roof hatch after replacement" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article><article class="comparison"><h3>Roof penetration installation</h3><div class="pair"><figure><a class="comparison-photo" href="/images/services/roof-penetration-installation-1.webp" aria-label="Enlarge: Commercial roof before penetration installation"><img src="/images/services/roof-penetration-installation-1.webp" alt="Commercial roof before penetration installation" loading="lazy" decoding="async"></a><figcaption>Before</figcaption></figure><figure><a class="comparison-photo" href="/images/services/roof-penetration-installation-2.webp" aria-label="Enlarge: Commercial roof after penetration installation"><img src="/images/services/roof-penetration-installation-2.webp" alt="Commercial roof after penetration installation" loading="lazy" decoding="async"></a><figcaption>After</figcaption></figure></div></article></div></div></section>
 <section class="section roofing-gallery" id="roofing-gallery" aria-labelledby="roofing-gallery-title"><div class="wrap"><div class="eyebrow">Flexible solutions</div><h2 id="roofing-gallery-title">All-Type works with you to find the best solution for your budget.</h2><p class="section-intro">Explore roof surfaces, repairs, and equipment details from an industrial property. Select any photo to view it larger.</p><div class="project-gallery-grid">
 <a class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/134108-full.webp" aria-label="Enlarge: Metal roof beneath industrial pipe racks"><img src="/images/optimized/commercial-roofing-gallery/134108-thumb.webp" alt="Metal roof beneath industrial pipe racks" width="540" height="720" loading="lazy" decoding="async"></a>
