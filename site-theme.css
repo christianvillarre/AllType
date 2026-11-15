@@ -1,0 +1,540 @@
+/* Shared inner-page presentation. Homepage shell and base tokens live in homepage.css. */
+body.site-page {
+  --bg: #f4f1eb;
+  --ink: #181818;
+  --red: #cf0303;
+  --accent: #cf0303;
+  --cream: #f4f1eb;
+  --beige: #e5dfd5;
+  --muted: #66625c;
+  --line: #d6d1c8;
+  --section-title-size: clamp(32px, 3.5vw, 49px);
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: clip;
+}
+
+/* The shared shell stays solid on inner pages, where the content begins below it. */
+.site-page .site-header {
+  position: sticky;
+  top: 0;
+  margin-bottom: 0;
+  background: #fbfaf7;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  z-index: 100;
+}
+.site-page .site-header .brand img { filter: none; }
+.site-page .site-header .mobile-toggle { color: var(--ink) !important; border-color: var(--line) !important; }
+.site-page .site-header .nav-group[open] summary { color: var(--red) !important; }
+.site-page .site-header :is(a, summary, button):focus-visible { outline-color: var(--red) !important; }
+.site-page .site-header .nav-call { color: white; }
+.site-page .site-header .nav-dropdown { background: #fbfaf7; color: var(--ink); }
+.site-page .site-header .primary-nav { font-family: Arial, Helvetica, sans-serif; }
+.site-page .utility { position: relative; }
+.site-page .skip-link { z-index: 110; }
+
+/* One content width, type scale, and vertical rhythm across all legacy templates. */
+.site-page main { width: 100%; max-width: none; margin: 0; padding: 0; }
+.site-page main .container,
+.site-page main .wrap {
+  width: min(1280px, calc(100% - 96px));
+  max-width: 1280px;
+  padding-inline: 0;
+  margin-inline: auto;
+}
+.site-page main :is(h1, h2, h3, h4) {
+  font-family: var(--slab) !important;
+  text-transform: none !important;
+  letter-spacing: -.04em !important;
+  font-weight: 500 !important;
+}
+.site-page main h1,
+.site-page main h1.hero-title {
+  font-size: clamp(43px, 5vw, 70px) !important;
+  line-height: 1.1 !important;
+  max-width: 1100px !important;
+  margin: 0 0 26px;
+}
+.site-page main h2 {
+  font-size: var(--section-title-size) !important;
+  line-height: 1.18 !important;
+  margin: 0 0 26px;
+}
+.site-page main h3 { font-size: 24px !important; line-height: 1.24 !important; margin-bottom: 16px; }
+.site-page main :is(p, li, .section-body) {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: normal;
+}
+.site-page main p { margin-bottom: 22px; }
+.site-page main :is([class$="-eyebrow"], .eyebrow, .hero-top-services) {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: .17em !important;
+  text-transform: uppercase !important;
+  line-height: 1.6;
+  color: var(--red);
+}
+.site-page main :is(section, article, [id]) { scroll-margin-top: 115px; }
+.site-page main > .page-section { padding-block: 90px; min-height: 0; }
+.site-page main .seo-breadcrumbs {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-block: 22px;
+  color: var(--muted);
+  font: 11px/1.7 Arial, Helvetica, sans-serif;
+  background: transparent;
+}
+.site-page .seo-breadcrumbs a { color: var(--muted); }
+.site-page .seo-breadcrumbs a:hover { color: var(--red); }
+
+/* Editorial heroes preserve their existing copy, imagery, and actions. */
+.site-page main .page-hero {
+  position: relative;
+  isolation: isolate;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  min-height: 0 !important;
+  padding: 45px 0 75px !important;
+  overflow: hidden;
+  clip-path: none;
+}
+.site-page main .page-hero:after,
+.site-page main .page-hero:before { display: none; }
+.site-page .page-hero :is(.hero-title, h1, .hero-copy, .hero-desc, .hero-description, .hero-services-sub) {
+  color: var(--ink) !important;
+}
+.site-page .page-hero h1 span { color: var(--red) !important; }
+.site-page .page-hero :is(.hero-top, .hero-top-row, .hero-heading-wrap) {
+  display: block; width: 100%; max-width: none; margin: 0 0 28px; padding: 0;
+}
+.site-page .page-hero :is(.hero-inner, .about-hero-inner, .paint-hero-inner, .loc-hero-inner) {
+  display: block; padding-block: 0; min-height: 0;
+}
+.site-page .page-hero :is(.hero-bottom, .hero-bottom-row) {
+  display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 65px; margin: 0;
+}
+.site-page .page-hero .hero-copy { padding: 0; max-width: none; transform: none; }
+.site-page .page-hero .hero-copy p,
+.site-page .page-hero .hero-desc { font-size: 17px; line-height: 1.7; max-width: 600px; color: var(--muted) !important; }
+.site-page .page-hero .hero-copy:before { display: none; }
+.site-page .page-hero .hero-image-wrap {
+  width: 100%; height: 360px; min-height: 0; max-width: none; margin: 0;
+  border: 0; border-radius: 0; overflow: hidden; clip-path: none; transform: none;
+}
+.site-page .page-hero .hero-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.site-page .page-hero :is(.hero-services-bg, .hero-services-overlay, .hero-accent, .hero-line,
+  .hero-lightning-cloudframe, .hero-lightning-cloudframe-secondary, .hero-lightning-glow,
+  .hero-lightning-skywash, .hero-lightning-ground, .hero-lightning-impact) { display: none; }
+.site-page .page-hero .hero-services-content { position: relative; padding: 0; }
+.site-page .page-hero .hero-top-services { justify-content: flex-start; gap: 20px; margin-bottom: 25px; }
+.site-page .page-hero .hero-services-sub { max-width: 760px; font-size: 17px; }
+.site-page .page-hero .hero-content {
+  position: relative; width: min(1280px, calc(100% - 96px)); max-width: 1280px;
+  margin-inline: auto; padding: 0; transform: none;
+}
+.site-page .page-hero .hero-bg { display: none; }
+.site-page .page-hero .hero-badges { position: static; display: flex; flex-wrap: wrap; gap: 20px; margin: 35px auto 0; width: min(1280px, calc(100% - 96px)); }
+.site-page .hero-badge { background: #e5dfd5; border: 1px solid var(--line); color: var(--ink); border-radius: 0; }
+.site-page .hero-badge-text span { color: var(--muted); }
+.site-page .hero-badge-text strong { color: var(--ink); }
+.site-page .page-hero .hero-stats { color: var(--ink); background: transparent; gap: 25px; }
+.site-page .hero-stat-num { color: var(--red); font-family: var(--slab); font-size: 36px; }
+.site-page .hero-stat-label { color: var(--muted); font-size: 11px; }
+
+/* Section palettes alternate warm paper, beige, charcoal, and the same CTA red. */
+.site-page main :is(.services-section, .signs-section, .process-section, .coatings-section,
+  .types-section, .compare-section, .faq-section, .causes-section, .cities-section,
+  .primary-area, .list-section, .drives-layout, .project-gallery-group) {
+  background: #fbfaf7; color: var(--ink);
+}
+.site-page main :is(.systems-section, .property-services, .service-comparison-section,
+  .vs-section, .area-section, .regional-section, .roofing-photo-section) {
+  background: #e5dfd5; color: var(--ink);
+}
+.site-page main :is(.why-section, .coatings-banner, .combo-banner) { background: #191919; color: #fff; }
+.site-page main :is(.why-section, .coatings-banner, .combo-banner) :is(h2, h3, p, li) { color: #f4f1eb; }
+.site-page main :is(.why-section, .coatings-banner, .combo-banner) [class$="-eyebrow"] { color: #ff7878; }
+.site-page main :is(.services-head, .systems-head, .signs-head, .types-header, .cities-header) {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 45px; margin-bottom: 38px;
+}
+.site-page main :is(.services-intro, .systems-intro, .signs-intro, .section-intro) {
+  font-size: 14px; line-height: 1.7; max-width: 460px; color: var(--muted);
+}
+.site-page main :is(.why-grid, .area-grid, .intro-grid, .regional-inner, .primary-area-inner) {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 65px; align-items: start;
+}
+.site-page main :is(.primary-area-inner, .regional-inner, .drives-hero, .drives-story) {
+  width: min(1280px, calc(100% - 96px)); max-width: 1280px; margin-inline: auto;
+}
+.site-page main .section-heading { display: block; }
+.site-page main :is(.why-title, .area-title, .services-title, .systems-title, .section-title,
+  .signs-title, .coatings-title, .cta-title) { color: inherit; }
+.site-page main :is(.why-body, .area-copy, .section-body, .property-services-intro, .service-comparison-intro,
+  .service-comparison-description, .service-scope-details) { font-size: 14px; line-height: 1.7; }
+
+/* Cards, statistics, galleries, and comparisons follow the homepage grid treatment. */
+.site-page main :is(.property-service-grid, .systems-grid, .services-grid, .signs-grid, .cities-grid) {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
+}
+.site-page main :is(.property-service-card, .system-box, .system-card, .service-card, .sign-box,
+  .city-card, .region-card, .assessment-step) {
+  background: #faf8f4; color: var(--ink); border: 1px solid var(--line);
+  border-top: 3px solid var(--red); padding: 30px; border-radius: 0; box-shadow: none;
+  min-width: 0; transform: none;
+}
+.site-page main a.property-service-card { padding-bottom: 65px; }
+.site-page main :is(.property-service-card, .system-box, .system-card, .service-card, .sign-box, .city-card) p {
+  font-size: 14px; color: var(--muted); line-height: 1.7;
+}
+.site-page main :is(.property-service-card, .system-box, .system-card, .service-card) h3 { font-size: 24px !important; }
+.site-page main :is(.stat-bar, .trust-bar) { background: #d9d2c7; color: var(--ink); padding: 0; }
+.site-page main .stat-bar-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid #c4bcaf; }
+.site-page main .stat-item { padding: 28px; border-right: 1px solid #c4bcaf; }
+.site-page main .stat-item:last-child { border-right: 0; }
+.site-page main :is(.stat-num, .why-stat-num) { font-family: var(--slab); font-size: 36px; font-weight: 500; color: var(--ink); }
+.site-page main .stat-label { font: 11px/1.7 Arial, Helvetica, sans-serif; letter-spacing: .03em; color: var(--muted); }
+.site-page main :is(.service-item, .why-item, .list-item, .area-item) { border-color: #b8b0a3; }
+.site-page main .why-item { background: transparent; border-bottom: 1px solid #ffffff30; }
+.site-page main :is(.why-item-num, .service-num, .system-box-num, .service-card-num, .sign-box-num, .list-num) { color: var(--red); font-size: 12px; }
+.site-page main .why-item-num { color: #ff7878; }
+.site-page main :is(.service-comparison-images, .pair) { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.site-page main .service-comparison { margin-bottom: 55px; padding: 0; background: transparent; }
+.site-page main .service-comparison-photo { margin: 0; min-width: 0; }
+.site-page main .service-comparison-photo img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.site-page main .service-comparison-photo figcaption { background: #191919; color: white; padding: 10px 14px; font: 11px Arial, Helvetica, sans-serif; }
+.site-page main :is(.project-gallery-grid, .roofing-photo-grid) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.site-page main :is(.project-gallery-item, .roofing-photo-grid figure) { overflow: hidden; margin: 0; }
+.site-page main .project-gallery-item img { width: 100%; height: 300px; object-fit: cover; }
+.site-page main .roofing-photo-grid img { width: 100%; height: 300px; object-fit: cover; }
+.site-page .photo-lightbox { max-width: 95vw; max-height: 95dvh; padding: 20px; background: #191919; color: white; border: 1px solid #555; }
+.site-page .photo-lightbox img { max-height: 80dvh; width: auto; max-width: 100%; object-fit: contain; }
+.site-page main :is(.compare-table, table) { font: 13px/1.7 Arial, Helvetica, sans-serif; border-collapse: collapse; color: var(--ink); }
+.site-page main :is(th, td) { border-color: var(--line); padding: 18px; }
+.site-page main th { background: #191919; color: white; }
+.site-page main td { background: #faf8f4; }
+.site-page main .compare-table-wrap { overflow-x: auto; }
+
+/* Actions and contact forms match the homepage while retaining their existing endpoints. */
+.site-page main :is(.cta-button, .cta-btn, .btn-primary, .btn-outline, .btn-white, .btn-white-outline,
+  .combo-btn, .contact-submit, .submit-btn, .lead-form button, .call) {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  background: var(--red); color: white; border: 1px solid var(--red); border-radius: 0;
+  padding: 18px 24px; font: 600 13px/1.3 Arial, Helvetica, sans-serif;
+  text-transform: none; letter-spacing: 0; text-decoration: none; box-shadow: none;
+  min-height: 52px; transform: none; cursor: pointer;
+}
+.site-page main :is(.hero-actions, .cta-actions, .combo-actions) { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }
+.site-page main :is(.btn-outline, .cta-btn:not(.solid)) { background: transparent; border-color: currentColor; color: inherit; }
+.site-page main :is(.cta-section, .work-together-section, .emergency-banner) { background: var(--red); color: white; padding-block: 70px; }
+.site-page main :is(.cta-section, .work-together-section, .emergency-banner) :is(h2, p, a, [class$="-eyebrow"]) { color: white; }
+.site-page main :is(.cta-section, .work-together-section) :is(.cta-btn, .cta-button, .btn-white, .btn-white-outline) { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.site-page main :is(.cta-inner, .contact-inner, .work-together-inner) {
+  width: min(1280px, calc(100% - 96px)); max-width: 1280px; margin-inline: auto;
+  display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 65px; text-align: left;
+}
+.site-page main .work-together-phone { font-family: var(--slab); font-size: 38px; letter-spacing: -.04em; }
+.site-page main .work-together-eyebrow { grid-column: 1 / -1; font-size: 10px; letter-spacing: .17em; }
+.site-page .work-diamonds { display: none; }
+.site-page main .contact-section { background: #e5dfd5; color: var(--ink); padding-block: 70px; }
+.site-page main .contact-section :is(h2, p, a, label) { color: var(--ink); }
+.site-page main .contact-hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 65px; align-items: start; }
+.site-page main .form-wrap,
+.site-page main .lead-form { background: #e5dfd5; color: var(--ink); padding: 35px; border: 1px solid var(--line); border-radius: 0; box-shadow: none; }
+.site-page main .form-title { font-size: 32px !important; }
+.site-page main .form-row { display: block; margin-bottom: 16px; }
+.site-page main :is(input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]), textarea, select) {
+  width: 100%; padding: 15px; font: 14px/1.5 Arial, Helvetica, sans-serif;
+  background: #fbfaf7; color: #181818; border: 1px solid #aaa196; border-radius: 0;
+}
+.site-page main :is(input, textarea)::placeholder { color: #6b645b; opacity: 1; }
+.site-page main :is(.form-label, .hero-contact-label, .hero-contact-value, .submit-note) { color: var(--ink); }
+.site-page main .form-success { color: var(--ink); background: #e5dfd5; }
+.site-page main .hidden-honeypot { display: none; }
+.site-page main .map-section { padding: 0; background: #e5dfd5; }
+.site-page main .map-card { background: #191919; color: white; border: 0; border-radius: 0; }
+.site-page main .map-card :is(h2, h3, p, a) { color: white; }
+.site-page main .map-card h3 { font-size: 22px !important; }
+
+/* About page retains its story sections and photography, with the new split composition. */
+.site-page main .drives-layout { padding: 0; }
+.site-page main :is(.drives-hero, .drives-story) { display: grid; grid-template-columns: 1fr 1fr; gap: 65px; padding-block: 85px; color: var(--ink); background: transparent; }
+.site-page main :is(.drives-hero-left, .drives-story-left, .drives-hero-right, .drives-story-right) { padding: 0; min-width: 0; width: auto; }
+.site-page main .drives-hero-image-wrap { height: 430px; border-radius: 0; }
+.site-page main .drives-hero-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.site-page main .drives-story-right { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.site-page main .story-card { position: relative; width: auto; height: 230px; transform: none; border-radius: 0; overflow: hidden; }
+.site-page main .story-card img { width: 100%; height: 100%; object-fit: cover; }
+.site-page main .story-number { position: absolute; top: 15px; left: 15px; color: white; z-index: 1; font-size: 12px; }
+
+/* Campaign content and submission scripts remain intact, using the same visual vocabulary. */
+.site-page.campaign-page .page-hero .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 65px; min-height: 0; }
+.site-page.campaign-page .page-hero .hero-copy { padding: 0; }
+.site-page.campaign-page .page-hero .eyebrow { color: var(--red); }
+.site-page.campaign-page .page-hero .lead { color: var(--muted); font-size: 17px; }
+.site-page.campaign-page .page-hero .hero-project { align-self: start; }
+.site-page.campaign-page main > .section { padding-block: 85px; background: var(--paper); color: var(--ink); }
+.site-page.campaign-page main > .section.light { background: #e5dfd5; }
+.site-page.campaign-page main .intro-band { background: #191919; color: white; }
+.site-page.campaign-page main .intro-band p { color: white; }
+.site-page.campaign-page main .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; }
+.site-page.campaign-page main .comparison { background: transparent; }
+.site-page.campaign-page main .footer-inquiry { background: var(--red); color: white; }
+.site-page.campaign-page main .footer-inquiry-copy :is(p, h2) { color: white; }
+.site-page.campaign-page .lead-form h2 { font-size: 28px !important; }
+.site-page.campaign-page .form-follow-up { color: var(--muted); }
+.site-page.thank-you-page main { width: min(850px, calc(100% - 48px)); margin: 0 auto; padding-block: 90px; }
+.site-page.thank-you-page main > a:first-child { display: none; }
+
+/* Footer is the exact homepage shell, with selectors scoped against old page rules. */
+.site-page .unified-footer { background: #191919; color: white; padding: 60px 0 0; margin: 0; width: 100%; }
+.site-page .unified-footer .wrap { width: min(1280px, calc(100% - 96px)); max-width: 1280px; margin-inline: auto; }
+.site-page .unified-footer .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 45px; padding-bottom: 50px; }
+.site-page .unified-footer .brand { display: inline-block; background: transparent; padding: 0; }
+.site-page .unified-footer .brand img { width: 200px; height: auto; object-fit: contain; }
+.site-page .unified-footer h2 { font: 600 11px/1.3 Arial, Helvetica, sans-serif; letter-spacing: .1em; text-transform: uppercase; margin: 10px 0 25px; color: white; }
+.site-page .unified-footer p { font: 12px/1.8 Arial, Helvetica, sans-serif; color: #c0bbb4; margin: 18px 0; }
+.site-page .unified-footer .footer-grid > div > a:not(.brand) { display: block; font: 12px/1.5 Arial, Helvetica, sans-serif; color: #c0bbb4; margin-bottom: 14px; }
+.site-page .unified-footer .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding: 24px 0; border-top: 1px solid #ffffff24; font: 10px/1.5 Arial, Helvetica, sans-serif; color: #aaa49c; }
+
+@media (max-width: 1100px) {
+  .site-page main .container, .site-page main .wrap,
+  .site-page main :is(.primary-area-inner, .regional-inner, .drives-hero, .drives-story, .cta-inner, .contact-inner, .work-together-inner),
+  .site-page .page-hero .hero-content, .site-page .page-hero .hero-badges,
+  .site-page .unified-footer .wrap { width: calc(100% - 56px); }
+  .site-page main :is(.hero-bottom, .hero-bottom-row, .why-grid, .area-grid, .intro-grid, .regional-inner,
+    .primary-area-inner, .drives-hero, .drives-story, .contact-hero-inner, .cta-inner, .contact-inner) { gap: 40px; }
+  .site-page .unified-footer .footer-grid { gap: 25px; }
+  .site-page main .stat-item { padding: 22px 18px; }
+}
+@media (max-width: 900px) {
+  .site-page main :is(.property-service-grid, .systems-grid, .services-grid, .signs-grid, .cities-grid) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 800px) {
+  .site-page main > .page-section { padding-block: 65px; }
+  .site-page main .page-hero { padding-block: 30px 55px !important; }
+  .site-page main h1, .site-page main h1.hero-title { font-size: clamp(36px, 6.2vw, 49px) !important; }
+  .site-page .page-hero :is(.hero-bottom, .hero-bottom-row),
+  .site-page main :is(.why-grid, .area-grid, .intro-grid, .regional-inner, .primary-area-inner,
+    .drives-hero, .drives-story, .contact-hero-inner, .cta-inner, .contact-inner, .work-together-inner),
+  .site-page.campaign-page .page-hero .hero-grid,
+  .site-page.campaign-page main .comparison-grid { grid-template-columns: 1fr; gap: 32px; }
+  .site-page .page-hero .hero-image-wrap { height: 330px; }
+  .site-page main :is(.services-head, .systems-head, .signs-head, .types-header, .cities-header) { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .site-page main .stat-bar-inner { grid-template-columns: 1fr 1fr; }
+  .site-page main .stat-item { border-bottom: 1px solid #c4bcaf; }
+  .site-page main .stat-item:nth-child(2n) { border-right: 0; }
+  .site-page main .stat-item:nth-last-child(-n + 2) { border-bottom: 0; }
+  .site-page main :is(.project-gallery-grid, .roofing-photo-grid) { grid-template-columns: 1fr 1fr; }
+  .site-page main :is(.drives-hero, .drives-story) { padding-block: 55px; }
+  .site-page .unified-footer .footer-grid { grid-template-columns: 1fr 1fr; gap: 35px; }
+}
+@media (max-width: 520px) {
+  body.site-page { --section-title-size: 35px; }
+  .site-page main .container, .site-page main .wrap,
+  .site-page main :is(.primary-area-inner, .regional-inner, .drives-hero, .drives-story, .cta-inner, .contact-inner, .work-together-inner),
+  .site-page .page-hero .hero-content, .site-page .page-hero .hero-badges,
+  .site-page .unified-footer .wrap { width: calc(100% - 40px); }
+  .site-page main h1, .site-page main h1.hero-title { font-size: clamp(30px, 8vw, 40px) !important; }
+  .site-page main h2 { overflow-wrap: break-word; }
+  .site-page main .page-hero .hero-copy p { font-size: 16px; }
+  .site-page main :is(.property-service-grid, .systems-grid, .services-grid, .signs-grid, .cities-grid,
+    .project-gallery-grid, .roofing-photo-grid) { grid-template-columns: 1fr; }
+  .site-page main :is(.property-service-card, .system-box, .system-card, .service-card, .sign-box, .city-card) { padding: 25px; }
+  .site-page main .service-comparison-images { gap: 8px; }
+  .site-page main .service-comparison-photo img { aspect-ratio: 1; }
+  .site-page main .page-hero .hero-image-wrap { height: 260px; }
+  .site-page main .form-wrap, .site-page main .lead-form { padding: 24px; }
+  .site-page main .work-together-phone { font-size: 30px; }
+  .site-page main .story-card { height: 180px; }
+  .site-page .unified-footer .footer-grid > div:first-child { grid-column: 1 / -1; }
+  .site-page .unified-footer .footer-bottom { flex-direction: column; gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-page *, .site-page *:before, .site-page *:after { transition: none !important; }
+}
+
+/* Legacy div-based copy follows the same light/dark contrast as paragraph content. */
+.site-page main :is(.why-section, .coatings-banner, .combo-banner) :is(.why-item-text, .why-body, .coatings-body, .combo-body) {
+  color: #f4f1eb;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.site-page main :is(.property-service-card, .system-box, .system-card, .service-card, .sign-box, .city-card) :is(h3, h4) {
+  color: var(--ink);
+}
+.site-page main .hero-phone-num { color: var(--red); font: 500 28px/1.3 var(--slab); }
+.site-page main .hero-phone-label { color: var(--muted); font: 11px/1.7 Arial, Helvetica, sans-serif; }
+.site-page main .hero-phone-block { border-color: var(--line); }
+.site-page main .area-callout { background: #fbfaf7; color: var(--ink); border: 1px solid var(--line); padding: 30px; }
+.site-page main .faq-question { font-family: var(--slab); font-size: 20px; color: var(--ink); background: transparent; }
+.site-page main .faq-item { background: #faf8f4; border: 1px solid var(--line); border-radius: 0; color: var(--ink); }
+.site-page main .faq-answer { color: var(--muted); font-size: 14px; line-height: 1.7; }
+.site-page main .faq-answer p { color: var(--muted); }
+.site-page.campaign-page .page-hero .hero-copy { max-width: 100%; }
+.site-page.campaign-page main .roofing-services .property-service-card { min-height: 0; }
+.site-page main :is(.hero-copy, .hero-heading-wrap, .hero-image-wrap, .why-left, .why-right, .area-left, .area-right, .contact-right, .hero-left, .hero-right) { min-width: 0; }
+@media (max-width: 520px) {
+  .site-page main .service-comparison-photo figcaption { font-size: 10px; }
+  .site-page main .faq-question { font-size: 18px; }
+  .site-page main .stat-num { font-size: 30px; }
+  .site-page main .hero-top-services { flex-wrap: wrap; }
+}
+/* Second editorial pass: photographic heroes and the homepage's flat, tight grids. */
+.site-page main .photo-page-hero {
+  background:#191919 !important;
+  color:white !important;
+  min-height:570px !important;
+  padding:75px 0 !important;
+  display:flex;
+  align-items:center;
+}
+.site-page main .photo-page-hero .page-hero-backdrop {
+  position:absolute;inset:0;width:100%;height:100%;z-index:-2;
+}
+.site-page main .photo-page-hero:after {
+  display:block;content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,#000d 0%,#0009 60%,#0003 100%);
+}
+.site-page main .photo-page-hero :is(h1,h1.hero-title,h1 span,.hero-eyebrow,.hero-copy,.hero-copy p) {color:white !important}
+.site-page main .photo-page-hero .hero-bottom-row,
+.site-page main .photo-page-hero .hero-bottom {display:block}
+.site-page main .photo-page-hero .hero-copy {max-width:710px}
+.site-page main .photo-page-hero h1 {max-width:1000px !important}
+.site-page main .photo-page-hero .hero-eyebrow {display:block;margin-bottom:22px}
+.site-page main .photo-page-hero .hero-copy p {font-size:16px;line-height:1.7}
+.site-page main .photo-page-hero .hero-top-row,
+.site-page main .photo-page-hero .hero-top {margin-bottom:32px}
+.site-page main :is(.property-service-grid,.systems-grid,.services-grid,.signs-grid,.cities-grid){gap:8px}
+.site-page main :is(.property-service-card,.system-box,.system-card,.service-card,.sign-box,.city-card){
+ border:1px solid var(--line);border-top:1px solid var(--line);padding:32px;background:#faf8f4;
+}
+.site-page main a.property-service-card{padding-bottom:70px;transition:background .2s,color .2s}
+.site-page main a.property-service-card:hover{background:#e5dfd5}
+.site-page main a.property-service-card .property-card-arrow{width:30px;color:var(--red);right:30px;bottom:25px}
+.site-page main :is(.property-service-card,.system-box,.system-card,.service-card) h3{font-size:26px !important}
+.site-page main .property-services + .property-services {padding-top:20px}
+.site-page main .service-comparison{border-bottom:1px solid #c4bcaf;padding-bottom:45px;margin-bottom:45px}
+.site-page main .service-comparison:last-child{border:0;margin-bottom:0;padding-bottom:0}
+.site-page main .service-comparison-images{gap:8px}
+.site-page main .service-comparison-photo{position:relative;overflow:hidden}
+.site-page main .service-comparison-photo figcaption{position:absolute;left:20px;bottom:20px;z-index:1;padding:10px 16px;background:#191919df}
+.site-page main .service-comparison-photo img{aspect-ratio:4/3}
+.site-page main .why-section{border-top:4px solid var(--red)}
+.site-page main .why-item{padding:24px 0;border-radius:0;box-shadow:none}
+.site-page main .area-section{background:var(--paper)}
+.site-page main :is(.county-pill,.area-city){border-radius:0;background:transparent;border:1px solid var(--line);color:var(--ink)}
+.site-page main .map-shell{max-height:460px;overflow:hidden}
+.site-page main .cta-section .cta-inner{align-items:center}
+.site-page main .cta-section :is(.cta-title,.cta-copy h2){max-width:650px}
+.site-page main .work-together-section{border-top:1px solid #ffffff40}
+.site-page main .form-wrap{background:#e5dfd5;border-top:4px solid var(--red)}
+@media(max-width:800px){
+ .site-page main .photo-page-hero{min-height:500px !important;padding:60px 0 !important}
+ .site-page main .photo-page-hero .page-hero-backdrop{height:100%}
+ .site-page main :is(.property-service-card,.system-box,.system-card,.service-card,.sign-box,.city-card){padding:26px}
+}
+@media(max-width:520px){
+ .site-page main .photo-page-hero{min-height:0 !important;padding:50px 0 !important}
+ .site-page main .photo-page-hero .page-hero-backdrop{height:100%}
+ .site-page main .photo-page-hero .hero-copy p{font-size:14px}
+ .site-page main :is(.property-service-card,.system-box,.system-card,.service-card) h3{font-size:24px !important}
+ .site-page main .service-comparison-photo figcaption{left:10px;bottom:10px;padding:8px 10px}
+}
+/* Contrast boundaries: legacy text colors must follow each section's surface. */
+.site-page main :is(.services-section,.signs-section,.process-section,.coatings-section,
+.types-section,.compare-section,.faq-section,.causes-section,.cities-section,.primary-area,
+.list-section,.drives-hero,.drives-story,.project-gallery-group,.systems-section,
+.property-services,.service-comparison-section,.vs-section,.area-section,.regional-section,
+.roofing-photo-section,.emergencies-section) {
+  --surface-text:#181818; --surface-copy:#514c45;
+  color:var(--surface-text); background-color:#f4f1eb;
+}
+.site-page main :is(.why-section,.coatings-banner,.combo-banner,.intro-band,
+.cta-section,.work-together-section,.emergency-banner,.footer-inquiry,.photo-page-hero) {
+  --surface-text:#fff; --surface-copy:#eee8df;
+}
+.site-page main :is(.page-section,.drives-hero,.drives-story,.coatings-banner,.combo-banner,.intro-band,
+.work-together-section,.contact-section) :is(h2,h3,h4,.section-heading,.section-title,
+.city-name,.region-card-name,.list-text,.service-text,.why-item-text,.area-item) {
+  color:var(--surface-text,#181818);
+}
+.site-page main :is(.page-section,.drives-hero,.drives-story,.coatings-banner,.combo-banner,.intro-band,
+.work-together-section,.contact-section) :is(p,li,.section-body,.process-intro,.systems-footer,
+.city-county,.city-services,.region-card-cities,.system-spec-label,.system-spec-value) {
+  color:var(--surface-copy,#514c45);
+}
+/* Light inset panels reset contrast even inside charcoal and red sections. */
+.site-page main :is(.property-service-card,.system-box,.system-card,.service-card,.sign-box,
+.city-card,.region-card,.assessment-step,.area-callout,.form-wrap,.lead-form,.faq-item,
+.why-stat-card,.hero-badge,.contact-section) {
+  --surface-text:#181818; --surface-copy:#514c45;
+  color:#181818;
+}
+.site-page main :is(.property-service-card,.system-box,.system-card,.service-card,.sign-box,
+.city-card,.region-card,.assessment-step,.area-callout,.form-wrap,.lead-form,.faq-item,
+.why-stat-card) :is(h2,h3,h4,label,strong,.form-eyebrow) {color:#181818 !important}
+.site-page main :is(.property-service-card,.system-box,.system-card,.service-card,.sign-box,
+.city-card,.region-card,.assessment-step,.area-callout,.form-wrap,.lead-form,.faq-item,
+.why-stat-card) :is(p,li,.form-follow-up,.submit-note) {color:#514c45 !important}
+.site-page main .map-card {--surface-text:#fff;--surface-copy:#eee8df}
+.site-page main .map-card :is(h3,p,a){color:#fff !important}
+.site-page main :is(.why-section,.coatings-banner,.combo-banner,.intro-band) :is(.related-links a,.area-item a) {color:#fff;text-decoration:underline}
+.site-page main :is(.cta-section,.work-together-section,.emergency-banner,.footer-inquiry) :is(.cta-sub,.cta-copy,.emergency-text,.emergency-phone,.contact-label) {color:#fff}
+.site-page main .contact-section .contact-submit{background:var(--red);color:#fff}
+.site-page main .photo-page-hero :is(.hero-text-link,.hero-phone-num,.hero-phone-label){color:#fff !important}
+.site-page main :is(.service-comparison-photo,.comparison-photo) figcaption{color:#fff}
+.site-page main .stat-item{--surface-text:#181818;--surface-copy:#514c45}
+.site-page main .why-stat-card{background:#e5dfd5}
+.site-page.campaign-page main > .section.footer-inquiry{background:var(--red);color:#fff}
+/* Process headings stack on the left; grid gutters never expose legacy gray fills. */
+.site-page main .systems-head{display:block;text-align:left;margin-bottom:38px}
+.site-page main .systems-head .systems-eyebrow{margin-bottom:18px}
+.site-page main :is(.systems-title,.process-title){text-align:left;margin-left:0}
+.site-page main :is(.systems-grid,.process-steps){background:transparent;gap:8px}
+.site-page main .systems-grid:has(>.system-box:nth-child(4):last-child){grid-template-columns:repeat(4,minmax(0,1fr))}
+.site-page main .process-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.site-page main :is(.process-step,.process-step:hover,.system-box:hover){background:#faf8f4;color:#181818;border:1px solid var(--line);box-shadow:none;transform:none}
+.site-page main .process-step{padding:30px;min-width:0}
+.site-page main .process-step :is(h3,h4){color:#181818 !important}
+.site-page main .process-step p{color:#514c45 !important}
+.site-page main .systems-footer{text-align:left;margin:28px 0 0;max-width:850px;color:#514c45}
+.site-page main .process-head{text-align:left;border-color:var(--line);margin-bottom:38px;padding-bottom:28px}
+@media(max-width:1100px){
+ .site-page main .systems-grid:has(>.system-box:nth-child(4):last-child),.site-page main .process-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:640px){
+ .site-page main .systems-grid:has(>.system-box:nth-child(4):last-child),.site-page main .process-steps{grid-template-columns:1fr}
+ .site-page main .process-head{display:block}
+}
+/* Flat card and list borders replace legacy gray gutters and odd/even dividers. */
+.site-page main .signs-grid{background:transparent;gap:8px}
+.site-page main :is(.sign-box,.sign-box:hover){background:#faf8f4;border:1px solid var(--line);box-shadow:none;transform:none}
+.site-page main .sign-box-bar{display:none}
+.site-page main .services-grid:has(>.service-item){grid-template-columns:repeat(2,minmax(0,1fr));background:transparent;gap:8px}
+.site-page main .services-grid>.service-item,
+.site-page main .services-grid>.service-item:nth-child(odd),
+.site-page main .services-grid>.service-item:hover{
+ border:1px solid var(--line) !important;background:#faf8f4;color:#181818;box-shadow:none;transform:none;
+ padding:26px;grid-template-columns:32px minmax(0,1fr);gap:18px;
+}
+.site-page main .services-grid>.service-item .service-text{color:#181818;font-family:var(--slab);font-size:22px;font-weight:500;line-height:1.3}
+.site-page main .area-list{border:1px solid var(--line);gap:0;background:transparent;box-shadow:none;grid-template-columns:1fr 1fr}
+.site-page main .area-list>.area-item{border:0;border-bottom:1px solid var(--line);border-right:1px solid var(--line);background:transparent;box-shadow:none;color:#181818}
+.site-page main .area-list>.area-item:nth-child(2n){border-right:0}
+.site-page main .area-list>.area-item:last-child,
+.site-page main .area-list>.area-item:nth-last-child(2):nth-child(odd){border-bottom:0}
+@media(max-width:720px){
+ .site-page main .services-grid:has(>.service-item){grid-template-columns:1fr}
+ .site-page main .area-list{grid-template-columns:1fr}
+ .site-page main .area-list>.area-item{border-right:0}
+ .site-page main .area-list>.area-item:nth-last-child(2):nth-child(odd){border-bottom:1px solid var(--line)}
+}
