@@ -1,0 +1,19 @@
+/* Roof cards remain visually unchanged and open one general estimate dialog. */
+.site-page.campaign-page main .roof-systems a.property-service-card{text-decoration:none;cursor:pointer}
+.site-page.campaign-page main .roof-systems a.property-service-card:focus-visible{outline:3px solid #cf0303;outline-offset:4px}
+.roof-system-dialog{width:min(500px,calc(100% - 32px));max-height:calc(100dvh - 32px);padding:0;border:1px solid #ffffff29;border-radius:16px;background:#191919;color:#fff;box-shadow:0 30px 100px #0008;overflow:auto;overscroll-behavior:contain;color-scheme:dark}
+.roof-system-dialog::backdrop{background:#000b;backdrop-filter:blur(5px)}
+.roof-system-dialog-copy{padding:48px 32px 32px}
+.roof-system-dialog h2{font-size:32px;line-height:1.15;margin:0 0 18px;color:#fff}
+.roof-system-dialog #roof-system-dialog-description{font-size:14px;line-height:1.6;color:#c9c5be;margin:0 0 24px}
+.roof-system-close{position:absolute;right:10px;top:10px;z-index:3;display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:50%;background:transparent;color:#fff;font:26px/1 Arial,sans-serif;cursor:pointer}
+.roof-system-close:hover{background:#ffffff12}
+.campaign-page .roof-system-dialog .estimate-start{padding:0;margin:0;max-width:none}
+.campaign-page .roof-system-dialog .estimate-inline{flex-direction:column;gap:12px}
+.campaign-page .roof-system-dialog .estimate-start .email-label{position:static;width:auto;height:auto;padding:0;margin:0 0 8px;clip-path:none;white-space:normal;font-size:12px;color:#fff;display:block}
+.campaign-page .roof-system-dialog .estimate-inline input{width:100%;min-height:52px;margin:0;padding:14px;border:1px solid #ffffff40;border-radius:6px;background:#242424;color:#fff;font:16px Arial,sans-serif}
+.campaign-page .roof-system-dialog .estimate-inline input::placeholder{color:#aaa}
+.campaign-page .roof-system-dialog .estimate-start .estimate-inline button{width:100%;min-height:52px;justify-content:center;border-radius:6px;font-size:14px}
+.campaign-page .roof-system-dialog .estimate-start .form-follow-up{color:#aaa;font-size:12px;line-height:1.5;margin-top:14px}
+.campaign-page .roof-system-dialog .estimate-start .capture-status{color:#ffb4b4;font-size:13px;line-height:1.5}
+@media(max-width:600px){.roof-system-dialog-copy{padding:44px 24px 24px}.roof-system-dialog h2{font-size:27px}}

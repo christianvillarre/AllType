@@ -477,9 +477,100 @@ body,.site-mark,.section,.foot{background:#000}
   <script defer src="/campaign/estimate-funnel.js?v=20261116-two-captures"></script>
   <link rel="stylesheet" href="/campaign/storm-section.css?v=20261116-bold-title"/>
   <script defer src="/campaign/storm-section.js?v=20261116-1"></script>
-  <script defer src="/campaign/comparison-carousel.js?v=20261116-four-seconds"></script>
+  <script defer src="/campaign/comparison-carousel.js?v=20261116-estimate-dialog"></script>
  <link rel="stylesheet" href="/campaign/form-feedback.css?v=20261116-1"/>
 <script defer src="/campaign/form-feedback.js?v=20261116-1"></script>
+<style>
+/* Roof system photography fills each card; copy sits over a dark lower gradient. */
+.site-page.campaign-page main .roof-systems .property-service-card{
+ position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;
+ min-height:380px;padding:28px;overflow:hidden;border:0;background:#191919;color:#fff;
+}
+.site-page.campaign-page main .roof-systems .property-service-card .roof-system-photo{
+ position:absolute;inset:0;z-index:-2;width:100%;height:100%;margin:0;aspect-ratio:auto;object-fit:cover;
+}
+.site-page.campaign-page main .roof-systems .property-service-card:after{
+ content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:linear-gradient(180deg,rgba(0,0,0,.04) 15%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.94) 100%);
+}
+.site-page.campaign-page main .roof-systems .property-service-card h3{color:#fff!important;margin:0 0 12px}
+.site-page.campaign-page main .roof-systems .property-service-card p{color:#fff!important;margin:0;line-height:1.55}
+@media(max-width:600px){
+ .site-page.campaign-page main .roof-systems .property-service-card{min-height:350px;padding:24px}
+}
+</style>
+<style>
+/* Give each before/after photo the full available width on phones. */
+@media(max-width:600px){
+ .site-page.campaign-page main .roofing-comparisons{padding-block:28px}
+ .site-page.campaign-page main .roofing-comparisons .comparison-intro{margin-bottom:16px}
+ .site-page.campaign-page main .roofing-comparisons .comparison-intro .comparison-kicker{margin-bottom:8px}
+ .site-page.campaign-page main .roofing-comparisons .comparison-intro h2{margin-bottom:10px}
+ .site-page.campaign-page main .roofing-comparisons .comparison-intro>p:last-child{margin-bottom:0;line-height:1.5}
+ .site-page.campaign-page main .roofing-comparisons .comparison{padding:10px}
+ .site-page.campaign-page main .roofing-comparisons .comparison h3{margin-bottom:6px}
+ .site-page.campaign-page main .roofing-comparisons .comparison-description{min-height:0;margin:0 auto 10px;line-height:1.4}
+ .site-page.campaign-page main .roofing-comparisons .comparison-controls{margin-top:12px;gap:2px}
+ .site-page.campaign-page main .roofing-comparisons .pair{grid-template-columns:minmax(0,1fr);gap:8px}
+ .site-page.campaign-page main .roofing-comparisons .pair figure{min-width:0;margin:0}
+ .site-page.campaign-page main .roofing-comparisons .pair .comparison-photo{display:block;width:100%}
+ .site-page.campaign-page main .roofing-comparisons .pair img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+}
+</style>
+<style>
+/* Framed project photography and clean, matching carousel controls. */
+.site-page.campaign-page main #roofing-gallery .case-carousel{padding:8px 60px 18px}
+.site-page.campaign-page main #roofing-gallery .case-carousel-viewport{border-radius:16px;padding-block:8px 16px}
+.site-page.campaign-page main #roofing-gallery .project-gallery-item{
+ position:relative;border:1px solid #fff;border-radius:12px;overflow:hidden;background:#dedbd5;
+ box-shadow:0 6px 14px #18181814;aspect-ratio:4/3;
+}
+.site-page.campaign-page main #roofing-gallery .project-gallery-item:after{
+ content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 1px #18181810;
+}
+.site-page.campaign-page main #roofing-gallery .project-gallery-item img{width:100%;height:100%;object-fit:cover}
+.site-page.campaign-page main #roofing-gallery .case-carousel-arrow{
+ display:grid;place-items:center;width:46px;height:46px;padding:0;border:1px solid #d6d1c8;
+ border-radius:50%;background:#fbfaf7;color:#181818;box-shadow:0 4px 12px #1818180d;
+ transition:background .2s,color .2s,border-color .2s,box-shadow .2s;
+}
+.site-page.campaign-page main #roofing-gallery .case-carousel-arrow svg{width:21px;height:21px;display:block}
+.site-page.campaign-page main #roofing-gallery .case-carousel-arrow:hover{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 5px 16px #cf030326}
+.site-page.campaign-page main #roofing-gallery .case-carousel-arrow:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+.site-page.campaign-page main #roofing-gallery .case-carousel-arrow:active{background:#a60000;border-color:#a60000;color:#fff}
+@media(max-width:600px){
+ .site-page.campaign-page main #roofing-gallery .case-carousel{width:100vw;margin-left:calc(50% - 50vw);padding:0 0 62px}
+ .site-page.campaign-page main #roofing-gallery .case-carousel-viewport{border-radius:0}
+ .site-page.campaign-page main #roofing-gallery .project-gallery-item{width:calc(100vw - 64px);aspect-ratio:3/2}
+ .site-page.campaign-page main #roofing-gallery .case-carousel-prev{left:calc(50% - 53px)}
+ .site-page.campaign-page main #roofing-gallery .case-carousel-next{left:calc(50% + 7px);right:auto}
+}
+@media(prefers-reduced-motion:reduce){.site-page.campaign-page main #roofing-gallery .case-carousel-arrow{transition:none}}
+</style>
+<style>
+.site-page.campaign-page main #roofing-gallery .gallery-cta{
+ display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:32px;
+ margin-top:28px;padding:32px 36px;text-align:left;background:#fbfaf7;border:1px solid #ded8ce;border-radius:16px;
+}
+.site-page.campaign-page main #roofing-gallery .gallery-cta .eyebrow{margin:0 0 10px;font-size:10px;line-height:1.5;color:var(--red)}
+.site-page.campaign-page main #roofing-gallery .gallery-cta h3{margin:0;font-size:clamp(24px,2.4vw,32px)!important;line-height:1.2!important;color:var(--ink)}
+.site-page.campaign-page main #roofing-gallery .gallery-cta-actions{display:flex;flex-direction:column;gap:10px;flex:0 0 240px}
+.site-page.campaign-page main #roofing-gallery .gallery-cta-actions a{
+ display:flex;align-items:center;justify-content:center;gap:14px;width:100%;min-height:50px;margin:0;padding:14px 20px;
+ border:1px solid var(--red);border-radius:8px;background:var(--red);color:#fff;font:600 13px/1.3 Arial,sans-serif;
+ text-decoration:none;box-shadow:none;transition:background .2s,border-color .2s;
+}
+.site-page.campaign-page main #roofing-gallery .gallery-cta-actions a svg{display:block;width:18px;height:18px;flex-shrink:0}
+.site-page.campaign-page main #roofing-gallery .gallery-cta-actions .call{background:transparent;border-color:#d6d1c8;color:var(--ink)}
+.site-page.campaign-page main #roofing-gallery .gallery-cta-actions .button:hover{background:#a60000;border-color:#a60000}
+.site-page.campaign-page main #roofing-gallery .gallery-cta-actions .call:hover{background:#eeeae3;border-color:#aaa49a}
+@media(max-width:700px){
+ .site-page.campaign-page main #roofing-gallery .gallery-cta{flex-direction:column;gap:22px;padding:26px 20px;margin-top:22px;text-align:center}
+ .site-page.campaign-page main #roofing-gallery .gallery-cta-actions{flex:auto;width:100%;max-width:320px}
+}
+@media(prefers-reduced-motion:reduce){.site-page.campaign-page main #roofing-gallery .gallery-cta-actions a{transition:none}}
+</style>
+<link rel="stylesheet" href="/campaign/roof-system-dialog.css?v=20261116-general-dark">
 </head>
  <body id="campaign-top" class="site-page campaign-page" data-page="campaign/commercial-roofing.html">
   <div class="utility">
@@ -564,7 +655,7 @@ body,.site-mark,.section,.foot{background:#000}
       Repair, restoration, and replacement options based on your existing roof system and its condition.
      </p>
      <div class="property-service-grid">
-      <article class="property-service-card">
+      <a class="property-service-card" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
        <img alt="Representative standing-seam metal commercial roof" class="roof-system-photo" decoding="async" height="600" loading="lazy" src="/images/roof-systems/metal.webp" width="900"/>
        <h3>
         Metal roofing
@@ -572,8 +663,8 @@ body,.site-mark,.section,.foot{background:#000}
        <p>
         Repairs to panels, seams, fasteners, and flashing, with coating or replacement options based on roof condition.
        </p>
-      </article>
-      <article class="property-service-card">
+      </a>
+      <a class="property-service-card" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
        <img alt="Representative white TPO commercial roof membrane" class="roof-system-photo" decoding="async" height="600" loading="lazy" src="/images/roof-systems/tpo.webp" width="900"/>
        <h3>
         TPO roofing
@@ -581,8 +672,8 @@ body,.site-mark,.section,.foot{background:#000}
        <p>
         Assess membrane wear, seams, and rooftop penetrations to plan repairs or replacement.
        </p>
-      </article>
-      <article class="property-service-card">
+      </a>
+      <a class="property-service-card" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
        <img alt="Representative granulated modified bitumen commercial roof" class="roof-system-photo" decoding="async" height="600" loading="lazy" src="/images/roof-systems/modified-bitumen.webp" width="900"/>
        <h3>
         Modified bitumen
@@ -590,8 +681,8 @@ body,.site-mark,.section,.foot{background:#000}
        <p>
         Address damaged areas, laps, and flashing on asphalt-based low-slope roofing.
        </p>
-      </article>
-      <article class="property-service-card">
+      </a>
+      <a class="property-service-card" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
        <img alt="Representative gravel-surfaced built-up commercial roof" class="roof-system-photo" decoding="async" height="600" loading="lazy" src="/images/roof-systems/built-up.webp" width="900"/>
        <h3>
         Built-up roofing
@@ -599,8 +690,8 @@ body,.site-mark,.section,.foot{background:#000}
        <p>
         Evaluate layered roof surfaces and leak-prone details for repair, restoration, or replacement.
        </p>
-      </article>
-      <article class="property-service-card">
+      </a>
+      <a class="property-service-card" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
        <img alt="Representative black EPDM rubber commercial roof" class="roof-system-photo" decoding="async" height="600" loading="lazy" src="/images/roof-systems/epdm.webp" width="900"/>
        <h3>
         EPDM roofing
@@ -608,8 +699,8 @@ body,.site-mark,.section,.foot{background:#000}
        <p>
         Repair rubber membrane damage and vulnerable seams and connections.
        </p>
-      </article>
-      <article class="property-service-card">
+      </a>
+      <a class="property-service-card" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
        <img alt="Representative light gray PVC commercial roof membrane" class="roof-system-photo" decoding="async" height="600" loading="lazy" src="/images/roof-systems/pvc.webp" width="900"/>
        <h3>
         PVC roofing
@@ -617,7 +708,7 @@ body,.site-mark,.section,.foot{background:#000}
        <p>
         Assess membrane condition and welded seams to recommend suitable roofing work.
        </p>
-      </article>
+      </a>
      </div>
     </div>
    </section>
@@ -654,7 +745,7 @@ body,.site-mark,.section,.foot{background:#000}
    <section aria-labelledby="roof-results-title" class="section light roofing-comparisons page-section">
     <div class="wrap">
      <div class="comparison-intro">
-      <p class="comparison-kicker">Before &amp; after · All-Type at work</p>
+      <!--<p class="comparison-kicker">Before &amp; after · All-Type at work</p>-->
       <h2 id="roof-results-title">Commercial Roofing. Before &amp; After.</h2>
       <p>See how All-Type tackles worn roof surfaces, damaged membranes, and rooftop details. Browse side-by-side photos of our commercial roof repairs, coatings, and installations across Greater Houston.</p>
      </div>
@@ -666,7 +757,7 @@ body,.site-mark,.section,.foot{background:#000}
        <p class="comparison-description">Surface preparation and a protective coating give this commercial roof a fresh finish.</p>
        <div class="pair">
         <figure>
-         <a aria-label="Enlarge: Weathered commercial roof before coating" class="comparison-photo" href="/images/services/roof-coating-1.webp">
+         <a aria-label="Start a roof estimate: Weathered commercial roof before coating" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Weathered commercial roof before coating" decoding="async" loading="lazy" src="/images/services/roof-coating-1.webp"/>
          </a>
          <figcaption>
@@ -674,7 +765,7 @@ body,.site-mark,.section,.foot{background:#000}
          </figcaption>
         </figure>
         <figure>
-         <a aria-label="Enlarge: Commercial flat roof after white coating" class="comparison-photo" href="/images/services/roof-coating-2.webp">
+         <a aria-label="Start a roof estimate: Commercial flat roof after white coating" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Commercial flat roof after white coating" decoding="async" loading="lazy" src="/images/services/roof-coating-2.webp"/>
          </a>
          <figcaption>
@@ -690,7 +781,7 @@ body,.site-mark,.section,.foot{background:#000}
        <p class="comparison-description">Built-up dirt and debris cleared away to reveal the roof surface beneath.</p>
        <div class="pair">
         <figure>
-         <a aria-label="Enlarge: Commercial roof before cleaning" class="comparison-photo" href="/images/services/roof-cleaning-1.webp">
+         <a aria-label="Start a roof estimate: Commercial roof before cleaning" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Commercial roof before cleaning" decoding="async" loading="lazy" src="/images/services/roof-cleaning-1.webp"/>
          </a>
          <figcaption>
@@ -698,7 +789,7 @@ body,.site-mark,.section,.foot{background:#000}
          </figcaption>
         </figure>
         <figure>
-         <a aria-label="Enlarge: Commercial roof after cleaning" class="comparison-photo" href="/images/services/roof-cleaning-2.webp">
+         <a aria-label="Start a roof estimate: Commercial roof after cleaning" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Commercial roof after cleaning" decoding="async" loading="lazy" src="/images/services/roof-cleaning-2.webp"/>
          </a>
          <figcaption>
@@ -714,7 +805,7 @@ body,.site-mark,.section,.foot{background:#000}
        <p class="comparison-description">Damaged membrane addressed with a targeted repair at the problem area.</p>
        <div class="pair">
         <figure>
-         <a aria-label="Enlarge: Damaged roof membrane before repair" class="comparison-photo" href="/images/services/roof-repair-1.webp">
+         <a aria-label="Start a roof estimate: Damaged roof membrane before repair" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Damaged roof membrane before repair" decoding="async" loading="lazy" src="/images/services/roof-repair-1.webp"/>
          </a>
          <figcaption>
@@ -722,7 +813,7 @@ body,.site-mark,.section,.foot{background:#000}
          </figcaption>
         </figure>
         <figure>
-         <a aria-label="Enlarge: Roof membrane after repair" class="comparison-photo" href="/images/services/roof-repair-2.webp">
+         <a aria-label="Start a roof estimate: Roof membrane after repair" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Roof membrane after repair" decoding="async" loading="lazy" src="/images/services/roof-repair-2.webp"/>
          </a>
          <figcaption>
@@ -738,7 +829,7 @@ body,.site-mark,.section,.foot{background:#000}
        <p class="comparison-description">A closer look at the roof before and after skylight installation.</p>
        <div class="pair">
         <figure>
-         <a aria-label="Enlarge: Commercial roof before skylight installation" class="comparison-photo" href="/images/services/skylight-installation-1.webp">
+         <a aria-label="Start a roof estimate: Commercial roof before skylight installation" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Commercial roof before skylight installation" decoding="async" loading="lazy" src="/images/services/skylight-installation-1.webp"/>
          </a>
          <figcaption>
@@ -746,7 +837,7 @@ body,.site-mark,.section,.foot{background:#000}
          </figcaption>
         </figure>
         <figure>
-         <a aria-label="Enlarge: Commercial roof after skylight installation" class="comparison-photo" href="/images/services/skylight-installation-2.webp">
+         <a aria-label="Start a roof estimate: Commercial roof after skylight installation" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Commercial roof after skylight installation" decoding="async" loading="lazy" src="/images/services/skylight-installation-2.webp"/>
          </a>
          <figcaption>
@@ -762,7 +853,7 @@ body,.site-mark,.section,.foot{background:#000}
        <p class="comparison-description">An updated roof hatch and the surrounding roof connections.</p>
        <div class="pair">
         <figure>
-         <a aria-label="Enlarge: Commercial roof hatch before replacement" class="comparison-photo" href="/images/services/roof-hatch-replacement-1.webp">
+         <a aria-label="Start a roof estimate: Commercial roof hatch before replacement" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Commercial roof hatch before replacement" decoding="async" loading="lazy" src="/images/services/roof-hatch-replacement-1.webp"/>
          </a>
          <figcaption>
@@ -770,7 +861,7 @@ body,.site-mark,.section,.foot{background:#000}
          </figcaption>
         </figure>
         <figure>
-         <a aria-label="Enlarge: Commercial roof hatch after replacement" class="comparison-photo" href="/images/services/roof-hatch-replacement-2.webp">
+         <a aria-label="Start a roof estimate: Commercial roof hatch after replacement" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Commercial roof hatch after replacement" decoding="async" loading="lazy" src="/images/services/roof-hatch-replacement-2.webp"/>
          </a>
          <figcaption>
@@ -786,7 +877,7 @@ body,.site-mark,.section,.foot{background:#000}
        <p class="comparison-description">Roof openings finished with flashing around the new penetrations.</p>
        <div class="pair">
         <figure>
-         <a aria-label="Enlarge: Commercial roof before penetration installation" class="comparison-photo" href="/images/services/roof-penetration-installation-1.webp">
+         <a aria-label="Start a roof estimate: Commercial roof before penetration installation" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Commercial roof before penetration installation" decoding="async" loading="lazy" src="/images/services/roof-penetration-installation-1.webp"/>
          </a>
          <figcaption>
@@ -794,7 +885,7 @@ body,.site-mark,.section,.foot{background:#000}
          </figcaption>
         </figure>
         <figure>
-         <a aria-label="Enlarge: Commercial roof after penetration installation" class="comparison-photo" href="/images/services/roof-penetration-installation-2.webp">
+         <a aria-label="Start a roof estimate: Commercial roof after penetration installation" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Commercial roof after penetration installation" decoding="async" loading="lazy" src="/images/services/roof-penetration-installation-2.webp"/>
          </a>
          <figcaption>
@@ -810,7 +901,7 @@ body,.site-mark,.section,.foot{background:#000}
        <p class="comparison-description">Equipment curbs installed and flashed into the surrounding roof system.</p>
        <div class="pair">
         <figure>
-         <a aria-label="Enlarge: Workers preparing raised rooftop equipment curbs before installation is complete" class="comparison-photo" href="/images/services/ac-curb-installation-1.webp">
+         <a aria-label="Start a roof estimate: Workers preparing raised rooftop equipment curbs before installation is complete" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Workers preparing raised rooftop equipment curbs before installation is complete" decoding="async" loading="lazy" src="/images/services/ac-curb-installation-1.webp"/>
          </a>
          <figcaption>
@@ -818,7 +909,7 @@ body,.site-mark,.section,.foot{background:#000}
          </figcaption>
         </figure>
         <figure>
-         <a aria-label="Enlarge: Installed and flashed equipment curbs on a commercial flat roof" class="comparison-photo" href="/images/services/ac-curb-installation-2.webp">
+         <a aria-label="Start a roof estimate: Installed and flashed equipment curbs on a commercial flat roof" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Installed and flashed equipment curbs on a commercial flat roof" decoding="async" loading="lazy" src="/images/services/ac-curb-installation-2.webp"/>
          </a>
          <figcaption>
@@ -834,7 +925,7 @@ body,.site-mark,.section,.foot{background:#000}
        <p class="comparison-description">Reflective coating applied around existing roof penetration flashing.</p>
        <div class="pair">
         <figure>
-         <a aria-label="Enlarge: Roof penetration flashing surrounded by an uncoated roof surface" class="comparison-photo" href="/images/services/aluminum-coating-1.webp">
+         <a aria-label="Start a roof estimate: Roof penetration flashing surrounded by an uncoated roof surface" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Roof penetration flashing surrounded by an uncoated roof surface" decoding="async" loading="lazy" src="/images/services/aluminum-coating-1.webp"/>
          </a>
          <figcaption>
@@ -842,7 +933,7 @@ body,.site-mark,.section,.foot{background:#000}
          </figcaption>
         </figure>
         <figure>
-         <a aria-label="Enlarge: Localized reflective coating applied around roof penetration flashing" class="comparison-photo" href="/images/services/aluminum-coating-2.webp">
+         <a aria-label="Start a roof estimate: Localized reflective coating applied around roof penetration flashing" class="comparison-photo" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
           <img alt="Localized reflective coating applied around roof penetration flashing" decoding="async" loading="lazy" src="/images/services/aluminum-coating-2.webp"/>
          </a>
          <figcaption>
@@ -867,88 +958,80 @@ body,.site-mark,.section,.foot{background:#000}
       This client needed targeted repairs on some roof areas and replacement on others. All-Type developed a plan for each area based on its condition, combining localized patching, protective coating around exhausts, and replacement where needed to address the property’s roofing needs and budget.
      </p>
      <div aria-label="Industrial roofing project photos" class="case-carousel" role="region">
-      <button aria-label="Previous project photo" class="case-carousel-arrow case-carousel-prev" type="button">
-       ←
-      </button>
+      <button aria-label="Previous project photo" class="case-carousel-arrow case-carousel-prev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
       <div class="case-carousel-viewport">
        <div class="project-gallery-grid">
-        <a aria-label="Enlarge: Metal roof beneath industrial pipe racks" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/134108-full.webp">
+        <a aria-label="Start a roof estimate: Metal roof beneath industrial pipe racks" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Metal roof beneath industrial pipe racks" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/134108-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Close view of stack flashing on a metal roof" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/134137-full.webp">
+        <a aria-label="Start a roof estimate: Close view of stack flashing on a metal roof" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Close view of stack flashing on a metal roof" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/134137-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Exhaust stack and surrounding industrial roof" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/134142-full.webp">
+        <a aria-label="Start a roof estimate: Exhaust stack and surrounding industrial roof" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Exhaust stack and surrounding industrial roof" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/134142-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Industrial buildings and overhead pipework" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/134146-full.webp">
+        <a aria-label="Start a roof estimate: Industrial buildings and overhead pipework" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Industrial buildings and overhead pipework" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/134146-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Metal roof adjoining a tall industrial wall" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/134656-full.webp">
+        <a aria-label="Start a roof estimate: Metal roof adjoining a tall industrial wall" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Metal roof adjoining a tall industrial wall" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/134656-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Wide view of metal roof panels and wall junction" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/134658-full.webp">
+        <a aria-label="Start a roof estimate: Wide view of metal roof panels and wall junction" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Wide view of metal roof panels and wall junction" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/134658-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Raised roof curb on an industrial building" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/134810-full.webp">
+        <a aria-label="Start a roof estimate: Raised roof curb on an industrial building" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Raised roof curb on an industrial building" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/134810-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Industrial metal roof with vents and equipment" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/132651-full.webp">
+        <a aria-label="Start a roof estimate: Industrial metal roof with vents and equipment" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Industrial metal roof with vents and equipment" decoding="async" height="540" loading="lazy" src="/images/optimized/commercial-roofing-gallery/132651-thumb.webp" width="720"/>
         </a>
-        <a aria-label="Enlarge: Metal roof seams and existing repair areas" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/132654-full.webp">
+        <a aria-label="Start a roof estimate: Metal roof seams and existing repair areas" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Metal roof seams and existing repair areas" decoding="async" height="540" loading="lazy" src="/images/optimized/commercial-roofing-gallery/132654-thumb.webp" width="720"/>
         </a>
-        <a aria-label="Enlarge: Weathered duct penetration and pipe flashing" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/132702-full.webp">
+        <a aria-label="Start a roof estimate: Weathered duct penetration and pipe flashing" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Weathered duct penetration and pipe flashing" decoding="async" height="540" loading="lazy" src="/images/optimized/commercial-roofing-gallery/132702-thumb.webp" width="720"/>
         </a>
-        <a aria-label="Enlarge: Rooftop ventilation equipment and duct connection" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/132705-full.webp">
+        <a aria-label="Start a roof estimate: Rooftop ventilation equipment and duct connection" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Rooftop ventilation equipment and duct connection" decoding="async" height="540" loading="lazy" src="/images/optimized/commercial-roofing-gallery/132705-thumb.webp" width="720"/>
         </a>
-        <a aria-label="Enlarge: Long roof vent and surrounding flashing" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/132714-full.webp">
+        <a aria-label="Start a roof estimate: Long roof vent and surrounding flashing" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Long roof vent and surrounding flashing" decoding="async" height="540" loading="lazy" src="/images/optimized/commercial-roofing-gallery/132714-thumb.webp" width="720"/>
         </a>
-        <a aria-label="Enlarge: Metal roof above a commercial service entrance" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/133123-full.webp">
+        <a aria-label="Start a roof estimate: Metal roof above a commercial service entrance" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Metal roof above a commercial service entrance" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/133123-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Close view of ridge caps and roof repairs" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/133127-full.webp">
+        <a aria-label="Start a roof estimate: Close view of ridge caps and roof repairs" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Close view of ridge caps and roof repairs" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/133127-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Twin rooftop exhaust fans and their mounting curbs" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/133129-full.webp">
+        <a aria-label="Start a roof estimate: Twin rooftop exhaust fans and their mounting curbs" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Twin rooftop exhaust fans and their mounting curbs" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/133129-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Metal panels with previous patch repairs" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/133131-full.webp">
+        <a aria-label="Start a roof estimate: Metal panels with previous patch repairs" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Metal panels with previous patch repairs" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/133131-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Industrial roof with vents and translucent panels" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/133447-full.webp">
+        <a aria-label="Start a roof estimate: Industrial roof with vents and translucent panels" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Industrial roof with vents and translucent panels" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/133447-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Weathered rooftop equipment curb and mounting brackets" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/133456-full.webp">
+        <a aria-label="Start a roof estimate: Weathered rooftop equipment curb and mounting brackets" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Weathered rooftop equipment curb and mounting brackets" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/133456-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Adjacent metal roof sections with rooftop equipment" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/133500-full.webp">
+        <a aria-label="Start a roof estimate: Adjacent metal roof sections with rooftop equipment" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Adjacent metal roof sections with rooftop equipment" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/133500-thumb.webp" width="540"/>
         </a>
-        <a aria-label="Enlarge: Roof vent and translucent panel details" class="project-gallery-item" href="/images/optimized/commercial-roofing-gallery/133506-full.webp">
+        <a aria-label="Start a roof estimate: Roof vent and translucent panel details" class="project-gallery-item" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">
          <img alt="Roof vent and translucent panel details" decoding="async" height="720" loading="lazy" src="/images/optimized/commercial-roofing-gallery/133506-thumb.webp" width="540"/>
         </a>
        </div>
       </div>
-      <button aria-label="Next project photo" class="case-carousel-arrow case-carousel-next" type="button">
-       →
-      </button>
+      <button aria-label="Next project photo" class="case-carousel-arrow case-carousel-next" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></button>
      </div>
      <div class="gallery-cta">
-      <p>
-       Ready to find the right solution for your roof?
-      </p>
-      <a class="button" href="#campaign-top">
-       Start My Estimate
-      </a>
-      <a class="call" href="tel:+12813976614">
-       Or call (281) 397-6614
-      </a>
-     </div>
+ <div class="gallery-cta-copy"><p class="eyebrow">Your roof. A clear next step.</p><h3>Ready to find the right<br>solution for your roof?</h3></div>
+ <div class="gallery-cta-actions">
+  <a class="button" href="/campaign/estimate" data-roof-estimate aria-haspopup="dialog">Start my estimate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
+  <a class="call" href="tel:+12813976614"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.79a2 2 0 0 1-.45 2.11L8.09 9.89a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.58 2.79.7A2 2 0 0 1 22 16.92z"/></svg>(281) 397-6614</a>
+ </div>
+</div>
     </div>
    </section>
    <section aria-labelledby="roofing-services-title" class="section light roofing-services page-section">
@@ -1144,63 +1227,7 @@ body,.site-mark,.section,.foot{background:#000}
     </div>
    </section>
   </main>
-  <dialog aria-label="Commercial roofing photo gallery" class="photo-lightbox">
-   <div class="photo-lightbox-controls">
-    <button aria-label="Previous photo" data-prev="" type="button">
-     ←
-    </button>
-    <button aria-label="Next photo" data-next="" type="button">
-     →
-    </button>
-    <span aria-live="polite" class="photo-lightbox-count">
-    </span>
-    <button aria-label="Close photo gallery" autofocus="" class="photo-lightbox-close" type="button">
-     Close ×
-    </button>
-   </div>
-   <img alt=""/>
-  </dialog>
-  <script>
-   (() => {
-  const dialog = document.querySelector('.photo-lightbox');
-  if (!dialog || typeof dialog.showModal !== 'function') return;
-  const links = Array.from(document.querySelectorAll('.comparison-photo, #roofing-gallery .project-gallery-item'));
-  const image = dialog.querySelector('img');
-  const count = dialog.querySelector('.photo-lightbox-count');
-  let index = 0, opener, previousOverflow;
-  function show(next) {
-    index = (next + links.length) % links.length;
-    image.src = links[index].href;
-    image.alt = links[index].querySelector('img').alt;
-    count.textContent = `${index + 1} / ${links.length}`;
-  }
-  links.forEach((link, i) => link.addEventListener('click', event => {
-    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-    event.preventDefault();
-    opener = link;
-    previousOverflow = document.body.style.overflow;
-    show(i);
-    dialog.showModal();
-    document.body.style.overflow = 'hidden';
-  }));
-  dialog.querySelector('[data-prev]').addEventListener('click', () => show(index - 1));
-  dialog.querySelector('[data-next]').addEventListener('click', () => show(index + 1));
-  dialog.querySelector('.photo-lightbox-close').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('keydown', event => {
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      event.preventDefault();
-      show(index + (event.key === 'ArrowLeft' ? -1 : 1));
-    }
-  });
-  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
-  dialog.addEventListener('close', () => {
-    document.body.style.overflow = previousOverflow;
-    image.removeAttribute('src');
-    if (opener) opener.focus({preventScroll:true});
-  });
-})();
-  </script>
-<script defer="" src="/campaign/case-carousel.js?v=20261112-3">
+<script defer="" src="/campaign/case-carousel.js?v=20261116-smooth-drag">
   </script>
   <footer class="unified-footer">
    <div class="wrap footer-grid">
@@ -1286,5 +1313,23 @@ body,.site-mark,.section,.foot{background:#000}
   </script>
   <script defer="" src="/homepage.js?v=20261115-site-theme">
   </script>
- </body>
+ <dialog class="roof-system-dialog" aria-labelledby="roof-system-dialog-title" aria-describedby="roof-system-dialog-description" data-lenis-prevent>
+ <button type="button" class="roof-system-close" aria-label="Close roof estimate">&#215;</button>
+ <div class="roof-system-dialog-grid">
+  <div class="roof-system-dialog-copy"><h2 id="roof-system-dialog-title">Start your roof estimate</h2><p id="roof-system-dialog-description">Get a clear plan for your commercial roof. Enter your email to start your estimate.</p>
+<form action="/campaign/estimate" class="estimate-start" data-netlify="true" method="POST" name="commercial-roofing-email" netlify-honeypot="bot-field" id="roof-system-estimate">
+<input type="hidden" name="form-name" value="commercial-roofing-email"/>
+<p class="honeypot"><label>Leave this empty<input name="bot-field"/></label></p>
+<label class="email-label" for="roof-system-email">Email address</label>
+<div class="estimate-inline">
+<input id="roof-system-email" name="emailAddress" type="email" autocomplete="email" placeholder="you@company.com" required=""/>
+<button type="submit"><span>Start My Estimate</span></button>
+</div>
+<p class="capture-status" role="status" aria-live="polite"></p>
+<p class="form-follow-up">No obligation. We’ll use your email to follow up about your roof.</p>
+<noscript><p>JavaScript is needed for the two-step estimate. Call <a href="tel:+12813976614">(281) 397-6614</a> or <a href="/campaign/estimate">complete the roof details below</a>.</p></noscript>
+</form></div></div>
+</dialog>
+<script defer src="/campaign/roof-system-dialog.js?v=20261116-all-gallery"></script>
+</body>
 </html>

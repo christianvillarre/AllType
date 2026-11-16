@@ -41,6 +41,7 @@
   let startX = 0;
   let arrowDistance = 0;
   let previousTime = 0;
+  let resumeAt = 0;
 
   function wrap() {
     if (!cycleWidth) return;
@@ -54,7 +55,10 @@
   viewport.addEventListener("pointerdown", event => {
     if (event.button !== 0) return;
     dragging = true;
-    viewport.setPointerCapture(event.pointerId);
+    // Capture on the photo link so taps keep their target and drags stay captured.
+    const captureTarget = event.target.closest(".project-gallery-item") || viewport;
+    captureTarget.setPointerCapture(event.pointerId);
+
 
     moved = false;
     startX = lastX = event.clientX;
@@ -62,7 +66,8 @@
   });
   viewport.addEventListener("pointermove", event => {
     if (!dragging) return;
-    if (Math.abs(event.clientX - startX) > 6) {
+    if (!moved && Math.abs(event.clientX - startX) > 6) {
+
       moved = true;
 
       viewport.classList.add("is-dragging");
@@ -72,9 +77,10 @@
       position -= event.clientX - lastX;
       wrap();
     }
-    lastX = event.clientX;
+    if (moved) lastX = event.clientX;
   });
   function finishDrag() {
+    if (dragging && moved) resumeAt = performance.now() + 900;
     dragging = false;
     viewport.classList.remove("is-dragging");
 
@@ -103,7 +109,7 @@
       const distance = arrowDistance * (1 - Math.exp(-elapsed / 90));
       position += distance;
       arrowDistance -= distance;
-    } else if (!dragging) {
+    } else if (!dragging && now >= resumeAt) {
       // Keep fractional progress even when a browser rounds scrollLeft.
       position += elapsed * 0.05;
     }

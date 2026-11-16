@@ -27,7 +27,7 @@
   }
   function schedule() {
     stop();
-    if (paused || document.hidden || document.querySelector('.photo-lightbox[open]')) return;
+    if (paused || document.hidden || document.querySelector('.roof-system-dialog[open]')) return;
     timer = requestAnimationFrame(advance);
   }
   function advance(now) {
@@ -84,7 +84,7 @@
   track.after(controls);
   section.classList.add('comparison-carousel-ready');
   document.addEventListener('visibilitychange', schedule);
-  const lightbox = document.querySelector('.photo-lightbox');
+  const lightbox = document.querySelector('.roof-system-dialog');
   if (lightbox) new MutationObserver(schedule).observe(lightbox, { attributes: true, attributeFilter: ['open'] });
   reducedMotion.addEventListener('change', () => { paused = reducedMotion.matches; updatePause(); schedule(); });
   show(0);
