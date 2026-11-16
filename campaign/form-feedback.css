@@ -1,0 +1,5 @@
+.site-page main form :is(input,select,textarea).field-invalid{border:2px solid #c40000!important;background:#fff6f5!important;box-shadow:0 0 0 1px #c4000010}
+.site-page main form :is(input,select,textarea).field-invalid:focus{outline:2px solid #c40000;outline-offset:3px}
+.site-page main form .field-error{display:block;margin:7px 0 0;color:#b00000;font:12px/1.5 Arial,Helvetica,sans-serif;text-align:left}
+.site-page main form .field-error[hidden]{display:none}
+.site-page main form .campaign-recaptcha[aria-invalid=true]{outline:2px solid #c40000;outline-offset:6px}

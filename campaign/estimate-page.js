@@ -94,10 +94,12 @@
     const captchaError = document.querySelector('#captcha-error');
     const response = form.querySelector('[name="g-recaptcha-response"]');
     if (!response || !response.value.trim()) {
+      form.querySelector('.campaign-recaptcha').setAttribute('aria-invalid', 'true');
       captchaError.textContent = 'Please complete the CAPTCHA before sending your request.';
       form.querySelector('.campaign-recaptcha').scrollIntoView({ block: 'center' });
       return;
     }
+    form.querySelector('.campaign-recaptcha').removeAttribute('aria-invalid');
     captchaError.textContent = '';
     const submit = form.querySelector('button[type="submit"]');
     const message = document.querySelector('#submission-status');
