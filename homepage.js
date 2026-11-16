@@ -1,6 +1,6 @@
 (() => {
   const script = document.createElement('script');
-  script.src = '/navigation.js?v=20261116-dark-menu';
+  script.src = '/navigation.js?v=20261116-construction-order';
   document.head.append(script);
 })();
 

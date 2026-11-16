@@ -33,6 +33,29 @@
     });
   }
   nav.querySelectorAll('.nav-dropdown > p').forEach(title => title.remove());
+  const constructionOrder = [
+    '/services/commercial-construction',
+    '/services/commercial-painting',
+    '/services/commercial-waterproofing',
+    '/services/emergency-commercial-building-repair',
+    '/services/commercial-property-maintenance-repairs/stucco-eifs-repair',
+    '/services/commercial-property-maintenance-repairs/concrete-masonry-repair',
+    '/services/commercial-property-maintenance-repairs',
+    '/services/commercial-storm-damage-repair',
+    '/services/commercial-construction/tenant-improvements'
+  ];
+  nav.querySelectorAll('.nav-group').forEach(group => {
+    if (group.querySelector('summary').textContent.trim() !== 'Construction') return;
+    const dropdown = group.querySelector('.nav-dropdown');
+    const links = Array.from(dropdown.querySelectorAll('a'));
+    const rank = link => {
+      const path = new URL(link.href, window.location.origin).pathname.replace(/\.html$/, '');
+      const index = constructionOrder.indexOf(path);
+      return index < 0 ? constructionOrder.length : index;
+    };
+    links.sort((a, b) => rank(a) - rank(b)).forEach(link => dropdown.append(link));
+  });
+
   let toggle = header.querySelector('.mobile-toggle');
   if (!toggle) {
     toggle = document.createElement('button');
