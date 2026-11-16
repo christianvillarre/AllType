@@ -1,0 +1,118 @@
+/* Campaign-only funnel styling; loaded after the shared site theme. */
+.campaign-page .mobile-toggle{display:none}
+
+.site-page.campaign-page .page-hero .hero-grid{grid-template-columns:1fr;align-items:start;gap:0}
+.site-page.campaign-page .page-hero h1{font-size:clamp(46px,5.5vw,88px);max-width:100%;line-height:1.02;letter-spacing:-.045em}
+.campaign-page .hero-project{display:none}
+.campaign-page .estimate-start{background:transparent;color:#fff;padding:0;border:0;box-shadow:none;max-width:720px;margin-top:26px}
+.campaign-page .estimate-start h2{font-size:clamp(29px,3vw,42px);line-height:1.08;margin:14px 0}
+.campaign-page .estimate-start p{line-height:1.55;color:#45413c}
+.campaign-page .estimate-start .form-eyebrow{color:#a90000;font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+.campaign-page .estimate-start label{display:block;margin:24px 0 8px;font-size:14px;font-weight:700}
+.campaign-page .estimate-start input:not([type=hidden]),.campaign-page .lead-form select{width:100%;padding:14px;border:1px solid #888;background:#fff;color:#181818;font:inherit;min-height:50px;border-radius:0}
+.campaign-page .estimate-start button{display:flex;justify-content:space-between;gap:16px;width:100%;padding:18px 22px;margin-top:14px;background:var(--red);color:#fff;border:0;font-family:inherit;font-size:17px;font-weight:700;cursor:pointer}
+.campaign-page .estimate-start button:hover{background:#9f0000}
+.campaign-page .estimate-start button:disabled{opacity:.65;cursor:wait}
+.campaign-page .estimate-start .form-follow-up{font-size:12px;margin-bottom:0}
+.campaign-page .capture-status:empty{display:none}
+.campaign-page .hero-points{color:#fff;font-size:14px;line-height:1.5}
+.campaign-page #request-service,.campaign-page #estimate-details{scroll-margin-top:120px}
+.campaign-page .lead-form select{margin-bottom:16px;font-size:16px}
+.campaign-page .lead-form[hidden]{display:none!important}
+.campaign-page .estimate-start :focus-visible,.campaign-page .lead-form select:focus-visible{outline:3px solid #bf0000;outline-offset:4px}
+@media(max-width:800px){.site-page.campaign-page .page-hero .hero-grid{grid-template-columns:1fr}.campaign-page .estimate-start{max-width:620px;width:100%}}
+
+.site-page.campaign-page .page-hero .hero-copy{width:100%;max-width:100%}
+.site-page.campaign-page .page-hero .lead{max-width:760px}
+.campaign-page .estimate-inline{display:flex;align-items:stretch;gap:12px}
+.campaign-page .estimate-inline input{flex:1;min-width:0}
+.campaign-page .estimate-start .estimate-inline button{width:auto;flex-shrink:0;margin:0;align-items:center}
+.campaign-page .estimate-start .email-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.campaign-page .estimate-start :is(.form-follow-up,.capture-status){color:#eee8df}
+@media(max-width:560px){.campaign-page .estimate-inline{flex-direction:column}.campaign-page .estimate-start .estimate-inline button{justify-content:center;min-height:54px}}
+
+.site-page.campaign-page .site-header .primary-nav{display:flex;position:static;inset:auto;width:auto;height:auto;max-height:none;padding:0;margin-left:auto;background:transparent;border:0;box-shadow:none;transform:none;opacity:1;visibility:visible;overflow:visible}
+.campaign-page .site-header .nav-call{white-space:nowrap}
+@media(max-width:560px){.campaign-page .site-header .header-inner{gap:12px}.campaign-page .site-header .brand img{max-width:140px;height:auto}.campaign-page .site-header .nav-call{padding:12px;font-size:12px;min-height:44px}}
+/* Keep the campaign introduction compact instead of inheriting equal columns. */
+.site-page.campaign-page main .intro-band .intro-storm-heading{margin-bottom:28px}
+.site-page.campaign-page main .intro-band .intro-grid{grid-template-columns:48px minmax(0,1fr);gap:24px;align-items:start}
+.site-page.campaign-page main .intro-band .intro-eyebrow-wrap{justify-content:flex-start}
+.site-page.campaign-page main .intro-band .intro-copy p{max-width:100%;margin:0}
+@media(max-width:980px){.site-page.campaign-page main .intro-band .intro-grid{grid-template-columns:1fr;gap:12px}.site-page.campaign-page main .intro-band .intro-storm-heading{margin-bottom:24px}}
+/* One before/after pair per slide, with dot-to-pill pagination. */
+.site-page.campaign-page main .comparison-carousel-ready .comparison-grid{display:block;max-width:1100px;margin-inline:auto}
+.campaign-page .comparison-carousel-ready .comparison[hidden]{display:none!important}
+.campaign-page .comparison-carousel-ready .comparison{margin:0}
+.campaign-page .comparison-carousel-ready .comparison h3{text-align:center;margin:0 0 22px}
+.site-page.campaign-page main .comparison-carousel-ready .pair{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,2vw,24px)}
+.site-page.campaign-page main .comparison-carousel-ready .pair img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.campaign-page .comparison-controls{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:24px}
+.campaign-page .comparison-dots{display:flex;align-items:center;justify-content:center;gap:2px}
+.campaign-page .comparison-dot{display:grid;place-items:center;width:32px;min-height:44px;padding:0;border:0;background:transparent;cursor:pointer;transition:width .25s ease}
+.campaign-page .comparison-dot::before{content:'';display:block;width:8px;height:8px;border-radius:99px;background:#8b857d;transition:width .25s ease,background .25s ease}
+.campaign-page .comparison-dot[aria-current=true]{width:52px}
+.campaign-page .comparison-dot[aria-current=true]::before{width:32px;background:var(--red)}
+.campaign-page .comparison-pause{border:0;background:transparent;color:var(--ink);font:inherit;font-size:12px;text-decoration:underline;text-underline-offset:4px;padding:10px;cursor:pointer;min-height:44px}
+@media(prefers-reduced-motion:reduce){.campaign-page .comparison-dot,.campaign-page .comparison-dot::before{transition:none}}
+/* Framed project stories with floating before/after labels. */
+.site-page.campaign-page main .roofing-comparisons{background:#eeeae3;padding-block:clamp(48px,6vw,88px)}
+.campaign-page .comparison-intro{text-align:center;max-width:780px;margin:0 auto 36px}
+.site-page.campaign-page main .comparison-intro .comparison-kicker{color:var(--red);font:700 11px/1.5 Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px}
+.site-page.campaign-page main .comparison-intro h2{max-width:none;font-size:clamp(32px,4vw,56px);line-height:1.08;margin:0 0 18px;letter-spacing:-.045em}
+.campaign-page .comparison-intro>p:last-child{max-width:590px;margin:0 auto;font-size:15px;line-height:1.7}
+.site-page.campaign-page main .comparison-carousel-ready .comparison{padding:clamp(12px,2.5vw,32px);background:#fbfaf7;border:1px solid #fff;border-radius:20px;box-shadow:0 16px 45px #332c2210}
+.site-page.campaign-page main .comparison-carousel-ready .comparison h3{font-size:clamp(24px,2.5vw,34px);margin:0 0 8px}
+.campaign-page .comparison-description{text-align:center;max-width:620px;margin:0 auto 24px;font-size:14px;line-height:1.6;min-height:3.2em}
+.site-page.campaign-page main .comparison-carousel-ready .pair{gap:clamp(10px,1.8vw,20px)}
+.site-page.campaign-page main .comparison-carousel-ready .pair figure{position:relative;margin:0;overflow:hidden;border:1px solid #18181815;border-radius:12px;background:#dedbd5;box-shadow:0 4px 12px #1818180c}
+.site-page.campaign-page main .comparison-carousel-ready .pair img{aspect-ratio:3/2}
+.site-page.campaign-page main .comparison-carousel-ready .pair figcaption{position:absolute;top:14px;left:14px;padding:7px 13px;border:1px solid #ffffff30;border-radius:99px;background:#181818d9;color:#fff;font:700 10px/1.3 Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(10px);pointer-events:none}
+.site-page.campaign-page main .comparison-carousel-ready .pair figure:last-child figcaption{background:#cf0303ed}
+.campaign-page .comparison-controls{gap:10px;margin-top:28px}
+.campaign-page .comparison-dots{padding:0 12px;gap:0;background:#fff9;border:1px solid #fff;border-radius:99px;box-shadow:0 3px 12px #332c2208}
+.campaign-page .comparison-dot{width:28px}
+.campaign-page .comparison-dot::before{width:6px;height:6px;background:#aaa49a}
+.campaign-page .comparison-dot:hover::before{background:#514c45}
+.campaign-page .comparison-dot[aria-current=true]{width:48px}
+.campaign-page .comparison-dot[aria-current=true]::before{width:30px;background:var(--red);box-shadow:0 2px 6px #cf030325}
+.campaign-page .comparison-pause{color:#686158;font-size:11px;text-decoration:none;padding:6px 12px;min-height:36px}
+.campaign-page .comparison-pause:hover{color:var(--red)}
+@media(max-width:560px){.campaign-page .comparison-intro{margin-bottom:24px}.campaign-page .comparison-description{font-size:12px;margin-bottom:18px;min-height:4.8em}.site-page.campaign-page main .comparison-carousel-ready .pair figcaption{top:8px;left:8px;padding:5px 9px;font-size:9px}.site-page.campaign-page main .comparison-carousel-ready .comparison{border-radius:14px}.site-page.campaign-page main .comparison-carousel-ready .pair figure{border-radius:8px}}
+.campaign-page .estimate-arrow{display:block;width:22px;height:22px;flex:0 0 22px}
+.campaign-page .nav-call-mobile{display:none}
+@media(max-width:560px){.site-page.campaign-page .site-header .primary-nav .nav-call{width:auto;min-width:0;gap:7px;padding:12px 14px;flex:none}.campaign-page .nav-call-desktop{display:none}.campaign-page .nav-call-mobile{display:inline}.campaign-page .site-header .nav-phone-icon{width:16px;height:16px}}
+.site-page.campaign-page main .roofing-comparisons .comparison-intro{display:block;width:100%;margin:0 auto 36px;text-align:center}
+.site-page.campaign-page main .roofing-comparisons .comparison-intro h2{width:100%;max-width:none;color:#181818}
+.site-page.campaign-page main .roofing-comparisons .comparison-intro>p:last-child{max-width:650px;color:#514c45}
+/* The active pill fills on the same clock that advances the project. */
+.campaign-page .comparison-dot[aria-current=true]::before{background:linear-gradient(to right,var(--red) 0%,var(--red) var(--comparison-progress,0%),#d4cec5 var(--comparison-progress,0%),#d4cec5 100%);box-shadow:inset 0 0 0 1px #18181808;transition:width .25s ease}
+.site-page.campaign-page main .roofing-comparisons .comparison-intro{max-width:1100px}
+.site-page.campaign-page main .roofing-comparisons .comparison-intro h2{max-width:100%;text-wrap:balance}
+/* A real inner fill keeps pagination progress visible across browsers. */
+.campaign-page .comparison-dot::before{content:none}
+.campaign-page .comparison-dot-meter{display:block;position:relative;overflow:hidden;width:6px;height:6px;border-radius:99px;background:#aaa49a;transition:width .2s ease}
+.campaign-page .comparison-dot-meter::after{content:'';position:absolute;inset:0;border-radius:inherit;background:#cf0303;transform:scaleX(0);transform-origin:left center}
+.campaign-page .comparison-dot[aria-current=true] .comparison-dot-meter{width:32px;height:8px;background:#d4cec5}
+.campaign-page .comparison-dot[aria-current=true] .comparison-dot-meter::after{transform:scaleX(var(--comparison-progress,0))}
+@media(prefers-reduced-motion:reduce){.campaign-page .comparison-dot-meter{transition:none}}
+.campaign-page .campaign-estimate-next{align-self:center;padding-block:32px}
+.site-page.campaign-page main .campaign-estimate-next h3,.site-page.campaign-page main .campaign-estimate-next p{color:#fff}
+.campaign-page .campaign-estimate-next p{margin:18px 0 24px;max-width:48ch}
+.campaign-page .campaign-estimate-next .button{width:auto}
+/* Highlight pagination on hover and keyboard focus. */
+.campaign-page .comparison-dot .comparison-dot-meter{transition:width .2s ease,background-color .2s ease,box-shadow .2s ease}
+@media(hover:hover){.campaign-page .comparison-dot:hover .comparison-dot-meter{background:#cf0303;box-shadow:0 0 0 5px #cf03031a}.campaign-page .comparison-dot[aria-current=true]:hover .comparison-dot-meter{background:#ebc3be}}
+.campaign-page .comparison-dot:focus-visible .comparison-dot-meter{background:#cf0303;box-shadow:0 0 0 5px #cf03031a}
+@media(prefers-reduced-motion:reduce){.campaign-page .comparison-dot .comparison-dot-meter{transition:none}}
+/* A single closing message and the same email entry used in the hero. */
+.site-page.campaign-page main .footer-inquiry .campaign-closing{max-width:1000px;text-align:center}
+.site-page.campaign-page main .footer-inquiry .campaign-closing h2{max-width:none;margin:0 0 18px;color:#fff}
+.campaign-page .campaign-closing .eyebrow{margin-bottom:16px}
+.site-page.campaign-page main .campaign-closing .closing-description{max-width:600px;margin:0 auto 26px;color:#fff;font-size:16px;line-height:1.6}
+.campaign-page .campaign-closing .estimate-start{margin:0 auto;text-align:left}
+.campaign-page .campaign-closing .estimate-start button{background:#181818}
+.campaign-page .campaign-closing .estimate-start button:hover{background:#333}
+.campaign-page .campaign-closing .estimate-start .form-follow-up{text-align:center;color:#fff}
+.campaign-page .campaign-closing .estimate-start :focus-visible{outline-color:#fff}
+#campaign-top{scroll-margin-top:0}

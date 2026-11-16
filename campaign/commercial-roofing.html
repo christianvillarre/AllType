@@ -472,9 +472,14 @@ body,.site-mark,.section,.foot{background:#000}
   </style>
   <link href="/vendor/lenis.css" rel="stylesheet"/>
   <link href="/homepage.css?v=20261115-site-theme" rel="stylesheet"/>
-  <link href="/site-theme.css?v=20261115-flat-borders" rel="stylesheet"/>
+  <link href="/site-theme.css?v=20261115-sticky-header" rel="stylesheet"/>
+  <link rel="stylesheet" href="/campaign/estimate-funnel.css?v=20261116-clean-closing"/>
+  <script defer src="/campaign/estimate-funnel.js?v=20261116-two-captures"></script>
+  <link rel="stylesheet" href="/campaign/storm-section.css?v=20261116-1"/>
+  <script defer src="/campaign/storm-section.js?v=20261116-1"></script>
+  <script defer src="/campaign/comparison-carousel.js?v=20261116-four-seconds"></script>
  </head>
- <body class="site-page campaign-page campaign-page" data-page="campaign/commercial-roofing.html">
+ <body id="campaign-top" class="site-page campaign-page" data-page="campaign/commercial-roofing.html">
   <div class="utility">
    <div class="wrap">
     <span>
@@ -495,102 +500,22 @@ body,.site-mark,.section,.foot{background:#000}
     <a aria-label="All-Type home" class="brand" href="/index.html">
      <img alt="All-Type Roofing &amp; Construction" height="78" src="/images/optimized/alltype-logo.webp" width="214"/>
     </a>
-    <button aria-controls="primary-nav" aria-expanded="false" class="mobile-toggle" type="button">
-     Menu
-     <span aria-hidden="true">
-      ☰
-     </span>
-    </button>
-    <nav aria-label="Primary navigation" class="primary-nav" data-lenis-prevent="" id="primary-nav">
-     <details class="nav-group">
-      <summary>
-       Roofing
-      </summary>
-      <div class="nav-dropdown" data-lenis-prevent="">
-       <p>
-        Commercial roof services
-       </p>
-       <a href="/services/commercial-roofing.html">
-        Commercial Roofing
-       </a>
-       <a href="/services/commercial-roofing/roof-repair-leak-detection.html">
-        Roof Repair &amp; Leak Detection
-       </a>
-       <a href="/services/commercial-roofing/roof-replacement.html">
-        Roof Replacement
-       </a>
-       <a href="/services/commercial-roofing/roof-restoration.html">
-        Roof Coatings &amp; Restoration
-       </a>
-       <a href="/services/commercial-roofing/roof-maintenance-inspections.html">
-        Maintenance &amp; Inspections
-       </a>
-       <a href="/services/commercial-roofing/metal-sheet-metal-roofing.html">
-        Metal &amp; Sheet Metal Roofing
-       </a>
-       <a href="/services/commercial-roofing/roof-curbs-penetrations.html">
-        Roof Curbs &amp; Penetrations
-       </a>
-       <a href="/services/commercial-roofing/emergency-roof-repair.html">
-        24/7 Emergency Roof Repair
-       </a>
-      </div>
-     </details>
-     <details class="nav-group">
-      <summary>
-       Construction
-      </summary>
-      <div class="nav-dropdown" data-lenis-prevent="">
-       <p>
-        Building &amp; property services
-       </p>
-       <a href="/services/commercial-construction.html">
-        Construction &amp; Renovation
-       </a>
-       <a href="/services/commercial-construction/tenant-improvements.html">
-        Tenant Improvements &amp; White Box
-       </a>
-       <a href="/services/commercial-property-maintenance-repairs.html">
-        Property Repairs &amp; Maintenance
-       </a>
-       <a href="/services/commercial-property-maintenance-repairs/concrete-masonry-repair.html">
-        Concrete &amp; Masonry Repair
-       </a>
-       <a href="/services/commercial-property-maintenance-repairs/stucco-eifs-repair.html">
-        Stucco &amp; EIFS Repair
-       </a>
-       <a href="/services/commercial-painting.html">
-        Commercial Painting
-       </a>
-       <a href="/services/commercial-waterproofing.html">
-        Commercial Waterproofing
-       </a>
-       <a href="/services/emergency-commercial-building-repair.html">
-        Emergency Building Repair
-       </a>
-       <a href="/services/commercial-storm-damage-repair.html">
-        Storm Damage Repair
-       </a>
-      </div>
-     </details>
-     <a href="/projects.html">
-      Projects
-     </a>
-     <a href="/about.html">
-      About
-     </a>
+<nav aria-label="Primary navigation" class="primary-nav" data-lenis-prevent="" id="primary-nav">
      <a aria-label="Call All-Type at (281) 397-6614" class="button small nav-call" href="tel:+12813976614">
       <svg aria-hidden="true" class="nav-phone-icon" fill="currentColor" focusable="false" viewbox="0 0 24 24">
        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.01l-2.2 2.19z">
        </path>
       </svg>
-      CALL
+      <span class="nav-call-desktop">Call (281) 397-6614</span><span class="nav-call-mobile">Call</span>
      </a>
     </nav>
    </div>
   </header>
   <main id="main-content">
-   <section class="hero page-hero page-section">
+   <section class="hero page-hero page-section photo-page-hero">
+    <div class="hero-image-wrap page-hero-backdrop">
+     <img alt="Protective coating on a commercial roof" fetchpriority="high" src="/images/services/roof-coating-2.webp"/>
+    </div>
     <div class="hero-bg">
      <img alt="" aria-hidden="true" class="bg-frame" fetchpriority="high" src="/images/Alltype Web BG.jpg"/>
      <img alt="" aria-hidden="true" class="hero-lightning-cloudframe"/>
@@ -608,279 +533,24 @@ body,.site-mark,.section,.foot{background:#000}
       <div class="eyebrow">
        Commercial roofing · Greater Houston
       </div>
-      <h1>
-       Commercial
-       <span>
-        Roofing, Repairs, &amp; Restoration
-       </span>
-       .
-      </h1>
-      <p class="lead">
-       Commercial roof leaks, worn surfaces, or an aging system? Get a clear plan for repair, restoration, or replacement.
-       <br/>
-       <br/>
-       All-Type Roofing &amp; Construction helps commercial property owners, property managers, and facility managers protect their buildings with roofing services tailored to their property and budget.
-      </p>
-      <a class="call" href="tel:+12813976614">
-       Call (281) 397-6614
-      </a>
+      <h1>Your next roof leak could <span>shut down business.</span></h1>
+      <p class="lead">Protect your property before water reaches your inventory, equipment, or tenants. Start your commercial roof estimate and get a clear path to repair, restoration, or replacement.</p>
+<form action="/campaign/estimate" class="estimate-start" data-netlify="true" method="POST" name="commercial-roofing-email" netlify-honeypot="bot-field" id="request-service">
+<input type="hidden" name="form-name" value="commercial-roofing-email"/>
+<p class="honeypot"><label>Leave this empty<input name="bot-field"/></label></p>
+<label class="email-label" for="estimate-email">Email address</label>
+<div class="estimate-inline">
+<input id="estimate-email" name="emailAddress" type="email" autocomplete="email" placeholder="you@company.com" required=""/>
+<button type="submit"><span>Start My Estimate</span> <svg class="estimate-arrow" aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+<p class="capture-status" role="status" aria-live="polite"></p>
+<p class="form-follow-up">No obligation. We’ll use your email to follow up about your roof.</p>
+<noscript><p>JavaScript is needed for the two-step estimate. Call <a href="tel:+12813976614">(281) 397-6614</a> or <a href="/campaign/estimate">complete the roof details below</a>.</p></noscript>
+</form>
+<ul class="hero-points"><li>Commercial roofing specialists in Greater Houston</li><li>Solutions based on your roof’s actual condition</li><li>24/7 help for active leaks and storm damage</li></ul>
       <img alt="Roofers heat-welding seams on a white TPO commercial roof" class="hero-project" decoding="async" height="941" src="/images/tpo-roof-heat-welding.webp" width="1671"/>
      </div>
-     <form action="/campaign/thank-you" class="lead-form" data-netlify="true" data-netlify-recaptcha="true" id="request-service" method="POST" name="commercial-roofing-campaign" netlify-honeypot="bot-field">
-      <input name="form-name" type="hidden" value="commercial-roofing-campaign"/>
-      <p class="honeypot">
-       <label>
-        Leave this empty
-        <input name="bot-field" type="text"/>
-       </label>
-      </p>
-      <p class="form-eyebrow">
-       Request service
-      </p>
-      <h2>
-       Tell us about your roof.
-      </h2>
-      <p>
-       Request a roof assessment for your commercial property.
-      </p>
-      <label for="fullName">
-       Full name
-      </label>
-      <input autocomplete="name" id="fullName" name="fullName" required=""/>
-      <label for="emailAddress">
-       Email address
-      </label>
-      <input autocomplete="email" id="emailAddress" name="emailAddress" type="email"/>
-      <label for="phoneNumber">
-       Phone number
-      </label>
-      <input autocomplete="tel" id="phoneNumber" name="phoneNumber" placeholder="(281) 397-6614" required="" type="tel"/>
-      <label for="message">
-       How can we help?
-      </label>
-      <textarea id="message" name="message"></textarea>
-      <div class="campaign-recaptcha" data-sitekey="6LdnkKEqAAAAAPvyqoRAmjXxvE6evlb5z-5Ol90Y">
-      </div>
-      <button type="submit">
-       Request a Roof Assessment
-      </button>
-      <p class="form-follow-up">
-       We’ll contact you to discuss your property and roofing needs.
-      </p>
-     </form>
-    </div>
-   </section>
-   <section class="intro-band page-section">
-    <h2 class="intro-storm-heading">
-     STORM PROOF
-     <span>
-      YOUR ROOF
-     </span>
-    </h2>
-    <div class="wrap intro-grid">
-     <div class="intro-eyebrow-wrap">
-      <div class="intro-eyebrow">
-       Who We Are
-      </div>
-     </div>
-     <div class="intro-copy">
-      <p>
-       <span class="intro-accent">
-        All-Type Roofing &amp; Construction
-       </span>
-       helps commercial property owners and managers across Greater Houston address roof leaks, storm damage, and aging roofing systems. From targeted repairs and protective coatings to restoration and replacement, we recommend solutions based on your roof’s condition, your building’s needs, and your budget.
-      </p>
-     </div>
-    </div>
-   </section>
-   <section aria-label="Before and after roofing projects" class="section light roofing-comparisons page-section">
-    <div class="wrap">
-     <div class="comparison-grid">
-      <article class="comparison">
-       <h3>
-        Roof coating
-       </h3>
-       <div class="pair">
-        <figure>
-         <a aria-label="Enlarge: Weathered commercial roof before coating" class="comparison-photo" href="/images/services/roof-coating-1.webp">
-          <img alt="Weathered commercial roof before coating" decoding="async" loading="lazy" src="/images/services/roof-coating-1.webp"/>
-         </a>
-         <figcaption>
-          Before
-         </figcaption>
-        </figure>
-        <figure>
-         <a aria-label="Enlarge: Commercial flat roof after white coating" class="comparison-photo" href="/images/services/roof-coating-2.webp">
-          <img alt="Commercial flat roof after white coating" decoding="async" loading="lazy" src="/images/services/roof-coating-2.webp"/>
-         </a>
-         <figcaption>
-          After
-         </figcaption>
-        </figure>
-       </div>
-      </article>
-      <article class="comparison">
-       <h3>
-        Roof cleaning
-       </h3>
-       <div class="pair">
-        <figure>
-         <a aria-label="Enlarge: Commercial roof before cleaning" class="comparison-photo" href="/images/services/roof-cleaning-1.webp">
-          <img alt="Commercial roof before cleaning" decoding="async" loading="lazy" src="/images/services/roof-cleaning-1.webp"/>
-         </a>
-         <figcaption>
-          Before
-         </figcaption>
-        </figure>
-        <figure>
-         <a aria-label="Enlarge: Commercial roof after cleaning" class="comparison-photo" href="/images/services/roof-cleaning-2.webp">
-          <img alt="Commercial roof after cleaning" decoding="async" loading="lazy" src="/images/services/roof-cleaning-2.webp"/>
-         </a>
-         <figcaption>
-          After
-         </figcaption>
-        </figure>
-       </div>
-      </article>
-      <article class="comparison">
-       <h3>
-        Roof repair
-       </h3>
-       <div class="pair">
-        <figure>
-         <a aria-label="Enlarge: Damaged roof membrane before repair" class="comparison-photo" href="/images/services/roof-repair-1.webp">
-          <img alt="Damaged roof membrane before repair" decoding="async" loading="lazy" src="/images/services/roof-repair-1.webp"/>
-         </a>
-         <figcaption>
-          Before
-         </figcaption>
-        </figure>
-        <figure>
-         <a aria-label="Enlarge: Roof membrane after repair" class="comparison-photo" href="/images/services/roof-repair-2.webp">
-          <img alt="Roof membrane after repair" decoding="async" loading="lazy" src="/images/services/roof-repair-2.webp"/>
-         </a>
-         <figcaption>
-          After
-         </figcaption>
-        </figure>
-       </div>
-      </article>
-      <article class="comparison">
-       <h3>
-        Skylight installation
-       </h3>
-       <div class="pair">
-        <figure>
-         <a aria-label="Enlarge: Commercial roof before skylight installation" class="comparison-photo" href="/images/services/skylight-installation-1.webp">
-          <img alt="Commercial roof before skylight installation" decoding="async" loading="lazy" src="/images/services/skylight-installation-1.webp"/>
-         </a>
-         <figcaption>
-          Before
-         </figcaption>
-        </figure>
-        <figure>
-         <a aria-label="Enlarge: Commercial roof after skylight installation" class="comparison-photo" href="/images/services/skylight-installation-2.webp">
-          <img alt="Commercial roof after skylight installation" decoding="async" loading="lazy" src="/images/services/skylight-installation-2.webp"/>
-         </a>
-         <figcaption>
-          After
-         </figcaption>
-        </figure>
-       </div>
-      </article>
-      <article class="comparison">
-       <h3>
-        Roof hatch replacement
-       </h3>
-       <div class="pair">
-        <figure>
-         <a aria-label="Enlarge: Commercial roof hatch before replacement" class="comparison-photo" href="/images/services/roof-hatch-replacement-1.webp">
-          <img alt="Commercial roof hatch before replacement" decoding="async" loading="lazy" src="/images/services/roof-hatch-replacement-1.webp"/>
-         </a>
-         <figcaption>
-          Before
-         </figcaption>
-        </figure>
-        <figure>
-         <a aria-label="Enlarge: Commercial roof hatch after replacement" class="comparison-photo" href="/images/services/roof-hatch-replacement-2.webp">
-          <img alt="Commercial roof hatch after replacement" decoding="async" loading="lazy" src="/images/services/roof-hatch-replacement-2.webp"/>
-         </a>
-         <figcaption>
-          After
-         </figcaption>
-        </figure>
-       </div>
-      </article>
-      <article class="comparison">
-       <h3>
-        Roof penetration installation
-       </h3>
-       <div class="pair">
-        <figure>
-         <a aria-label="Enlarge: Commercial roof before penetration installation" class="comparison-photo" href="/images/services/roof-penetration-installation-1.webp">
-          <img alt="Commercial roof before penetration installation" decoding="async" loading="lazy" src="/images/services/roof-penetration-installation-1.webp"/>
-         </a>
-         <figcaption>
-          Before
-         </figcaption>
-        </figure>
-        <figure>
-         <a aria-label="Enlarge: Commercial roof after penetration installation" class="comparison-photo" href="/images/services/roof-penetration-installation-2.webp">
-          <img alt="Commercial roof after penetration installation" decoding="async" loading="lazy" src="/images/services/roof-penetration-installation-2.webp"/>
-         </a>
-         <figcaption>
-          After
-         </figcaption>
-        </figure>
-       </div>
-      </article>
-      <article class="comparison">
-       <h3>
-        AC curb installation
-       </h3>
-       <div class="pair">
-        <figure>
-         <a aria-label="Enlarge: Workers preparing raised rooftop equipment curbs before installation is complete" class="comparison-photo" href="/images/services/ac-curb-installation-1.webp">
-          <img alt="Workers preparing raised rooftop equipment curbs before installation is complete" decoding="async" loading="lazy" src="/images/services/ac-curb-installation-1.webp"/>
-         </a>
-         <figcaption>
-          Before
-         </figcaption>
-        </figure>
-        <figure>
-         <a aria-label="Enlarge: Installed and flashed equipment curbs on a commercial flat roof" class="comparison-photo" href="/images/services/ac-curb-installation-2.webp">
-          <img alt="Installed and flashed equipment curbs on a commercial flat roof" decoding="async" loading="lazy" src="/images/services/ac-curb-installation-2.webp"/>
-         </a>
-         <figcaption>
-          After
-         </figcaption>
-        </figure>
-       </div>
-      </article>
-      <article class="comparison">
-       <h3>
-        Aluminum coating
-       </h3>
-       <div class="pair">
-        <figure>
-         <a aria-label="Enlarge: Roof penetration flashing surrounded by an uncoated roof surface" class="comparison-photo" href="/images/services/aluminum-coating-1.webp">
-          <img alt="Roof penetration flashing surrounded by an uncoated roof surface" decoding="async" loading="lazy" src="/images/services/aluminum-coating-1.webp"/>
-         </a>
-         <figcaption>
-          Before
-         </figcaption>
-        </figure>
-        <figure>
-         <a aria-label="Enlarge: Localized reflective coating applied around roof penetration flashing" class="comparison-photo" href="/images/services/aluminum-coating-2.webp">
-          <img alt="Localized reflective coating applied around roof penetration flashing" decoding="async" loading="lazy" src="/images/services/aluminum-coating-2.webp"/>
-         </a>
-         <figcaption>
-          After
-         </figcaption>
-        </figure>
-       </div>
-      </article>
-     </div>
+
     </div>
    </section>
    <section aria-labelledby="roof-systems-title" class="section roof-systems page-section">
@@ -949,6 +619,240 @@ body,.site-mark,.section,.foot{background:#000}
      </div>
     </div>
    </section>
+   <section class="intro-band page-section campaign-storm">
+    <div class="campaign-storm-bg" aria-hidden="true">
+     <img class="storm-backdrop" src="/images/Alltype%20Web%20BG.jpg" alt="" loading="lazy" decoding="async"/>
+     <img class="hero-lightning-cloudframe" alt=""/>
+     <img class="hero-lightning-cloudframe-secondary" alt=""/>
+     <div class="hero-lightning-glow"></div><div class="hero-lightning-skywash"></div>
+     <img class="hero-lightning-ground" alt=""/><div class="hero-lightning-impact"></div>
+    </div>
+    <h2 class="intro-storm-heading">
+     STORM PROOF
+     <span>
+      YOUR ROOF
+     </span>
+    </h2>
+    <div class="wrap intro-grid">
+     <div class="intro-eyebrow-wrap">
+      <div class="intro-eyebrow">
+       Who We Are
+      </div>
+     </div>
+     <div class="intro-copy">
+      <p>
+       <span class="intro-accent">
+        All-Type Roofing &amp; Construction
+       </span>
+       helps commercial property owners and managers across Greater Houston address roof leaks, storm damage, and aging roofing systems. From targeted repairs and protective coatings to restoration and replacement, we recommend solutions based on your roof’s condition, your building’s needs, and your budget.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section aria-labelledby="roof-results-title" class="section light roofing-comparisons page-section">
+    <div class="wrap">
+     <div class="comparison-intro">
+      <p class="comparison-kicker">Before &amp; after · All-Type at work</p>
+      <h2 id="roof-results-title">Commercial Roofing. Before &amp; After.</h2>
+      <p>See how All-Type tackles worn roof surfaces, damaged membranes, and rooftop details. Browse side-by-side photos of our commercial roof repairs, coatings, and installations across Greater Houston.</p>
+     </div>
+     <div class="comparison-grid">
+      <article class="comparison">
+       <h3>
+        Roof coating
+       </h3>
+       <p class="comparison-description">Surface preparation and a protective coating give this commercial roof a fresh finish.</p>
+       <div class="pair">
+        <figure>
+         <a aria-label="Enlarge: Weathered commercial roof before coating" class="comparison-photo" href="/images/services/roof-coating-1.webp">
+          <img alt="Weathered commercial roof before coating" decoding="async" loading="lazy" src="/images/services/roof-coating-1.webp"/>
+         </a>
+         <figcaption>
+          Before
+         </figcaption>
+        </figure>
+        <figure>
+         <a aria-label="Enlarge: Commercial flat roof after white coating" class="comparison-photo" href="/images/services/roof-coating-2.webp">
+          <img alt="Commercial flat roof after white coating" decoding="async" loading="lazy" src="/images/services/roof-coating-2.webp"/>
+         </a>
+         <figcaption>
+          After
+         </figcaption>
+        </figure>
+       </div>
+      </article>
+      <article class="comparison">
+       <h3>
+        Roof cleaning
+       </h3>
+       <p class="comparison-description">Built-up dirt and debris cleared away to reveal the roof surface beneath.</p>
+       <div class="pair">
+        <figure>
+         <a aria-label="Enlarge: Commercial roof before cleaning" class="comparison-photo" href="/images/services/roof-cleaning-1.webp">
+          <img alt="Commercial roof before cleaning" decoding="async" loading="lazy" src="/images/services/roof-cleaning-1.webp"/>
+         </a>
+         <figcaption>
+          Before
+         </figcaption>
+        </figure>
+        <figure>
+         <a aria-label="Enlarge: Commercial roof after cleaning" class="comparison-photo" href="/images/services/roof-cleaning-2.webp">
+          <img alt="Commercial roof after cleaning" decoding="async" loading="lazy" src="/images/services/roof-cleaning-2.webp"/>
+         </a>
+         <figcaption>
+          After
+         </figcaption>
+        </figure>
+       </div>
+      </article>
+      <article class="comparison">
+       <h3>
+        Roof repair
+       </h3>
+       <p class="comparison-description">Damaged membrane addressed with a targeted repair at the problem area.</p>
+       <div class="pair">
+        <figure>
+         <a aria-label="Enlarge: Damaged roof membrane before repair" class="comparison-photo" href="/images/services/roof-repair-1.webp">
+          <img alt="Damaged roof membrane before repair" decoding="async" loading="lazy" src="/images/services/roof-repair-1.webp"/>
+         </a>
+         <figcaption>
+          Before
+         </figcaption>
+        </figure>
+        <figure>
+         <a aria-label="Enlarge: Roof membrane after repair" class="comparison-photo" href="/images/services/roof-repair-2.webp">
+          <img alt="Roof membrane after repair" decoding="async" loading="lazy" src="/images/services/roof-repair-2.webp"/>
+         </a>
+         <figcaption>
+          After
+         </figcaption>
+        </figure>
+       </div>
+      </article>
+      <article class="comparison">
+       <h3>
+        Skylight installation
+       </h3>
+       <p class="comparison-description">A closer look at the roof before and after skylight installation.</p>
+       <div class="pair">
+        <figure>
+         <a aria-label="Enlarge: Commercial roof before skylight installation" class="comparison-photo" href="/images/services/skylight-installation-1.webp">
+          <img alt="Commercial roof before skylight installation" decoding="async" loading="lazy" src="/images/services/skylight-installation-1.webp"/>
+         </a>
+         <figcaption>
+          Before
+         </figcaption>
+        </figure>
+        <figure>
+         <a aria-label="Enlarge: Commercial roof after skylight installation" class="comparison-photo" href="/images/services/skylight-installation-2.webp">
+          <img alt="Commercial roof after skylight installation" decoding="async" loading="lazy" src="/images/services/skylight-installation-2.webp"/>
+         </a>
+         <figcaption>
+          After
+         </figcaption>
+        </figure>
+       </div>
+      </article>
+      <article class="comparison">
+       <h3>
+        Roof hatch replacement
+       </h3>
+       <p class="comparison-description">An updated roof hatch and the surrounding roof connections.</p>
+       <div class="pair">
+        <figure>
+         <a aria-label="Enlarge: Commercial roof hatch before replacement" class="comparison-photo" href="/images/services/roof-hatch-replacement-1.webp">
+          <img alt="Commercial roof hatch before replacement" decoding="async" loading="lazy" src="/images/services/roof-hatch-replacement-1.webp"/>
+         </a>
+         <figcaption>
+          Before
+         </figcaption>
+        </figure>
+        <figure>
+         <a aria-label="Enlarge: Commercial roof hatch after replacement" class="comparison-photo" href="/images/services/roof-hatch-replacement-2.webp">
+          <img alt="Commercial roof hatch after replacement" decoding="async" loading="lazy" src="/images/services/roof-hatch-replacement-2.webp"/>
+         </a>
+         <figcaption>
+          After
+         </figcaption>
+        </figure>
+       </div>
+      </article>
+      <article class="comparison">
+       <h3>
+        Roof penetration installation
+       </h3>
+       <p class="comparison-description">Roof openings finished with flashing around the new penetrations.</p>
+       <div class="pair">
+        <figure>
+         <a aria-label="Enlarge: Commercial roof before penetration installation" class="comparison-photo" href="/images/services/roof-penetration-installation-1.webp">
+          <img alt="Commercial roof before penetration installation" decoding="async" loading="lazy" src="/images/services/roof-penetration-installation-1.webp"/>
+         </a>
+         <figcaption>
+          Before
+         </figcaption>
+        </figure>
+        <figure>
+         <a aria-label="Enlarge: Commercial roof after penetration installation" class="comparison-photo" href="/images/services/roof-penetration-installation-2.webp">
+          <img alt="Commercial roof after penetration installation" decoding="async" loading="lazy" src="/images/services/roof-penetration-installation-2.webp"/>
+         </a>
+         <figcaption>
+          After
+         </figcaption>
+        </figure>
+       </div>
+      </article>
+      <article class="comparison">
+       <h3>
+        AC curb installation
+       </h3>
+       <p class="comparison-description">Equipment curbs installed and flashed into the surrounding roof system.</p>
+       <div class="pair">
+        <figure>
+         <a aria-label="Enlarge: Workers preparing raised rooftop equipment curbs before installation is complete" class="comparison-photo" href="/images/services/ac-curb-installation-1.webp">
+          <img alt="Workers preparing raised rooftop equipment curbs before installation is complete" decoding="async" loading="lazy" src="/images/services/ac-curb-installation-1.webp"/>
+         </a>
+         <figcaption>
+          Before
+         </figcaption>
+        </figure>
+        <figure>
+         <a aria-label="Enlarge: Installed and flashed equipment curbs on a commercial flat roof" class="comparison-photo" href="/images/services/ac-curb-installation-2.webp">
+          <img alt="Installed and flashed equipment curbs on a commercial flat roof" decoding="async" loading="lazy" src="/images/services/ac-curb-installation-2.webp"/>
+         </a>
+         <figcaption>
+          After
+         </figcaption>
+        </figure>
+       </div>
+      </article>
+      <article class="comparison">
+       <h3>
+        Aluminum coating
+       </h3>
+       <p class="comparison-description">Reflective coating applied around existing roof penetration flashing.</p>
+       <div class="pair">
+        <figure>
+         <a aria-label="Enlarge: Roof penetration flashing surrounded by an uncoated roof surface" class="comparison-photo" href="/images/services/aluminum-coating-1.webp">
+          <img alt="Roof penetration flashing surrounded by an uncoated roof surface" decoding="async" loading="lazy" src="/images/services/aluminum-coating-1.webp"/>
+         </a>
+         <figcaption>
+          Before
+         </figcaption>
+        </figure>
+        <figure>
+         <a aria-label="Enlarge: Localized reflective coating applied around roof penetration flashing" class="comparison-photo" href="/images/services/aluminum-coating-2.webp">
+          <img alt="Localized reflective coating applied around roof penetration flashing" decoding="async" loading="lazy" src="/images/services/aluminum-coating-2.webp"/>
+         </a>
+         <figcaption>
+          After
+         </figcaption>
+        </figure>
+       </div>
+      </article>
+     </div>
+    </div>
+   </section>
+
    <section aria-labelledby="roofing-gallery-title" class="section roofing-gallery page-section" id="roofing-gallery">
     <div class="wrap">
      <div class="eyebrow">
@@ -1036,8 +940,8 @@ body,.site-mark,.section,.foot{background:#000}
       <p>
        Ready to find the right solution for your roof?
       </p>
-      <a class="button" href="#footer-request-service">
-       Request a Roof Assessment
+      <a class="button" href="#campaign-top">
+       Start My Estimate
       </a>
       <a class="call" href="tel:+12813976614">
        Or call (281) 397-6614
@@ -1146,7 +1050,7 @@ body,.site-mark,.section,.foot{background:#000}
         Talk with our team
        </h3>
        <p>
-        Call or send the form. We’ll discuss your roofing concerns, project needs, and how soon you need help.
+        Start with your email and share your property details. We’ll discuss your roofing concerns, project needs, and how soon you need help.
        </p>
       </li>
       <li class="assessment-step">
@@ -1219,69 +1123,22 @@ body,.site-mark,.section,.foot{background:#000}
     </div>
    </section>
    <section aria-labelledby="footer-inquiry-title" class="section footer-inquiry page-section">
-    <div class="wrap footer-inquiry-grid">
-     <div class="footer-inquiry-copy">
-      <a aria-label="All-Type home" class="campaign-footer-logo" href="/index.html">
-       <img alt="All-Type Roofing &amp; Construction" decoding="async" loading="lazy" src="/images/Alltype%20Logo%202.png"/>
-      </a>
-      <div class="eyebrow">
-       Let’s talk
-      </div>
-      <h2 id="footer-inquiry-title">
-       All-Type Roofing and Construction
-      </h2>
-      <p class="section-intro">
-       Commercial Property Repairs, Maintenance &amp; Roofing in Houston
-      </p>
-      <a class="call" href="tel:+12813976614">
-       Call (281) 397-6614
-      </a>
-      <p>
-       Commercial roofing · Greater Houston
-      </p>
-     </div>
-     <form action="/campaign/thank-you" class="lead-form" data-netlify="true" data-netlify-recaptcha="true" id="footer-request-service" method="POST" name="commercial-roofing-campaign-footer" netlify-honeypot="bot-field">
-      <input name="form-name" type="hidden" value="commercial-roofing-campaign-footer"/>
-      <p class="honeypot">
-       <label>
-        Leave this empty
-        <input name="bot-field" type="text"/>
-       </label>
-      </p>
-      <p class="form-eyebrow">
-       Request service
-      </p>
-      <h3>
-       Tell us about your roof.
-      </h3>
-      <p>
-       Request a roof assessment for your commercial property.
-      </p>
-      <label for="footer-fullName">
-       Full name
-      </label>
-      <input autocomplete="name" id="footer-fullName" name="fullName" required=""/>
-      <label for="footer-emailAddress">
-       Email address
-      </label>
-      <input autocomplete="email" id="footer-emailAddress" name="emailAddress" type="email"/>
-      <label for="footer-phoneNumber">
-       Phone number
-      </label>
-      <input autocomplete="tel" id="footer-phoneNumber" name="phoneNumber" placeholder="(281) 397-6614" required="" type="tel"/>
-      <label for="footer-message">
-       How can we help?
-      </label>
-      <textarea id="footer-message" name="message"></textarea>
-      <div class="campaign-recaptcha" data-sitekey="6LdnkKEqAAAAAPvyqoRAmjXxvE6evlb5z-5Ol90Y">
-      </div>
-      <button type="submit">
-       Request a Roof Assessment
-      </button>
-      <p class="form-follow-up">
-       We’ll contact you to discuss your property and roofing needs.
-      </p>
-     </form>
+    <div class="wrap campaign-closing">
+     <p class="eyebrow">Protect your property. Start here.</p>
+     <h2 id="footer-inquiry-title">Get a plan for your roof.</h2>
+     <p class="closing-description">Start with your email, then tell us about your property and roof condition.</p>
+<form action="/campaign/estimate" class="estimate-start" data-netlify="true" method="POST" name="commercial-roofing-email" netlify-honeypot="bot-field" id="footer-estimate">
+<input type="hidden" name="form-name" value="commercial-roofing-email"/>
+<p class="honeypot"><label>Leave this empty<input name="bot-field"/></label></p>
+<label class="email-label" for="footer-estimate-email">Email address</label>
+<div class="estimate-inline">
+<input id="footer-estimate-email" name="emailAddress" type="email" autocomplete="email" placeholder="you@company.com" required=""/>
+<button type="submit"><span>Start My Estimate</span> <svg class="estimate-arrow" aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+<p class="capture-status" role="status" aria-live="polite"></p>
+<p class="form-follow-up">No obligation. We’ll use your email to follow up about your roof.</p>
+<noscript><p>JavaScript is needed for the two-step estimate. Call <a href="tel:+12813976614">(281) 397-6614</a> or <a href="/campaign/estimate">complete the roof details below</a>.</p></noscript>
+</form>
     </div>
    </section>
   </main>
@@ -1341,24 +1198,7 @@ body,.site-mark,.section,.foot{background:#000}
   });
 })();
   </script>
-  <!-- Render both challenges explicitly; Netlify only injects one automatic widget per page. -->
-  <script>
-   window.renderCampaignCaptchas = function () {
-  document.querySelectorAll('.campaign-recaptcha').forEach(function (container) {
-    if (container.dataset.widgetId !== undefined) return;
-    container.dataset.widgetId = String(grecaptcha.render(container, {
-      sitekey: container.dataset.sitekey
-    }));
-  });
-};
-  </script>
-  <script async="" defer="" src="https://www.google.com/recaptcha/api.js?onload=renderCampaignCaptchas&amp;render=explicit">
-  </script>
-  <script defer="" src="/campaign/libphonenumber-max.js">
-  </script>
-  <script defer="" src="/campaign/form-validation.js?v=20261112-1">
-  </script>
-  <script defer="" src="/campaign/case-carousel.js?v=20261112-3">
+<script defer="" src="/campaign/case-carousel.js?v=20261112-3">
   </script>
   <footer class="unified-footer">
    <div class="wrap footer-grid">

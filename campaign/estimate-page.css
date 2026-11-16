@@ -1,0 +1,50 @@
+.estimate-page-grid{display:flex;flex-direction:column;align-items:center;gap:0;width:min(720px,calc(100% - 64px));margin-inline:auto;padding-block:56px 64px}
+.estimate-context{position:sticky;top:145px}.estimate-context h2{font-size:clamp(32px,3.5vw,48px);margin-bottom:24px}.estimate-context p{font-size:15px}.estimate-context p a{color:var(--red);text-decoration:underline}
+.campaign-estimate-page main .lead-form{padding:clamp(24px,4vw,48px);background:#fff;border:1px solid #d6d1c8;border-top:4px solid var(--red)}
+.campaign-estimate-page .lead-form h1{font-size:clamp(30px,3vw,42px);margin:12px 0 20px;line-height:1.1}.lead-form>p{font-size:14px;line-height:1.6}.lead-form .form-eyebrow{color:var(--red);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+.lead-form label{display:block;font-size:13px;font-weight:700;margin:20px 0 8px}.lead-form :is(input:not([type=hidden]),select,textarea){display:block;width:100%;min-height:48px;padding:12px;border:1px solid #bbb5ac;background:#fbfaf7;color:#181818;font:inherit;font-size:16px;border-radius:0}.lead-form textarea{min-height:120px;resize:vertical}
+.honeypot{position:absolute;left:-9999px}.campaign-recaptcha{margin:24px 0;min-height:78px}.lead-form button{width:100%}.email-captured{padding:14px;background:#edf3e9;color:#28451e;border-left:3px solid #496b38}.email-captured[hidden]{display:none}#captcha-error{color:#a60000}.estimate-page-footer{text-align:center;padding:24px;font-size:12px;border-top:1px solid #d6d1c8}.campaign-estimate-next{align-self:center}.campaign-estimate-next h3{color:#fff}.campaign-estimate-next p{margin-top:18px}
+@media(max-width:800px){.estimate-page-grid{grid-template-columns:1fr;padding-block:32px}.estimate-context{position:static}.campaign-estimate-page .header-inner{gap:12px}.campaign-estimate-page .header-inner .button{gap:6px;padding:12px;font-size:11px}.campaign-estimate-page .brand img{width:140px}}
+@media(max-width:380px){.campaign-recaptcha{transform:scale(.85);transform-origin:left center}}
+
+.campaign-estimate-page .estimate-intro{text-align:center;width:100%;margin-bottom:30px}
+.campaign-estimate-page .estimate-intro .eyebrow{margin-bottom:16px}
+.campaign-estimate-page .estimate-intro h1{font-size:clamp(32px,4vw,48px);line-height:1.12;max-width:100%;margin:0 0 18px}
+.campaign-estimate-page .estimate-intro>p:last-child{max-width:560px;margin:0 auto;font-size:15px;line-height:1.7;color:var(--muted)}
+.campaign-estimate-page main.estimate-page-grid .lead-form{width:100%;max-width:640px;margin:0 auto;text-align:left;padding:clamp(24px,4vw,44px)}
+.campaign-estimate-page .estimate-back{margin-top:24px;font-size:13px;text-underline-offset:4px;text-decoration:underline}
+@media(max-width:560px){.campaign-estimate-page .estimate-page-grid{width:calc(100% - 48px);padding-block:36px 48px}.campaign-estimate-page main.estimate-page-grid .lead-form{padding:22px}.campaign-estimate-page .estimate-intro{margin-bottom:24px}}
+/* Override the shared full-width main and oversized legacy h1 rules. */
+.site-page.campaign-estimate-page main.estimate-page-grid{display:flex;flex-direction:column;align-items:center;width:min(720px,calc(100% - 64px));max-width:720px;margin:0 auto;padding:56px 0 64px;gap:0}
+.site-page.campaign-estimate-page main .estimate-intro{display:block;position:static;width:100%;max-width:640px;margin:0 auto 30px;padding:0;text-align:center}
+.site-page.campaign-estimate-page main .estimate-intro h1{width:100%;max-width:100%!important;margin:0 auto 18px;text-align:center;font-size:clamp(32px,4vw,46px)!important;line-height:1.15!important;text-wrap:balance}
+@media(max-width:560px){.site-page.campaign-estimate-page main.estimate-page-grid{width:calc(100% - 48px);padding:36px 0 48px}.site-page.campaign-estimate-page main .estimate-intro h1{font-size:32px!important}}
+/* Center the brand bolt between matching red rules. */
+.site-page.campaign-estimate-page main.estimate-page-grid .lead-form{border-top:1px solid #d6d1c8}
+.campaign-estimate-page .estimate-form-mark{display:flex;align-items:center;justify-content:center;gap:22px;width:100%;margin:0 0 28px}
+.campaign-estimate-page .estimate-form-mark::before,.campaign-estimate-page .estimate-form-mark::after{content:'';display:block;flex:1;height:2px;background:#f00303}
+.campaign-estimate-page .estimate-form-mark img{display:block;flex:0 0 auto;width:25px;height:auto;object-fit:contain}
+@media(max-width:560px){.campaign-estimate-page .estimate-form-mark{gap:16px;margin-bottom:22px}.campaign-estimate-page .estimate-form-mark img{width:21px}}
+.site-page.campaign-estimate-page main .lead-form .estimate-form-title{font-size:clamp(20px,2.5vw,25px)!important;line-height:1.25!important;text-align:center;margin:0 0 26px;max-width:100%;letter-spacing:-.025em!important}
+.campaign-estimate-page .estimate-form-mark{margin-bottom:20px}
+.campaign-estimate-page .project-uploads{min-width:0;margin:26px 0 0;padding:20px;border:1px dashed #bbb5ac;background:#fbfaf7}
+.campaign-estimate-page .project-uploads legend{padding:0 6px;font-size:14px;font-weight:700}
+.campaign-estimate-page .project-uploads legend span{font-weight:400;color:#686158}
+.campaign-estimate-page .project-uploads p{font-size:12px;margin:0;line-height:1.6}
+.campaign-estimate-page .project-uploads input[type=file]{padding:8px;background:white;font-size:12px;min-height:44px}
+.campaign-estimate-page .project-uploads input::file-selector-button{border:0;padding:8px 10px;margin-right:10px;background:#e9e3d9;color:#181818;font:inherit;cursor:pointer}
+.campaign-estimate-page #upload-error{color:#a60000;margin-top:10px}
+.campaign-estimate-page #upload-error:empty{display:none}
+.campaign-estimate-page .project-uploads{padding:0;border:0;background:transparent}
+.campaign-estimate-page .upload-dropzone{display:flex;flex-direction:column;align-items:center;gap:14px;padding:30px 18px;border:1px dashed #b6aea2;background:#fbfaf7;text-align:center;transition:background .2s,border-color .2s}
+.campaign-estimate-page .upload-dropzone>svg{color:var(--red)}
+.campaign-estimate-page .upload-dropzone.is-dragover{border-color:var(--red);background:#fff0ee}
+.campaign-estimate-page .project-uploads .upload-prompt{font-size:15px;font-weight:600}
+.site-page.campaign-estimate-page main .lead-form button.upload-browse{width:auto;min-height:44px;padding:10px 22px;border:1px solid #181818;background:#181818;color:#fff}
+.campaign-estimate-page .upload-list{list-style:none;margin:14px 0 0;padding:0}
+.campaign-estimate-page .upload-list li{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:10px 0;border-bottom:1px solid #ddd}
+.campaign-estimate-page .upload-list li span{font-size:13px;overflow-wrap:anywhere;min-width:0}
+.site-page.campaign-estimate-page main .lead-form button.upload-remove{width:auto;flex-shrink:0;min-height:36px;padding:6px 8px;border:0;background:transparent;color:#b00000;font-size:12px;text-decoration:underline}
+.campaign-estimate-page .lead-form input[hidden]{display:none!important}
+.campaign-estimate-page #upload-status{font-size:12px;color:#686158;margin-top:10px}
+.campaign-estimate-page #upload-status:empty{display:none}
