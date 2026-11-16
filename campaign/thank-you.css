@@ -1,0 +1,11 @@
+/* Keep confirmation styling local to this page; shared header/footer stay full width. */
+body.site-page.thank-you-page{display:block;margin:0;padding:0;min-height:100vh;background:#f4f1eb;color:#181818}
+.site-page.thank-you-page main#main-content{width:min(760px,calc(100% - 48px));max-width:760px;margin:64px auto;padding:clamp(28px,5vw,60px);background:#fff;border:1px solid #d6d1c8;border-top:4px solid #cf0303;box-shadow:0 12px 40px #18181806;text-align:center}
+.thank-you-page .confirmation-mark{display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin:0 auto 24px;border-radius:50%;background:#fceaea;color:#cf0303}
+.site-page.thank-you-page main#main-content .eyebrow{margin:0 0 16px;color:#cf0303;font-size:11px;letter-spacing:.14em}
+.site-page.thank-you-page main#main-content h1{max-width:100%!important;margin:0 auto 22px;font-size:clamp(30px,4vw,46px)!important;line-height:1.15!important;text-align:center;text-wrap:balance}
+.site-page.thank-you-page main#main-content p:not(.eyebrow){max-width:540px;margin:0 auto 20px;font-size:15px;line-height:1.75;color:#514c45}
+.site-page.thank-you-page main#main-content p a{display:inline;color:#b50000;font-weight:600;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.site-page.thank-you-page main#main-content>.button{display:inline-flex;align-items:center;justify-content:center;width:auto;margin:8px auto 0;padding:17px 28px;min-height:50px;background:#cf0303;color:#fff;border:0;border-radius:0;font:600 14px/1.3 Arial,sans-serif}
+.site-page.thank-you-page main#main-content>.button:hover{background:#a60000}
+@media(max-width:560px){.site-page.thank-you-page main#main-content{margin:32px auto;width:calc(100% - 40px);padding:30px 24px}.site-page.thank-you-page main#main-content p:not(.eyebrow){font-size:14px}.thank-you-page .confirmation-mark{width:56px;height:56px}}
