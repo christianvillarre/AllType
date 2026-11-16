@@ -82,8 +82,7 @@
   <link href="/seo.css" rel="stylesheet"/>
   <link href="/vendor/lenis.css" rel="stylesheet"/>
   <link href="/homepage.css?v=20261115-site-theme" rel="stylesheet"/>
-  <link href="/site-theme.css?v=20261115-flat-borders" rel="stylesheet"/>
- </head>
+  <link href="/site-theme.css?v=20261115-sticky-header" rel="stylesheet"/>
  <style>
   :root {
     --red: #f00303;
@@ -657,7 +656,13 @@
   .contact-section { display: none; }
   .site-footer { padding-top: 2rem; }
  </style>
- <body class="site-page" data-page="contact.html">
+ <link rel="stylesheet" href="/campaign/estimate-page.css?v=20261116-contact"/>
+ <link rel="stylesheet" href="/contact-estimate.css?v=20261116-1"/>
+ <script defer src="/campaign/libphonenumber-max.js"></script>
+ <script defer src="/campaign/form-validation.js?v=20261112-1"></script>
+ <script defer src="/campaign/estimate-page.js?v=20261116-contact"></script>
+ </head>
+ <body class="site-page campaign-estimate-page contact-estimate-page" data-page="contact.html">
   <div class="utility">
    <div class="wrap">
     <span>
@@ -785,97 +790,77 @@
     </span>
    </nav>
    <!-- ══ HERO ══ -->
-   <section class="contact-hero page-hero page-section">
-    <div class="container contact-hero-inner">
-     <div class="hero-left">
-      <div class="form-wrap">
-       <div class="form-eyebrow">
-        Free Estimate
-       </div>
-       <h2 class="form-title">
-        Get a Fast Response
-       </h2>
-       <form class="contact-form" data-netlify="true" data-netlify-recaptcha="true" method="POST" name="contact" netlify-honeypot="bot-field">
-        <input name="form-name" type="hidden" value="contact"/>
-        <p class="hidden-honeypot">
-         <label>
-          Don’t fill this out if you’re human:
-          <input name="bot-field" type="text"/>
-         </label>
-        </p>
-        <div class="form-row">
-         <input name="fullName" placeholder="Full Name*" required="" type="text"/>
-        </div>
-        <div class="form-row">
-         <input name="emailAddress" placeholder="Email Address*" required="" type="email"/>
-        </div>
-        <div class="form-row">
-         <input name="phoneNumber" placeholder="Phone Number*" required="" type="tel"/>
-        </div>
-        <div class="form-row form-row-textarea">
-         <textarea name="message" placeholder="Message*" required="" rows="6"></textarea>
-        </div>
-        <div data-netlify-recaptcha="true">
-        </div>
-        <button class="contact-submit" type="submit">
-         Send Message
-        </button>
-       </form>
-       <div class="form-success" id="formSuccess">
-        <h3>
-         Message Received
-        </h3>
-        <p>
-         Thank you for reaching out. A member of our team will be in touch shortly. For urgent issues or active leaks, please call us directly at
-         <a href="tel:+12813976614" style="color:var(--red);text-decoration:none;">
-          (281) 397-6614
-         </a>
-         .
-        </p>
-       </div>
-      </div>
-     </div>
-     <div class="hero-right">
-      <p class="hero-desc">
-       Whether you need an estimate, have an active leak, or want to schedule an inspection — our team is ready to respond. Reach out directly or fill out the form below and we'll get back to you promptly.
+   <section class="contact-estimate-section" aria-labelledby="contact-estimate-title"><div class="estimate-page-grid">
+<header class="estimate-intro"><h1 id="contact-estimate-title">All-Type Roofing &amp; Construction</h1><p>Got a roof leak or a commercial property project? Contact us today. Real people from our team will respond within 1–2 business days to discuss how we can help.</p></header>
+<form action="/campaign/thank-you" class="lead-form" data-netlify="true" data-netlify-recaptcha="true" id="estimate-details" data-prefill-email="false" method="POST" enctype="multipart/form-data" name="contact" netlify-honeypot="bot-field">
+      <div class="estimate-form-mark" aria-hidden="true"><img src="/images/lightning_bolt.png" alt="" width="277" height="780"/></div>
+      <p id="email-captured" hidden></p>
+<h2 class="estimate-form-title">Tell us more about your project</h2>
+      <input name="form-name" type="hidden" value="contact"/>
+<input name="submissionSource" type="hidden" value="Contact page"/>
+      <p class="honeypot">
+       <label>
+        Leave this empty
+        <input name="bot-field" type="hidden"/>
+       </label>
       </p>
-      <div class="hero-contacts">
-       <a class="hero-contact-item" href="tel:+12813976614">
-        <div class="hero-contact-icon">
-         <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.59.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.59 1 1 0 01-.25 1.01l-2.2 2.19z">
-          </path>
-         </svg>
-        </div>
-        <div>
-         <div class="hero-contact-label">
-          Call Us Directly
-         </div>
-         <div class="hero-contact-value">
-          (281) 397-6614
-         </div>
-        </div>
-       </a>
-       <a class="hero-contact-item" href="https://maps.google.com/?q=13625+Chrisman+Rd+Houston+TX+77039" target="_blank">
-        <div class="hero-contact-icon">
-         <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z">
-          </path>
-         </svg>
-        </div>
-        <div>
-         <div class="hero-contact-label">
-          Our Office
-         </div>
-         <div class="hero-contact-value">
-          13625 Chrisman Rd, Houston TX
-         </div>
-        </div>
-       </a>
-      </div>
-     </div>
-    </div>
-   </section>
+<label for="footer-fullName">
+       Full name
+      </label>
+      <input autocomplete="name" id="footer-fullName" name="fullName" type="text" required=""/>
+      <label for="footer-emailAddress">
+       Email address
+      </label>
+      <input autocomplete="email" id="footer-emailAddress" name="emailAddress" required="" type="email"/>
+      <label for="footer-phoneNumber">
+       Phone number
+      </label>
+      <input autocomplete="tel" id="footer-phoneNumber" name="phoneNumber" placeholder="(281) 397-6614" required="" type="tel"/>
+<label for="propertyAddress">Commercial property address</label>
+<input id="propertyAddress" name="propertyAddress" autocomplete="street-address" placeholder="Street address, city, state, ZIP" required=""/>
+<label for="roofMaterial">Roof material</label>
+<select id="roofMaterial" name="roofMaterial" required=""><option value="">Select a roof material</option><option>TPO / PVC</option><option>Metal</option><option>Modified bitumen / built-up</option><option>EPDM</option><option>Coated roof</option><option>Other / not sure</option></select>
+<label for="roofCondition">What condition is your roof in?</label>
+<select id="roofCondition" name="roofCondition" required=""><option value="">Select the main concern</option><option>Actively leaking</option><option>Storm or wind damage</option><option>Ponding water / drainage issues</option><option>Aging or deteriorating</option><option>Planning replacement</option><option>Routine inspection / not sure</option></select>
+<label for="projectTiming">How soon do you need help?</label>
+<select id="projectTiming" name="projectTiming" required=""><option value="">Select timing</option><option>Urgent / active leak</option><option>Within a month</option><option>Within 1–3 months</option><option>Planning / comparing options</option></select>
+      <label for="footer-message">
+       How can we help?
+      </label>
+      <textarea id="footer-message" name="message" placeholder="Roof age, approximate size, leak locations, or other details"></textarea>
+      <fieldset class="project-uploads"><legend>Photos &amp; documents <span>(optional)</span></legend>
+<div class="upload-dropzone" id="upload-dropzone">
+<svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 16V3m-5 5 5-5 5 5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<p class="upload-prompt">Drag &amp; drop your files here</p>
+<button type="button" class="upload-browse" id="upload-browse">Upload files</button>
+<p id="upload-help">Photos, PDFs, or Word documents · Up to 10 files, 7 MB combined.</p>
+<input type="file" id="upload-picker" multiple accept="image/*,.pdf,.doc,.docx" hidden aria-label="Choose project files"/>
+</div>
+<ul id="upload-list" class="upload-list" aria-label="Selected files"></ul>
+<p id="upload-status" role="status" aria-live="polite"></p>
+<p id="upload-error" role="alert"></p>
+<input type="file" name="projectFile1" class="upload-slot" hidden tabindex="-1" aria-hidden="true"/>
+<input type="file" name="projectFile2" class="upload-slot" hidden tabindex="-1" aria-hidden="true"/>
+<input type="file" name="projectFile3" class="upload-slot" hidden tabindex="-1" aria-hidden="true"/>
+<input type="file" name="projectFile4" class="upload-slot" hidden tabindex="-1" aria-hidden="true"/>
+<input type="file" name="projectFile5" class="upload-slot" hidden tabindex="-1" aria-hidden="true"/>
+<input type="file" name="projectFile6" class="upload-slot" hidden tabindex="-1" aria-hidden="true"/>
+<input type="file" name="projectFile7" class="upload-slot" hidden tabindex="-1" aria-hidden="true"/>
+<input type="file" name="projectFile8" class="upload-slot" hidden tabindex="-1" aria-hidden="true"/>
+<input type="file" name="projectFile9" class="upload-slot" hidden tabindex="-1" aria-hidden="true"/>
+<input type="file" name="projectFile10" class="upload-slot" hidden tabindex="-1" aria-hidden="true"/>
+</fieldset>
+      <div class="campaign-recaptcha" data-netlify-recaptcha="true"></div>
+      <p id="captcha-error" role="alert"></p>
+<p id="submission-status" role="status" aria-live="polite"></p>
+<button type="submit">
+       Send My Request
+      </button>
+      <p class="form-follow-up">
+       We’ll contact you to discuss your property and roofing needs.
+      </p>
+     </form>
+</div></section>
    <!-- ══ MAP ══ -->
    <section class="map-section page-section">
     <div class="map-shell">

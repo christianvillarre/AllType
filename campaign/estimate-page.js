@@ -9,7 +9,7 @@
   } else {
     try { captured = sessionStorage.getItem('commercial-roofing-email') || ''; } catch (_) {}
   }
-  if (captured) {
+  if (captured && form.dataset.prefillEmail !== "false") {
     const email = form.elements.emailAddress;
     email.value = captured;
     if (email.checkValidity()) document.querySelector('#email-captured').hidden = false;

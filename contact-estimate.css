@@ -1,0 +1,9 @@
+/* Reuse the estimate form inside the contact page without affecting its map/footer. */
+.site-page.contact-estimate-page main .contact-estimate-section{padding:0;background:#f4f1eb}
+.site-page.contact-estimate-page main .contact-estimate-section .estimate-page-grid{display:flex;flex-direction:column;align-items:center;gap:0;width:min(720px,calc(100% - 64px));max-width:720px;margin:0 auto;padding:48px 0 64px}
+.site-page.contact-estimate-page main .contact-estimate-section .estimate-intro{max-width:640px;margin:0 auto 30px}
+.site-page.contact-estimate-page main .contact-estimate-section .lead-form{width:100%;max-width:640px;margin:0 auto;padding:clamp(24px,4vw,44px);text-align:left;background:#fff;border:1px solid #d6d1c8}
+.site-page.contact-estimate-page main .contact-estimate-section label{font:700 13px/1.5 Arial,sans-serif;letter-spacing:normal;text-transform:none;margin:20px 0 8px}
+.site-page.contact-estimate-page main .contact-estimate-section .lead-form input[hidden]{display:none!important}
+.site-page.contact-estimate-page main .contact-estimate-section .lead-form p[hidden]{display:none!important}
+@media(max-width:560px){.site-page.contact-estimate-page main .contact-estimate-section .estimate-page-grid{width:calc(100% - 48px);padding:32px 0 48px}.site-page.contact-estimate-page main .contact-estimate-section .lead-form{padding:22px}}
