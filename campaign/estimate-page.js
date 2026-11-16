@@ -81,20 +81,47 @@
     dropzone.classList.remove('is-dragover');
     addFiles(Array.from(event.dataTransfer.files));
   });
-  form.addEventListener('submit', event => {
+  let submitting = false;
+  form.addEventListener('submit', async event => {
+    // Shared contact validation runs first and can cancel the submission.
+    if (event.defaultPrevented) return;
+    event.preventDefault();
+    if (submitting || !form.reportValidity()) return;
     if (!validateUploads()) {
-      event.preventDefault();
       error.textContent = 'Please select up to 10 files with a combined size under 7 MB.';
       return;
     }
-    const container = form.querySelector('.campaign-recaptcha');
-    const widgetId = container.dataset.widgetId;
-    if (!window.grecaptcha || widgetId === undefined || !window.grecaptcha.getResponse(Number(widgetId))) {
-      event.preventDefault();
-      document.querySelector('#captcha-error').textContent = 'Please complete the CAPTCHA before sending your request.';
-      container.scrollIntoView({ block: 'center' });
-    } else {
-      document.querySelector('#captcha-error').textContent = '';
+    const captchaError = document.querySelector('#captcha-error');
+    const response = form.querySelector('[name="g-recaptcha-response"]');
+    if (!response || !response.value.trim()) {
+      captchaError.textContent = 'Please complete the CAPTCHA before sending your request.';
+      form.querySelector('.campaign-recaptcha').scrollIntoView({ block: 'center' });
+      return;
+    }
+    captchaError.textContent = '';
+    const submit = form.querySelector('button[type="submit"]');
+    const message = document.querySelector('#submission-status');
+    const originalText = submit.textContent;
+    submitting = true;
+    submit.disabled = true;
+    submit.textContent = 'Sending your request…';
+    message.textContent = '';
+    try {
+      const body = new FormData(form);
+      body.set('form-name', form.getAttribute('name'));
+      // Empty file slots do not need to be sent in the multipart request.
+      slots.forEach(input => { if (!input.files.length) body.delete(input.name); });
+      const result = await fetch('/', {
+        method: 'POST', body, signal: AbortSignal.timeout(30000)
+      });
+      if (!result.ok) throw new Error(`Submission failed (${result.status})`);
+      window.location.assign('/campaign/thank-you');
+    } catch (_) {
+      message.textContent = 'Your request could not be confirmed. Your entries are still here. Please complete the CAPTCHA again and retry, or call (281) 397-6614.';
+      if (window.grecaptcha) window.grecaptcha.reset();
+      submitting = false;
+      submit.disabled = false;
+      submit.textContent = originalText;
     }
   });
 })();
