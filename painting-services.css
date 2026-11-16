@@ -1,0 +1,41 @@
+/* Painting service collections follow the site's warm, editorial palette. */
+body[data-page="services/commercial-painting.html"] main .painting-services{background:#f4f1eb}
+.site-page main :is(.painting-services,.painting-directory) .services-head{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:60px;border:0;padding:0;margin-bottom:36px}
+.site-page main :is(.painting-services,.painting-directory) .section-title{margin:0;max-width:none}
+.site-page main :is(.painting-services,.painting-directory) .section-intro{margin:0;max-width:560px;font-size:15px;line-height:1.7;color:#66625c}
+.site-page main .painting-services .services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;background:transparent;border:0}
+.site-page main .painting-services .service-card{position:relative;min-width:0;padding:30px;background:#fbfaf7;border:1px solid #ded8ce;border-radius:12px;overflow:hidden;box-shadow:0 5px 18px #18181804}
+.site-page main .painting-services .service-card:hover{background:#fbfaf7}
+.site-page main .painting-services .service-card-bar{position:absolute;inset:0 auto 0 0;width:3px;height:auto;background:#cf0303;opacity:.85}
+.site-page main .painting-services .service-card-num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:32px;margin:0 0 28px;border:1px solid #e1d8cd;border-radius:6px;background:#f0eae0;color:#a60000;font:700 11px/1 Arial,sans-serif;letter-spacing:.06em}
+.site-page main .painting-services .service-card h3{font-size:24px!important;line-height:1.2!important;margin:0 0 16px;max-width:270px}
+.site-page main .painting-services .service-card p{margin:0;color:#66625c!important;font-size:14px;line-height:1.75}
+body[data-page="services/commercial-painting.html"] main .painting-directory{background:#e5dfd5}
+.site-page main .painting-directory-grid{display:grid;grid-template-columns:.8fr 1.6fr;gap:0;border:1px solid #d5cec2;border-radius:14px;overflow:hidden;background:#fbfaf7;box-shadow:0 8px 24px #18181806}
+.site-page main .painting-directory-photo{position:relative;margin:0;min-width:0;min-height:510px;background:#191919;overflow:hidden}
+.site-page main .painting-directory-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% center}
+.site-page main .painting-directory-photo:after{content:'';position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#000c)}
+.site-page main .painting-directory-photo figcaption{position:absolute;bottom:30px;left:28px;right:28px;z-index:1;font:500 25px/1.25 var(--slab);letter-spacing:-.035em;color:#fff}
+.site-page main .painting-directory .full-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;background:transparent;border:0;padding:10px 24px;margin:0}
+.site-page main .painting-directory .list-item{display:flex;align-items:center;gap:14px;min-width:0;margin:0;padding:22px 12px;border:0;border-bottom:1px solid #e1dbd1;background:transparent;transition:none}
+.site-page main .painting-directory .list-item:hover{background:transparent}
+.site-page main .painting-directory .list-item:nth-last-child(-n+2){border-bottom:0}
+.site-page main .painting-directory .list-num{flex:0 0 22px;color:#b00000;font:700 10px/1.5 Arial,sans-serif;letter-spacing:.04em}
+.site-page main .painting-directory .list-text{color:#181818;font:600 13px/1.55 Arial,sans-serif;letter-spacing:0}
+@media(max-width:1000px){
+ .site-page main .painting-services .services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .site-page main .painting-directory-grid{grid-template-columns:1fr 1.6fr}
+ .site-page main .painting-directory .full-list{grid-template-columns:1fr;padding:8px 24px}
+ .site-page main .painting-directory .list-item{padding:16px 0}
+ .site-page main .painting-directory .list-item:nth-last-child(2){border-bottom:1px solid #e1dbd1}
+}
+@media(max-width:700px){
+ .site-page main :is(.painting-services,.painting-directory) .services-head{grid-template-columns:1fr;gap:20px;margin-bottom:28px}
+ .site-page main .painting-services .services-grid{grid-template-columns:1fr;gap:12px}
+ .site-page main .painting-services .service-card{padding:24px}
+ .site-page main .painting-services .service-card-num{margin-bottom:20px}
+ .site-page main .painting-services .service-card h3{max-width:none;font-size:23px!important}
+ .site-page main .painting-directory-grid{grid-template-columns:1fr}
+ .site-page main .painting-directory-photo{min-height:240px}
+ .site-page main .painting-directory-photo figcaption{font-size:24px;bottom:24px;left:24px}
+}
