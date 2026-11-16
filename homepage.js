@@ -1,65 +1,7 @@
 (() => {
-  const nav = document.querySelector('.primary-nav');
-  const toggle = document.querySelector('.mobile-toggle');
-  const groups = [...nav.querySelectorAll('.nav-group')];
-  const closeGroups = (except) => groups.forEach(group => { if (group !== except) group.open = false; });
-  const closeMobile = () => {
-    nav.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    closeGroups();
-  };
-  toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') !== 'true';
-    toggle.setAttribute('aria-expanded', String(open));
-    nav.classList.toggle('is-open', open);
-    if (!open) closeGroups();
-  });
-  groups.forEach(group => {
-    let closeTimer;
-    let pointerHovering = false;
-    const cancelClose = () => window.clearTimeout(closeTimer);
-    group.querySelector('summary').addEventListener('click', () => {
-      cancelClose();
-      closeGroups(group);
-    });
-    group.addEventListener('pointerenter', event => {
-      if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
-      pointerHovering = true;
-      cancelClose();
-      closeGroups(group);
-      group.open = true;
-    });
-    group.addEventListener('pointerleave', () => {
-      if (!pointerHovering) return;
-      pointerHovering = false;
-      cancelClose();
-      closeTimer = window.setTimeout(() => {
-        if (!group.contains(document.activeElement)) group.open = false;
-      }, 150);
-    });
-    group.addEventListener('focusout', () => {
-      cancelClose();
-      closeTimer = window.setTimeout(() => {
-        if (!group.contains(document.activeElement) && !group.matches(':hover')) group.open = false;
-      }, 150);
-    });
-  });
-  document.addEventListener('click', event => {
-    if (!event.target.closest('.site-header')) closeMobile();
-  });
-  document.addEventListener('keydown', event => {
-    if (event.key !== 'Escape') return;
-    const openGroup = groups.find(group => group.open);
-    if (openGroup) {
-      openGroup.open = false;
-      openGroup.querySelector('summary').focus();
-    } else if (nav.classList.contains('is-open')) {
-      closeMobile();
-      toggle.focus();
-    }
-  });
-  nav.addEventListener('click', event => { if (event.target.closest('a')) closeMobile(); });
-  window.matchMedia('(min-width: 801px)').addEventListener('change', closeMobile);
+  const script = document.createElement('script');
+  script.src = '/navigation.js?v=20261116-dark-menu';
+  document.head.append(script);
 })();
 
 (() => {
