@@ -33,6 +33,10 @@
     });
   }
   nav.querySelectorAll('.nav-dropdown > p').forEach(title => title.remove());
+  nav.querySelectorAll('.nav-dropdown a').forEach(link => {
+    link.textContent = link.textContent.replace(/\bcommercial\s+/gi, '').trim();
+  });
+
   const constructionOrder = [
     '/services/commercial-construction',
     '/services/commercial-painting',
